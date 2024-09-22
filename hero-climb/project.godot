@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hero-Climb"
-run/main_scene="res://[TL1] Ferris/scenes/FerrisTestMain.tscn"
+run/main_scene="res://[TL6] Julia/scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 

@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://drv8l38g2sjlo"]
+
+[node name="StartGameButton" type="Button"]
+text = "Start"
