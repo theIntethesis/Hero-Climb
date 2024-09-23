@@ -11,6 +11,8 @@ public partial class PlayerController : CharacterBody2D
 
 	protected AnimatedSprite2D sprite;
 	protected bool isAttacking = false;
+	public enum CharClass { Fighter, Rogue, Wizard }
+	public readonly CharClass charClass = CharClass.Wizard;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -89,6 +91,14 @@ public partial class PlayerController : CharacterBody2D
 	}
 	public override void _Ready()
 	{
+		switch (charClass)
+		{
+			case CharClass.Wizard:
+				AddChild(GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D);
+				break;
+			default:
+				return;
+		}
 		sprite = GetNode("Sprites") as AnimatedSprite2D;
 	}
 	public override void _Process(double delta)
