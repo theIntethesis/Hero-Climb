@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk2ni3qk3fp3u"]
-
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="1_q7hiq"]
-
-[node name="BackButton" type="Button"]
-text = "Back"
-script = ExtResource("1_q7hiq")
-
-[connection signal="pressed" from="." to="." method="OnPressed"]

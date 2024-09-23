@@ -1,14 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf1mwj455rvja"]
+[gd_scene load_steps=4 format=3 uid="uid://cf1mwj455rvja"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/character_creator.gd" id="1_f4aif"]
-[ext_resource type="PackedScene" uid="uid://4pihqerwiphx" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
-[ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="3_6vn0e"]
-[ext_resource type="PackedScene" uid="uid://drv8l38g2sjlo" path="res://[TL6] Julia/scenes/UI Elements/StartGameButton.tscn" id="4_ead0o"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/CharacterCreator.cs" id="1_ynb51"]
+[ext_resource type="PackedScene" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="3_88e77"]
 
 [node name="CharacterCreator" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_f4aif")
+script = ExtResource("1_ynb51")
 
 [node name="VFlowContainer" type="VFlowContainer" parent="."]
 layout_mode = 1
@@ -17,10 +16,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -310.5
-offset_right = 150.0
-offset_bottom = 310.5
+offset_left = -97.0
+offset_top = -197.0
+offset_right = 97.0
+offset_bottom = 197.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -74,13 +73,16 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Rogue"
 
-[node name="BackButton" parent="VFlowContainer" instance=ExtResource("3_6vn0e")]
+[node name="StartGameButton" type="Button" parent="VFlowContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+text = "Start"
 
-[node name="StartGameButton" parent="VFlowContainer" instance=ExtResource("4_ead0o")]
+[node name="BackButton" type="Button" parent="VFlowContainer"]
 layout_mode = 2
+text = "Back"
+script = ExtResource("3_88e77")
 
-[connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="_on_figher_pressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/WizardButton" to="." method="_on_wizard_pressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/RogueButton" to="." method="_on_rogue_pressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="OnFighterButtonPressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/WizardButton" to="." method="OnWizardButtonPressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/RogueButton" to="." method="OnRougeButtonPressed"]
+[connection signal="pressed" from="VFlowContainer/StartGameButton" to="." method="OnStartButtonPressed"]

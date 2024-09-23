@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://egm4qg80isnp"]
 
-[ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="1_grae1"]
-[ext_resource type="PackedScene" uid="uid://cd2myfkero5se" path="res://[TL6] Julia/scenes/UI Elements/OpenButton.tscn" id="1_ud5di"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/StartButton.cs" id="1_4ljny"]
 [ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn" id="2_1hegj"]
-[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="2_wcdty"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_y5klp"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="4_0pbvd"]
 
 [node name="HomeMenu" type="Control"]
 layout_mode = 3
@@ -23,17 +23,19 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="OpenButton" parent="GridContainer" instance=ExtResource("1_ud5di")]
+[node name="Start" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Start Game"
-scene = ExtResource("2_wcdty")
+script = ExtResource("1_4ljny")
 
-[node name="OpenButton2" parent="GridContainer" instance=ExtResource("1_ud5di")]
+[node name="Settings" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Settings"
+script = ExtResource("2_y5klp")
 scene = ExtResource("2_1hegj")
 
-[node name="BackButton" parent="GridContainer" instance=ExtResource("1_grae1")]
+[node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2
-text = "Quit"
+text = "Quit Game"
+script = ExtResource("4_0pbvd")
 ClosesGame = true

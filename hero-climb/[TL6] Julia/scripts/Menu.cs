@@ -12,11 +12,15 @@ public partial class Menu : Control
 	[Export]
 	private PackedScene InitialGameScene;
 
+	[Export]
+	private PackedScene CharacterCreator;
+
 
     public override void _Ready()
     {
         base._Ready();
 
+		Debug.Assert(CharacterCreator != null, "Character Creator is not defined");
 		Debug.Assert(InitialGameScene != null, "Initial Game Scene is not defined");
 		Debug.Assert(Stack != null, "Menu Stack Control Node is not defined");
     }
@@ -55,9 +59,20 @@ public partial class Menu : Control
 
 	public void StartGame()
 	{
+		Push(CharacterCreator);
+	}
+
+	public void EnterGame()
+	{
+		// should check that a character class has been selected. does not yet, will need to interface with the player controller
 		GetTree().Root.AddChild(InitialGameScene.Instantiate());
 		QueueFree();
 		GetTree().Root.RemoveChild(this);
+	}
+
+	public void ResumeGame()
+	{
+
 	}
 
 }

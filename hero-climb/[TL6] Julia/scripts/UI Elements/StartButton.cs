@@ -1,21 +1,18 @@
 using Godot;
 using System;
 
-public partial class OpenButton : Button
+public partial class StartButton : Button
 {
-	[Export]
-	private PackedScene scene;
-
     public override void _Ready()
     {
         Pressed += OnPressed;
     }
 
-	public void OnPressed()
+    public void OnPressed()
 	{
 		if (GetOwner().GetOwner() is Menu)
 		{
-			GetOwner().GetOwner<Menu>().Push(scene);
+			GetOwner().GetOwner<Menu>().StartGame();
 		}
 	}
 }
