@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf1mwj455rvja"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/character_creator.gd" id="1_p82uy"]
-[ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="1_vr7tq"]
-[ext_resource type="PackedScene" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_3mace"]
-[ext_resource type="PackedScene" uid="uid://drv8l38g2sjlo" path="res://[TL6] Julia/scenes/UI Elements/StartGameButton.tscn" id="4_0nlyf"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/character_creator.gd" id="1_f4aif"]
+[ext_resource type="PackedScene" uid="uid://4pihqerwiphx" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
+[ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="3_6vn0e"]
+[ext_resource type="PackedScene" uid="uid://drv8l38g2sjlo" path="res://[TL6] Julia/scenes/UI Elements/StartGameButton.tscn" id="4_ead0o"]
 
 [node name="CharacterCreator" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_p82uy")
+script = ExtResource("1_f4aif")
 
 [node name="VFlowContainer" type="VFlowContainer" parent="."]
 layout_mode = 1
@@ -40,21 +40,19 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
+[node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
 scale = Vector2(3, 3)
 animation = &"idle"
 
-[node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
+[node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
 scale = Vector2(3, 3)
 animation = &"idle"
 
-[node name="Wizard" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
-position = Vector2(0, 0)
+[node name="Wizard" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
 scale = Vector2(3, 3)
 animation = &"idle"
 
 [node name="GridContainer" type="GridContainer" parent="VFlowContainer"]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 columns = 3
 
@@ -76,11 +74,11 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Rogue"
 
-[node name="BackButton" parent="VFlowContainer" instance=ExtResource("1_vr7tq")]
+[node name="BackButton" parent="VFlowContainer" instance=ExtResource("3_6vn0e")]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="StartGameButton" parent="VFlowContainer" instance=ExtResource("4_0nlyf")]
+[node name="StartGameButton" parent="VFlowContainer" instance=ExtResource("4_ead0o")]
 layout_mode = 2
 
 [connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="_on_figher_pressed"]

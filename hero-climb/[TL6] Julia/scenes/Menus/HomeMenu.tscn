@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="1_grae1"]
 [ext_resource type="PackedScene" uid="uid://cd2myfkero5se" path="res://[TL6] Julia/scenes/UI Elements/OpenButton.tscn" id="1_ud5di"]
-[ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/SettingsMenu.tscn" id="2_1hegj"]
-[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/CharacterCreator.tscn" id="2_wcdty"]
+[ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn" id="2_1hegj"]
+[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="2_wcdty"]
 
 [node name="HomeMenu" type="Control"]
 layout_mode = 3

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menu.cs" id="1_3vgj4"]
 [ext_resource type="PackedScene" uid="uid://dpsqusybt8d0j" path="res://[TL1] Ferris/scenes/FerrisTestMain.tscn" id="2_q3r57"]
-[ext_resource type="PackedScene" uid="uid://egm4qg80isnp" path="res://[TL6] Julia/scenes/HomeMenu.tscn" id="2_sdx03"]
+[ext_resource type="PackedScene" uid="uid://egm4qg80isnp" path="res://[TL6] Julia/scenes/Menus/HomeMenu.tscn" id="2_sdx03"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("Stack")]
 layout_mode = 3
