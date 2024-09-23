@@ -23,12 +23,13 @@ public partial class BackButton : Button
 			GetTree().Quit();
 		}
 
+		GD.Print(GetParent().GetParent());
+
 		if (GetOwner().GetOwner() is Menu)
 		{
-			GetOwner().GetOwner<Menu>().pop();
+			GetOwner().GetOwner<Menu>().Pop();
 			return;
 		}
-		
 	}
 }
 

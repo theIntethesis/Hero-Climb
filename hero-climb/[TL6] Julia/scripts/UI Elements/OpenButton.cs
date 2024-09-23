@@ -15,7 +15,7 @@ public partial class OpenButton : Control
 	{
 		if (GetOwner().GetOwner() is Menu)
 		{
-			GetOwner().GetOwner<Menu>().push(scene);
+			GetOwner().GetOwner<Menu>().Push(scene);
 		}
 	}
 }

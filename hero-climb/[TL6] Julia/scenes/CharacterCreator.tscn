@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/character_creator.gd" id="1_p82uy"]
 [ext_resource type="PackedScene" uid="uid://bk2ni3qk3fp3u" path="res://[TL6] Julia/scenes/UI Elements/BackButton.tscn" id="1_vr7tq"]
-[ext_resource type="Texture2D" uid="uid://cnduppk8wbb4j" path="res://[TL1] Ferris/assets/Wizard Draft 1.png" id="2_ohsoc"]
+[ext_resource type="PackedScene" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_3mace"]
 [ext_resource type="PackedScene" uid="uid://drv8l38g2sjlo" path="res://[TL6] Julia/scenes/UI Elements/StartGameButton.tscn" id="4_0nlyf"]
 
 [node name="CharacterCreator" type="Control"]
@@ -26,28 +26,51 @@ grow_vertical = 2
 alignment = 1
 last_wrap_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="VFlowContainer"]
+[node name="Control" type="Control" parent="VFlowContainer"]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-texture = ExtResource("2_ohsoc")
+
+[node name="Control" type="Control" parent="VFlowContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
+scale = Vector2(3, 3)
+animation = &"idle"
+
+[node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
+scale = Vector2(3, 3)
+animation = &"idle"
+
+[node name="Wizard" parent="VFlowContainer/Control/Control" instance=ExtResource("2_3mace")]
+position = Vector2(0, 0)
+scale = Vector2(3, 3)
+animation = &"idle"
 
 [node name="GridContainer" type="GridContainer" parent="VFlowContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 columns = 3
 
-[node name="Fighter" type="Button" parent="VFlowContainer/GridContainer"]
+[node name="FighterButton" type="Button" parent="VFlowContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Fighter"
 
-[node name="Wizard" type="Button" parent="VFlowContainer/GridContainer"]
+[node name="WizardButton" type="Button" parent="VFlowContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 text = "Wizard"
 
-[node name="Rogue" type="Button" parent="VFlowContainer/GridContainer"]
+[node name="RogueButton" type="Button" parent="VFlowContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
@@ -60,6 +83,6 @@ size_flags_horizontal = 3
 [node name="StartGameButton" parent="VFlowContainer" instance=ExtResource("4_0nlyf")]
 layout_mode = 2
 
-[connection signal="pressed" from="VFlowContainer/GridContainer/Fighter" to="." method="_on_figher_pressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/Wizard" to="." method="_on_wizard_pressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/Rogue" to="." method="_on_rogue_pressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="_on_figher_pressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/WizardButton" to="." method="_on_wizard_pressed"]
+[connection signal="pressed" from="VFlowContainer/GridContainer/RogueButton" to="." method="_on_rogue_pressed"]

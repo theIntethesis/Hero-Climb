@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://drv8l38g2sjlo"]
+[gd_scene load_steps=2 format=3 uid="uid://drv8l38g2sjlo"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/StartGameButton.cs" id="1_kfvcw"]
 
 [node name="StartGameButton" type="Button"]
 text = "Start"
+script = ExtResource("1_kfvcw")
+
+[connection signal="pressed" from="." to="." method="OnPressed"]
