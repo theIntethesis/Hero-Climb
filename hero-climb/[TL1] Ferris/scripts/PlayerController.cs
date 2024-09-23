@@ -1,10 +1,16 @@
 using Godot;
 using System;
+using static Godot.TextServer;
 
 public partial class PlayerController : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	[Export]
+	public float Speed = 100.0f;
+	[Export]
+	public float JumpVelocity = -400.0f;
+
+	protected AnimatedSprite2D sprite;
+	protected bool isAttacking = false;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -22,19 +28,71 @@ public partial class PlayerController : CharacterBody2D
 			velocity.Y = JumpVelocity;
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
+		velocity.X = horizonalMovement().X;
+
+		Velocity = velocity;
+		MoveAndSlide();
+
+		if (!isAttacking) Animation();
+
+	}
+	public override void _Input(InputEvent @event)
+	{
+		if(@event.IsActionPressed("jump") && IsOnFloor())
 		{
-			velocity.X = direction.X * Speed;
+			sprite.Offset = new Vector2(4, -6);
+			sprite.Play("jump");
+		}
+		if (@event.IsActionPressed("attack"))
+		{
+			isAttacking = true;
+			sprite.Play("attack");
+		}
+	}
+	public void _on_sprites_animation_finished(){
+		
+	}
+	protected void Animation()
+	{
+		if (Input.IsActionPressed("move_left") && IsOnFloor())
+		{
+			sprite.Offset = new Vector2(0, 0);
+			sprite.FlipH = true;
+			sprite.Play("run");
+		}
+		else if (Input.IsActionPressed("move_right") && IsOnFloor())
+		{
+			sprite.Offset = new Vector2(0, 0);
+			sprite.FlipH = false;
+			sprite.Play("run");
+		}
+		else if (!Input.IsAnythingPressed() && IsOnFloor())
+		{
+			sprite.Offset = new Vector2(0, 0);
+			sprite.Play("idle");
+		}
+	}
+	protected Vector2 horizonalMovement()
+	{
+		Vector2 velocity = new();
+		var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
+		if (inputStr != 0)
+		{
+			velocity.X = inputStr * Speed;
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 
-		Velocity = velocity;
-		MoveAndSlide();
+		return velocity;
+	}
+	public override void _Ready()
+	{
+		sprite = GetNode("Sprites") as AnimatedSprite2D;
+	}
+	public override void _Process(double delta)
+	{
+		Animation();
 	}
 }

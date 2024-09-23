@@ -14,7 +14,7 @@ position = Vector2(63, -87)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(61, -29)
 scale = Vector2(0.832504, 0.832504)
 
