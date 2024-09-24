@@ -15,7 +15,7 @@ public partial class PlayerCamera : Camera2D
 	[Export]
 	private Control HUD;
 
-
+	private bool Paused = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,14 +30,20 @@ public partial class PlayerCamera : Camera2D
 	public override void _Process(double delta)
 	{
 
-		if (Input.IsActionJustPressed("open_menu"))
+		if (Input.IsActionJustPressed("open_menu") && !Paused)
 		{
 			PauseGame();
+			Paused = true;
 		}
 	}
 
 	public void PauseGame() 
 	{
-		Overlay.AddChild(PauseMenu.Instantiate());
+		Menu pauseMenu = (Menu)PauseMenu.Instantiate();
+		pauseMenu.Resumable = true;
+		pauseMenu.TreeExited += () => {
+			Paused = false;
+		};
+		Overlay.AddChild(pauseMenu);
 	}
 }

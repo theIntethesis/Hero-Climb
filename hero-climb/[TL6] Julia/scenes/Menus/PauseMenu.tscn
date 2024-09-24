@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://cwred22v5e60b"]
-
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 0

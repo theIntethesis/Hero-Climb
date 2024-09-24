@@ -4,26 +4,24 @@ using System;
 public partial class BackButton : Button
 {
 	[Export]
-	bool ClosesGame = false;
+	bool QuitsGame = false;
+
 
     public override void _Ready()
     {
-        Pressed += OnPressed;
+        Pressed += () => {
+			if (GetOwner().GetOwner() is Menu)
+			{
+				if (QuitsGame)
+				{
+					GetOwner().GetOwner<Menu>().QuitGame();				
+				}
+				else 
+				{
+					GetOwner().GetOwner<Menu>().Pop();
+				}
+			}
+		};
     }
-
-	public void OnPressed()
-	{
-		if (ClosesGame)
-		{
-			GetTree().Quit();
-		}
-
-
-		if (GetOwner().GetOwner() is Menu)
-		{
-			GetOwner().GetOwner<Menu>().Pop();
-			return;
-		}
-	}
 }
 

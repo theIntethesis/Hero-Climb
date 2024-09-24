@@ -10,19 +10,33 @@ public partial class Menu : Control
 	private Control Stack;
 
 	[Export]
-	private PackedScene InitialGameScene;
-
-	[Export]
 	private PackedScene CharacterCreator;
 
+	[Export]
+	private string InitialGameScene;
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public bool Resumable = false;
 
-		Debug.Assert(CharacterCreator != null, "Character Creator is not defined");
-		Debug.Assert(InitialGameScene != null, "Initial Game Scene is not defined");
+	private GlobalMenuHandler GlobalMenuHandler;
+
+	public override void _Ready()
+	{
+		
+		// Debug.Assert(CharacterCreator != null, "Character Creator is not defined");
+		// Debug.Assert(InitialGameScene != null, "Initial Game Scene is not defined");
 		Debug.Assert(Stack != null, "Menu Stack Control Node is not defined");
+
+		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+
+	}
+
+    public override void _Process(double delta)
+    {
+        
+		if (Input.IsActionJustPressed("open_menu"))
+		{
+			Pop();
+		}
     }
 
     public void Push(PackedScene scene) 
@@ -38,8 +52,17 @@ public partial class Menu : Control
 
 	public void Pop() 
 	{
-		if (Stack.GetChildCount() == 0) 
+		if (Stack.GetChildCount() == 1) 
 		{
+			if (Resumable)
+			{
+				QueueFree();
+				GetTree().Root.RemoveChild(this);
+			}
+			else 
+			{
+				QuitGame();
+			}
 			return;
 		}
 
@@ -48,31 +71,26 @@ public partial class Menu : Control
 		
 		CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		Last.Visible = true;
-
 	}
 
-	public void HideMenu() 
+	public void QuitGame()
 	{
-		GD.Print("Here");
-		Visible = false;
-	}
-
-	public void StartGame()
-	{
-		Push(CharacterCreator);
+		if (Resumable)
+		{
+			GlobalMenuHandler.ReturnToMainMenu();
+		}
+		else 
+		{
+			// display warning
+			GetTree().Quit();
+		}
 	}
 
 	public void EnterGame()
 	{
-		// should check that a character class has been selected. does not yet, will need to interface with the player controller
-		GetTree().Root.AddChild(InitialGameScene.Instantiate());
+		GlobalMenuHandler.EnterGame();
+
 		QueueFree();
 		GetTree().Root.RemoveChild(this);
 	}
-
-	public void ResumeGame()
-	{
-
-	}
-
 }

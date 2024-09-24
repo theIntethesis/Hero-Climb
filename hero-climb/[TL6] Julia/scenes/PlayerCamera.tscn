@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://d31op03sdre58"]
+[gd_scene load_steps=3 format=3 uid="uid://d31op03sdre58"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/PlayerCamera.cs" id="1_touaq"]
+[ext_resource type="PackedScene" uid="uid://bq8dn0lr5bwk2" path="res://[TL6] Julia/scenes/Pause Menu.tscn" id="2_f05fc"]
 
 [node name="PlayerCamera" type="Camera2D" node_paths=PackedStringArray("Overlay", "HUD")]
+zoom = Vector2(3, 3)
 script = ExtResource("1_touaq")
+PauseMenu = ExtResource("2_f05fc")
 Overlay = NodePath("Overlay")
 HUD = NodePath("HUD")
 

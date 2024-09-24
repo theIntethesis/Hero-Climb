@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://egm4qg80isnp"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/StartButton.cs" id="1_4ljny"]
 [ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn" id="2_1hegj"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_y5klp"]
+[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="2_y8i1l"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="4_0pbvd"]
 
 [node name="HomeMenu" type="Control"]
@@ -26,7 +26,8 @@ grow_vertical = 2
 [node name="Start" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Start Game"
-script = ExtResource("1_4ljny")
+script = ExtResource("2_y5klp")
+scene = ExtResource("2_y8i1l")
 
 [node name="Settings" type="Button" parent="GridContainer"]
 layout_mode = 2
@@ -38,4 +39,4 @@ scene = ExtResource("2_1hegj")
 layout_mode = 2
 text = "Quit Game"
 script = ExtResource("4_0pbvd")
-ClosesGame = true
+QuitsGame = true

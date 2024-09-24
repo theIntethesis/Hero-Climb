@@ -8,14 +8,12 @@ public partial class OpenButton : Button
 
     public override void _Ready()
     {
-        Pressed += OnPressed;
-    }
 
-	public void OnPressed()
-	{
-		if (GetOwner().GetOwner() is Menu)
+		if (GetOwner().GetOwner() is Menu) 
 		{
-			GetOwner().GetOwner<Menu>().Push(scene);
+			Pressed += () => {
+				GetOwner().GetOwner<Menu>().Push(scene);
+			};
 		}
-	}
+    }
 }

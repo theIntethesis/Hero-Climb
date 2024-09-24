@@ -73,16 +73,16 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Rogue"
 
-[node name="StartGameButton" type="Button" parent="VFlowContainer"]
-layout_mode = 2
-text = "Start"
-
 [node name="BackButton" type="Button" parent="VFlowContainer"]
 layout_mode = 2
 text = "Back"
 script = ExtResource("3_88e77")
 
+[node name="StartButton" type="Button" parent="VFlowContainer"]
+layout_mode = 2
+text = "Start"
+
 [connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="OnFighterButtonPressed"]
 [connection signal="pressed" from="VFlowContainer/GridContainer/WizardButton" to="." method="OnWizardButtonPressed"]
 [connection signal="pressed" from="VFlowContainer/GridContainer/RogueButton" to="." method="OnRougeButtonPressed"]
-[connection signal="pressed" from="VFlowContainer/StartGameButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="VFlowContainer/StartButton" to="." method="OnStartButtonPressed"]
