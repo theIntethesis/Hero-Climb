@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsi1dtjueodhh"]
 
-[ext_resource type="Script" path="res://[TL1] Ferris/scripts/PlayerController.cs" id="1_dgb0e"]
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/Rogue.cs" id="1_d07f4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_dgb0e")
+script = ExtResource("1_d07f4")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cbf2q")
