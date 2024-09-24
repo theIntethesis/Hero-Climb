@@ -1,9 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://4pihqerwiphx"]
+[gd_scene load_steps=32 format=3 uid="uid://ddreyoyl54apb"]
 
 [ext_resource type="Texture2D" uid="uid://b3cv32phcdvxp" path="res://[TL1] Ferris/assets/Fire vizard/Fireball.png" id="1_1f8mn"]
 [ext_resource type="Texture2D" uid="uid://d4ehv15yqbia3" path="res://[TL1] Ferris/assets/Fire vizard/Idle.png" id="2_esco7"]
 [ext_resource type="Texture2D" uid="uid://wmj6s80k5uup" path="res://[TL1] Ferris/assets/Fire vizard/Jump.png" id="3_hsjc7"]
 [ext_resource type="Texture2D" uid="uid://b2kla2wuqet5u" path="res://[TL1] Ferris/assets/Fire vizard/Run.png" id="4_3rdym"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbd2i"]
+atlas = ExtResource("1_1f8mn")
+region = Rect2(512, 56, 128, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_et4hv"]
 atlas = ExtResource("1_1f8mn")
@@ -20,10 +24,6 @@ region = Rect2(256, 56, 128, 72)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkrha"]
 atlas = ExtResource("1_1f8mn")
 region = Rect2(384, 56, 128, 72)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nbd2i"]
-atlas = ExtResource("1_1f8mn")
-region = Rect2(512, 56, 128, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m32a0"]
 atlas = ExtResource("1_1f8mn")
@@ -113,6 +113,9 @@ region = Rect2(925, 64, 47, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nbd2i")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_et4hv")
 }, {
 "duration": 1.0,
@@ -125,9 +128,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_vkrha")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nbd2i")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_m32a0")
 }, {
 "duration": 1.0,
@@ -136,7 +136,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iedll")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -211,7 +211,6 @@ animations = [{
 }]
 
 [node name="Sprites" type="AnimatedSprite2D"]
-position = Vector2(4.76837e-07, -4.76837e-07)
 scale = Vector2(0.45553, 0.45553)
 sprite_frames = SubResource("SpriteFrames_oiq25")
 animation = &"attack"
