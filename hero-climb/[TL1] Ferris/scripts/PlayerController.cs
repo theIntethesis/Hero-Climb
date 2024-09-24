@@ -12,6 +12,7 @@ public partial class PlayerController : CharacterBody2D
 	public float JumpVelocity = -400.0f;
 	[Export]
 	private float attackDelay = 48f;
+
 	private bool attackCooldown = false;
 	private float fireballCountdown = 30f;
 	private bool fireballsummon = false;
