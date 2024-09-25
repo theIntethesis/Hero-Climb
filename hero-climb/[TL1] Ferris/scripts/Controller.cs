@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static PlayerController;
 
 public partial class Controller : CharacterBody2D
 {
@@ -14,6 +13,11 @@ public partial class Controller : CharacterBody2D
     public float JumpVelocity = -400.0f;
     [Export]
     public float attackDelay = 48f;
+    [Export]
+    public bool AttackFollowMouse = false;
+
+    protected int Health = 100;
+    public int Money = 0;
 
     protected bool attackCooldown = false;
     protected float attackCooldownFrames;
@@ -44,6 +48,20 @@ public partial class Controller : CharacterBody2D
 
         if (!isAttacking) Animation();
 
+    }
+
+    public void CollideWithEnemy(Node2D body)
+    {
+        /*
+            var enemy = body as Enemy;
+            var damage = enemy.damage;
+            health -= damage;
+            if (health <= 0)
+                sprites.play("death");
+                // Lock out player control.
+            else
+                sprites.play("hurt");
+        */
     }
     public override void _Input(InputEvent @event)
     {

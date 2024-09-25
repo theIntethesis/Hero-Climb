@@ -34,11 +34,13 @@ public partial class Fireball : Area2D
 		AddSibling(line);
 		lines.Add(line);
 	}
-	public void setVelocity()
+	public void setVelocity(bool followMouse = true, bool facingLeft = false)
 	{
 		// addLine();
 		var angle = GetAngleTo(target.Position);
-		GD.PushWarning($"Angle: {angle * 180 / Math.PI}");
+		if (!followMouse)
+			angle = facingLeft ? (float)Math.PI : 0;
+		// GD.PushWarning($"Angle: {angle * 180 / Math.PI}");
 
 		float x = (float)Math.Cos(angle);
 		float y = (float)Math.Sin(angle);
@@ -52,7 +54,7 @@ public partial class Fireball : Area2D
 	public override void _Ready()
 	{
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2) / 4;
-		GD.PushWarning($"Target:\t{target.Position}");
+		// GD.PushWarning($"Target:\t{target.Position}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

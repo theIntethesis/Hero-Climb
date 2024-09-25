@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Godot;
-using static PlayerController;
 
 public partial class Wizard : Controller 
 {
@@ -18,11 +17,12 @@ public partial class Wizard : Controller
 	}
 	public override void Attack()
 	{
+		// play arcane words sound
 		attackCooldown = true;
 		isAttacking = true;
 		sprites.Play("attack");
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
-		sprites.FlipH = angle.X > 0 ? false : true;
+		if(AttackFollowMouse) sprites.FlipH = angle.X > 0 ? false : true;
 		sprites.Offset = sprites.FlipH ? new Vector2(-15, -3) : new Vector2(15, -3);
 		fireballsummon = true;
 	}
@@ -40,13 +40,12 @@ public partial class Wizard : Controller
 	}
 	protected void SummonFireball()
 	{
+		// Play fireball sound.
 		var fireball = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/fireball.tscn").Instantiate() as Fireball;
 		fireball.Position = Position;
 		//fireball.Position = sprite.FlipH ? new Vector2(-16, -8) + Position : new Vector2(16, -8) + Position;
 		AddSibling(fireball);
-		fireball.setVelocity();
-		fireballsummon = false;
-		fireballCountdown = 30;
+		fireball.setVelocity(AttackFollowMouse, sprites.FlipH);
 	}
 	protected override void Animation()
 	{
@@ -55,12 +54,14 @@ public partial class Wizard : Controller
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = true;
 			sprites.Play("run");
+			// play running sound.
 		}
 		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !isAttacking)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = false;
 			sprites.Play("run");
+			// play running sound.
 		}
 		else if (!Input.IsAnythingPressed() && IsOnFloor() && !isAttacking)
 		{
@@ -82,6 +83,8 @@ public partial class Wizard : Controller
 			if (fireballCountdown <= 0)
 			{
 				SummonFireball();
+				fireballsummon = false;
+				fireballCountdown = 30;
 			}
 		}
 	}

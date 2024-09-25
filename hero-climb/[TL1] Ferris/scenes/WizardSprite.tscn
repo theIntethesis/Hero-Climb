@@ -213,5 +213,5 @@ animations = [{
 [node name="Sprites" type="AnimatedSprite2D"]
 scale = Vector2(0.45553, 0.45553)
 sprite_frames = SubResource("SpriteFrames_oiq25")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
