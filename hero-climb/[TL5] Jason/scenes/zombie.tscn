@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://bti28delkicbq"]
+
+[ext_resource type="Script" path="res://[TL5] Jason/scripts/zombie.gd" id="1_uwk7b"]
+[ext_resource type="Texture2D" uid="uid://di7glf2xgtigv" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j8b2"]
+size = Vector2(24, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46pcj"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hye4p"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq8w1"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh07m"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ss8c"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msq80"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxfu6"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xibv3"]
+atlas = ExtResource("2_yufh8")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xo5jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46pcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hye4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq8w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh07m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ss8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msq80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxfu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xibv3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[node name="Zombie" type="CharacterBody2D"]
+script = ExtResource("1_uwk7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_6j8b2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xo5jw")
+animation = &"run"
+frame_progress = 0.609459
