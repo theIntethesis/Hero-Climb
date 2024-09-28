@@ -1,5 +1,4 @@
 using Godot;
-using HeroClimb._TL1__Ferris.scripts;
 using System;
 using System.Reflection.Metadata;
 using static Godot.TextServer;
