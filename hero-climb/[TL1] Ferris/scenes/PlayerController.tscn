@@ -1,11 +1,20 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsi1dtjueodhh"]
 
+<<<<<<< Updated upstream
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Rogue.cs" id="1_d07f4"]
+=======
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/Rogue.cs" id="1_86ya3"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
 
 [node name="Player" type="CharacterBody2D"]
+<<<<<<< Updated upstream
 script = ExtResource("1_d07f4")
+=======
+script = ExtResource("1_86ya3")
+Class = 2
+>>>>>>> Stashed changes
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cbf2q")

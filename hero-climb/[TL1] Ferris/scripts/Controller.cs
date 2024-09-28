@@ -14,12 +14,25 @@ public partial class Controller : CharacterBody2D
     public float JumpVelocity = -400.0f;
     [Export]
     public float attackDelay = 48f;
+<<<<<<< Updated upstream
+=======
+    [Export]
+    public bool AttackFollowMouse = false;
+    public enum ClassType
+    {
+        Fighter, Rogue, Wizard
+    }
+    [Export]
+    public ClassType Class = ClassType.Rogue;
+
+    protected int Health = 100;
+    public int Money = 0;
+>>>>>>> Stashed changes
 
     protected bool attackCooldown = false;
     protected float attackCooldownFrames;
 
     protected AnimatedSprite2D sprites;
-    protected bool isAttacking = false;
 
     public override void _PhysicsProcess(double delta)
     {
@@ -32,9 +45,9 @@ public partial class Controller : CharacterBody2D
         }
 
         // Handle Jump.
-        if (Input.IsActionJustPressed("jump") && IsOnFloor())
+        if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing))
         {
-            velocity.Y = JumpVelocity;
+            velocity.Y += JumpVelocity;
         }
 
         velocity.X = horizonalMovement().X;
@@ -42,12 +55,12 @@ public partial class Controller : CharacterBody2D
         Velocity = velocity;
         MoveAndSlide();
 
-        if (!isAttacking) Animation();
+        if (!Global.isAttacking) Animation();
 
     }
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("jump") && IsOnFloor())
+        if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing))
         {
             sprites.Play("jump");
         }
@@ -75,17 +88,17 @@ public partial class Controller : CharacterBody2D
 
     protected virtual void Animation()
     {
-        if (Input.IsActionPressed("move_left") && IsOnFloor() && !isAttacking)
+        if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
         {
             sprites.FlipH = true;
             sprites.Play("run");
         }
-        else if (Input.IsActionPressed("move_right") && IsOnFloor() && !isAttacking)
+        else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
         {
             sprites.FlipH = false;
             sprites.Play("run");
         }
-        else if (!Input.IsAnythingPressed() && IsOnFloor() && !isAttacking)
+        else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
         {
             sprites.Play("idle");
         }
@@ -93,10 +106,10 @@ public partial class Controller : CharacterBody2D
 
     public void _on_sprites_animation_finished()
     {
-        if (isAttacking)
+        if (Global.isAttacking)
         {
             attackCooldown = false;
-            isAttacking = false;
+            Global.isAttacking = false;
             if (Input.IsActionPressed("attack"))
                 Attack();
         }
@@ -112,7 +125,20 @@ public partial class Controller : CharacterBody2D
     }
     public Controller()
     {
+        Script script;
+        switch (Class)
+        {
+            case ClassType.Fighter:
+                script = new Script();
+                script.
+                break;
+            case ClassType.Rogue:
+                break;
+            case ClassType.Wizard:
+                break;
+        }
 
+        this.SetScript(Fighter);
     }
     public override void _Ready()
     {

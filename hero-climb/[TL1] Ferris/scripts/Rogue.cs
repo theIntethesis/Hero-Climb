@@ -8,6 +8,56 @@ using static PlayerController;
 
 public partial class Rogue : Controller
 {
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Velocity;
+
+		// Add the gravity.
+		if (!IsOnFloor() && !Global.isClimbing)
+		{
+			velocity += GetGravity() * (float)delta;
+		}
+
+		// Handle climb.
+		if (Input.IsActionPressed("move_up") && Global.isClimbing)
+		{
+			velocity += new Vector2(0, -50 * (float)delta);
+		}
+		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
+		{
+			velocity += new Vector2(0, 50 * (float)delta);
+		}
+		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up"))
+		{
+			velocity = Vector2.Zero;
+		}
+
+		// Handle Jump.
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing))
+		{
+			velocity.Y += JumpVelocity;
+		}
+
+		velocity.X = horizonalMovement().X;
+
+		Velocity = velocity;
+		MoveAndSlide();
+
+		if (!Global.isAttacking) Animation();
+
+	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("jump") && IsOnFloor())
+		{
+			sprites.Play("jump");
+		}
+		if (@event.IsActionPressed("attack") && !attackCooldown)
+		{
+			Attack();
+		}
+	}
+
 	public Rogue()
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
@@ -16,7 +66,7 @@ public partial class Rogue : Controller
 	public override void Attack()
 	{
 		attackCooldown = true;
-		isAttacking = true;
+		Global.isAttacking = true;
 		sprites.Play("attack");
 	}
 	protected override void Animation()

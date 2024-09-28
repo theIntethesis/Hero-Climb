@@ -19,7 +19,7 @@ public partial class Wizard : Controller
 	public override void Attack()
 	{
 		attackCooldown = true;
-		isAttacking = true;
+		Global.isAttacking = true;
 		sprites.Play("attack");
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
 		sprites.FlipH = angle.X > 0 ? false : true;
@@ -50,19 +50,19 @@ public partial class Wizard : Controller
 	}
 	protected override void Animation()
 	{
-		if (Input.IsActionPressed("move_left") && IsOnFloor() && !isAttacking)
+		if (Input.IsActionPressed("move_left") && IsOnFloor() && !Global.isAttacking)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = true;
 			sprites.Play("run");
 		}
-		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !isAttacking)
+		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !Global.isAttacking)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = false;
 			sprites.Play("run");
 		}
-		else if (!Input.IsAnythingPressed() && IsOnFloor() && !isAttacking)
+		else if (!Input.IsAnythingPressed() && IsOnFloor() && !Global.isAttacking)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.Play("idle");
