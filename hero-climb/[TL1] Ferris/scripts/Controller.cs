@@ -135,7 +135,7 @@ public partial class Controller : CharacterBody2D
     }
     public Controller()
     {
-        Script script;
+        /*Script script;
         switch (Class)
         {
             case ClassType.Fighter:
@@ -148,7 +148,7 @@ public partial class Controller : CharacterBody2D
                 break;
         }
 
-        this.SetScript(Fighter);
+        this.SetScript(Fighter);*/
     }
     public override void _Ready()
     {
