@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpsqusybt8d0j"]
+[gd_scene load_steps=5 format=3 uid="uid://dpsqusybt8d0j"]
 
 [ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="1_3rf27"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_uw4pv"]
+[ext_resource type="PackedScene" uid="uid://nahvss2rb0ky" path="res://[TL1] Ferris/scenes/tower_tileset.tscn" id="3_v8vpi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_intdh"]
 
@@ -9,6 +10,7 @@
 
 [node name="Node2D" parent="." instance=ExtResource("1_3rf27")]
 
+<<<<<<< Updated upstream
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
 position = Vector2(63, -87)
 AttackFollowMouse = true
@@ -16,9 +18,21 @@ AttackFollowMouse = true
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)
 
+=======
+>>>>>>> Stashed changes
 [node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(61, -29)
 scale = Vector2(0.832504, 0.832504)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_intdh")
+
+[node name="TowerTileset" parent="." instance=ExtResource("3_v8vpi")]
+position = Vector2(9, -21)
+
+[node name="Player" parent="." instance=ExtResource("2_uw4pv")]
+position = Vector2(-114, -36)
+AttackFollowMouse = true
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(5, 5)

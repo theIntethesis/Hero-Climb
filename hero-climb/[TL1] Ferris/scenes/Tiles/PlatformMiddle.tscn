@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbshcgxiqnjyc"]
+
+[ext_resource type="Texture2D" uid="uid://4bpbbx588ws0" path="res://[TL1] Ferris/assets/Tiles/PlatformMiddle.png" id="1_8r125"]
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/FallThroughPlatform.cs" id="1_v7wmp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtduo"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_v7wmp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.8, 0.3)
+shape = SubResource("RectangleShape2D_gtduo")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8r125")
