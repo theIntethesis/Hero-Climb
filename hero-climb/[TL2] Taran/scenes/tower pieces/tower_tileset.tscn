@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://08atxwey25xn"]
 
-[ext_resource type="Texture2D" uid="uid://c47w4lsrwmiqq" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="1_vw4ba"]
-[ext_resource type="Texture2D" uid="uid://diu26yu77i6ut" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="2_ys77s"]
+[ext_resource type="Texture2D" uid="uid://ipt4xxsgw34a" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="1_vw4ba"]
+[ext_resource type="Texture2D" uid="uid://b5o44qa441ctn" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="2_ys77s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6a7p"]
 texture = ExtResource("1_vw4ba")
@@ -315,6 +315,7 @@ texture = ExtResource("2_ys77s")
 12:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_e44u1"]
+resource_name = "MainTileset"
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Castle"
@@ -324,8 +325,6 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_b6a7p")
 sources/4 = SubResource("TileSetAtlasSource_lm13t")
 
-[node name="TowerTileset" type="Node2D"]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="ForegroundLayer" type="TileMapLayer"]
 tile_map_data = PackedByteArray("AADx////AQAEAAMAAADx//7/AQAQAAEAAADx//3/AQALAAIAAADx//z/AQAQAAEAAADx//v/AQAQAAEAAADx//r/AQANAAIAAADx//n/AQALAAIAAADx//j/AQAQAAEAAADx//f/AQAQAAEAAADx//b/AQAQAAMAAADx//X/AQALAAIAAADx//T/AQANAAIAAADx//P/AQAQAAEAAADx//L/AQALAAEAAADy//L/AQAHAAEAAADz//L/AQAMAAEAAAD0//L/AQARAAQAAAANAPL/AQANAAEAAAAMAPL/AQAIAAEAAAALAPL/AQAMAAMAAAAKAPL/AQAPAAIAAAANAP//AQAEAAMAAAANAP7/AQAQAAMAAAANAP3/AQANAAIAAAANAPz/AQANAAIAAAANAPv/AQAQAAMAAAANAPr/AQANAAIAAAANAPn/AQAQAAEAAAANAPj/AQANAAIAAAANAPf/AQALAAIAAAANAPb/AQAQAAEAAAANAPX/AQAQAAEAAAANAPT/AQANAAIAAAANAPP/AQALAAIAAAAEAPL/AQARAAIAAAADAPL/AQAMAAMAAAACAPL/AQAHAAEAAAABAPL/AQAJAAEAAAAAAPL/AQAMAAMAAAD///L/AQAMAAMAAAD+//L/AQAMAAEAAAD9//L/AQAMAAEAAAD8//L/AQAHAAEAAAD7//L/AQADAAIAAAA=")
 tile_set = SubResource("TileSet_e44u1")
