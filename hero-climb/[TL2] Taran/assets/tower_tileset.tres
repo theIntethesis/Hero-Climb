@@ -1,10 +1,24 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cwxmf01smdwqy"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://drx4bdadb3aui"]
 
-[ext_resource type="Texture2D" uid="uid://ipt4xxsgw34a" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="1_jcggf"]
-[ext_resource type="Texture2D" uid="uid://b5o44qa441ctn" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="2_1lwn8"]
+[ext_resource type="PackedScene" uid="uid://cmxu784hcbhqw" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeLeft.tscn" id="1_urrhf"]
+[ext_resource type="PackedScene" uid="uid://buos5jq0le7gn" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeRight.tscn" id="2_e5yj1"]
+[ext_resource type="PackedScene" uid="uid://bbshcgxiqnjyc" path="res://[TL1] Ferris/scenes/Tiles/PlatformMiddle.tscn" id="3_40da3"]
+[ext_resource type="PackedScene" uid="uid://u7j7582q6ury" path="res://[TL1] Ferris/scenes/Tiles/PipeBottom.tscn" id="4_uhr5v"]
+[ext_resource type="PackedScene" uid="uid://bdxyk11gje0e7" path="res://[TL1] Ferris/scenes/Tiles/PipeMiddle.tscn" id="5_8558p"]
+[ext_resource type="PackedScene" uid="uid://dwogm1x2srtwp" path="res://[TL1] Ferris/scenes/Tiles/PipeTop.tscn" id="6_4ig5w"]
+[ext_resource type="Texture2D" uid="uid://c47w4lsrwmiqq" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="7_t8cn2"]
+[ext_resource type="Texture2D" uid="uid://diu26yu77i6ut" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="8_hh3ni"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c63o7"]
+scenes/1/scene = ExtResource("1_urrhf")
+scenes/2/scene = ExtResource("2_e5yj1")
+scenes/3/scene = ExtResource("3_40da3")
+scenes/4/scene = ExtResource("4_uhr5v")
+scenes/5/scene = ExtResource("5_8558p")
+scenes/6/scene = ExtResource("6_4ig5w")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b6a7p"]
-texture = ExtResource("1_jcggf")
+texture = ExtResource("7_t8cn2")
 15:0/0 = 0
 15:0/0/terrain_set = 0
 15:0/0/terrain = 0
@@ -169,7 +183,7 @@ texture = ExtResource("1_jcggf")
 17:4/0/terrains_peering_bit/left_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lm13t"]
-texture = ExtResource("2_1lwn8")
+texture = ExtResource("8_hh3ni")
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -315,7 +329,7 @@ texture = ExtResource("2_1lwn8")
 12:15/0 = 0
 
 [resource]
-resource_name = "MainTileset"
+resource_name = "Tower Tileset"
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Castle"
@@ -324,3 +338,4 @@ terrain_set_0/terrain_1/name = "Platform"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_b6a7p")
 sources/4 = SubResource("TileSetAtlasSource_lm13t")
+sources/0 = SubResource("TileSetScenesCollectionSource_c63o7")
