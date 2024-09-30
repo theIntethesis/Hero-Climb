@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf1mwj455rvja"]
+[gd_scene load_steps=6 format=3 uid="uid://cf1mwj455rvja"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/CharacterCreator.cs" id="1_ynb51"]
-[ext_resource type="PackedScene" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
+[ext_resource type="PackedScene" uid="uid://7muxnjdf3dsv" path="res://[TL1] Ferris/scenes/RogueSprite.tscn" id="2_crrn4"]
+[ext_resource type="PackedScene" uid="uid://ddreyoyl54apb" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="3_88e77"]
+[ext_resource type="PackedScene" uid="uid://dp6omjfw6gx1l" path="res://[TL1] Ferris/scenes/FighterSprite.tscn" id="3_kxsia"]
 
 [node name="CharacterCreator" type="Control"]
 layout_mode = 3
@@ -39,17 +41,16 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
-scale = Vector2(3, 3)
-animation = &"idle"
+[node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_crrn4")]
+texture_filter = 1
+scale = Vector2(8, 8)
 
-[node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
-scale = Vector2(3, 3)
-animation = &"idle"
+[node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("3_kxsia")]
+texture_filter = 1
+scale = Vector2(2.4, 2.4)
 
 [node name="Wizard" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
 scale = Vector2(3, 3)
-animation = &"idle"
 
 [node name="GridContainer" type="GridContainer" parent="VFlowContainer"]
 layout_mode = 2

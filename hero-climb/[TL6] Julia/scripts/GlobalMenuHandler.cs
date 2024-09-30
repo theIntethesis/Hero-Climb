@@ -4,7 +4,11 @@ using Godot;
 public partial class GlobalMenuHandler : Node
 {
     public Node CurrentScene;
+
+    // the scene thats loaded upon calling GlobalMenuHandler.ReturnToMainMenu()
     private string MainMenu = "res://[TL6] Julia/scenes/MainMenu.tscn";
+    
+    // the scene thats loaded upon calling GlobalMenuHandler.EnterGame()
     private string InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn";
 
     public void ReturnToMainMenu()

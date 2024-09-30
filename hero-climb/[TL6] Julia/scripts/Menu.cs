@@ -12,8 +12,6 @@ public partial class Menu : Control
 	[Export]
 	private PackedScene CharacterCreator;
 
-	[Export]
-	private string InitialGameScene;
 
 	public bool Resumable = false;
 

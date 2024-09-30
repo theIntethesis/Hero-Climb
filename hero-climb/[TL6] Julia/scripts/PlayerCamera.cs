@@ -29,7 +29,7 @@ public partial class PlayerCamera : Camera2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-
+		// handle game pause
 		if (Input.IsActionJustPressed("open_menu") && !Paused)
 		{
 			PauseGame();
