@@ -40,6 +40,7 @@ public partial class PlayerCamera : Camera2D
 	public void PauseGame() 
 	{
 		Menu pauseMenu = (Menu)PauseMenu.Instantiate();
+		GetTree().Paused = true;
 		pauseMenu.Resumable = true;
 		pauseMenu.TreeExited += () => {
 			Paused = false;

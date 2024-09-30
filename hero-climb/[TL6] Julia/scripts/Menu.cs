@@ -56,6 +56,7 @@ public partial class Menu : Control
 			{
 				QueueFree();
 				GetTree().Root.RemoveChild(this);
+				GetTree().Paused = false;
 			}
 			else 
 			{
