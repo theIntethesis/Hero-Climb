@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dylnbjmgj1sje"]
+
+[ext_resource type="PackedScene" uid="uid://ddreyoyl54apb" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="1_0f1gc"]
+[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="2_ekyyr"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Sprites" parent="." instance=ExtResource("1_0f1gc")]
+
+[node name="PlayerCamera" parent="Sprites" instance=ExtResource("2_ekyyr")]
