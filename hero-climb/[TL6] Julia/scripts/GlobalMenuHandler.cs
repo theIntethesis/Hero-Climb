@@ -9,7 +9,7 @@ public partial class GlobalMenuHandler : Node
     private string MainMenu = "res://[TL6] Julia/scenes/MainMenu.tscn";
     
     // the scene thats loaded upon calling GlobalMenuHandler.EnterGame()
-    private string InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn";
+    public string InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn";
 
     public void ReturnToMainMenu()
     {
