@@ -10,15 +10,6 @@
 
 [node name="Node2D" parent="." instance=ExtResource("1_3rf27")]
 
-<<<<<<< Updated upstream
-[node name="Player" parent="." instance=ExtResource("2_uw4pv")]
-position = Vector2(63, -87)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5, 5)
-
-=======
->>>>>>> Stashed changes
 [node name="Area2D" type="StaticBody2D" parent="."]
 position = Vector2(61, -29)
 scale = Vector2(0.832504, 0.832504)
@@ -30,8 +21,6 @@ shape = SubResource("RectangleShape2D_intdh")
 position = Vector2(9, -21)
 
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
-position = Vector2(-114, -36)
-AttackFollowMouse = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(5, 5)

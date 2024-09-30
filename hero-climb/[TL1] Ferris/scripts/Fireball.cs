@@ -10,7 +10,7 @@ public partial class Fireball : Area2D
 	[Export]
 	public float Damage = 20f;
 	[Export]
-	public float DeleteAfterNFramees = 300f;
+	public float DeleteAfterNFrames = 300f;
 
 	private Vector2 velocity;
 	private Marker2D target = new();
@@ -38,7 +38,7 @@ public partial class Fireball : Area2D
 	{
 		// addLine();
 		var angle = GetAngleTo(target.Position);
-		GD.PushWarning($"Angle: {angle * 180 / Math.PI}");
+		// GD.PushWarning($"Angle: {angle * 180 / Math.PI}");
 
 		float x = (float)Math.Cos(angle);
 		float y = (float)Math.Sin(angle);
@@ -52,15 +52,15 @@ public partial class Fireball : Area2D
 	public override void _Ready()
 	{
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2) / 4;
-		GD.PushWarning($"Target:\t{target.Position}");
+		// GD.PushWarning($"Target:\t{target.Position}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		Position += velocity * (float)delta;
-		DeleteAfterNFramees--;
-		if (DeleteAfterNFramees <= 0) {
+		DeleteAfterNFrames--;
+		if (DeleteAfterNFrames <= 0) {
 			foreach (Line2D line in lines) { line.QueueFree(); }
 			QueueFree();
 		}
