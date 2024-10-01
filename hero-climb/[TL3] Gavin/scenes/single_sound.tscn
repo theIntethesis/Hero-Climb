@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0xjxm2q683m1"]
+
+[ext_resource type="AudioStream" uid="uid://c3myl45yjacio" path="res://sounds/pluh.mp3" id="1_44pha"]
+
+[node name="PlayerSoundController" type="AudioStreamPlayer"]
+stream = ExtResource("1_44pha")

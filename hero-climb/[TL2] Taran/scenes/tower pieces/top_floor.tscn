@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=4 uid="uid://l33i6lt24duh"]
+
+[ext_resource type="PackedScene" uid="uid://08atxwey25xn" path="res://[TL2] Taran/scenes/tower pieces/tower_tileset.tscn" id="1_ydxs0"]
+
+[node name="TopFloor" type="Node2D"]
+
+[node name="ForegroundLayer" parent="." instance=ExtResource("1_ydxs0")]
+tile_map_data = PackedByteArray("AADx////AQAEAAMAAADx//7/AQAQAAEAAADx//3/AQALAAIAAADx//z/AQAQAAEAAADx//v/AQAQAAEAAADx//r/AQANAAIAAAANAP//AQAEAAMAAAANAP7/AQAQAAMAAAANAP3/AQANAAIAAAANAPz/AQANAAIAAAANAPv/AQAQAAMAAAANAPr/AQANAAIAAADy////AAAAAAAABADy//7/AAAAAAAABQDy//3/AAAAAAAABQDy//z/AAAAAAAABQDy//v/AAAAAAAABQDy//r/AAAAAAAABQDy//n/AAAAAAAABQDy//j/AAAAAAAABQDy//f/AAAAAAAABgAMAP3/AAAAAAAAAgAMAPr/AAAAAAAAAgALAP3/AAAAAAAAAQALAPr/AAAAAAAAAQA=")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -135.0
+offset_top = -244.0
+offset_right = 142.0
+offset_bottom = -129.0
+theme_override_font_sizes/font_size = 25
+text = "Congratulations!
+You made it to the top!"
+horizontal_alignment = 1
+vertical_alignment = 1

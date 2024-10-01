@@ -15,3 +15,6 @@ func _ready():
 		add_child(new_floor)
 		new_floor.global_position.y -= level*FLOOR_HEIGHT
 		level += 1
+	var new_floor = preload("res://[TL2] Taran/scenes/tower pieces/top_floor.tscn").instantiate()
+	add_child(new_floor)
+	new_floor.global_position.y -= level*FLOOR_HEIGHT
