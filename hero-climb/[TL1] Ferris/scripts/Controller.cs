@@ -20,7 +20,7 @@ public partial class Controller : CharacterBody2D
 		Fighter, Rogue, Wizard
 	}
 	[Export]
-	public ClassType Class = ClassType.Wizard;
+	private ClassType Class = ClassType.Wizard;
 
 	[Signal]
 	public delegate void IsDeadEventHandler();
@@ -37,6 +37,10 @@ public partial class Controller : CharacterBody2D
 
 	protected AnimatedSprite2D sprites;
 
+	public void SetClass(Controller.ClassType cType)
+	{
+		Class = cType;
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
