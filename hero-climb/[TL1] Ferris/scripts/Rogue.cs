@@ -30,11 +30,11 @@ public partial class Rogue : Controller
 		// Handle climb.
 		if (Input.IsActionPressed("move_up") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, -50 * (float)delta);
+			velocity += new Vector2(0, -100 * (float)delta);
 		}
 		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, 50 * (float)delta);
+			velocity += new Vector2(0, 100 * (float)delta);
 		}
 		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up"))
 		{

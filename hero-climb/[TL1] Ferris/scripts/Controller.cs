@@ -60,19 +60,23 @@ public partial class Controller : CharacterBody2D
 	}
 	public virtual void PlayerDeath()
 	{
-		GD.Print("In death method");
 		IsMovementLocked = true;
 		sprites.Play("death");
 	}
 	public void CollideWithEnemy(Area2D body)
 	{
-		if(body.Name != "Fireball")
+		uint layer3 = body.CollisionLayer & 0b_0100;
+		if (layer3 > 0)
 		{
 			/*var enemy = body as Enemy;
 			var damage = enemy.damage;*/
 			Health -= 20;
-			GD.Print(Health);
-			GD.Print("Collided With Enemy");
+			GD.Print($"Collided With Enemy: {body.Name}");
+			if(body.Name == "RisingLava")
+			{
+				Health = 0;
+			}
+
 			if (Health <= 0)
 			{
 				GD.Print("Dead");

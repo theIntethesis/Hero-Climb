@@ -14,10 +14,11 @@ offset_right = 2115.0
 offset_bottom = 2335.0
 color = Color(1, 0.466667, 0, 0.901961)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="RisingLava" type="Area2D" parent="."]
+collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RisingLava"]
 position = Vector2(-6.5, 198.5)
 shape = SubResource("RectangleShape2D_iei8t")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="RisingLava" to="." method="_on_area_2d_body_entered"]

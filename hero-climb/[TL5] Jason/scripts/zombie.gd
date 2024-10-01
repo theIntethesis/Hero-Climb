@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Gravity
 	if !is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += Vector2(0, 980) * delta
 	
 	# Flipping
 	$AnimatedSprite2D.flip_h = true if velocity.x < 0 else false
