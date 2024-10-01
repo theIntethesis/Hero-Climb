@@ -14,6 +14,9 @@ public partial class Wizard : Controller
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
 		attackCooldownFrames = 48f;
+		AddChild(sprites);
+		sprites.Position = new Vector2(0, 0);
+		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 	}
 	public override void Attack()
 	{
@@ -71,9 +74,7 @@ public partial class Wizard : Controller
 	}
 	public override void _Ready()
 	{
-		AddChild(sprites);
-		sprites.Position = new Vector2(0, 0);
-		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
+
 	}
 	public override void _Process(double delta)
 	{

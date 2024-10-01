@@ -10,7 +10,7 @@ public partial class Fireball : Area2D
 	[Export]
 	public float Damage = 20f;
 	[Export]
-	public float DeleteAfterNFramees = 300f;
+	public float DeleteAfterNFrames = 300f;
 
 	private Vector2 velocity;
 	private Marker2D target = new();
@@ -61,8 +61,8 @@ public partial class Fireball : Area2D
 	public override void _Process(double delta)
 	{
 		Position += velocity * (float)delta;
-		DeleteAfterNFramees--;
-		if (DeleteAfterNFramees <= 0) {
+		DeleteAfterNFrames--;
+		if (DeleteAfterNFrames <= 0) {
 			foreach (Line2D line in lines) { line.QueueFree(); }
 			QueueFree();
 		}
