@@ -10,6 +10,8 @@ public partial class CharacterCreator : Control
     private Button WizardButton;
     private Button RogueButton;
 
+    private GlobalMenuHandler GlobalMenuHandler;
+
 
     public override void _Ready() 
     {
@@ -24,6 +26,8 @@ public partial class CharacterCreator : Control
         Fighter.Visible = true;
         Rogue.Visible = false;
         
+        GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+
     }
 
     public void OnFighterButtonPressed()
@@ -47,13 +51,9 @@ public partial class CharacterCreator : Control
 
     public void OnStartButtonPressed()
     {
-        if (GetParent().GetParent() is Menu)
-        {
-            GetParent().GetParent<Menu>().EnterGame(
-                Fighter.Visible ? Controller.ClassType.Fighter 
-                : Wizard.Visible ? Controller.ClassType.Wizard 
-                : Controller.ClassType.Rogue
-            );
-        }
+        Controller.ClassType ctype = Fighter.Visible ? Controller.ClassType.Fighter 
+            : Wizard.Visible ? Controller.ClassType.Wizard 
+            : Controller.ClassType.Rogue;
+        GlobalMenuHandler.EnterGame(ctype);
     }
 }

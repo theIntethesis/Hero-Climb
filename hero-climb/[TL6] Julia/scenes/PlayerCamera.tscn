@@ -1,37 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d31op03sdre58"]
+[gd_scene load_steps=2 format=3 uid="uid://d31op03sdre58"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/PlayerCamera.cs" id="1_touaq"]
-[ext_resource type="PackedScene" uid="uid://bq8dn0lr5bwk2" path="res://[TL6] Julia/scenes/Pause Menu.tscn" id="2_f05fc"]
 
-[node name="PlayerCamera" type="Camera2D" node_paths=PackedStringArray("Overlay", "HUD")]
+[node name="PlayerCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 script = ExtResource("1_touaq")
-PauseMenu = ExtResource("2_f05fc")
-Overlay = NodePath("CanvasLayer/Overlay")
-HUD = NodePath("CanvasLayer/HUD")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-process_mode = 2
-
-[node name="HUD" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Overlay" type="Control" parent="CanvasLayer"]
-top_level = true
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
