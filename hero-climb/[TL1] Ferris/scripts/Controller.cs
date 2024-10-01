@@ -53,32 +53,32 @@ public partial class Controller : CharacterBody2D
 
 		if (!Global.isAttacking) Animation();
 
-    }
+	}
 
-    public void CollideWithEnemy(Node2D body)
-    {
-        /*
-            var enemy = body as Enemy;
-            var damage = enemy.damage;
-            health -= damage;
-            if (health <= 0)
-                sprites.play("death");
-                // Lock out player control.
-            else
-                sprites.play("hurt");
-        */
-    }
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing))
-        {
-            sprites.Play("jump");
-        }
-        if (@event.IsActionPressed("attack") && !attackCooldown)
-        {
-            Attack();
-        }
-    }
+	public void CollideWithEnemy(Node2D body)
+	{
+		/*
+			var enemy = body as Enemy;
+			var damage = enemy.damage;
+			health -= damage;
+			if (health <= 0)
+				sprites.play("death");
+				// Lock out player control.
+			else
+				sprites.play("hurt");
+		*/
+	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing))
+		{
+			sprites.Play("jump");
+		}
+		if (@event.IsActionPressed("attack") && !attackCooldown)
+		{
+			Attack();
+		}
+	}
 
 	protected Vector2 horizonalMovement()
 	{
