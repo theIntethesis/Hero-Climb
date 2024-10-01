@@ -20,6 +20,10 @@ public partial class CharacterCreator : Control
         FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
         RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
+        Wizard.Visible = false;
+        Fighter.Visible = true;
+        Rogue.Visible = false;
+        
     }
 
     public void OnFighterButtonPressed()
