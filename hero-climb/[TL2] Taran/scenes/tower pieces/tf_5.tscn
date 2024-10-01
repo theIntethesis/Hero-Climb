@@ -1,29 +1,12 @@
-[gd_scene load_steps=2 format=4 uid="uid://bi2al422qd4ro"]
+[gd_scene load_steps=3 format=4 uid="uid://bi2al422qd4ro"]
 
 [ext_resource type="PackedScene" uid="uid://08atxwey25xn" path="res://[TL2] Taran/scenes/tower pieces/tower_tileset.tscn" id="1_l8e4w"]
+[ext_resource type="PackedScene" uid="uid://bti28delkicbq" path="res://[TL5] Jason/scenes/zombie.tscn" id="2_315kp"]
 
 [node name="TF5" type="Node2D"]
 
 [node name="ForegroundLayer" parent="." instance=ExtResource("1_l8e4w")]
 tile_map_data = PackedByteArray("AADx////AQAEAAMAAADx//7/AQAQAAEAAADx//3/AQALAAIAAADx//z/AQAQAAEAAADx//v/AQAQAAEAAADx//r/AQANAAIAAADx//n/AQALAAIAAADx//j/AQAQAAEAAADx//f/AQAQAAEAAADx//b/AQAQAAMAAADx//X/AQALAAIAAADx//T/AQANAAIAAADx//P/AQAQAAEAAADx//L/AQALAAEAAAANAPL/AQANAAEAAAANAP//AQAEAAMAAAANAP7/AQAQAAMAAAANAP3/AQANAAIAAAANAPz/AQANAAIAAAANAPv/AQAQAAMAAAANAPr/AQANAAIAAAANAPn/AQAQAAEAAAANAPj/AQANAAIAAAANAPf/AQALAAIAAAANAPb/AQAQAAEAAAANAPX/AQAQAAEAAAANAPT/AQANAAIAAAANAPP/AQALAAIAAAAGAPr/AQAHAAEAAAAFAPr/AQAMAAMAAAAEAPr/AQAMAAEAAAADAPr/AQAPAAQAAAABAPf/AQARAAQAAAAAAPf/AQAIAAEAAAD///f/AQAJAAEAAAD+//f/AQAPAAQAAAAMAPf/AQAHAAEAAAALAPf/AQAIAAEAAAAKAPf/AQAMAAMAAAAJAPf/AQAPAAIAAAD7//n/AQARAAAAAAD6//n/AQAMAAEAAAD5//n/AQAHAAEAAAD4//n/AQAPAAQAAAD2//b/AQARAAAAAAD1//b/AQAHAAEAAAD0//b/AQAPAAQAAAD8//T/AQARAAAAAAD7//T/AQAMAAMAAAD6//T/AQADAAIAAAD0//L/AQARAAQAAADz//L/AQAHAAEAAADy//L/AQAMAAEAAAAMAPL/AQAIAAEAAAALAPL/AQAMAAEAAAAKAPL/AQAIAAEAAAAJAPL/AQAIAAEAAAAIAPL/AQAMAAMAAAAHAPL/AQAIAAEAAAAGAPL/AQAMAAMAAAAFAPL/AQAHAAEAAAAEAPL/AQAMAAMAAAADAPL/AQAIAAEAAAACAPL/AQAIAAEAAAABAPL/AQAPAAQAAAD1//L/AAAAAAAAAQAAAPL/AAAAAAAAAgD2//L/AAAAAAAAAwD3//L/AAAAAAAAAwD4//L/AAAAAAAAAwD5//L/AAAAAAAAAwD6//L/AAAAAAAAAwD7//L/AAAAAAAAAwD8//L/AAAAAAAAAwD9//L/AAAAAAAAAwD+//L/AAAAAAAAAwD///L/AAAAAAAAAwAJAPz/AQAPAAQAAAAKAPz/AQAHAAEAAAALAPz/AQAJAAEAAAAMAPz/AQAMAAMAAAD3//f/AAAAAAAABQD3//j/AAAAAAAABQD3//n/AAAAAAAABQD3//r/AAAAAAAABQD3//v/AAAAAAAABQD3//z/AAAAAAAABQD3//3/AAAAAAAABQD3//7/AAAAAAAABQD3////AAAAAAAABAD3//b/AAAAAAAABgA=")
 
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25764" to="ForegroundLayer/@Area2D@25764" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25764" to="ForegroundLayer/@Area2D@25764" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25765" to="ForegroundLayer/@Area2D@25765" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25765" to="ForegroundLayer/@Area2D@25765" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25766" to="ForegroundLayer/@Area2D@25766" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25766" to="ForegroundLayer/@Area2D@25766" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25767" to="ForegroundLayer/@Area2D@25767" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25767" to="ForegroundLayer/@Area2D@25767" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25768" to="ForegroundLayer/@Area2D@25768" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25768" to="ForegroundLayer/@Area2D@25768" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25769" to="ForegroundLayer/@Area2D@25769" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25769" to="ForegroundLayer/@Area2D@25769" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25770" to="ForegroundLayer/@Area2D@25770" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25770" to="ForegroundLayer/@Area2D@25770" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25771" to="ForegroundLayer/@Area2D@25771" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25771" to="ForegroundLayer/@Area2D@25771" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/@Area2D@25772" to="ForegroundLayer/@Area2D@25772" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/@Area2D@25772" to="ForegroundLayer/@Area2D@25772" method="OnBodyExited"]
-[connection signal="body_entered" from="ForegroundLayer/Area2D" to="ForegroundLayer/Area2D" method="OnBodyEntered"]
-[connection signal="body_exited" from="ForegroundLayer/Area2D" to="ForegroundLayer/Area2D" method="OnBodyExited"]
+[node name="Zombie" parent="ForegroundLayer" instance=ExtResource("2_315kp")]
+position = Vector2(2, -29)
