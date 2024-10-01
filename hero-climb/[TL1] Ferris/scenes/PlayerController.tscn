@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_g7iew")
 
 [node name="Collider" type="CollisionShape2D" parent="."]

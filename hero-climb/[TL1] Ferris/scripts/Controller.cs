@@ -71,6 +71,7 @@ public partial class Controller : CharacterBody2D
 	{
 		Vector2 velocity = new();
 		var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
+
 		if (inputStr != 0)
 		{
 			velocity.X = inputStr * Speed;
