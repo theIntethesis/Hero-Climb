@@ -12,6 +12,7 @@
 script = ExtResource("1_dljh1")
 
 [node name="Player" parent="." instance=ExtResource("3_gak21")]
+unique_name_in_owner = true
 position = Vector2(0, -22)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
