@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 GlobalMenuHandler="*res://[TL6] Julia/scripts/GlobalMenuHandler.cs"
 Global="*res://[TL1] Ferris/scripts/Global.cs"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="Hero-Climb"
@@ -68,4 +72,5 @@ move_up={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
