@@ -8,5 +8,3 @@
 
 [node name="Zombie" parent="." instance=ExtResource("1_ymw45")]
 position = Vector2(-24, -21)
-left_limit = -100
-right_limit = 100
