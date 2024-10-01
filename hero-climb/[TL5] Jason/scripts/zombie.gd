@@ -6,7 +6,7 @@ class_name Zombie
 var direction = Vector2.LEFT
 var health = 100
 var damage = 25
-
+var player
 var playerDetected = false
 
 func _physics_process(delta: float) -> void:
@@ -26,14 +26,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _ready():
-	pass
-	
+	if owner.get_parent().find_child("Player"):
+		player = owner.get_parent().find_child("Player")
+	else:
+		player = %Player
 
 func _process(delta):
 	
-	if $"Detect Player".overlaps_body(%Player):
+	if $"Detect Player".overlaps_body(player):
 		$AnimatedSprite2D.play("run")
-		var dir = position.x - %Player.position.x
+		var dir = position.x - player.position.x
 		direction = Vector2.RIGHT if dir < 0 else Vector2.LEFT
 	else:
 		direction = Vector2.ZERO
@@ -45,6 +47,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body == %Player:
+	if body == player:
 		#%Player.Health -= damage
 		pass
