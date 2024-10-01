@@ -9,11 +9,14 @@ tile_map_data = PackedByteArray("AADx////AQAEAAMAAADx//7/AQAQAAEAAADx//3/AQALAAI
 
 [node name="Label" type="Label" parent="."]
 offset_left = -135.0
-offset_top = -244.0
+offset_top = -217.0
 offset_right = 142.0
-offset_bottom = -129.0
+offset_bottom = -30.0
 theme_override_font_sizes/font_size = 25
 text = "Congratulations!
-You made it to the top!"
+You made it to the top!
+...
+Now close the game.
+Before it's too late."
 horizontal_alignment = 1
 vertical_alignment = 1
