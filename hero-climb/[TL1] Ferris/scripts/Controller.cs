@@ -66,19 +66,22 @@ public partial class Controller : CharacterBody2D
 	}
 	public void CollideWithEnemy(Area2D body)
 	{
-		/*var enemy = body as Enemy;
-		var damage = enemy.damage;*/
-		Health -= 100;
-		GD.Print(Health);
-		GD.Print("Collided With Enemy");
-		if (Health <= 0)
+		if(body.Name != "Fireball")
 		{
-			GD.Print("Dead");
-			PlayerDeath();
-		}
-		else
-		{
-			//sprites.Play("Hurt");
+			/*var enemy = body as Enemy;
+			var damage = enemy.damage;*/
+			Health -= 20;
+			GD.Print(Health);
+			GD.Print("Collided With Enemy");
+			if (Health <= 0)
+			{
+				GD.Print("Dead");
+				PlayerDeath();
+			}
+			else
+			{
+				//sprites.Play("Hurt");
+			}
 		}
 	}
 	public override void _Input(InputEvent @event)
