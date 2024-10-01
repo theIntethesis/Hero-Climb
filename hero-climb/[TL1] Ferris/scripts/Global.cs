@@ -8,7 +8,7 @@ public partial class Global : Node
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
 
-	public void SetCharacterType(Controller.ClassType cType, Controller Player)
+	public static void SetCharacterType(Controller.ClassType cType, Controller Player)
 	{
 		Player.SetClass(cType);
 	}

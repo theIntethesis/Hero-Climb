@@ -49,11 +49,11 @@ public partial class CharacterCreator : Control
     {
         if (GetParent().GetParent() is Menu)
         {
-            Controller.ClassType cType;
-            if (Fighter.Visible) cType = Controller.ClassType.Fighter;
-            else if (Wizard.Visible) cType = Controller.ClassType.Wizard;
-            else cType = Controller.ClassType.Rogue;
-            GetParent().GetParent<Menu>().EnterGame(cType);
+            GetParent().GetParent<Menu>().EnterGame(
+                Fighter.Visible ? Controller.ClassType.Fighter 
+                : Wizard.Visible ? Controller.ClassType.Wizard 
+                : Controller.ClassType.Rogue
+            );
         }
     }
 }

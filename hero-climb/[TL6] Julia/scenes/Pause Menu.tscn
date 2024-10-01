@@ -10,7 +10,6 @@ anchors_preset = 0
 script = ExtResource("1_whukd")
 Stack = NodePath("Stack")
 CharacterCreator = ExtResource("2_fn7vy")
-InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn"
 
 [node name="Stack" type="Control" parent="."]
 anchors_preset = 0

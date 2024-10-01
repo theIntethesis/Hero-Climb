@@ -10,6 +10,8 @@ public partial class BackButton : Button
     public override void _Ready()
     {
         Pressed += () => {
+			GD.Print(GetOwner().GetOwner() is Menu);
+
 			if (GetOwner().GetOwner() is Menu)
 			{
 				if (QuitsGame)

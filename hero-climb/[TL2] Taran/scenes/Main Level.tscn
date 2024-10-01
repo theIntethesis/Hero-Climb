@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://d351p5u10nd5f"]
+[gd_scene load_steps=9 format=3 uid="uid://d351p5u10nd5f"]
 
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/main_level.gd" id="1_dljh1"]
+[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_0wibc"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="3_gak21"]
 [ext_resource type="PackedScene" uid="uid://dd7f85xccmjqk" path="res://[TL2] Taran/scenes/tower pieces/bottom_floor.tscn" id="3_hcb7c"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="4_lx3yn"]
-[ext_resource type="Texture2D" uid="uid://cinagnnu0tlda" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
-[ext_resource type="Texture2D" uid="uid://buha0a6s7gqx6" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
-[ext_resource type="Texture2D" uid="uid://p1xdt4mpl4kd" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
+[ext_resource type="Texture2D" uid="uid://d3ql0yhyko2dm" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
+[ext_resource type="Texture2D" uid="uid://b24skf7os2ckg" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
+[ext_resource type="Texture2D" uid="uid://uas78icyu1s4" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_dljh1")
@@ -15,8 +16,7 @@ script = ExtResource("1_dljh1")
 unique_name_in_owner = true
 position = Vector2(0, -22)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+[node name="PlayerCamera" parent="Player" instance=ExtResource("3_0wibc")]
 
 [node name="Bottom Floor" parent="." instance=ExtResource("3_hcb7c")]
 

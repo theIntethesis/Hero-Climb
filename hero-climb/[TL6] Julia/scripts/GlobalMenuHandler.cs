@@ -35,8 +35,7 @@ public partial class GlobalMenuHandler : Node
 
         // should actually get InitialGameScene from some sort of level handler
         Node NewScene = ResourceLoader.Load<PackedScene>(InitialGameScene).Instantiate();
-        var Player = NewScene.GetNode("Player") as Controller;
-        Player.Class = cType;
+        Global.SetCharacterType(cType, NewScene.GetNode("Player") as Controller);
 		GetTree().Root.AddChild(NewScene);
 		CurrentScene = NewScene;
 
