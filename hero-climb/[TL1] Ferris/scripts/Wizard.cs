@@ -44,6 +44,7 @@ public partial class Wizard : Controller
 	protected void SummonFireball()
 	{
 		// Play fireball sound.
+		EmitSignal(SignalName.Attacking);
 		var fireball = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/fireball.tscn").Instantiate() as Fireball;
 		fireball.Position = Position;
 		//fireball.Position = sprite.FlipH ? new Vector2(-16, -8) + Position : new Vector2(16, -8) + Position;
@@ -74,7 +75,6 @@ public partial class Wizard : Controller
 	}
 	public override void PlayerDeath()
 	{
-		GD.Print("In death method");
 		sprites.Offset = sprites.FlipH ? new Vector2(-15, -31) : new Vector2(15, -31);
 		IsMovementLocked = true;
 		sprites.Play("death");

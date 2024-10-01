@@ -42,8 +42,10 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "Fireball":
-		health -= 20
+		health -= 50
 	if health == 0:
+		#Play Death Animation
+		#When that's done...
 		queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

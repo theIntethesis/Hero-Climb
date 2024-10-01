@@ -25,6 +25,9 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void IsDeadEventHandler();
 
+	[Signal]
+	public delegate void AttackingEventHandler();
+
 	protected int Health = 100;
 	public int Money = 0;
 
@@ -152,7 +155,7 @@ public partial class Controller : CharacterBody2D
 
 	public virtual void Attack()
 	{
-
+		EmitSignal(SignalName.Attacking);
 	}
 	public virtual void Ability()
 	{

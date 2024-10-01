@@ -14,7 +14,6 @@ grow_vertical = 2
 script = ExtResource("1_3vgj4")
 Stack = NodePath("Foreground")
 CharacterCreator = ExtResource("3_u8qri")
-InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn"
 
 [node name="Background" type="Control" parent="."]
 layout_mode = 1
