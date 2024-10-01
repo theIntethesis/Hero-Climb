@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsi1dtjueodhh"]
+[gd_scene load_steps=4 format=3 uid="uid://bsi1dtjueodhh"]
 
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Controller.cs" id="1_g7iew"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uhtvn"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -10,3 +12,13 @@ script = ExtResource("1_g7iew")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cbf2q")
+
+[node name="Hitbox" type="Area2D" parent="."]
+scale = Vector2(1.1, 1.1)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_uhtvn")
+
+[connection signal="area_entered" from="Hitbox" to="." method="CollideWithEnemy"]

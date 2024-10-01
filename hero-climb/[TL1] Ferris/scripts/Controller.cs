@@ -14,7 +14,7 @@ public partial class Controller : CharacterBody2D
 	[Export]
 	public float attackDelay = 48f;
 	[Export]
-	public bool AttackFollowMouse = false;
+	public bool AttackFollowMouse = true;
 	public enum ClassType
 	{
 		Fighter, Rogue, Wizard
@@ -22,11 +22,15 @@ public partial class Controller : CharacterBody2D
 	[Export]
 	public ClassType Class = ClassType.Wizard;
 
+	[Signal]
+	public delegate void IsDeadEventHandler();
+
 	protected int Health = 100;
 	public int Money = 0;
 
 	protected bool attackCooldown = false;
 	protected float attackCooldownFrames;
+	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
 
@@ -41,7 +45,7 @@ public partial class Controller : CharacterBody2D
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing))
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
 		{
 			velocity.Y += JumpVelocity;
 		}
@@ -54,27 +58,36 @@ public partial class Controller : CharacterBody2D
 		if (!Global.isAttacking) Animation();
 
 	}
-
-	public void CollideWithEnemy(Node2D body)
+	public virtual void PlayerDeath()
 	{
-		/*
-			var enemy = body as Enemy;
-			var damage = enemy.damage;
-			health -= damage;
-			if (health <= 0)
-				sprites.play("death");
-				// Lock out player control.
-			else
-				sprites.play("hurt");
-		*/
+		GD.Print("In death method");
+		IsMovementLocked = true;
+		sprites.Play("death");
+	}
+	public void CollideWithEnemy(Area2D body)
+	{
+		/*var enemy = body as Enemy;
+		var damage = enemy.damage;*/
+		Health -= 100;
+		GD.Print(Health);
+		GD.Print("Collided With Enemy");
+		if (Health <= 0)
+		{
+			GD.Print("Dead");
+			PlayerDeath();
+		}
+		else
+		{
+			//sprites.Play("Hurt");
+		}
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing))
+		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
 		{
 			sprites.Play("jump");
 		}
-		if (@event.IsActionPressed("attack") && !attackCooldown)
+		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
 		{
 			Attack();
 		}
@@ -94,22 +107,22 @@ public partial class Controller : CharacterBody2D
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 
-		return velocity;
+		return IsMovementLocked ? Vector2.Zero : velocity;
 	}
 
 	protected virtual void Animation()
 	{
-		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
+		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.FlipH = true;
 			sprites.Play("run");
 		}
-		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
+		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.FlipH = false;
 			sprites.Play("run");
 		}
-		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
+		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.Play("idle");
 		}
@@ -123,6 +136,10 @@ public partial class Controller : CharacterBody2D
 			Global.isAttacking = false;
 			if (Input.IsActionPressed("attack"))
 				Attack();
+		}
+		if(Health <= 0)
+		{
+			EmitSignal(SignalName.IsDead);
 		}
 	}
 
@@ -140,7 +157,6 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Ready()
 	{
-		GD.PushWarning($"In Constructor: {Class}");
 		switch (Class)
 		{
 			case ClassType.Fighter:
@@ -153,7 +169,6 @@ public partial class Controller : CharacterBody2D
 				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
 				break;
 		}
-		GD.PushWarning($"End of constructor");
 	}
 	public override void _Process(double delta)
 	{

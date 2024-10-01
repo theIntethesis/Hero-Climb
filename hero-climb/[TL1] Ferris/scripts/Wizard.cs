@@ -31,12 +31,12 @@ public partial class Wizard : Controller
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && IsOnFloor())
+		if (@event.IsActionPressed("jump") && IsOnFloor() && !IsMovementLocked)
 		{
 			sprites.Offset = sprites.FlipH ? new Vector2(-10, -10) : new Vector2(10, -10);
 			sprites.Play("jump");
 		}
-		if (@event.IsActionPressed("attack") && !attackCooldown)
+		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
 		{
 			Attack();
 		}
@@ -52,25 +52,32 @@ public partial class Wizard : Controller
 	}
 	protected override void Animation()
 	{
-		if (Input.IsActionPressed("move_left") && IsOnFloor() && !Global.isAttacking)
+		if (Input.IsActionPressed("move_left") && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = true;
 			sprites.Play("run");
 			// play running sound.
 		}
-		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !Global.isAttacking)
+		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.FlipH = false;
 			sprites.Play("run");
 			// play running sound.
 		}
-		else if (!Input.IsAnythingPressed() && IsOnFloor() && !Global.isAttacking)
+		else if (!Input.IsAnythingPressed() && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = new Vector2(0, 0);
 			sprites.Play("idle");
 		}
+	}
+	public override void PlayerDeath()
+	{
+		GD.Print("In death method");
+		sprites.Offset = sprites.FlipH ? new Vector2(-15, -31) : new Vector2(15, -31);
+		IsMovementLocked = true;
+		sprites.Play("death");
 	}
 	public override void _Ready()
 	{
