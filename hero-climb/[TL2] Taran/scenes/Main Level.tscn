@@ -18,3 +18,4 @@ zoom = Vector2(2, 2)
 
 [node name="RisingLava" parent="." instance=ExtResource("4_lx3yn")]
 position = Vector2(0, 95)
+Speed = 15

@@ -28,16 +28,16 @@ public partial class Menu : Control
 
 	}
 
-    public override void _Process(double delta)
-    {
-        
+	public override void _Process(double delta)
+	{
+		
 		if (Input.IsActionJustPressed("open_menu"))
 		{
 			Pop();
 		}
-    }
+	}
 
-    public void Push(PackedScene scene) 
+	public void Push(PackedScene scene) 
 	{
 		CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		Last.Visible = false;
@@ -85,9 +85,9 @@ public partial class Menu : Control
 		}
 	}
 
-	public void EnterGame()
+	public void EnterGame(Controller.ClassType cType)
 	{
-		GlobalMenuHandler.EnterGame();
+		GlobalMenuHandler.EnterGame(cType);
 
 		QueueFree();
 		GetTree().Root.RemoveChild(this);

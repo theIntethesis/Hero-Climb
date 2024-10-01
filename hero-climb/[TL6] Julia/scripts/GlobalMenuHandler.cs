@@ -9,7 +9,7 @@ public partial class GlobalMenuHandler : Node
     private string MainMenu = "res://[TL6] Julia/scenes/MainMenu.tscn";
     
     // the scene thats loaded upon calling GlobalMenuHandler.EnterGame()
-    public string InitialGameScene = "res://[TL6] Julia/scenes/TestScene.tscn";
+    public string InitialGameScene = "res://[TL2] Taran/scenes/Main Level.tscn";
 
     public void ReturnToMainMenu()
     {
@@ -24,7 +24,7 @@ public partial class GlobalMenuHandler : Node
         }
     }
 
-    public void EnterGame()
+    public void EnterGame(Controller.ClassType cType)
     {
         if (CurrentScene != null)
         {
@@ -35,6 +35,8 @@ public partial class GlobalMenuHandler : Node
 
         // should actually get InitialGameScene from some sort of level handler
         Node NewScene = ResourceLoader.Load<PackedScene>(InitialGameScene).Instantiate();
+        var Player = NewScene.GetNode("Player") as Controller;
+        Player.Class = cType;
 		GetTree().Root.AddChild(NewScene);
 		CurrentScene = NewScene;
 
