@@ -1,10 +1,10 @@
 [gd_scene load_steps=39 format=3 uid="uid://ddreyoyl54apb"]
 
-[ext_resource type="Texture2D" uid="uid://b3cv32phcdvxp" path="res://[TL1] Ferris/assets/Fire vizard/Fireball.png" id="1_1f8mn"]
-[ext_resource type="Texture2D" uid="uid://d4ehv15yqbia3" path="res://[TL1] Ferris/assets/Fire vizard/Idle.png" id="2_esco7"]
-[ext_resource type="Texture2D" uid="uid://ceg833kammj3j" path="res://[TL1] Ferris/assets/Fire vizard/Dead.png" id="2_kbrjg"]
-[ext_resource type="Texture2D" uid="uid://wmj6s80k5uup" path="res://[TL1] Ferris/assets/Fire vizard/Jump.png" id="3_hsjc7"]
-[ext_resource type="Texture2D" uid="uid://b2kla2wuqet5u" path="res://[TL1] Ferris/assets/Fire vizard/Run.png" id="4_3rdym"]
+[ext_resource type="Texture2D" uid="uid://cq84oxne41qtb" path="res://[TL1] Ferris/assets/Fire vizard/Fireball.png" id="1_1f8mn"]
+[ext_resource type="Texture2D" uid="uid://binwnktvo6slm" path="res://[TL1] Ferris/assets/Fire vizard/Idle.png" id="2_esco7"]
+[ext_resource type="Texture2D" uid="uid://cqaf11itg7skm" path="res://[TL1] Ferris/assets/Fire vizard/Dead.png" id="2_kbrjg"]
+[ext_resource type="Texture2D" uid="uid://cia0ubnkb7oor" path="res://[TL1] Ferris/assets/Fire vizard/Jump.png" id="3_hsjc7"]
+[ext_resource type="Texture2D" uid="uid://bkx0wvcllwk3o" path="res://[TL1] Ferris/assets/Fire vizard/Run.png" id="4_3rdym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nbd2i"]
 atlas = ExtResource("1_1f8mn")

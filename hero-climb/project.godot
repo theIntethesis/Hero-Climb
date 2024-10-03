@@ -28,6 +28,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="Hero-Climb"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [input]
 
 move_left={

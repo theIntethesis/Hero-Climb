@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Controller.cs" id="1_g7iew"]
 [ext_resource type="PackedScene" uid="uid://0xjxm2q683m1" path="res://[TL3] Gavin/scenes/single_sound.tscn" id="2_sigry"]
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/single_sound.gd" id="3_wqg6b"]
+[ext_resource type="Script" path="res://[TL1] Ferris/assets/Fire vizard/scripts/single_sound.gd" id="3_wqg6b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
 
