@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c0r47srjd4qm4"]
+
+[node name="Center" type="Marker2D"]
+
+[node name="BottomLeft" type="Marker2D" parent="."]
+position = Vector2(-232, 8)
+
+[node name="BottomRight" type="Marker2D" parent="."]
+position = Vector2(232, 8)
+
+[node name="MaxJump" type="Marker2D" parent="."]
+position = Vector2(0, -72)
+
+[node name="SecondFloor" type="Marker2D" parent="."]
+position = Vector2(232, -104)
+
+[node name="TopLeft" type="Marker2D" parent="."]
+position = Vector2(-232, -184)
+
+[node name="TopRight" type="Marker2D" parent="."]
+position = Vector2(232, -184)
