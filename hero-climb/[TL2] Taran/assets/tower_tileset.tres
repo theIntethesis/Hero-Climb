@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://drx4bdadb3aui"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://bc7i30yvha53o"]
 
 [ext_resource type="PackedScene" uid="uid://cmxu784hcbhqw" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeLeft.tscn" id="1_urrhf"]
 [ext_resource type="PackedScene" uid="uid://buos5jq0le7gn" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeRight.tscn" id="2_e5yj1"]

@@ -6,14 +6,14 @@ public partial class OpenButton : Button
 	[Export]
 	private PackedScene scene;
 
+	private GlobalMenuHandler GlobalMenuHandler;
+
     public override void _Ready()
     {
+		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
 
-		if (GetOwner().GetOwner() is Menu) 
-		{
-			Pressed += () => {
-				GetOwner().GetOwner<Menu>().Push(scene);
-			};
-		}
+		Pressed += () => {
+			GlobalMenuHandler.Push(scene);
+		};
     }
 }

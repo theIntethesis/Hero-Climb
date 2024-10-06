@@ -8,6 +8,15 @@ using static PlayerController;
 
 public partial class Rogue : Controller
 {
+	public Rogue()
+	{
+		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
+		attackCooldownFrames = 48f;
+		AddChild(sprites);
+		sprites.Position = new Vector2(0, 0);
+		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -21,11 +30,11 @@ public partial class Rogue : Controller
 		// Handle climb.
 		if (Input.IsActionPressed("move_up") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, -50 * (float)delta);
+			velocity += new Vector2(0, -100 * (float)delta);
 		}
 		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, 50 * (float)delta);
+			velocity += new Vector2(0, 100 * (float)delta);
 		}
 		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up"))
 		{
@@ -58,11 +67,6 @@ public partial class Rogue : Controller
 		}
 	}
 
-	public Rogue()
-	{
-		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
-		attackCooldownFrames = 48f;
-	}
 	public override void Attack()
 	{
 		attackCooldown = true;
@@ -75,9 +79,7 @@ public partial class Rogue : Controller
 	}
 	public override void _Ready()
 	{
-		AddChild(sprites);
-		sprites.Position = new Vector2(0, 0);
-		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
+
 	}
 	public override void _Process(double delta)
 	{

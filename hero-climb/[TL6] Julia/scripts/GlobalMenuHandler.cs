@@ -79,7 +79,6 @@ public partial class GlobalMenuHandler : Node
         if (CurrentScene != null)
         {
             CurrentScene.QueueFree();
-            GetTree().Root.RemoveChild(CurrentScene);
             CurrentScene = null;
         }
         
@@ -98,7 +97,7 @@ public partial class GlobalMenuHandler : Node
         inGame = false;
     }
 
-    public void EnterGame()
+    public void EnterGame(Controller.ClassType cType)
     {
         if (CurrentScene != null)
         {

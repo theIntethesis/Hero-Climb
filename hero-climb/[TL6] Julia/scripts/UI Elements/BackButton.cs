@@ -6,20 +6,19 @@ public partial class BackButton : Button
 	[Export]
 	bool QuitsGame = false;
 
-
+	private GlobalMenuHandler GlobalMenuHandler;
     public override void _Ready()
     {
+		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+
         Pressed += () => {
-			if (GetOwner().GetOwner() is Menu)
+			if (QuitsGame)
 			{
-				if (QuitsGame)
-				{
-					GetOwner().GetOwner<Menu>().QuitGame();				
-				}
-				else 
-				{
-					GetOwner().GetOwner<Menu>().Pop();
-				}
+				GlobalMenuHandler.QuitGame();				
+			}
+			else 
+			{
+				GlobalMenuHandler.Pop();
 			}
 		};
     }

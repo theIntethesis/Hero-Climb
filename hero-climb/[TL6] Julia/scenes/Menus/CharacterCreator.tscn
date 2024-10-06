@@ -8,7 +8,13 @@
 
 [node name="CharacterCreator" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ynb51")
 
 [node name="VFlowContainer" type="VFlowContainer" parent="."]
@@ -42,14 +48,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Rogue" parent="VFlowContainer/Control/Control" instance=ExtResource("2_crrn4")]
+visible = false
 texture_filter = 1
 scale = Vector2(8, 8)
 
 [node name="Fighter" parent="VFlowContainer/Control/Control" instance=ExtResource("3_kxsia")]
+visible = false
 texture_filter = 1
 scale = Vector2(2.4, 2.4)
 
 [node name="Wizard" parent="VFlowContainer/Control/Control" instance=ExtResource("2_nnumt")]
+visible = false
 scale = Vector2(3, 3)
 
 [node name="GridContainer" type="GridContainer" parent="VFlowContainer"]

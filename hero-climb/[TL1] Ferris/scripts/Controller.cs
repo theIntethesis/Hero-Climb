@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,155 +7,185 @@ using System.Threading.Tasks;
 
 public partial class Controller : CharacterBody2D
 {
-    [Export]
-    public float Speed = 100.0f;
-    [Export]
-    public float JumpVelocity = -400.0f;
-    [Export]
-    public float attackDelay = 48f;
-    [Export]
-    public bool AttackFollowMouse = false;
-    public enum ClassType
-    {
-        Fighter, Rogue, Wizard
-    }
-    [Export]
-    public ClassType Class = ClassType.Rogue;
+	[Export]
+	public float Speed = 100.0f;
+	[Export]
+	public float JumpVelocity = -400.0f;
+	[Export]
+	public float attackDelay = 48f;
+	[Export]
+	public bool AttackFollowMouse = true;
+	public enum ClassType
+	{
+		Fighter, Rogue, Wizard
+	}
+	[Export]
+	private ClassType Class = ClassType.Wizard;
 
-    protected int Health = 100;
-    public int Money = 0;
+	[Signal]
+	public delegate void IsDeadEventHandler();
 
-    protected bool attackCooldown = false;
-    protected float attackCooldownFrames;
+	[Signal]
+	public delegate void AttackingEventHandler();
 
-    protected AnimatedSprite2D sprites;
+	protected int Health = 100;
+	public int Money = 0;
 
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Velocity;
+	protected bool attackCooldown = false;
+	protected float attackCooldownFrames;
+	protected bool IsMovementLocked = false;
 
-        // Add the gravity.
-        if (!IsOnFloor())
-        {
-            velocity += GetGravity() * (float)delta;
-        }
+	protected AnimatedSprite2D sprites;
 
-        // Handle Jump.
-        if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing))
-        {
-            velocity.Y += JumpVelocity;
-        }
+	public void SetClass(Controller.ClassType cType)
+	{
+		Class = cType;
+	}
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Velocity;
 
-        velocity.X = horizonalMovement().X;
+		// Add the gravity.
+		if (!IsOnFloor())
+		{
+			velocity += GetGravity() * (float)delta;
+		}
 
-        Velocity = velocity;
-        MoveAndSlide();
+		// Handle Jump.
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
+		{
+			velocity.Y += JumpVelocity;
+		}
 
-        if (!Global.isAttacking) Animation();
+		velocity.X = horizonalMovement().X;
 
-    }
+		Velocity = velocity;
+		MoveAndSlide();
 
-    public void CollideWithEnemy(Node2D body)
-    {
-        /*
-            var enemy = body as Enemy;
-            var damage = enemy.damage;
-            health -= damage;
-            if (health <= 0)
-                sprites.play("death");
-                // Lock out player control.
-            else
-                sprites.play("hurt");
-        */
-    }
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing))
-        {
-            sprites.Play("jump");
-        }
-        if (@event.IsActionPressed("attack") && !attackCooldown)
-        {
-            Attack();
-        }
-    }
+		if (!Global.isAttacking) Animation();
 
-    protected Vector2 horizonalMovement()
-    {
-        Vector2 velocity = new();
-        var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
-        if (inputStr != 0)
-        {
-            velocity.X = inputStr * Speed;
-        }
-        else
-        {
-            velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-        }
+	}
+	public virtual void PlayerDeath()
+	{
+		IsMovementLocked = true;
+		sprites.Play("death");
+	}
+	public void CollideWithEnemy(Area2D body)
+	{
+		uint layer3 = body.CollisionLayer & 0b_0100;
+		if (layer3 > 0)
+		{
+			/*var enemy = body as Enemy;
+			var damage = enemy.damage;*/
+			Health -= 20;
+			GD.Print($"Collided With Enemy: {body.Name}");
+			if(body.Name == "RisingLava")
+			{
+				Health = 0;
+			}
 
-        return velocity;
-    }
+			if (Health <= 0)
+			{
+				GD.Print("Dead");
+				PlayerDeath();
+			}
+			else
+			{
+				//sprites.Play("Hurt");
+			}
+		}
+	}
+	public override void _Input(InputEvent @event)
+	{
+		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
+		{
+			sprites.Play("jump");
+		}
+		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
+		{
+			Attack();
+		}
+	}
 
-    protected virtual void Animation()
-    {
-        if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
-        {
-            sprites.FlipH = true;
-            sprites.Play("run");
-        }
-        else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
-        {
-            sprites.FlipH = false;
-            sprites.Play("run");
-        }
-        else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
-        {
-            sprites.Play("idle");
-        }
-    }
+	protected Vector2 horizonalMovement()
+	{
+		Vector2 velocity = new();
+		var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 
-    public void _on_sprites_animation_finished()
-    {
-        if (Global.isAttacking)
-        {
-            attackCooldown = false;
-            Global.isAttacking = false;
-            if (Input.IsActionPressed("attack"))
-                Attack();
-        }
-    }
+		if (inputStr != 0)
+		{
+			velocity.X = inputStr * Speed;
+		}
+		else
+		{
+			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+		}
 
-    public virtual void Attack()
-    {
+		return IsMovementLocked ? Vector2.Zero : velocity;
+	}
 
-    }
-    public virtual void Ability()
-    {
+	protected virtual void Animation()
+	{
+		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		{
+			sprites.FlipH = true;
+			sprites.Play("run");
+		}
+		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		{
+			sprites.FlipH = false;
+			sprites.Play("run");
+		}
+		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		{
+			sprites.Play("idle");
+		}
+	}
 
-    }
-    public Controller()
-    {
-        /*Script script;
-        switch (Class)
-        {
-            case ClassType.Fighter:
-                script = new Script();
-                script.
-                break;
-            case ClassType.Rogue:
-                break;
-            case ClassType.Wizard:
-                break;
-        }
+	public void _on_sprites_animation_finished()
+	{
+		if (Global.isAttacking)
+		{
+			attackCooldown = false;
+			Global.isAttacking = false;
+			if (Input.IsActionPressed("attack"))
+				Attack();
+		}
+		if(Health <= 0)
+		{
+			EmitSignal(SignalName.IsDead);
+		}
+	}
 
-        this.SetScript(Fighter);*/
-    }
-    public override void _Ready()
-    {
+	public virtual void Attack()
+	{
+		EmitSignal(SignalName.Attacking);
+	}
+	public virtual void Ability()
+	{
 
-    }
-    public override void _Process(double delta)
-    {
+	}
+	public Controller()
+	{
+		
+	}
+	public override void _Ready()
+	{
+		switch (Class)
+		{
+			case ClassType.Fighter:
+				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Fighter.cs"));
+				break;
+			case ClassType.Rogue:
+				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
+				break;
+			case ClassType.Wizard:
+				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
+				break;
+		}
+	}
+	public override void _Process(double delta)
+	{
 
-    }
+	}
 }

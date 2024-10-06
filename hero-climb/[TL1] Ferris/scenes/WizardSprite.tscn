@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://ddreyoyl54apb"]
+[gd_scene load_steps=39 format=3 uid="uid://ddreyoyl54apb"]
 
 [ext_resource type="Texture2D" uid="uid://b3cv32phcdvxp" path="res://[TL1] Ferris/assets/Fire vizard/Fireball.png" id="1_1f8mn"]
 [ext_resource type="Texture2D" uid="uid://d4ehv15yqbia3" path="res://[TL1] Ferris/assets/Fire vizard/Idle.png" id="2_esco7"]
+[ext_resource type="Texture2D" uid="uid://ceg833kammj3j" path="res://[TL1] Ferris/assets/Fire vizard/Dead.png" id="2_kbrjg"]
 [ext_resource type="Texture2D" uid="uid://wmj6s80k5uup" path="res://[TL1] Ferris/assets/Fire vizard/Jump.png" id="3_hsjc7"]
 [ext_resource type="Texture2D" uid="uid://b2kla2wuqet5u" path="res://[TL1] Ferris/assets/Fire vizard/Run.png" id="4_3rdym"]
 
@@ -36,6 +37,30 @@ region = Rect2(768, 56, 128, 72)
 [sub_resource type="AtlasTexture" id="AtlasTexture_iedll"]
 atlas = ExtResource("1_1f8mn")
 region = Rect2(896, 56, 128, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu8dp"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ma65"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xifw"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijgug"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exsxo"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xu3h"]
+atlas = ExtResource("2_kbrjg")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kns7i"]
 atlas = ExtResource("2_esco7")
@@ -142,6 +167,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uu8dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ma65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xifw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijgug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exsxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xu3h")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kns7i")
 }, {
 "duration": 1.0,
@@ -213,5 +261,5 @@ animations = [{
 [node name="Sprites" type="AnimatedSprite2D"]
 scale = Vector2(0.45553, 0.45553)
 sprite_frames = SubResource("SpriteFrames_oiq25")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
