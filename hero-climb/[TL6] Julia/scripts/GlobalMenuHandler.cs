@@ -9,6 +9,8 @@ public partial class GlobalMenuHandler : Node
     
     [Signal]
     public delegate void OnResumeEventHandler();
+    [Signal]
+    public delegate void OnDeathScreenEventHandler();
 
     PackedScene HomeBackground;
     PackedScene PauseBackground;
@@ -27,6 +29,7 @@ public partial class GlobalMenuHandler : Node
     private CanvasLayer Menu;
 
     private bool InGame = false;
+    private bool HasDied = false;
     public Node CurrentScene;
 
 
@@ -68,7 +71,9 @@ public partial class GlobalMenuHandler : Node
 		{
             if (GetTree().Paused || !InGame) 
             {
-                Pop();
+                if (!(HasDied && Stack.GetChildCount() == 1)) {
+                    Pop();
+                }
             }
 			else 
             {
@@ -103,6 +108,7 @@ public partial class GlobalMenuHandler : Node
 
         GetTree().Paused = false;
         InGame = false;
+        HasDied = false;
     }
 
     public void EnterGame(Controller.ClassType cType)
@@ -116,6 +122,7 @@ public partial class GlobalMenuHandler : Node
 
         GetTree().Paused = false;
         InGame = true;
+        HasDied = false;
 
         ClearBackground();
 
@@ -219,9 +226,11 @@ public partial class GlobalMenuHandler : Node
     public void OnPlayerDeath()
     {
         GetTree().Paused = true;
+        HasDied = true;
         ClearBackground();
         Background.AddChild(DeathBackground.Instantiate());
         Push(DeathScreen);
+        EmitSignal(SignalName.OnDeathScreen);
     }
     
 
