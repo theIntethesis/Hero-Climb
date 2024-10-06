@@ -4,7 +4,11 @@ using Godot;
 [GlobalClass]
 public partial class GlobalMenuHandler : Node
 {
-    public Node CurrentScene;
+    [Signal]
+    public delegate void OnPauseEventHandler();
+    
+    [Signal]
+    public delegate void OnResumeEventHandler();
 
     PackedScene HomeBackground;
     PackedScene PauseBackground;
@@ -12,21 +16,26 @@ public partial class GlobalMenuHandler : Node
     PackedScene MainMenu;
     PackedScene InitialGameScene;
     PackedScene PauseMenu;
-
     PackedScene DeathScreen;
 
+    PackedScene GameHUD;
 
+    // used for menus
     private Control Stack;
     private Control Background;
 
+    private CanvasLayer Menu;
+
     private bool InGame = false;
-    
+    public Node CurrentScene;
+
 
     public override void _Ready()
     {
         base._Ready();
 
-        CanvasLayer Menu = new CanvasLayer();
+        Menu = new CanvasLayer();
+
         Stack = new Control();
         Background = new Control();
         CurrentScene = null;
@@ -39,7 +48,7 @@ public partial class GlobalMenuHandler : Node
 
         Menu.AddChild(Background);
         Menu.AddChild(Stack);
-        
+   
         AddChild(Menu);
 
         MainMenu = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn");
@@ -49,7 +58,7 @@ public partial class GlobalMenuHandler : Node
         HomeBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn");
         PauseBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn");
         DeathBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn");
-    
+
         InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
     }
 
@@ -85,6 +94,7 @@ public partial class GlobalMenuHandler : Node
         {
             child.QueueFree();
         }
+
 
         Push(MainMenu);
 
@@ -152,7 +162,6 @@ public partial class GlobalMenuHandler : Node
             CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		    Last.Visible = false;
         }
-        
 
         Node node = scene.Instantiate();
 		Stack.AddChild(node);
@@ -196,6 +205,7 @@ public partial class GlobalMenuHandler : Node
             Push(PauseMenu);
 
             Background.AddChild(PauseBackground.Instantiate());
+            EmitSignal(SignalName.OnPause);
         } 
     }
 
@@ -203,6 +213,7 @@ public partial class GlobalMenuHandler : Node
     {
         GetTree().Paused = false;
         ClearBackground();
+        EmitSignal(SignalName.OnResume);
     }
 
     public void OnPlayerDeath()
@@ -212,4 +223,6 @@ public partial class GlobalMenuHandler : Node
         Background.AddChild(DeathBackground.Instantiate());
         Push(DeathScreen);
     }
+    
+
 }
