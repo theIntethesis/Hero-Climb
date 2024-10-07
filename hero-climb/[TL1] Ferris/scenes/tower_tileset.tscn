@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=4 uid="uid://nahvss2rb0ky"]
 
 [ext_resource type="PackedScene" uid="uid://cmxu784hcbhqw" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeLeft.tscn" id="1_2s1jh"]
-[ext_resource type="Texture2D" uid="uid://83hvrcqtkqhm" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="1_vw4ba"]
+[ext_resource type="Texture2D" uid="uid://bdxruilnx26dd" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="1_vw4ba"]
 [ext_resource type="PackedScene" uid="uid://buos5jq0le7gn" path="res://[TL1] Ferris/scenes/Tiles/PlatformEdgeRight.tscn" id="2_tma5t"]
-[ext_resource type="Texture2D" uid="uid://cicvgpev4npsk" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="2_ys77s"]
+[ext_resource type="Texture2D" uid="uid://b70h1guwlsn7a" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="2_ys77s"]
 [ext_resource type="PackedScene" uid="uid://bbshcgxiqnjyc" path="res://[TL1] Ferris/scenes/Tiles/PlatformMiddle.tscn" id="3_m6rr8"]
 [ext_resource type="PackedScene" uid="uid://u7j7582q6ury" path="res://[TL1] Ferris/scenes/Tiles/PipeBottom.tscn" id="4_anwqt"]
 [ext_resource type="PackedScene" uid="uid://bdxyk11gje0e7" path="res://[TL1] Ferris/scenes/Tiles/PipeMiddle.tscn" id="5_q8eod"]
