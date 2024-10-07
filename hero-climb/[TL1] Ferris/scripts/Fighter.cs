@@ -39,11 +39,11 @@ public partial class Fighter : Controller
 			sprites.Play("idle");
 			sprites.Offset = new Vector2(0, -13);
 		}
-	}
+	}/*
 	public override void PlayerDeath()
 	{
 		base.PlayerDeath();
-	}
+	}*/
 	public override void _Ready()
 	{
 

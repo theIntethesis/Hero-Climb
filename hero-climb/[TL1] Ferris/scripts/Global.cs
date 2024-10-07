@@ -7,6 +7,15 @@ public partial class Global : Node
 	public static int pipes = 0;
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
+
+	public static void SetCharacterType(Controller.ClassType cType, Controller Player)
+	{
+		Player.SetClass(cType);
+	}
+	public static int GetCharacterHealth(Controller Player)
+	{
+		return Player.getHealth();
+	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

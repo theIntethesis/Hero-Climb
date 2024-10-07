@@ -22,14 +22,33 @@ public partial class Controller : CharacterBody2D
 	}
 	[Export]
 	public ClassType Class = ClassType.Wizard;
+	[Export]
+	public int Damage = 50;
+
+	[Signal]
+	public delegate void IsDeadEventHandler();
+
+	[Signal]
+	public delegate void AttackingEventHandler();
+
+	[Signal]
+	public delegate void InjuryEventHandler();
+
 
 	protected int Health = 100;
 	public int Money = 0;
+	protected InjuryEventHandler injury;
 
 	protected bool attackCooldown = false;
 	protected float attackCooldownFrames;
 
 	protected AnimatedSprite2D sprites;
+	public int getHealth() { return Health; }
+
+	public void SetClass(Controller.ClassType cType)
+	{
+		Class = cType;
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -89,11 +108,13 @@ public partial class Controller : CharacterBody2D
 		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
 		{
 			sprites.FlipH = true;
+			(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Position = new Vector2(0, -15);
 			sprites.Play("run");
 		}
 		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
 		{
 			sprites.FlipH = false;
+			(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Position = new Vector2(0, 15);
 			sprites.Play("run");
 		}
 		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking)
@@ -108,8 +129,14 @@ public partial class Controller : CharacterBody2D
 		{
 			attackCooldown = false;
 			Global.isAttacking = false;
+			(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = true;
 			if (Input.IsActionPressed("attack"))
 				Attack();
+		}
+		if(Health <= 0)
+		{
+			EmitSignal(SignalName.IsDead);
+			GD.Print("IsDead Emitted");
 		}
 	}
 
@@ -123,7 +150,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public Controller()
 	{
-		
+		injury += () => { EmitSignal(SignalName.Injury); };
 	}
 	public override void _Ready()
 	{
