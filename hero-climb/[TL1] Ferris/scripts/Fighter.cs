@@ -20,6 +20,7 @@ public partial class Fighter : Controller
 		attackCooldown = true;
 		Global.isAttacking = true;
 		sprites.Play("attack");
+		(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = false;
 	}
 	protected override void Animation()
 	{
@@ -38,6 +39,10 @@ public partial class Fighter : Controller
 			sprites.Play("idle");
 			sprites.Offset = new Vector2(0, -13);
 		}
+	}
+	public override void PlayerDeath()
+	{
+		base.PlayerDeath();
 	}
 	public override void _Ready()
 	{
