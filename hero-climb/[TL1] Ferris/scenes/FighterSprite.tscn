@@ -1,39 +1,40 @@
-[gd_scene load_steps=24 format=3 uid="uid://dp6omjfw6gx1l"]
+[gd_scene load_steps=25 format=3 uid="uid://dp6omjfw6gx1l"]
 
 [ext_resource type="Texture2D" uid="uid://swr0xqy683dh" path="res://[TL1] Ferris/assets/large character template.png" id="1_ws54u"]
 [ext_resource type="Texture2D" uid="uid://b8yx2tdt1k5cp" path="res://[TL1] Ferris/assets/Orc-In-Process.png" id="2_gtg5p"]
+[ext_resource type="Texture2D" uid="uid://okwirhr3rq1v" path="res://[TL1] Ferris/assets/Orc Fighter/Fighter_Death.png" id="2_t52di"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e24la"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(0, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2y4v"]
+atlas = ExtResource("2_gtg5p")
+region = Rect2(0, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7f0sd"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(40, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt2eg"]
+atlas = ExtResource("2_gtg5p")
+region = Rect2(160, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qpcsl"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(80, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm6vj"]
+atlas = ExtResource("2_gtg5p")
+region = Rect2(320, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ybe6y"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(120, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6efc5"]
+atlas = ExtResource("2_gtg5p")
+region = Rect2(480, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wwktr"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(160, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm18e"]
+atlas = ExtResource("2_t52di")
+region = Rect2(0, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qllrh"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(200, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_st1l7"]
+atlas = ExtResource("2_t52di")
+region = Rect2(160, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xt3ld"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(240, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueq73"]
+atlas = ExtResource("2_t52di")
+region = Rect2(320, 0, 160, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dnkwo"]
-atlas = ExtResource("1_ws54u")
-region = Rect2(280, 15, 40, 25)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib2c1"]
+atlas = ExtResource("2_t52di")
+region = Rect2(480, 0, 160, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dcprf"]
 atlas = ExtResource("2_gtg5p")
@@ -87,32 +88,37 @@ region = Rect2(1720, 15, 40, 25)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e24la")
+"texture": SubResource("AtlasTexture_b2y4v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7f0sd")
+"texture": SubResource("AtlasTexture_gt2eg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qpcsl")
+"texture": SubResource("AtlasTexture_sm6vj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ybe6y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wwktr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qllrh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xt3ld")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dnkwo")
+"texture": SubResource("AtlasTexture_6efc5")
 }],
 "loop": false,
 "name": &"attack",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm18e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st1l7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueq73")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib2c1")
+}],
+"loop": false,
+"name": &"death",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -167,8 +173,8 @@ animations = [{
 }]
 
 [node name="Sprites" type="AnimatedSprite2D"]
+texture_filter = 2
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_56s6i")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0375075
