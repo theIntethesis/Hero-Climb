@@ -25,7 +25,6 @@ public partial class DeathBackground : Control
 	{
 		if (count < FinalCount)
 		{
-			GD.Print(count);
 			count++;
 			material.SetShaderParameter("tint", new Color(FinalTint, 0.4f * (float)count/FinalCount));
 			material.SetShaderParameter("lod", FinalLOD * (float)count/FinalCount);
