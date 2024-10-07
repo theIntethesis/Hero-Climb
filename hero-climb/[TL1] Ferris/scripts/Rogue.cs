@@ -79,11 +79,11 @@ public partial class Rogue : Controller
 	protected override void Animation()
 	{
 		base.Animation();
-	}/*
+	}
 	public override void PlayerDeath()
 	{
 		base.PlayerDeath();
-	}*/
+	}
 	public override void _Ready()
 	{
 
