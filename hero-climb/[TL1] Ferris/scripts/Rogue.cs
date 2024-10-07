@@ -8,6 +8,8 @@ using static PlayerController;
 
 public partial class Rogue : Controller
 {
+	[Export]
+	public float ClimbSpeed = 100f;
 	public Rogue()
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
@@ -30,11 +32,11 @@ public partial class Rogue : Controller
 		// Handle climb.
 		if (Input.IsActionPressed("move_up") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, -100 * (float)delta);
+			velocity += new Vector2(0, -ClimbSpeed * (float)delta);
 		}
 		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
 		{
-			velocity += new Vector2(0, 100 * (float)delta);
+			velocity += new Vector2(0, ClimbSpeed * (float)delta);
 		}
 		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up"))
 		{
@@ -72,11 +74,16 @@ public partial class Rogue : Controller
 		attackCooldown = true;
 		Global.isAttacking = true;
 		sprites.Play("attack");
+		(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = false;
 	}
 	protected override void Animation()
 	{
 		base.Animation();
-	}
+	}/*
+	public override void PlayerDeath()
+	{
+		base.PlayerDeath();
+	}*/
 	public override void _Ready()
 	{
 

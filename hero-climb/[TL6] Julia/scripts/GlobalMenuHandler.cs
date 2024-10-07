@@ -4,28 +4,41 @@ using Godot;
 [GlobalClass]
 public partial class GlobalMenuHandler : Node
 {
-    public Node CurrentScene;
+    [Signal]
+    public delegate void OnPauseEventHandler();
+    
+    [Signal]
+    public delegate void OnResumeEventHandler();
+    [Signal]
+    public delegate void OnDeathScreenEventHandler();
 
     PackedScene HomeBackground;
-
     PackedScene PauseBackground;
-
+    PackedScene DeathBackground;
     PackedScene MainMenu;
     PackedScene InitialGameScene;
     PackedScene PauseMenu;
+    PackedScene DeathScreen;
 
+    PackedScene GameHUD;
 
+    // used for menus
     private Control Stack;
     private Control Background;
 
-    private bool inGame = false;
-    
+    private CanvasLayer Menu;
+
+    private bool InGame = false;
+    private bool HasDied = false;
+    public Node CurrentScene;
+
 
     public override void _Ready()
     {
         base._Ready();
 
-        CanvasLayer Menu = new CanvasLayer();
+        Menu = new CanvasLayer();
+
         Stack = new Control();
         Background = new Control();
         CurrentScene = null;
@@ -38,23 +51,29 @@ public partial class GlobalMenuHandler : Node
 
         Menu.AddChild(Background);
         Menu.AddChild(Stack);
-        
+   
         AddChild(Menu);
 
         MainMenu = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn");
-        InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
         PauseMenu = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn");
+        DeathScreen = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn");
+
         HomeBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn");
         PauseBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn");
+        DeathBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn");
+
+        InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
     }
 
     public override void _Process(double _delta)
     {
         if (Input.IsActionJustPressed("open_menu"))
 		{
-            if (GetTree().Paused || !inGame) 
+            if (GetTree().Paused || !InGame) 
             {
-                Pop();
+                if (!(HasDied && Stack.GetChildCount() == 1)) {
+                    Pop();
+                }
             }
 			else 
             {
@@ -66,7 +85,10 @@ public partial class GlobalMenuHandler : Node
 
     public void ReturnToMainMenu()
     {
-        if (CurrentScene != null) 
+		Node NewScene = MainMenu.Instantiate();
+		GetTree().Root.AddChild(NewScene);
+
+        if (CurrentScene != null)
         {
             CurrentScene.QueueFree();
             CurrentScene = null;
@@ -78,12 +100,15 @@ public partial class GlobalMenuHandler : Node
             child.QueueFree();
         }
 
+
         Push(MainMenu);
 
+        ClearBackground();
         Background.AddChild(HomeBackground.Instantiate());
 
         GetTree().Paused = false;
-        inGame = false;
+        InGame = false;
+        HasDied = false;
     }
 
     public void EnterGame(Controller.ClassType cType)
@@ -95,23 +120,24 @@ public partial class GlobalMenuHandler : Node
             CurrentScene = null;
         }
 
-        inGame = true;
+        GetTree().Paused = false;
+        InGame = true;
+        HasDied = false;
+
+        ClearBackground();
 
         while (Stack.GetChildCount() > 0) 
         {
             Pop();
         }
 
-        ClearBackground();
-
         // should actually get InitialGameScene from some sort of level handler
         Node NewScene = InitialGameScene.Instantiate();
-        Global.SetCharacterType(cType, NewScene.GetNode("Player") as Controller);
 		GetTree().Root.AddChild(NewScene);
-		
+        Controller player = NewScene.GetNode("Player") as Controller;
+        player.IsDead += OnPlayerDeath;
+
         CurrentScene = NewScene;
-        GetTree().Paused = false;
-        
     }
 
     public void ClearBackground()
@@ -126,7 +152,7 @@ public partial class GlobalMenuHandler : Node
 
     public void QuitGame() 
     {
-        if (inGame)
+        if (InGame)
 		{
 			ReturnToMainMenu();
 		}
@@ -143,7 +169,6 @@ public partial class GlobalMenuHandler : Node
             CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		    Last.Visible = false;
         }
-        
 
         Node node = scene.Instantiate();
 		Stack.AddChild(node);
@@ -168,7 +193,7 @@ public partial class GlobalMenuHandler : Node
         }
         else 
         {   
-            if (inGame) 
+            if (InGame) 
             {
                 ResumeGame();
             }
@@ -187,6 +212,7 @@ public partial class GlobalMenuHandler : Node
             Push(PauseMenu);
 
             Background.AddChild(PauseBackground.Instantiate());
+            EmitSignal(SignalName.OnPause);
         } 
     }
 
@@ -194,5 +220,18 @@ public partial class GlobalMenuHandler : Node
     {
         GetTree().Paused = false;
         ClearBackground();
+        EmitSignal(SignalName.OnResume);
     }
+
+    public void OnPlayerDeath()
+    {
+        GetTree().Paused = true;
+        HasDied = true;
+        ClearBackground();
+        Background.AddChild(DeathBackground.Instantiate());
+        Push(DeathScreen);
+        EmitSignal(SignalName.OnDeathScreen);
+    }
+    
+
 }

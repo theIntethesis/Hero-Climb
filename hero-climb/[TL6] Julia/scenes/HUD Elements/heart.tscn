@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://x1puboycxv1v"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD Elements/heart.cs" id="1_ckqdy"]
+[ext_resource type="Texture2D" uid="uid://bhpdjaxhh4oyc" path="res://[TL6] Julia/assets/heart 15x15.png" id="1_digdk"]
+[ext_resource type="Texture2D" uid="uid://dfyyrj2nxuv84" path="res://[TL6] Julia/assets/half heart 15x15.png" id="2_rq18i"]
+[ext_resource type="Texture2D" uid="uid://8kbkjkavjc4t" path="res://[TL6] Julia/assets/empty heart 15x15.png" id="2_vs64q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unwsn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vs64q")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_digdk")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rq18i")
+}],
+"loop": true,
+"name": &"half",
+"speed": 5.0
+}]
+
+[node name="heart" type="Control"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 15.0
+offset_bottom = 15.0
+script = ExtResource("1_ckqdy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_unwsn")
+animation = &"full"
+autoplay = "full"
+centered = false

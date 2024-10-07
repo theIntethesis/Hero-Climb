@@ -166,6 +166,7 @@ animations = [{
 }]
 
 [node name="Sprites" type="AnimatedSprite2D"]
+texture_filter = 2
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_56s6i")
 animation = &"attack"

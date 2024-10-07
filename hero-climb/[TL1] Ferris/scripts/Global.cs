@@ -12,6 +12,10 @@ public partial class Global : Node
 	{
 		Player.SetClass(cType);
 	}
+	public static int GetCharacterHealth(Controller Player)
+	{
+		return Player.getHealth();
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
