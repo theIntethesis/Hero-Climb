@@ -24,9 +24,12 @@ public partial class PlayerCamera : Camera2D
         {
             GetNode<CanvasLayer>("HUD").Visible = true;
         };
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnDeathScreen += () => 
-        {
-            GetNode<CanvasLayer>("HUD").Visible = false;
-        };
+        
+    }
+
+    public void OnPlayerDeath() 
+    {
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPlayerDeath();
+        GetNode<CanvasLayer>("HUD").Visible = false;
     }
 }
