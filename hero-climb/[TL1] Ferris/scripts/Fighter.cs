@@ -20,24 +20,36 @@ public partial class Fighter : Controller
 		attackCooldown = true;
 		Global.isAttacking = true;
 		sprites.Play("attack");
+		(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = false;
 	}
-	protected override void Animation()
+	protected override Vector2 getSpriteOffset(string clause)
 	{
-		if (Input.IsActionPressed("move_left") && IsOnFloor() && !Global.isAttacking)
+		Vector2 Vec = Vector2.Zero;
+		switch (clause)
 		{
-			sprites.FlipH = true;
-			sprites.Play("run");
+			case "move_left":
+				Vec = Vector2.Zero;
+				break;
+			case "move_right":
+				Vec = Vector2.Zero;
+				break;
+			case "idle":
+				Vec = new Vector2(0, -13);
+				break;
+			case "death":
+				Vec = Vector2.Zero;
+				break;
+			case "attack":
+				Vec = Vector2.Zero;
+				break;
+			case "jump":
+				Vec = Vector2.Zero;
+				break;
+			default:
+				Vec = Vector2.Zero;
+				break;
 		}
-		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !Global.isAttacking)
-		{
-			sprites.FlipH = false;
-			sprites.Play("run");
-		}
-		else if (!Input.IsAnythingPressed() && IsOnFloor() && !Global.isAttacking)
-		{
-			sprites.Play("idle");
-			sprites.Offset = new Vector2(0, -13);
-		}
+		return Vec;
 	}
 	public override void _Ready()
 	{

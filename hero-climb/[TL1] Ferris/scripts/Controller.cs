@@ -15,12 +15,17 @@ public partial class Controller : CharacterBody2D
 	public float attackDelay = 48f;
 	[Export]
 	public bool AttackFollowMouse = true;
+	[Export]
+	public float ClimbSpeed = 100f;
+
 	public enum ClassType
 	{
 		Fighter, Rogue, Wizard
 	}
 	[Export]
-	private ClassType Class = ClassType.Wizard;
+	public ClassType Class = ClassType.Wizard;
+	[Export]
+	public int Damage = 50;
 
 	[Signal]
 	public delegate void IsDeadEventHandler();
@@ -28,27 +33,49 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void AttackingEventHandler();
 
+	[Signal]
+	public delegate void InjuryEventHandler();
+
 	protected int Health = 100;
 	public int Money = 0;
+	protected InjuryEventHandler injury;
 
 	protected bool attackCooldown = false;
 	protected float attackCooldownFrames;
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
+	public int getHealth() { return Health; }
 
 	public void SetClass(Controller.ClassType cType)
 	{
 		Class = cType;
 	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
-		if (!IsOnFloor())
+		if (!IsOnFloor() || Global.isClimbing)
 		{
 			velocity += GetGravity() * (float)delta;
+		}
+
+		// Handle climb. Only works if Controller is a Rogue, as that's the only ClassType that collides with pipes.
+		if (Input.IsActionPressed("move_up") && Global.isClimbing)
+		{
+			velocity += new Vector2(0, -ClimbSpeed * (float)delta);
+			GD.Print(velocity);
+		}
+		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
+		{
+			velocity += new Vector2(0, ClimbSpeed * (float)delta);
+			GD.Print(velocity);
+		}
+		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up") && !Input.IsActionPressed("jump"))
+		{
+			velocity = Vector2.Zero;
 		}
 
 		// Handle Jump.
@@ -65,8 +92,9 @@ public partial class Controller : CharacterBody2D
 		if (!Global.isAttacking) Animation();
 
 	}
-	public virtual void PlayerDeath()
+	public void PlayerDeath()
 	{
+		sprites.Offset = getSpriteOffset("death");
 		IsMovementLocked = true;
 		sprites.Play("death");
 	}
@@ -99,6 +127,7 @@ public partial class Controller : CharacterBody2D
 	{
 		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
 		{
+			sprites.Offset = getSpriteOffset("jump");
 			sprites.Play("jump");
 		}
 		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
@@ -124,20 +153,30 @@ public partial class Controller : CharacterBody2D
 		return IsMovementLocked ? Vector2.Zero : velocity;
 	}
 
-	protected virtual void Animation()
+	protected virtual Vector2 getSpriteOffset(string clause)
+	{
+		return Vector2.Zero;
+	}
+
+	protected void Animation()
 	{
 		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
+			sprites.Offset = getSpriteOffset("move_left");
 			sprites.FlipH = true;
+			(GetNode("Attack Hitbox") as Area2D).Position = new Vector2(-15, 0);
 			sprites.Play("run");
 		}
 		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
+			sprites.Offset = getSpriteOffset("move_right");
 			sprites.FlipH = false;
+			(GetNode("Attack Hitbox") as Area2D).Position = new Vector2(15, 0);
 			sprites.Play("run");
 		}
 		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
 		{
+			sprites.Offset = getSpriteOffset("idle");
 			sprites.Play("idle");
 		}
 	}
@@ -148,12 +187,14 @@ public partial class Controller : CharacterBody2D
 		{
 			attackCooldown = false;
 			Global.isAttacking = false;
+			(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = true;
 			if (Input.IsActionPressed("attack"))
 				Attack();
 		}
 		if(Health <= 0)
 		{
 			EmitSignal(SignalName.IsDead);
+			GD.Print("IsDead Emitted");
 		}
 	}
 
@@ -167,7 +208,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public Controller()
 	{
-		
+		injury += () => { EmitSignal(SignalName.Injury); };
 	}
 	public override void _Ready()
 	{

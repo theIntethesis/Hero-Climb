@@ -15,7 +15,7 @@ public partial class Wizard : Controller
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
 		attackCooldownFrames = 48f;
 		AddChild(sprites);
-		sprites.Position = new Vector2(0, 0);
+		sprites.Position = Vector2.Zero;
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 	}
 	public override void Attack()
@@ -26,21 +26,10 @@ public partial class Wizard : Controller
 		sprites.Play("attack");
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
 		if(AttackFollowMouse) sprites.FlipH = angle.X > 0 ? false : true;
-		sprites.Offset = sprites.FlipH ? new Vector2(-15, -3) : new Vector2(15, -3);
+		sprites.Offset = getSpriteOffset("attack");
 		fireballsummon = true;
 	}
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("jump") && IsOnFloor() && !IsMovementLocked)
-		{
-			sprites.Offset = sprites.FlipH ? new Vector2(-10, -10) : new Vector2(10, -10);
-			sprites.Play("jump");
-		}
-		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
-		{
-			Attack();
-		}
-	}
+
 	protected void SummonFireball()
 	{
 		// Play fireball sound.
@@ -51,33 +40,35 @@ public partial class Wizard : Controller
 		AddSibling(fireball);
 		fireball.setVelocity(AttackFollowMouse, sprites.FlipH);
 	}
-	protected override void Animation()
+
+	protected override Vector2 getSpriteOffset(string clause)
 	{
-		if (Input.IsActionPressed("move_left") && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
+		Vector2 Vec = Vector2.Zero;
+		switch (clause)
 		{
-			sprites.Offset = new Vector2(0, 0);
-			sprites.FlipH = true;
-			sprites.Play("run");
-			// play running sound.
+			case "move_left":
+				Vec = Vector2.Zero;
+				break;
+			case "move_right":
+				Vec = Vector2.Zero;
+				break;
+			case "idle":
+				Vec = Vector2.Zero;
+				break;
+			case "death":
+				Vec = sprites.FlipH ? new Vector2(-15, -31) : new Vector2(15, -31);
+				break;
+			case "attack":
+				Vec = sprites.FlipH ? new Vector2(-15, -3) : new Vector2(15, -3);
+				break;
+			case "jump":
+				Vec = sprites.FlipH ? new Vector2(-10, -10) : new Vector2(10, -10);
+				break;
+			default:
+				Vec = Vector2.Zero;
+				break;
 		}
-		else if (Input.IsActionPressed("move_right") && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
-		{
-			sprites.Offset = new Vector2(0, 0);
-			sprites.FlipH = false;
-			sprites.Play("run");
-			// play running sound.
-		}
-		else if (!Input.IsAnythingPressed() && IsOnFloor() && !Global.isAttacking && !IsMovementLocked)
-		{
-			sprites.Offset = new Vector2(0, 0);
-			sprites.Play("idle");
-		}
-	}
-	public override void PlayerDeath()
-	{
-		sprites.Offset = sprites.FlipH ? new Vector2(-15, -31) : new Vector2(15, -31);
-		IsMovementLocked = true;
-		sprites.Play("death");
+		return Vec;
 	}
 	public override void _Ready()
 	{
