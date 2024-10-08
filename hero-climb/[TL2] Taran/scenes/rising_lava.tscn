@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq1vs08q8ek4m"]
+[gd_scene load_steps=5 format=3 uid="uid://dq1vs08q8ek4m"]
 
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/rising_lava.gd" id="1_y6bio"]
+[ext_resource type="Shader" path="res://[TL6] Julia/shaders/GaussianBlur.gdshader" id="2_3vbym"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5uypc"]
+shader = ExtResource("2_3vbym")
+shader_parameter/lod = 2.584
+shader_parameter/tint = Color(1, 0.466667, 0, 0.901961)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iei8t"]
 size = Vector2(4205, 395)
@@ -9,6 +15,7 @@ size = Vector2(4205, 395)
 script = ExtResource("1_y6bio")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5uypc")
 offset_left = -2117.0
 offset_right = 2115.0
 offset_bottom = 2335.0
