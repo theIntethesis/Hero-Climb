@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://6phg238liyw8"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_x3wig"]
-[ext_resource type="PackedScene" uid="uid://c0r47srjd4qm4" path="res://[TL2] Taran/scenes/level_piece_test.tscn" id="2_2itv0"]
+[ext_resource type="PackedScene" uid="uid://c0r47srjd4qm4" path="res://[TL2] Taran/scenes/level_layout_reference.tscn" id="2_2itv0"]
 [ext_resource type="TileSet" uid="uid://b6a61awdl3lo6" path="res://[TL2] Taran/assets/tower_background_tileset.tres" id="3_y65fl"]
 
 [node name="TileMapLayer" type="TileMapLayer"]

@@ -9,10 +9,22 @@ const PIECE_COUNTS = {"LY":2, "LC":2, "LN":2,
 const LAYOUT_MAP = ["L","C","C","R"]
 
 # Y is a route up, C is a class route, N is no route, S is a shops
-var level_layout = ["Y","C","N","C"]
+@export var level_layout = ["Y","C","N","C"]
 
-func _ready():
-	build_level()
+func _ready() -> void:
+	randomize_level()
+
+func randomize_level():
+	var choices = ['Y','C','N']
+	var level_place = 0
+	while level_place<4:
+		level_layout[level_place] = choices.pick_random()
+		level_place += 1
+		verify_level()
+
+func verify_level():
+	if not level_layout.has("Y"):
+		level_layout[randi_range(0,3)] = "Y"
 
 func build_level():
 	var level_place = 0
@@ -29,5 +41,5 @@ func build_level():
 				+".tscn").instantiate()
 		
 		add_child(level_piece)
-		level_piece.global_position.x = level_place*464
+		level_piece.position.x = level_place*464
 		level_place += 1
