@@ -1,0 +1,15 @@
+name: Wednesday CI
+on: 
+  schedule:
+  # Runs workflow at 11:59 UTC Thursday nights
+   - cron: '59 23 * * 3'
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      steps:
+       - uses: actions/checkout@v2
+       - name: merge branches to main
+         run: echo Test
+         
+permissions:
+  pull-requests: write
