@@ -134,7 +134,8 @@ public partial class GlobalMenuHandler : Node
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
         player.SetClass(cType);
-      
+
+ 
         GetTree().Root.AddChild(NewScene);
 
         

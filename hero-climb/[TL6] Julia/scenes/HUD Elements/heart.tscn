@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://x1puboycxv1v"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD Elements/heart.cs" id="1_ckqdy"]
-[ext_resource type="Texture2D" uid="uid://bhpdjaxhh4oyc" path="res://[TL6] Julia/assets/heart 15x15.png" id="1_digdk"]
-[ext_resource type="Texture2D" uid="uid://dfyyrj2nxuv84" path="res://[TL6] Julia/assets/half heart 15x15.png" id="2_rq18i"]
-[ext_resource type="Texture2D" uid="uid://8kbkjkavjc4t" path="res://[TL6] Julia/assets/empty heart 15x15.png" id="2_vs64q"]
+[ext_resource type="Texture2D" uid="uid://lnosw1tm4x2" path="res://[TL6] Julia/assets/heart 15x15.png" id="1_digdk"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD Elements/Heart.cs" id="1_pcdaf"]
+[ext_resource type="Texture2D" uid="uid://ds15grkmj4kw1" path="res://[TL6] Julia/assets/half heart 15x15.png" id="2_rq18i"]
+[ext_resource type="Texture2D" uid="uid://bti867ii35sr3" path="res://[TL6] Julia/assets/empty heart 15x15.png" id="2_vs64q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_unwsn"]
 animations = [{
@@ -32,16 +32,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="heart" type="Control"]
+[node name="Heart" type="Control"]
 custom_minimum_size = Vector2(15, 15)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 15.0
 offset_bottom = 15.0
-script = ExtResource("1_ckqdy")
+script = ExtResource("1_pcdaf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_unwsn")
-animation = &"full"
-autoplay = "full"
+animation = &"empty"
+autoplay = "empty"
 centered = false

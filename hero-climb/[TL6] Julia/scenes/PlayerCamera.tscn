@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d31op03sdre58"]
+[gd_scene load_steps=3 format=3 uid="uid://d31op03sdre58"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/PlayerCamera.cs" id="1_touaq"]
+[ext_resource type="PackedScene" uid="uid://bp8x05pmpp2tq" path="res://[TL6] Julia/scenes/HUD Elements/HeartGrid.tscn" id="2_745e0"]
 
 [node name="PlayerCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
@@ -19,9 +20,5 @@ anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HeartGrid" type="GridContainer" parent="HUD/Buffer"]
+[node name="HeartGrid" parent="HUD/Buffer" instance=ExtResource("2_745e0")]
 layout_mode = 0
-offset_right = 91.0
-offset_bottom = 15.0
-scale = Vector2(3, 3)
-columns = 5

@@ -38,4 +38,5 @@ texture = ExtResource("6_h3mma")
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Sprite2D/Sprite2D2"]
 texture = ExtResource("7_hv7cs")
 
+[connection signal="Injury" from="Player" to="Player/PlayerCamera" method="InjuryEventHandler"]
 [connection signal="IsDead" from="Player" to="Player/PlayerCamera" method="OnPlayerDeath"]

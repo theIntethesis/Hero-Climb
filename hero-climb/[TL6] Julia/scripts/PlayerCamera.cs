@@ -1,35 +1,50 @@
 using Godot;
 using System;
-using System.Diagnostics;
-using System.Linq;
 
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
-{
+{ 
+    private HeartGrid hearts;
+
     public override void _Ready()
     {
-        PackedScene heart = ResourceLoader.Load<PackedScene>("/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/HUD Elements/heart.tscn");
-        
-        // should be dynamic... need resources from Controller
-        for (int i = 0; i < 5; i++)
+    
+        hearts = GetNode<HeartGrid>("HUD/Buffer/HeartGrid");
+
+        if (!(GetParent() is Controller)) 
         {
-            GetNode<Node>("HUD/Buffer/HeartGrid").AddChild(heart.Instantiate());
+            throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause += () => 
-        {
-            GetNode<CanvasLayer>("HUD").Visible = false;
-        };
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume += () => 
-        {
-            GetNode<CanvasLayer>("HUD").Visible = true;
-        };
-        
+        GD.Print("here");
+
+        hearts.Populate(GetParent<Controller>().getHealth());
+        hearts.Set(GetParent<Controller>().getHealth());
+
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause += this.OnPauseEventHandler;
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume += this.OnResumeEventHandler;
+    }
+
+    public void OnPauseEventHandler()
+    {
+        GetNode<CanvasLayer>("HUD").Visible = false;
+    }
+
+    public void OnResumeEventHandler()
+    {
+        GetNode<CanvasLayer>("HUD").Visible = true;
+    }
+
+    public void InjuryEventHandler() 
+    {
+        hearts.Set(GetParent<Controller>().getHealth());
     }
 
     public void OnPlayerDeath() 
     {
         GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPlayerDeath();
         GetNode<CanvasLayer>("HUD").Visible = false;
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause -= this.OnPauseEventHandler;
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume -= this.OnResumeEventHandler;
     }
 }
