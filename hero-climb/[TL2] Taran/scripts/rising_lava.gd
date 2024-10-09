@@ -1,10 +1,10 @@
 extends Node2D
 
-@export var Speed = 4
+@export var Speed = 2.0
 
 func _process(delta):
 	position.y -= Speed * delta
-	Speed += .01
+	Speed += .001
 
 
 func _on_area_2d_body_entered(body):
