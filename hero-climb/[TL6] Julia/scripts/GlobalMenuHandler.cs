@@ -9,8 +9,7 @@ public partial class GlobalMenuHandler : Node
     
     [Signal]
     public delegate void OnResumeEventHandler();
-    [Signal]
-    public delegate void OnDeathScreenEventHandler();
+
 
     PackedScene HomeBackground;
     PackedScene PauseBackground;
@@ -133,9 +132,13 @@ public partial class GlobalMenuHandler : Node
 
         // should actually get InitialGameScene from some sort of level handler
         Node NewScene = InitialGameScene.Instantiate();
-		GetTree().Root.AddChild(NewScene);
         Controller player = NewScene.GetNode("Player") as Controller;
-        player.IsDead += OnPlayerDeath;
+        player.SetClass(cType);
+
+ 
+        GetTree().Root.AddChild(NewScene);
+
+        
 
         CurrentScene = NewScene;
     }
@@ -230,7 +233,6 @@ public partial class GlobalMenuHandler : Node
         ClearBackground();
         Background.AddChild(DeathBackground.Instantiate());
         Push(DeathScreen);
-        EmitSignal(SignalName.OnDeathScreen);
     }
     
 

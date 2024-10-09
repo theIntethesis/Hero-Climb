@@ -1,10 +1,15 @@
 using Godot;
-using System;
-using System.Text.RegularExpressions;
 
-public partial class heart : Control
+
+public partial class Heart : Control
 {
-	public int state = 2;
+	private int state;
+
+	public int State 
+	{
+		get { return state; }
+		set { state = value; MatchState(); }
+	}
 
 	private void MatchState()
 	{
@@ -22,15 +27,4 @@ public partial class heart : Control
 		}
 	}
 
-	public void Decrement() 
-	{
-		state--;
-		MatchState();
-	}
-
-	public void Set(int s)
-	{
-		state = s;
-		MatchState();
-	}
 }
