@@ -36,7 +36,7 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void InjuryEventHandler();
 
-	protected int Health = 100;
+	protected int Health = 110;
 	public int Money = 0;
 	protected InjuryEventHandler injury;
 
@@ -115,7 +115,10 @@ public partial class Controller : CharacterBody2D
 			}
 			else
 			{
+				GD.Print(Health);
 				//sprites.Play("Hurt");
+				EmitSignal(SignalName.Injury);
+				GD.Print("Injury");
 			}
 		}
 	}
