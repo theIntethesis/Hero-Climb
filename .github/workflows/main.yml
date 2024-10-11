@@ -9,7 +9,7 @@ jobs:
       steps:
        - uses: actions/checkout@v2
        - name: merge branches to main
-         run: git merge Ferris --log
+         run: git checkout main; git merge origin/Ferris --log
          
 permissions:
   pull-requests: write
