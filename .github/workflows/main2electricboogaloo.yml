@@ -1,0 +1,53 @@
+name: Wednesday CI
+on: 
+  schedule:
+  # Runs workflow at 11:59 UTC Thursday nights
+   - cron: '59 23 * * 3'
+jobs:
+  MergeFerris:
+    name: Merge Ferris to main
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - run:  | 
+         git checkout main
+         git merge Ferris
+         git fetch
+         git pull
+         git push
+  MergeTaran:
+    name: Merge Multi_Piece_Levels to main
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - run:  | 
+         git checkout main
+         git merge Multi_Piece_Levels
+         git fetch
+         git pull
+         git push
+  MergeJulia:
+    name: Merge User-Interface to main
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - run:  | 
+         git checkout main
+         git merge User-Interface
+         git fetch
+         git pull
+         git push
+  MergeJason:
+    name: Merge Jason to main
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v2
+     - run:  | 
+         git checkout main
+         git merge Jason
+         git fetch
+         git pull
+         git push
+         
+permissions:
+  pull-requests: write
