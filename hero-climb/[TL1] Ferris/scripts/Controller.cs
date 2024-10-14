@@ -46,7 +46,7 @@ public partial class Controller : CharacterBody2D
 
 	protected AnimatedSprite2D sprites;
 	public int getHealth() { return Health; }
-	public void setClass(Controller.ClassType type) { Class = type; }
+	public void SetClass(Controller.ClassType type) { Class = type; }
 
 	public override void _PhysicsProcess(double delta)
 	{
