@@ -10,7 +10,7 @@ public partial class Global : Node
 
 	public static void SetCharacterType(Controller.ClassType cType, Controller Player)
 	{
-		Player.SetClass(cType);
+		//Player.SetClass(cType);
 	}
 	public static int GetCharacterHealth(Controller Player)
 	{
