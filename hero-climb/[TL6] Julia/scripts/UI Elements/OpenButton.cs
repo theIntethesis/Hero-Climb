@@ -13,7 +13,7 @@ public partial class OpenButton : Button
 		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
 
 		Pressed += () => {
-			GlobalMenuHandler.Push(scene);
+			GlobalMenuHandler.Push(new MenuObject(scene));
 		};
     }
 }
