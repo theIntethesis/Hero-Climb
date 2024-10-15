@@ -31,11 +31,9 @@ public partial class GlobalMenuHandler : Node
 
     PackedScene GameHUD;
 
-    // used for menus
+    private CanvasLayer Menu;
     private Control Stack;
     private Control Background;
-
-    private CanvasLayer Menu;
 
     private bool InGame = false;
     private bool HasDied = false;
@@ -114,7 +112,6 @@ public partial class GlobalMenuHandler : Node
             child.QueueFree();
         }
 
-
         Push(MainMenu);
 
         GetTree().Paused = false;
@@ -177,7 +174,6 @@ public partial class GlobalMenuHandler : Node
 
     public void Push(MenuObject menuObject)
     {
-
 		if (Stack.GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		    Last.Visible = false;
@@ -221,12 +217,12 @@ public partial class GlobalMenuHandler : Node
                 QuitGame();
             }
         }
-        
     }
 
     public void PauseGame() 
     {
-        if (!GetTree().Paused) {
+        if (!GetTree().Paused) 
+        {
             GetTree().Paused = true;
             
             Push(PauseMenu);
@@ -237,23 +233,31 @@ public partial class GlobalMenuHandler : Node
 
     public void ResumeGame()
     {
-        GetTree().Paused = false;
+        if (GetTree().Paused)
+        {
+            GetTree().Paused = false;
 
-        ClearBackground();
-        EmitSignal(SignalName.OnResume);
+            ClearBackground();
+            EmitSignal(SignalName.OnResume);
+        }   
     }
 
     public void OnPlayerDeath()
     {
-        GetTree().Paused = true;
-        HasDied = true;
-        
-        Push(DeathScreen);
+        if (!HasDied)
+        {
+            GetTree().Paused = true;
+            HasDied = true;
+            
+            Push(DeathScreen);
+        }
     }
 
     public void OnGameWin()
     {
-        GetTree().Paused = true;
-        Push(WinScreen);
+        if (!HasDied) {
+            GetTree().Paused = true;
+            Push(WinScreen);
+        } 
     }
 }

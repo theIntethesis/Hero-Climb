@@ -36,7 +36,7 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void InjuryEventHandler();
 
-	protected int Health = 110;
+	protected int Health = 100;
 	public int Money = 0;
 	protected InjuryEventHandler injury;
 
