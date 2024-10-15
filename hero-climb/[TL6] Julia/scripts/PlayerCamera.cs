@@ -16,8 +16,6 @@ public partial class PlayerCamera : Camera2D
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        GD.Print("here");
-
         hearts.Populate(GetParent<Controller>().getHealth());
         hearts.Set(GetParent<Controller>().getHealth());
 
@@ -40,11 +38,22 @@ public partial class PlayerCamera : Camera2D
         hearts.Set(GetParent<Controller>().getHealth());
     }
 
+    public void Alert()
+    {
+        
+    }
+
     public void OnPlayerDeath() 
     {
         GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPlayerDeath();
+        
         GetNode<CanvasLayer>("HUD").Visible = false;
         GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause -= this.OnPauseEventHandler;
         GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume -= this.OnResumeEventHandler;
+    }
+
+    public void OnGameWin()
+    {
+        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnGameWin();
     }
 }

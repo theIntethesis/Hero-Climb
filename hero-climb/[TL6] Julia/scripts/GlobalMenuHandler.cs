@@ -26,9 +26,7 @@ public partial class GlobalMenuHandler : Node
     MenuObject PauseMenu;
     MenuObject DeathScreen;
     MenuObject WinScreen;
-
     PackedScene InitialGameScene;
-
     PackedScene GameHUD;
 
     private CanvasLayer Menu;
