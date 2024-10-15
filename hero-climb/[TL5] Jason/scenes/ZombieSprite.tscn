@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6biyvayvkdbd"]
+
+[ext_resource type="Texture2D" uid="uid://di7glf2xgtigv" path="res://[TL5] Jason/assets/Zombie.png" id="1_i0afm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc8eo"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a8lt"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfpvb"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p86f1"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx3kt"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyni8"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfavt"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uedp5"]
+atlas = ExtResource("1_i0afm")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56s6i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc8eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a8lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfpvb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p86f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx3kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyni8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfavt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uedp5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 30.0
+}]
+
+[node name="Sprites" type="AnimatedSprite2D"]
+texture_filter = 2
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_56s6i")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.0627491
