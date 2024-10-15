@@ -4,10 +4,14 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
-    private HeartGrid hearts;
+    public HeartGrid hearts;
+
+    public GlobalMenuHandler globalMenuHandler;
+
 
     public override void _Ready()
     {
+        globalMenuHandler =  GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
     
         hearts = GetNode<HeartGrid>("HUD/Buffer/HeartGrid");
 
@@ -19,8 +23,8 @@ public partial class PlayerCamera : Camera2D
         hearts.Populate(GetParent<Controller>().getHealth());
         hearts.Set(GetParent<Controller>().getHealth());
 
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause += this.OnPauseEventHandler;
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume += this.OnResumeEventHandler;
+        globalMenuHandler.OnPause += this.OnPauseEventHandler;
+        globalMenuHandler.OnResume += this.OnResumeEventHandler;
     }
 
     public void OnPauseEventHandler()
@@ -38,22 +42,21 @@ public partial class PlayerCamera : Camera2D
         hearts.Set(GetParent<Controller>().getHealth());
     }
 
-    public void Alert()
-    {
-        
-    }
-
     public void OnPlayerDeath() 
     {
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPlayerDeath();
+        globalMenuHandler.OnPlayerDeath();
         
         GetNode<CanvasLayer>("HUD").Visible = false;
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnPause -= this.OnPauseEventHandler;
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnResume -= this.OnResumeEventHandler;
     }
 
     public void OnGameWin()
     {
-        GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler").OnGameWin();
+        globalMenuHandler.OnGameWin();
+    }
+
+    public override void _ExitTree()
+    {
+        globalMenuHandler.OnPause -= this.OnPauseEventHandler;
+        globalMenuHandler.OnResume -= this.OnResumeEventHandler;
     }
 }
