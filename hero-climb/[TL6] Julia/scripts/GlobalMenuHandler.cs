@@ -1,17 +1,6 @@
 using System.Linq;
 using Godot;
 
-public class MenuObject
-{
-    public PackedScene Foreground;
-    public PackedScene Background;
-
-    public MenuObject(PackedScene foreground, PackedScene background = null)
-    {
-        Foreground = foreground;
-        Background = background;
-    }
-}
 
 [GlobalClass]
 public partial class GlobalMenuHandler : Node
@@ -21,6 +10,21 @@ public partial class GlobalMenuHandler : Node
     
     [Signal]
     public delegate void OnResumeEventHandler();
+    
+    [Signal]
+    public delegate void OnReturnToMainMenuEventHandler();
+
+    public class MenuObject
+    {
+        public PackedScene Foreground;
+        public PackedScene Background;
+
+        public MenuObject(PackedScene foreground, PackedScene background = null)
+        {
+            Foreground = foreground;
+            Background = background;
+        }
+    }
 
     MenuObject MainMenu;
     MenuObject PauseMenu;
@@ -33,18 +37,22 @@ public partial class GlobalMenuHandler : Node
     private Control Stack;
     private Control Background;
 
-    private bool InGame = false;
-    private bool HasDied = false;
+    public bool InGame = false;
+    public bool HasDied = false;
     public Node CurrentScene;
+
+    public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
     public override void _Ready()
     {
         base._Ready();
 
         Menu = new CanvasLayer();
-
+        Menu.Name = "MenuCanvasLayer";
         Stack = new Control();
+        Stack.Name = "Stack";
         Background = new Control();
+        Background.Name = "Background";
         CurrentScene = null;
 
         ProcessMode = ProcessModeEnum.Always;
@@ -115,6 +123,8 @@ public partial class GlobalMenuHandler : Node
         GetTree().Paused = false;
         InGame = false;
         HasDied = false;
+
+        EmitSignal(SignalName.OnReturnToMainMenu);
     }
 
     public void EnterGame(Controller.ClassType cType)
@@ -141,6 +151,8 @@ public partial class GlobalMenuHandler : Node
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
         
+        MostRecentClass = cType;
+
         Global.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);
@@ -166,7 +178,6 @@ public partial class GlobalMenuHandler : Node
 		}
 		else 
 		{
-			// display warning
 			GetTree().Quit();
 		}
     }

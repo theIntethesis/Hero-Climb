@@ -11,7 +11,7 @@ public partial class PlayerCamera : Camera2D
 
     public override void _Ready()
     {
-        globalMenuHandler =  GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+        globalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
     
         hearts = GetNode<HeartGrid>("HUD/Buffer/HeartGrid");
 
