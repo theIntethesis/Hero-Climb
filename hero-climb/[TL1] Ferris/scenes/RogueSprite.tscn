@@ -1,6 +1,6 @@
 [gd_scene load_steps=23 format=3 uid="uid://7muxnjdf3dsv"]
 
-[ext_resource type="Texture2D" uid="uid://swr0xqy683dh" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
+[ext_resource type="Texture2D" uid="uid://6edd0wlk1kqv" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e24la"]
 atlas = ExtResource("1_0wk0x")
@@ -169,7 +169,5 @@ animations = [{
 texture_filter = 2
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_56s6i")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0

@@ -85,6 +85,8 @@ public partial class Wizard : Controller
 				fireballsummon = false;
 				fireballCountdown = 30;
 			}
-		}
-	}
+        }
+
+        if (Health <= 0) PlayerDeath();
+    }
 }

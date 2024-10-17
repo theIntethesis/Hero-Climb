@@ -35,8 +35,8 @@ public partial class Controller : CharacterBody2D
 
 	[Signal]
 	public delegate void InjuryEventHandler();
-
-	protected int Health = 110;
+	public int MaxHealth = 100;
+	protected int Health = 100;
 	public int Money = 0;
 	protected InjuryEventHandler injury;
 
@@ -46,7 +46,7 @@ public partial class Controller : CharacterBody2D
 
 	protected AnimatedSprite2D sprites;
 	public int getHealth() { return Health; }
-	public void setClass(Controller.ClassType type) { Class = type; }
+	public void SetClass(Controller.ClassType type) { Class = type; }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -55,7 +55,9 @@ public partial class Controller : CharacterBody2D
 		// Add the gravity.
 		if (!IsOnFloor() || Global.isClimbing)
 		{
-			velocity += GetGravity() * (float)delta;
+			var grav = GetGravity();
+			velocity += grav * (float)delta;
+			velocity = velocity.Clamp(-grav, grav);
 		}
 
 		// Handle climb. Only works if Controller is a Rogue, as that's the only ClassType that collides with pipes.
@@ -226,6 +228,6 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Process(double delta)
 	{
-
+		if (Health <= 0) PlayerDeath();
 	}
 }
