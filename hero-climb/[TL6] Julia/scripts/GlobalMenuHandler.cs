@@ -14,22 +14,13 @@ public partial class GlobalMenuHandler : Node
     [Signal]
     public delegate void OnReturnToMainMenuEventHandler();
 
-    public class MenuObject
-    {
-        public PackedScene Foreground;
-        public PackedScene Background;
+    public MenuObject MainMenuObj;
+    public MenuObject PauseMenu;
+    public MenuObject DeathScreen;
+    public MenuObject WinScreen;
 
-        public MenuObject(PackedScene foreground, PackedScene background = null)
-        {
-            Foreground = foreground;
-            Background = background;
-        }
-    }
+    public MenuObject QuitConfirm;
 
-    MenuObject MainMenu;
-    MenuObject PauseMenu;
-    MenuObject DeathScreen;
-    MenuObject WinScreen;
     PackedScene InitialGameScene;
     PackedScene GameHUD;
 
@@ -37,8 +28,8 @@ public partial class GlobalMenuHandler : Node
     private Control Stack;
     private Control Background;
 
-    public bool InGame = false;
-    public bool HasDied = false;
+    public bool InGame = false; // set as soon EnterGame() is called
+    public bool HasDied = false; // prevent popping the death screen
     public Node CurrentScene;
 
     public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
@@ -66,16 +57,32 @@ public partial class GlobalMenuHandler : Node
    
         AddChild(Menu);
 
-        MainMenu = new MenuObject(
+        MainMenuObj = new MenuObject(
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn"),
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn")
         );
+
+        MainMenuObj.OnPop = () => {
+            if (!InGame) // When the game is loading and the main menu is popped
+            {
+                Push(QuitConfirm);
+            }
+        };
+        
 
         PauseMenu = new MenuObject(
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn"),
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn")
         );
 
+        PauseMenu.OnPop = () => {
+            if (InGame)
+            {
+                ResumeGame();
+            }
+            
+        };
+        
         DeathScreen = new MenuObject(
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn"),
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn")
@@ -84,6 +91,20 @@ public partial class GlobalMenuHandler : Node
         WinScreen = new MenuObject(
             ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/WinScreen.tscn")
         );
+
+        QuitConfirm = new MenuObject(
+            ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn")
+        );
+
+        QuitConfirm.BeforePush = () => {
+            /* potentially a place to optimize
+             * what happens currently:
+             *      pop (main menu)
+             *      push (main menu)
+             *      push (quit confirm)
+             */
+            Push(MainMenuObj);
+        };
 
         InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
     }
@@ -118,7 +139,7 @@ public partial class GlobalMenuHandler : Node
             child.QueueFree();
         }
 
-        Push(MainMenu);
+        Push(MainMenuObj);
 
         GetTree().Paused = false;
         InGame = false;
@@ -147,7 +168,6 @@ public partial class GlobalMenuHandler : Node
             Pop();
         }
 
-        // should actually get InitialGameScene from some sort of level handler
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
         
@@ -178,26 +198,43 @@ public partial class GlobalMenuHandler : Node
 		}
 		else 
 		{
-			GetTree().Quit();
+            GetTree().Quit(); 
 		}
     }
 
     public void Push(MenuObject menuObject)
     {
+        if (menuObject.BeforePush != null) 
+        {
+            menuObject.BeforePush();
+        }
+        
 		if (Stack.GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
 		    Last.Visible = false;
         }
 
         Node node = menuObject.Foreground.Instantiate();
-		Stack.AddChild(node);
+		
+        Stack.AddChild(node);
 		node.Owner = this;
 
+        if (menuObject.OnPop != null)
+        {
+            node.TreeExited += menuObject.OnPop;
+        }
+        
         if (menuObject.Background != null)
         {
             ClearBackground();
             Background.AddChild(menuObject.Background.Instantiate());
         }
+
+        if (menuObject.AfterPush != null)
+        {
+            menuObject.AfterPush();
+        }
+        
     }
 
     public void Pop()
@@ -209,23 +246,13 @@ public partial class GlobalMenuHandler : Node
 
         Node Child = Stack.GetChildren().Last();
 
-		Stack.RemoveChild(Child);
+        Stack.RemoveChild(Child);
+        
         Child.QueueFree();
 
         if (Stack.GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
             Last.Visible = true;
-        }
-        else 
-        {   
-            if (InGame) 
-            {
-                ResumeGame();
-            }
-            else
-            {
-                QuitGame();
-            }
         }
     }
 

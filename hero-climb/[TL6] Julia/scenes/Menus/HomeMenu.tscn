@@ -45,4 +45,3 @@ scene = ExtResource("2_1hegj")
 layout_mode = 2
 text = "Quit Game"
 script = ExtResource("4_0pbvd")
-QuitsGame = true

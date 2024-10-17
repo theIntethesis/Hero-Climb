@@ -31,8 +31,6 @@ public partial class CharacterCreator : Control
         Fighter.Visible = false;
         Wizard.Visible = false;
 
-        // 
-
         switch (GlobalMenuHandler.MostRecentClass) 
         {
             case Controller.ClassType.Fighter:
@@ -52,9 +50,11 @@ public partial class CharacterCreator : Control
 
     public void OnFighterButtonPressed()
     {
-        Wizard.Visible = false;
         Fighter.Visible = true;
+        Wizard.Visible = false;
         Rogue.Visible = false;
+        WizardButton.SetPressed(false);
+        RogueButton.SetPressed(false);
         CurrentType = Controller.ClassType.Fighter;
     }
     public void OnWizardButtonPressed()
@@ -62,13 +62,18 @@ public partial class CharacterCreator : Control
         Wizard.Visible = true;
         Fighter.Visible = false;
         Rogue.Visible = false;
+        FighterButton.SetPressed(false);
+        RogueButton.SetPressed(false);
         CurrentType = Controller.ClassType.Wizard;
     }
     public void OnRougeButtonPressed()
     {
+        Rogue.Visible = true;
+
         Wizard.Visible = false;
         Fighter.Visible = false;
-        Rogue.Visible = true;
+        FighterButton.SetPressed(false);
+        WizardButton.SetPressed(false);
         CurrentType = Controller.ClassType.Rogue;
     }
 
