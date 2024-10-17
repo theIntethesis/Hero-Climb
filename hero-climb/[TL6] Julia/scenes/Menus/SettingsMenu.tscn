@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d220mtjktx1ci"]
+[gd_scene load_steps=3 format=3 uid="uid://d220mtjktx1ci"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="1_bnjc4"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/MenuNode.cs" id="1_cvvl7"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cvvl7")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1

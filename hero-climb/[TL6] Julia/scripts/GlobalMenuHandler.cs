@@ -115,9 +115,7 @@ public partial class GlobalMenuHandler : Node
 		{
             if (GetTree().Paused || !InGame) 
             {
-                if (!(HasDied && Stack.GetChildCount() == 1)) {
-                    Pop();
-                }
+                Pop();
             }
 			else 
             {
@@ -136,7 +134,7 @@ public partial class GlobalMenuHandler : Node
         
         foreach (Node child in Stack.GetChildren()) 
         {
-            child.QueueFree();
+            Pop(true);
         }
 
         Push(MainMenuObj);
@@ -237,22 +235,27 @@ public partial class GlobalMenuHandler : Node
         
     }
 
-    public void Pop()
+    public void Pop(bool Override = false)
     {
         if (Stack.GetChildCount() == 0) 
 		{
             return;
         }
 
-        Node Child = Stack.GetChildren().Last();
 
-        Stack.RemoveChild(Child);
-        
-        Child.QueueFree();
+        if (Stack.GetChildren().Last() is MenuNode Child)
+        {
+            if (Child.Poppable || Override) 
+            {
+                Stack.RemoveChild(Child);
+            
+                Child.QueueFree();
 
-        if (Stack.GetChildCount() > 0) {
-            CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
-            Last.Visible = true;
+                if (Stack.GetChildCount() > 0) {
+                    CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
+                    Last.Visible = true;
+                }           
+            }   
         }
     }
 

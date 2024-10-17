@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Text.RegularExpressions;
 
-public partial class CharacterCreator : Control
+public partial class CharacterCreator : MenuNode
 {
     private AnimatedSprite2D Fighter;
     private AnimatedSprite2D Wizard;
@@ -18,7 +18,6 @@ public partial class CharacterCreator : Control
     public override void _Ready() 
     {
         GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
-
 
         Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
         Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
