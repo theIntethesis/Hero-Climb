@@ -20,7 +20,7 @@ public partial class PlayerCamera : Camera2D
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        hearts.Populate(GetParent<Controller>().getHealth());
+        hearts.SetMaxHealth(GetParent<Controller>().getHealth());
         hearts.Set(GetParent<Controller>().getHealth());
 
         globalMenuHandler.OnPause += this.OnPauseEventHandler;

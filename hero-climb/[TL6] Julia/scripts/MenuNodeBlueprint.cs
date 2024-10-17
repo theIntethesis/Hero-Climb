@@ -26,8 +26,6 @@ public class MenuNodeBlueprint
         node.OnPop = OnPop;
         node.AfterPop = AfterPop;
 
-        // create background
-
         return node;
     }
 

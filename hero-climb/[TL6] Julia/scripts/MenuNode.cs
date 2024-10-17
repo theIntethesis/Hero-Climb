@@ -13,12 +13,18 @@ public partial class MenuNode : Control
     public System.Action OnPop; // Happens when Pop() is called, regardless of Poppable
     public System.Action AfterPop; // Occurs only if popped    
 
+    public Node BackgroundNode;
+
     public override void _Ready()
     {
         
         TreeExited += () => {
-            // cleanup background
+            if (BackgroundNode != null)
+            {
+                BackgroundNode.QueueFree();
+            }
         };
+
         base._Ready();
     }
 

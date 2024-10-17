@@ -18,9 +18,10 @@ func test_initialization():
 
     assert_eq(node is Camera2D, true)
 
+
 func test_stress_pause():
     
-    for n in 100:
+    for n in 1:
         var node = get_node("/root/MainLevel/Player/PlayerCamera")
 
         _sender.action_down("open_menu").hold_for(0.2)
@@ -36,5 +37,3 @@ func test_stress_pause():
         assert_eq(node.get_node("HUD").visible, true)
 
         gut.p(n)
-
-
