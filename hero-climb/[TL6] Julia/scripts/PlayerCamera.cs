@@ -8,12 +8,11 @@ public partial class PlayerCamera : Camera2D
 
     public GlobalMenuHandler globalMenuHandler;
 
-
     public override void _Ready()
     {
         globalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
     
-        hearts = GetNode<HeartGrid>("HUD/Buffer/HeartGrid");
+        hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
 
         if (!(GetParent() is Controller)) 
         {
@@ -25,6 +24,8 @@ public partial class PlayerCamera : Camera2D
 
         globalMenuHandler.OnPause += this.OnPauseEventHandler;
         globalMenuHandler.OnResume += this.OnResumeEventHandler;
+
+        // OpenShop();
     }
 
     public void OnPauseEventHandler()
@@ -58,5 +59,25 @@ public partial class PlayerCamera : Camera2D
     {
         globalMenuHandler.OnPause -= this.OnPauseEventHandler;
         globalMenuHandler.OnResume -= this.OnResumeEventHandler;
+    }
+
+    public void OpenShop()
+    {
+        // tbd,
+        ShopElement[] elements = new ShopElement[]
+        {
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
+            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2)
+        };
+
+        Shop shop = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn").Instantiate() as Shop;
+        GetNode<Node>("HUD/Margin").AddChild(shop);
+        shop.Init(elements);
+
+        
     }
 }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d31op03sdre58"]
+[gd_scene load_steps=4 format=3 uid="uid://d31op03sdre58"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/PlayerCamera.cs" id="1_touaq"]
 [ext_resource type="PackedScene" uid="uid://bp8x05pmpp2tq" path="res://[TL6] Julia/scenes/HUD Elements/HeartGrid.tscn" id="2_745e0"]
+[ext_resource type="PackedScene" uid="uid://x1puboycxv1v" path="res://[TL6] Julia/scenes/HUD Elements/heart.tscn" id="3_nqao4"]
 
 [node name="PlayerCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
@@ -11,7 +12,7 @@ script = ExtResource("1_touaq")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Buffer" type="Control" parent="HUD"]
+[node name="Margin" type="Control" parent="HUD"]
 layout_mode = 3
 anchor_left = 0.02
 anchor_top = 0.02
@@ -20,5 +21,20 @@ anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HeartGrid" parent="HUD/Buffer" instance=ExtResource("2_745e0")]
+[node name="HeartGrid" parent="HUD/Margin" instance=ExtResource("2_745e0")]
 layout_mode = 0
+
+[node name="temp" parent="HUD/Margin/HeartGrid" instance=ExtResource("3_nqao4")]
+layout_mode = 2
+
+[node name="temp2" parent="HUD/Margin/HeartGrid" instance=ExtResource("3_nqao4")]
+layout_mode = 2
+
+[node name="temp3" parent="HUD/Margin/HeartGrid" instance=ExtResource("3_nqao4")]
+layout_mode = 2
+
+[node name="temp4" parent="HUD/Margin/HeartGrid" instance=ExtResource("3_nqao4")]
+layout_mode = 2
+
+[node name="temp5" parent="HUD/Margin/HeartGrid" instance=ExtResource("3_nqao4")]
+layout_mode = 2
