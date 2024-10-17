@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://wkwqsf8box7q"]
+
+[node name="PlayerSoundPlayer" type="Node2D"]
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
