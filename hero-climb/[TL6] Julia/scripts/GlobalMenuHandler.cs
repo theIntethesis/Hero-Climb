@@ -33,8 +33,10 @@ public partial class GlobalMenuHandler : Node
 
     public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
+    // Ref is required since GetNode requires an element in the tree, and the class is decidedly not in the tree.
     public static GlobalMenuHandler GetSingleton(Node Ref)
     {
+
         return Ref.GetNode<GlobalMenuHandler>("/root/GlobalMenuHandler");
     }
 
