@@ -9,7 +9,7 @@ public partial class BackButton : Button
 	private GlobalMenuHandler GlobalMenuHandler;
     public override void _Ready()
     {
-		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+		GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
 
         Pressed += () => {
 			if (QuitsGame)
@@ -18,7 +18,7 @@ public partial class BackButton : Button
 			}
 			else 
 			{
-				GlobalMenuHandler.Pop();
+				GlobalMenuHandler.Stack.Pop();
 			}
 		};
     }

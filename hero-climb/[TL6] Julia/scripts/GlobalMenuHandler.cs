@@ -1,6 +1,7 @@
 using System.Linq;
 using Godot;
 
+
 [GlobalClass]
 public partial class GlobalMenuHandler : Node
 {
@@ -9,231 +10,178 @@ public partial class GlobalMenuHandler : Node
     
     [Signal]
     public delegate void OnResumeEventHandler();
+    
+    [Signal]
+    public delegate void OnReturnToMainMenuEventHandler();
 
+    public MenuNodeBlueprint MainMenuBP;
+    public MenuNodeBlueprint PauseMenuBP;
+    public MenuNodeBlueprint DeathScreenBP;
+    public MenuNodeBlueprint WinScreenBP;
 
-    PackedScene HomeBackground;
-    PackedScene PauseBackground;
-    PackedScene DeathBackground;
-    PackedScene MainMenu;
+    public MenuNodeBlueprint QuitConfirmBP;
+
     PackedScene InitialGameScene;
-    PackedScene PauseMenu;
-    PackedScene DeathScreen;
-
     PackedScene GameHUD;
 
-    // used for menus
-    private Control Stack;
-    private Control Background;
-
     private CanvasLayer Menu;
+    public MenuStack Stack;
 
-    private bool InGame = false;
-    private bool HasDied = false;
+    public bool InGame = false; // set as soon EnterGame() is called
+    public bool HasDied = false; // prevent popping the death screen
     public Node CurrentScene;
 
+    public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
-    public override void _Ready()
+    public static GlobalMenuHandler GetSingleton(Node Ref)
     {
-        base._Ready();
-
-        Menu = new CanvasLayer();
-
-        Stack = new Control();
-        Background = new Control();
-        CurrentScene = null;
-
-        ProcessMode = ProcessModeEnum.Always;
-        Menu.ProcessMode = ProcessModeEnum.Always;
-
-        Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        Background.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-
-        Menu.AddChild(Background);
-        Menu.AddChild(Stack);
-   
-        AddChild(Menu);
-
-        MainMenu = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn");
-        PauseMenu = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn");
-        DeathScreen = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn");
-
-        HomeBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn");
-        PauseBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn");
-        DeathBackground = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn");
-
-        InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
+        return Ref.GetNode<GlobalMenuHandler>("/root/GlobalMenuHandler");
     }
 
-    public override void _Process(double _delta)
-    {
-        if (Input.IsActionJustPressed("open_menu"))
+	public override void _Ready()
+	{
+		base._Ready();
+
+        Menu = new CanvasLayer();
+        Menu.Name = "MenuCanvasLayer";
+        Stack = new MenuStack();
+        Stack.Name = "Stack";
+
+        CurrentScene = null;
+
+		ProcessMode = ProcessModeEnum.Always;
+		Menu.ProcessMode = ProcessModeEnum.Always;
+
+        Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+ 
+        Menu.AddChild(Stack);
+   
+		AddChild(Menu);
+
+        MainMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn"));
+        PauseMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn"));
+        DeathScreenBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn"));
+        WinScreenBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/WinScreen.tscn"));
+        QuitConfirmBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn"));
+        InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
+
+        PauseMenuBP.AfterPop = ResumeGame;
+        
+        MainMenuBP.OnPop = () => {
+            Stack.Push(QuitConfirmBP);
+        };
+    }
+
+	public override void _Process(double _delta)
+	{
+		if (Input.IsActionJustPressed("open_menu"))
 		{
             if (GetTree().Paused || !InGame) 
             {
-                if (!(HasDied && Stack.GetChildCount() == 1)) {
-                    Pop();
-                }
+                Stack.Pop();
             }
 			else 
-            {
-                PauseGame();
-            }
+			{
+				PauseGame();
+			}
 		}
-
     }
 
     public void ReturnToMainMenu()
     {
-		Node NewScene = MainMenu.Instantiate();
-		GetTree().Root.AddChild(NewScene);
-
         if (CurrentScene != null)
         {
             CurrentScene.QueueFree();
             CurrentScene = null;
         }
         
-
-        foreach (Node child in Stack.GetChildren()) 
-        {
-            child.QueueFree();
-        }
-
-
-        Push(MainMenu);
-
-        ClearBackground();
-        Background.AddChild(HomeBackground.Instantiate());
+        Stack.Clear();
+        Stack.Push(MainMenuBP);
 
         GetTree().Paused = false;
         InGame = false;
         HasDied = false;
+
+        EmitSignal(SignalName.OnReturnToMainMenu);
     }
 
-    public void EnterGame(Controller.ClassType cType)
-    {
-        if (CurrentScene != null)
-        {
-            CurrentScene.QueueFree();
-            GetTree().Root.RemoveChild(CurrentScene);
-            CurrentScene = null;
-        }
+	public void EnterGame(Controller.ClassType cType)
+	{
+		if (CurrentScene != null)
+		{
+			CurrentScene.QueueFree();
+			GetTree().Root.RemoveChild(CurrentScene);
+			CurrentScene = null;
+		}
 
-        GetTree().Paused = false;
-        InGame = true;
-        HasDied = false;
+		GetTree().Paused = false;
+		InGame = true;
+		HasDied = false;
 
-        ClearBackground();
+        Stack.Clear();
 
-        while (Stack.GetChildCount() > 0) 
-        {
-            Pop();
-        }
-
-        // should actually get InitialGameScene from some sort of level handler
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
-        player.SetClass(cType);
+        
+        MostRecentClass = cType;
 
+        Global.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);
-
-        
 
         CurrentScene = NewScene;
     }
 
-    public void ClearBackground()
-    {
-        while (Background.GetChildCount() > 0) 
-        {
-            Node Child = Background.GetChildren().Last();
-            Child.QueueFree();
-            Background.RemoveChild(Child);
-        }
-    }
-
-    public void QuitGame() 
-    {
-        if (InGame)
+	public void QuitGame() 
+	{
+		if (InGame)
 		{
 			ReturnToMainMenu();
 		}
 		else 
 		{
-			// display warning
-			GetTree().Quit();
+            GetTree().Quit(); 
 		}
-    }
-
-    public void Push(PackedScene scene)
-    {
-		if (Stack.GetChildCount() > 0) {
-            CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
-		    Last.Visible = false;
-        }
-
-        Node node = scene.Instantiate();
-		Stack.AddChild(node);
-		node.Owner = this;
-    }
-
-    public void Pop()
-    {
-        if (Stack.GetChildCount() == 0) 
-		{
-            return;
-        }
-
-        Node Child = Stack.GetChildren().Last();
-
-		Stack.RemoveChild(Child);
-        Child.QueueFree();
-
-        if (Stack.GetChildCount() > 0) {
-            CanvasItem Last = (CanvasItem)Stack.GetChildren().Last();
-            Last.Visible = true;
-        }
-        else 
-        {   
-            if (InGame) 
-            {
-                ResumeGame();
-            }
-            else
-            {
-                QuitGame();
-            }
-        }
-        
     }
 
     public void PauseGame() 
     {
-        if (!GetTree().Paused) {
+        if (!GetTree().Paused) 
+        {
             GetTree().Paused = true;
-            Push(PauseMenu);
+            
+            Stack.Push(PauseMenuBP);
 
-            Background.AddChild(PauseBackground.Instantiate());
             EmitSignal(SignalName.OnPause);
         } 
     }
 
     public void ResumeGame()
     {
-        GetTree().Paused = false;
-        ClearBackground();
-        EmitSignal(SignalName.OnResume);
+        if (GetTree().Paused)
+        {
+            GetTree().Paused = false;
+
+            EmitSignal(SignalName.OnResume);
+        }   
     }
 
     public void OnPlayerDeath()
     {
-        GetTree().Paused = true;
-        HasDied = true;
-        ClearBackground();
-        Background.AddChild(DeathBackground.Instantiate());
-        Push(DeathScreen);
+        if (!HasDied)
+        {
+            GetTree().Paused = true;
+            HasDied = true;
+            
+            Stack.Push(DeathScreenBP);
+        }
     }
-    
 
+    public void OnGameWin()
+    {
+        if (!HasDied) {
+            GetTree().Paused = true;
+            Stack.Push(WinScreenBP);
+        } 
+    }
 }
