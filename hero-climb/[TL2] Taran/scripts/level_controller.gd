@@ -4,7 +4,7 @@ var current_level = 1
 
 func _ready() -> void:
 	var i = 0
-	while(i<100):
+	while(i<20):
 		add_new_level()
 		i += 1
 

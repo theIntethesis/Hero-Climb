@@ -38,9 +38,9 @@ public partial class GlobalMenuHandler : Node
         return Ref.GetNode<GlobalMenuHandler>("/root/GlobalMenuHandler");
     }
 
-    public override void _Ready()
-    {
-        base._Ready();
+	public override void _Ready()
+	{
+		base._Ready();
 
         Menu = new CanvasLayer();
         Menu.Name = "MenuCanvasLayer";
@@ -49,14 +49,14 @@ public partial class GlobalMenuHandler : Node
 
         CurrentScene = null;
 
-        ProcessMode = ProcessModeEnum.Always;
-        Menu.ProcessMode = ProcessModeEnum.Always;
+		ProcessMode = ProcessModeEnum.Always;
+		Menu.ProcessMode = ProcessModeEnum.Always;
 
         Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
  
         Menu.AddChild(Stack);
    
-        AddChild(Menu);
+		AddChild(Menu);
 
         MainMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn"));
         PauseMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn"));
@@ -72,18 +72,18 @@ public partial class GlobalMenuHandler : Node
         };
     }
 
-    public override void _Process(double _delta)
-    {
-        if (Input.IsActionJustPressed("open_menu"))
+	public override void _Process(double _delta)
+	{
+		if (Input.IsActionJustPressed("open_menu"))
 		{
             if (GetTree().Paused || !InGame) 
             {
                 Stack.Pop();
             }
 			else 
-            {
-                PauseGame();
-            }
+			{
+				PauseGame();
+			}
 		}
     }
 
@@ -105,18 +105,18 @@ public partial class GlobalMenuHandler : Node
         EmitSignal(SignalName.OnReturnToMainMenu);
     }
 
-    public void EnterGame(Controller.ClassType cType)
-    {
-        if (CurrentScene != null)
-        {
-            CurrentScene.QueueFree();
-            GetTree().Root.RemoveChild(CurrentScene);
-            CurrentScene = null;
-        }
+	public void EnterGame(Controller.ClassType cType)
+	{
+		if (CurrentScene != null)
+		{
+			CurrentScene.QueueFree();
+			GetTree().Root.RemoveChild(CurrentScene);
+			CurrentScene = null;
+		}
 
-        GetTree().Paused = false;
-        InGame = true;
-        HasDied = false;
+		GetTree().Paused = false;
+		InGame = true;
+		HasDied = false;
 
         Stack.Clear();
 
@@ -132,9 +132,9 @@ public partial class GlobalMenuHandler : Node
         CurrentScene = NewScene;
     }
 
-    public void QuitGame() 
-    {
-        if (InGame)
+	public void QuitGame() 
+	{
+		if (InGame)
 		{
 			ReturnToMainMenu();
 		}
