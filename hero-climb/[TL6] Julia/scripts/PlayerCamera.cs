@@ -76,6 +76,7 @@ public partial class PlayerCamera : Camera2D
     {
         Shop shop = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn").Instantiate() as Shop;
         GetNode<Node>("HUD/Margin").AddChild(shop);
+        shop.Name = "Shop";
         shop.Init(elements);
     }
 }
