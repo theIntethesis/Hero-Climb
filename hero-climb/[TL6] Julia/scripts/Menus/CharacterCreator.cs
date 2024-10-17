@@ -17,7 +17,7 @@ public partial class CharacterCreator : MenuNode
 
     public override void _Ready() 
     {
-        GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+        GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
 
         Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
         Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");

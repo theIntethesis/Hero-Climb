@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://egm4qg80isnp"]
+[gd_scene load_steps=7 format=3 uid="uid://egm4qg80isnp"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/MenuNode.cs" id="1_gs02o"]
 [ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn" id="2_1hegj"]
+[ext_resource type="PackedScene" uid="uid://dlg3wmmdibi06" path="res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn" id="2_32gwq"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_y5klp"]
 [ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="2_y8i1l"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="4_0pbvd"]
@@ -16,6 +17,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gs02o")
+Background = ExtResource("2_32gwq")
 Poppable = false
 
 [node name="GridContainer" type="GridContainer" parent="."]
