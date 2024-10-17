@@ -1,0 +1,31 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq2380k7j404h"]
+
+[ext_resource type="Script" path="res://[TL3] Gavin/scenes/game_music_player.gd" id="1_ftcan"]
+[ext_resource type="AudioStream" uid="uid://bpow1hxwecqqo" path="res://[TL3] Gavin/assets/sounds/GameMusic/Flutey (World Map) - Castle Crashers.mp3" id="1_ide5y"]
+[ext_resource type="AudioStream" uid="uid://dhqr7b77sgls1" path="res://[TL3] Gavin/assets/sounds/GameMusic/Flooded Castle - Castle Crashers.mp3" id="2_xidsd"]
+[ext_resource type="AudioStream" uid="uid://ynrgeronwema" path="res://[TL3] Gavin/assets/sounds/GameMusic/Child of the Corn - Castle Crashers.mp3" id="3_fyn23"]
+[ext_resource type="AudioStream" uid="uid://byeyg2h6k8vyt" path="res://[TL3] Gavin/assets/sounds/GameMusic/Second Thoughts - Castle Crashers.mp3" id="4_notdh"]
+[ext_resource type="AudioStream" uid="uid://8q82pstsqmf1" path="res://[TL3] Gavin/assets/sounds/GameMusic/Archetype - Castle Crashers.mp3" id="5_2fdu4"]
+[ext_resource type="AudioStream" uid="uid://buefsm1j1yfnk" path="res://[TL3] Gavin/assets/sounds/GameMusic/Dark Souls ' You Died ' Sound Effect.mp3" id="7_6a7cf"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sgyf5"]
+fade_time = 0.5
+stream_count = 4
+stream_0 = ExtResource("2_xidsd")
+stream_1 = ExtResource("3_fyn23")
+stream_2 = ExtResource("4_notdh")
+stream_3 = ExtResource("5_2fdu4")
+
+[node name="GameMusicPlayer" type="Node"]
+script = ExtResource("1_ftcan")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_ide5y")
+autoplay = true
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_sgyf5")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6a7cf")
+autoplay = true
