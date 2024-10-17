@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq2380k7j404h"]
 
-[ext_resource type="Script" path="res://[TL3] Gavin/scenes/game_music_player.gd" id="1_ftcan"]
+[ext_resource type="Script" path="res://[TL3] Gavin/scripts/game_music_player.gd" id="1_ftcan"]
 [ext_resource type="AudioStream" uid="uid://bpow1hxwecqqo" path="res://[TL3] Gavin/assets/sounds/GameMusic/Flutey (World Map) - Castle Crashers.mp3" id="1_ide5y"]
 [ext_resource type="AudioStream" uid="uid://dhqr7b77sgls1" path="res://[TL3] Gavin/assets/sounds/GameMusic/Flooded Castle - Castle Crashers.mp3" id="2_xidsd"]
 [ext_resource type="AudioStream" uid="uid://ynrgeronwema" path="res://[TL3] Gavin/assets/sounds/GameMusic/Child of the Corn - Castle Crashers.mp3" id="3_fyn23"]
