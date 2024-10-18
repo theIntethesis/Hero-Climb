@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-public partial class CharacterCreator : Control
+public partial class CharacterCreator : MenuNode
 {
     private AnimatedSprite2D Fighter;
     private AnimatedSprite2D Wizard;
@@ -12,9 +11,12 @@ public partial class CharacterCreator : Control
 
     private GlobalMenuHandler GlobalMenuHandler;
 
+    public Controller.ClassType CurrentType;
 
     public override void _Ready() 
     {
+        GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
+
         Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
         Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
         Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
@@ -22,38 +24,58 @@ public partial class CharacterCreator : Control
         FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
         RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
-        Wizard.Visible = false;
-        Fighter.Visible = true;
         Rogue.Visible = false;
-        
-        GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+        Fighter.Visible = false;
+        Wizard.Visible = false;
 
+        switch (GlobalMenuHandler.MostRecentClass) 
+        {
+            case Controller.ClassType.Fighter:
+                FighterButton.SetPressed(true);
+                OnFighterButtonPressed();
+                break;
+            case Controller.ClassType.Wizard:
+                WizardButton.SetPressed(true);
+                OnWizardButtonPressed();
+                break;
+            case Controller.ClassType.Rogue:
+                RogueButton.SetPressed(true);
+                OnRougeButtonPressed();
+                break;
+        }
     }
 
     public void OnFighterButtonPressed()
     {
-        Wizard.Visible = false;
         Fighter.Visible = true;
+        Wizard.Visible = false;
         Rogue.Visible = false;
+        WizardButton.SetPressed(false);
+        RogueButton.SetPressed(false);
+        CurrentType = Controller.ClassType.Fighter;
     }
     public void OnWizardButtonPressed()
     {
         Wizard.Visible = true;
         Fighter.Visible = false;
         Rogue.Visible = false;
+        FighterButton.SetPressed(false);
+        RogueButton.SetPressed(false);
+        CurrentType = Controller.ClassType.Wizard;
     }
     public void OnRougeButtonPressed()
     {
+        Rogue.Visible = true;
+
         Wizard.Visible = false;
         Fighter.Visible = false;
-        Rogue.Visible = true;
+        FighterButton.SetPressed(false);
+        WizardButton.SetPressed(false);
+        CurrentType = Controller.ClassType.Rogue;
     }
 
     public void OnStartButtonPressed()
     {
-        Controller.ClassType ctype = Fighter.Visible ? Controller.ClassType.Fighter 
-            : Wizard.Visible ? Controller.ClassType.Wizard 
-            : Controller.ClassType.Rogue;
-        GlobalMenuHandler.EnterGame(ctype);
+        GlobalMenuHandler.EnterGame(CurrentType);
     }
 }

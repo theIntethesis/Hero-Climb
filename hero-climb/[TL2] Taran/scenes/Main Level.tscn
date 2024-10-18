@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bamtpekji4wsl" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
 [ext_resource type="Texture2D" uid="uid://c61cw4jc13vb1" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
 
-
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_dljh1")
 

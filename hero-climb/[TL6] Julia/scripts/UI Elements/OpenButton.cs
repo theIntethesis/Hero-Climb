@@ -10,10 +10,10 @@ public partial class OpenButton : Button
 
     public override void _Ready()
     {
-		GlobalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+		GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
 
 		Pressed += () => {
-			GlobalMenuHandler.Push(scene);
+			GlobalMenuHandler.Stack.Push(new MenuNodeBlueprint(scene));
 		};
     }
 }

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://diyqcb8kvu6v0"]
+
+[ext_resource type="Script" path="res://[TL1] Ferris/tests/unit1/stress_test_fireballs.gd" id="1_aw70y"]
+
+[node name="TestScene2" type="Node2D"]
+script = ExtResource("1_aw70y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(10, 10)

@@ -55,8 +55,4 @@ public partial class Fighter : Controller
 	{
 
 	}
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
-	}
 }
