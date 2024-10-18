@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddu4yu1m5x17h"]
 
-[ext_resource type="Script" path="res://[TL2] Taran/unit/stress_test_scenes.gd" id="1_moasa"]
-[ext_resource type="PackedScene" uid="uid://dnr44osrux1n" path="res://[TL2] Taran/scenes/level_controller.tscn" id="2_hm7u0"]
+[ext_resource type="Script" path="res://[TL2] Taran/stress_test_scenes.gd" id="1_moasa"]
+[ext_resource type="PackedScene" path="res://[TL2] Taran/scenes/level_controller.tscn" id="2_hm7u0"]
 
 [node name="StressTestScenes" type="Node2D"]
 script = ExtResource("1_moasa")
