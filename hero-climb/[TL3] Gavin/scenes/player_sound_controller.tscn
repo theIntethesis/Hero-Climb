@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://wkwqsf8box7q"]
+[gd_scene load_steps=6 format=3 uid="uid://dchv5luhiohep"]
 
 [ext_resource type="Script" path="res://[TL3] Gavin/scripts/player_sound_player.gd" id="1_67umy"]
 [ext_resource type="AudioStream" uid="uid://bhx06ifwaflup" path="res://docs/sounds/PlayerSounds/Fireball.mp3" id="2_u4nxu"]
@@ -19,5 +19,5 @@ stream = ExtResource("3_x8owk")
 [node name="Walking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3k8w5")
 
-[node name="PlayerDamaged" type="AudioStreamPlayer" parent="."]
+[node name="Damaged" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_k1784")
