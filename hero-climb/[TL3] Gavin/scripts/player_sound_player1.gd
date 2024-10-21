@@ -22,9 +22,9 @@ func change_volume(delta: int) -> bool:
 	var result = _volume + delta
 	if (check_volume(result)):	# check volume in range after change
 		set_volume(result)
-		return true;
+		return true
 	else:	
-		return false;
+		return false
 
 # Set the volume to a value int [0-100] change volume of 
 # all children sounds.
