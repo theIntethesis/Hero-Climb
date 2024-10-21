@@ -6,6 +6,10 @@ var _level = null
 var _player = null
 var _sender = InputSender.new(Input)
 
+func cleanup():
+	for child in get_children():
+		child.queue_free()
+
 func before_each():
 	_level = add_child_autofree(scene.instantiate())
 	_player = _level.get_node("Player")
