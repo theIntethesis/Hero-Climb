@@ -1,0 +1,40 @@
+{
+ "background_color": "262626ff",
+ "compact_mode": false,
+ "configured_dirs": [
+  "res://[TL1] Ferris/tests/unit1",
+  "res://[TL6] Julia/tests/unit",
+  "res://[TL2] Taran/unit",
+  "res://[TL3] Gavin/playerSoundUnit",
+  "res://[TL5] Jason/unit"
+ ],
+ "dirs": [
+  "res://[TL1] Ferris/tests/unit1",
+  "res://[TL6] Julia/tests/unit",
+  "res://[TL2] Taran/unit",
+  "res://[TL3] Gavin/playerSoundUnit",
+  "res://[TL5] Jason/unit"
+ ],
+ "disable_colors": false,
+ "double_strategy": 1,
+ "errors_do_not_cause_failure": false,
+ "font_color": "ccccccff",
+ "font_name": "CourierPrime",
+ "font_size": 16,
+ "gut_on_top": true,
+ "hide_orphans": false,
+ "ignore_pause": false,
+ "include_subdirs": false,
+ "junit_xml_file": "",
+ "junit_xml_timestamp": false,
+ "log_level": 1,
+ "opacity": 100,
+ "paint_after": 0.1,
+ "post_run_script": "",
+ "pre_run_script": "",
+ "prefix": "test_",
+ "should_exit": false,
+ "should_exit_on_success": false,
+ "should_maximize": false,
+ "suffix": ".gd"
+}
