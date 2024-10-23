@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Movement" type="Control" parent="."]
+[node name="Right Corner" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -22,7 +22,7 @@ grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.3, 0.3)
 
-[node name="Bounding Box" type="Control" parent="Movement"]
+[node name="Bounding Box" type="Control" parent="Right Corner"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -34,7 +34,7 @@ offset_top = -800.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="2DOrigin" type="Control" parent="Movement/Bounding Box"]
+[node name="2DOrigin" type="Control" parent="Right Corner/Bounding Box"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -44,33 +44,62 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="up" type="TouchScreenButton" parent="Movement/Bounding Box/2DOrigin"]
+[node name="up" type="TouchScreenButton" parent="Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-128, -384)
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
-action = "jump"
-visibility_mode = 1
+action = "move_up"
 
-[node name="right" type="TouchScreenButton" parent="Movement/Bounding Box/2DOrigin"]
+[node name="right" type="TouchScreenButton" parent="Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(384, -128)
 rotation = 1.5708
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_right"
-visibility_mode = 1
 
-[node name="down" type="TouchScreenButton" parent="Movement/Bounding Box/2DOrigin"]
+[node name="down" type="TouchScreenButton" parent="Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(128, 384)
 rotation = 3.14159
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_down"
-visibility_mode = 1
 
-[node name="left" type="TouchScreenButton" parent="Movement/Bounding Box/2DOrigin"]
+[node name="left" type="TouchScreenButton" parent="Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-384, 128)
 rotation = 4.71239
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_left"
-visibility_mode = 1
+
+[node name="Left Corner" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+
+[node name="Bounding Box" type="Control" parent="Left Corner"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -800.0
+offset_right = 800.0
+grow_vertical = 0
+
+[node name="2DOrigin" type="Control" parent="Left Corner/Bounding Box"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="up" type="TouchScreenButton" parent="Left Corner/Bounding Box/2DOrigin"]
+position = Vector2(-128, -128)
+texture_normal = ExtResource("1_7hwgo")
+texture_pressed = ExtResource("2_f1xns")
+action = "jump"
