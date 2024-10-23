@@ -1,4 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-/build
+/build/Android/*
+!/build/Android/.gitkeep
+/build/Windows/*
+!/build/Windows/.gitkeep
+/build/Linux/*
+!/build/Linux/.gitkeep
