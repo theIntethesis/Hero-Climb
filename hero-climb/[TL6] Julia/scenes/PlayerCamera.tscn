@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d31op03sdre58"]
+[gd_scene load_steps=5 format=3 uid="uid://d31op03sdre58"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/PlayerCamera.cs" id="1_touaq"]
 [ext_resource type="PackedScene" uid="uid://bp8x05pmpp2tq" path="res://[TL6] Julia/scenes/HUD Elements/HeartGrid.tscn" id="2_745e0"]
+[ext_resource type="PackedScene" uid="uid://0bdwm75lg5b8" path="res://[TL6] Julia/scenes/HUD Elements/MobileControls.tscn" id="2_ur17t"]
 [ext_resource type="PackedScene" uid="uid://x1puboycxv1v" path="res://[TL6] Julia/scenes/HUD Elements/heart.tscn" id="3_nqao4"]
 
 [node name="PlayerCamera" type="Camera2D"]
@@ -20,6 +21,9 @@ anchor_right = 0.98
 anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control" parent="HUD/Margin" instance=ExtResource("2_ur17t")]
+layout_mode = 1
 
 [node name="HeartGrid" parent="HUD/Margin" instance=ExtResource("2_745e0")]
 layout_mode = 0

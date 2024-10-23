@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://0bdwm75lg5b8"]
+
+[ext_resource type="Texture2D" uid="uid://bn1wlu8iufplv" path="res://[TL6] Julia/assets/button_unpressed.png" id="1_7hwgo"]
+[ext_resource type="Texture2D" uid="uid://ce67uortob6be" path="res://[TL6] Julia/assets/button_pressed.png" id="2_f1xns"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Movement" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.3, 0.3)
+
+[node name="Control" type="Control" parent="Movement"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -512.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="up" type="TouchScreenButton" parent="Movement/Control"]
+position = Vector2(-128, -384)
+texture_normal = ExtResource("1_7hwgo")
+texture_pressed = ExtResource("2_f1xns")
+action = "jump"
+
+[node name="right" type="TouchScreenButton" parent="Movement/Control"]
+position = Vector2(384, -128)
+rotation = 1.5708
+texture_normal = ExtResource("1_7hwgo")
+texture_pressed = ExtResource("2_f1xns")
+action = "move_right"
+
+[node name="down" type="TouchScreenButton" parent="Movement/Control"]
+position = Vector2(128, 384)
+rotation = 3.14159
+texture_normal = ExtResource("1_7hwgo")
+texture_pressed = ExtResource("2_f1xns")
+action = "move_down"
+
+[node name="left" type="TouchScreenButton" parent="Movement/Control"]
+position = Vector2(-384, 128)
+rotation = 4.71239
+texture_normal = ExtResource("1_7hwgo")
+texture_pressed = ExtResource("2_f1xns")
+action = "move_left"
