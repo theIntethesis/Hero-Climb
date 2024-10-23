@@ -168,7 +168,5 @@ animations = [{
 [node name="Sprites" type="AnimatedSprite2D"]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_56s6i")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0

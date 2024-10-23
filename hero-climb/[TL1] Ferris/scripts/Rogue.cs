@@ -58,8 +58,4 @@ public partial class Rogue : Controller
 	{
 
 	}
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
-	}
 }

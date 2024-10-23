@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ber4ey458cpbt"]
+
+[ext_resource type="Script" path="res://[TL5] Jason/scripts/EnemyController.cs" id="1_pixh7"]
+
+[node name="EnemyController" type="Node2D"]
+script = ExtResource("1_pixh7")
+
+[node name="Marker2D" type="Marker2D" parent="."]
