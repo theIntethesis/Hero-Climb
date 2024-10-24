@@ -32,7 +32,8 @@ func print_sounds() -> Array:
 	print(name_list)
 	return name_list
 
-# Add or subtract from the current volume by delta
+# Add or subtract from the current volume by delta and return if 
+# was successfull 
 func change_volume(delta: int) -> bool:
 	var result = _volume + delta
 	if (check_volume(result)):	# check volume in range after change
@@ -58,6 +59,11 @@ func set_volume(vol: int) -> bool:
 # Check volume bounds [0-100] inclusive
 func check_volume(volume: int) -> bool:
 	return true if volume >= 0 && volume <= 100 else false
+
+# stop all sounds from playing
+func stop_all() -> void:
+	for sound in _sounds:
+		sound.stop()
 
 # Convert a value from 0-1 to a db value
 # cast to float to preserve info
