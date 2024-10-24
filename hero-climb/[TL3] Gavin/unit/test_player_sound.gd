@@ -64,13 +64,13 @@ func test_decrease_volume_1():
 	player.set_volume(5)
 	assert_eq(true, player.change_volume(-5))
 	
-	
 func test_decrease_volume_2():
 	player.set_volume(0)
 	assert_eq(false, player.change_volume(-5))
 
 # Play all sounds and make sure they played successfully
 func test_play_jump():
+	player.set_volume(100)
 	assert_eq(true, player.play("Jump"))
 	
 func test_play_damaged():

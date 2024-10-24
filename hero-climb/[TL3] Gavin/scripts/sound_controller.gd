@@ -1,6 +1,8 @@
 # sound_controller.gd
+#
 # Gavin Haynes
 # October 21, 2024
+#
 # Abstract base class for all Sound Controllers except Main
 
 extends Node
