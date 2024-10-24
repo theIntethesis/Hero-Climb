@@ -1,16 +1,17 @@
 # sound_controller.gd
 # Gavin Haynes
 # October 21, 2024
-# Base class for all Sound Controllers except Main
+# Abstract base class for all Sound Controllers except Main
 
 extends Node
 
 class_name SoundController
 
-var _volume: int
-var _sounds: Array	# list of child nodes
+var _volume: int			# linear volume [0-100]
+var _sounds: Array		# list of child nodes
 
-# Load sounds and set the volume
+# Load sounds and set the volume. Make sure that super._init() is called 
+# in every child instance
 func _init() -> void:
 	_load_sounds()
 	set_volume(80)
@@ -62,10 +63,12 @@ func check_volume(volume: int) -> bool:
 # cast to float to preserve info
 func volumeToDb(volume: int) -> int:
 	return linear_to_db(float(_volume)/100.0)
-	
+
 func _load_sounds() -> void:
 	_sounds = get_children()
 
+# Set the actual sound for all child sound nodes. Volume is stored in db
+# which is non-linear and must be converted first
 func _set_children_db(volume: int) -> void:
 	for sound in _sounds:
 		sound.volume_db = volumeToDb(volume)
