@@ -67,7 +67,7 @@ func stop_all() -> void:
 
 # Convert a value from 0-1 to a db value
 # cast to float to preserve info
-func volumeToDb(volume: int) -> int:
+func _volume_to_db(volume: int) -> int:
 	return linear_to_db(float(_volume)/100.0)
 
 func _load_sounds() -> void:
@@ -77,4 +77,4 @@ func _load_sounds() -> void:
 # which is non-linear and must be converted first
 func _set_children_db(volume: int) -> void:
 	for sound in _sounds:
-		sound.volume_db = volumeToDb(volume)
+		sound.volume_db = _volume_to_db(volume)

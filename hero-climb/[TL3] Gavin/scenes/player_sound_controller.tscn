@@ -9,7 +9,15 @@
 [node name="PlayerSoundController" type="Node2D"]
 script = ExtResource("1_wa325")
 
-[node name="Attack" type="AudioStreamPlayer" parent="."]
+[node name="WizardAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u4nxu")
+volume_db = -30.672
+
+[node name="FighterAttack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u4nxu")
+volume_db = -30.672
+
+[node name="RogueAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_u4nxu")
 volume_db = -30.672
 
