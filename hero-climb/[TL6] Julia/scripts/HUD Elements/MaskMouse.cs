@@ -27,12 +27,12 @@ public partial class MaskMouse : Control
 
 	public void OnPanelMouseEntered()
 	{
-		GD.Print("Masked");
+		// GD.Print("Masked");
 		Masked = true;
 	}
 	public void OnPanelMouseExited()
 	{
-		GD.Print("unmasked");
+		// GD.Print("unmasked");
 		Masked = false;
 	}
 }
