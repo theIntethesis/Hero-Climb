@@ -22,7 +22,7 @@ anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" parent="HUD/Margin" instance=ExtResource("2_ur17t")]
+[node name="MobileControls" parent="HUD/Margin" instance=ExtResource("2_ur17t")]
 layout_mode = 1
 
 [node name="HeartGrid" parent="HUD/Margin" instance=ExtResource("2_745e0")]
