@@ -55,4 +55,29 @@ public partial class Fighter : Controller
 	{
 
 	}
+	protected override Vector2 Ability()
+	{
+		var ShieldBashHitbox = new Area2D();
+		var ShieldBashShape = new CollisionShape2D();
+		ShieldBashShape.Shape = new CapsuleShape2D();
+		ShieldBashShape.Name = "Shield Bash";
+		ShieldBashHitbox.CollisionLayer = 0b_1000;
+		ShieldBashHitbox.CollisionMask = 0b_1000;
+
+		ShieldBashHitbox.AddChild(ShieldBashShape);
+		AddChild(ShieldBashHitbox);
+		ShieldBashHitbox.Position = sprites.FlipH ? new Vector2(-15, 0) : new Vector2(15, 0);
+
+		return sprites.FlipH ? new Vector2(-700, 0) : new Vector2(700, 0);
+	}
+	protected override void OnAnimationEnd()
+	{
+		GD.Print("In Animation End");
+		var bash = FindChildren("Shield Bash");
+
+		if (bash != null)
+		{
+			foreach (var node in bash) node.QueueFree();
+		}
+	}
 }

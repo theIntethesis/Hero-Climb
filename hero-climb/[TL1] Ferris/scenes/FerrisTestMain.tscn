@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_uw4pv"]
 [ext_resource type="PackedScene" uid="uid://nahvss2rb0ky" path="res://[TL1] Ferris/scenes/tower_tileset.tscn" id="3_v8vpi"]
 [ext_resource type="PackedScene" uid="uid://bti28delkicbq" path="res://[TL5] Jason/scenes/zombie.tscn" id="4_w1g58"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_intdh"]
+[ext_resource type="PackedScene" uid="uid://b02t6gf5ac7hv" path="res://[TL1] Ferris/scenes/Wooden Box.tscn" id="5_lpins"]
 
 [node name="Node" type="Node"]
 
@@ -13,20 +12,16 @@
 
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
 unique_name_in_owner = true
-position = Vector2(63, -87)
+position = Vector2(94, -19)
+Class = 0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5, 5)
-
-[node name="Area2D" type="StaticBody2D" parent="."]
-position = Vector2(61, -29)
-scale = Vector2(0.832504, 0.832504)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_intdh")
 
 [node name="TowerTileset" parent="." instance=ExtResource("3_v8vpi")]
-position = Vector2(9, -21)
+position = Vector2(0, -42)
 
 [node name="Zombie" parent="." instance=ExtResource("4_w1g58")]
 position = Vector2(-135, -57)
+
+[node name="Box" parent="." instance=ExtResource("5_lpins")]
+position = Vector2(207, -31)

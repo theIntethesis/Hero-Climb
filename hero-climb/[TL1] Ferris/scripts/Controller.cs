@@ -38,7 +38,6 @@ public partial class Controller : CharacterBody2D
 	public int MaxHealth = 100;
 	protected int Health = 100;
 	public int Money = 0;
-	protected InjuryEventHandler injury;
 
 	protected bool attackCooldown = false;
 	protected float attackCooldownFrames;
@@ -82,9 +81,25 @@ public partial class Controller : CharacterBody2D
 			velocity.Y += JumpVelocity;
 		}
 
-		velocity.X = horizonalMovement().X;
+		if (Math.Abs(Velocity.X) > Math.Abs(Speed))
+		{
+			if (IsOnFloor())
+			{
+				velocity.X = (float)Mathf.MoveToward(Velocity.X, horizonalMovement().X, 50);
+			}
+			else
+				velocity.X = Velocity.X;
+		}
+		else
+			velocity.X = horizonalMovement().X;
 
-		Velocity = velocity;
+        if (Input.IsActionJustPressed("ability") && !IsMovementLocked)
+        {
+            velocity += Ability();
+			velocity = velocity.Clamp(new Vector2(-700, -980), new Vector2(700, 980));
+        }
+
+        Velocity = velocity;
 		MoveAndSlide();
 
 		if (!Global.isAttacking) Animation();
@@ -104,7 +119,7 @@ public partial class Controller : CharacterBody2D
 			/*var enemy = body as Enemy;
 			var damage = enemy.damage;*/
 			Health -= 20;
-			GD.Print($"Collided With Enemy: {body.Name}");
+			//GD.Print($"Collided With Enemy: {body.Name}");
 			if(body.Name == "RisingLava")
 			{
 				Health = 0;
@@ -112,15 +127,15 @@ public partial class Controller : CharacterBody2D
 
 			if (Health <= 0)
 			{
-				GD.Print("Dead");
+				//GD.Print("Dead");
 				PlayerDeath();
 			}
 			else
 			{
-				GD.Print(Health);
+				//GD.Print(Health);
 				//sprites.Play("Hurt");
 				EmitSignal(SignalName.Injury);
-				GD.Print("Injury");
+				//GD.Print("Injury");
 			}
 		}
 	}
@@ -195,21 +210,26 @@ public partial class Controller : CharacterBody2D
 		if(Health <= 0)
 		{
 			EmitSignal(SignalName.IsDead);
-			GD.Print("IsDead Emitted");
+			//GD.Print("IsDead Emitted");
 		}
+		OnAnimationEnd();
 	}
 
 	public virtual void Attack()
 	{
 		EmitSignal(SignalName.Attacking);
 	}
-	public virtual void Ability()
+	protected virtual Vector2 Ability()
+	{
+		return Vector2.Zero;
+	}
+	protected virtual void OnAnimationEnd()
 	{
 
 	}
 	public Controller()
 	{
-		injury += () => { EmitSignal(SignalName.Injury); };
+
 	}
 	public override void _Ready()
 	{
