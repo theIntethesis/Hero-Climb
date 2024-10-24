@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalMenuHandler="*res://[TL6] Julia/scripts/GlobalMenuHandler.cs"
-Global="*res://[TL1] Ferris/scripts/Global.cs"
+PGlobal="*res://[TL1] Ferris/scripts/PlayerGlobal.cs"
 
 [display]
 

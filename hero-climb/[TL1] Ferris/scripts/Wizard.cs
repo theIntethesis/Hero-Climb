@@ -22,7 +22,7 @@ public partial class Wizard : Controller
 	{
 		// play arcane words sound
 		attackCooldown = true;
-		Global.isAttacking = true;
+		PlayerGlobal.isAttacking = true;
 		sprites.Play("attack");
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
 		if(AttackFollowMouse) sprites.FlipH = angle.X > 0 ? false : true;

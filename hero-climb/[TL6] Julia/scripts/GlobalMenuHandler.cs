@@ -127,7 +127,7 @@ public partial class GlobalMenuHandler : Node
         
         MostRecentClass = cType;
 
-        Global.SetCharacterType(cType, player);
+        PlayerGlobal.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);
 

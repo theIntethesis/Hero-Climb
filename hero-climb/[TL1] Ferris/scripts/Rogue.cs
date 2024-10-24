@@ -17,14 +17,6 @@ public partial class Rogue : Controller
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 	}
-
-	public override void Attack()
-	{
-		attackCooldown = true;
-		Global.isAttacking = true;
-		sprites.Play("attack");
-		(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = false;
-	}
 	protected override Vector2 getSpriteOffset(string clause)
 	{
 		Vector2 Vec = Vector2.Zero;

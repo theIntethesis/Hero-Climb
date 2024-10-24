@@ -2,11 +2,12 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class Global : Node
+public partial class PlayerGlobal : Node
 {
 	public static int pipes = 0;
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
+	public static int Money = 0;
 
 	public static void SetCharacterType(Controller.ClassType cType, Controller Player)
 	{

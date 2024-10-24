@@ -15,13 +15,6 @@ public partial class Fighter : Controller
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 	}
-	public override void Attack()
-	{
-		attackCooldown = true;
-		Global.isAttacking = true;
-		sprites.Play("attack");
-		(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = false;
-	}
 	protected override Vector2 getSpriteOffset(string clause)
 	{
 		Vector2 Vec = Vector2.Zero;
@@ -60,13 +53,13 @@ public partial class Fighter : Controller
 		var ShieldBashHitbox = new Area2D();
 		var ShieldBashShape = new CollisionShape2D();
 		ShieldBashShape.Shape = new CapsuleShape2D();
-		ShieldBashShape.Name = "Shield Bash";
+		ShieldBashHitbox.Name = "Shield Bash";
 		ShieldBashHitbox.CollisionLayer = 0b_1000;
 		ShieldBashHitbox.CollisionMask = 0b_1000;
 
 		ShieldBashHitbox.AddChild(ShieldBashShape);
 		AddChild(ShieldBashHitbox);
-		ShieldBashHitbox.Position = sprites.FlipH ? new Vector2(-15, 0) : new Vector2(15, 0);
+		ShieldBashHitbox.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
 
 		return sprites.FlipH ? new Vector2(-700, 0) : new Vector2(700, 0);
 	}
@@ -74,10 +67,6 @@ public partial class Fighter : Controller
 	{
 		GD.Print("In Animation End");
 		var bash = FindChildren("Shield Bash");
-
-		if (bash != null)
-		{
-			foreach (var node in bash) node.QueueFree();
-		}
-	}
+        foreach (var node in bash) node.QueueFree();
+    }
 }
