@@ -26,5 +26,3 @@ You can download the latest version [here](https://github.com/theIntethesis/Hero
 # Building
 - Requires Godot Mono (C#/.NET) 4.3, .NET 8.0
 - Packaging (using the makefile in build/) requires a linux machine with zip and make.
-
-
