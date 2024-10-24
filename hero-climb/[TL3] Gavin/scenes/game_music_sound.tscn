@@ -16,7 +16,7 @@ stream_1 = ExtResource("3_fyn23")
 stream_2 = ExtResource("4_notdh")
 stream_3 = ExtResource("5_2fdu4")
 
-[node name="GameMusicPlayer" type="Node"]
+[node name="GameMusicPlayer" type="Node2D"]
 script = ExtResource("1_ftcan")
 
 [node name="Main" type="AudioStreamPlayer" parent="."]
