@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy57cg1qagrwh"]
-
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/player_sound_player2.gd" id="1_16nbs"]
-
-[node name="TestSoundController" type="Node2D"]
-script = ExtResource("1_16nbs")
