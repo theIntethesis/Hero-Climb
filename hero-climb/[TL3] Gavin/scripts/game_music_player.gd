@@ -15,8 +15,6 @@ extends SoundController
 func _ready() -> void:
 	super._init()	# init soundController
 	set_volume(80)
-	for sound in print_sounds():
-		play(sound)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
