@@ -10,11 +10,9 @@ class_name SoundController
 var _volume: int
 var _sounds: Array	# list of child nodes
 
-var path_to_sounds: Array
-
-# Initializer
+# Load sounds and set the volume
 func _init() -> void:
-	_sounds = get_children()
+	_load_sounds()
 	set_volume(80)
 
 # Play a sound
@@ -24,9 +22,14 @@ func play(sound_name: String) -> bool:
 			sound.play()
 			return true
 	return false
-	
-func load_sounds() -> void:
-	_sounds = get_children()
+
+# Print all the sounds a SoundController can play and return the list.
+func print_sounds() -> Array:
+	var name_list = []
+	for sound in _sounds:
+		name_list.push_back(String(sound.name))
+	print(name_list)
+	return name_list
 
 # Add or subtract from the current volume by delta
 func change_volume(delta: int) -> bool:
@@ -37,12 +40,19 @@ func change_volume(delta: int) -> bool:
 	else:	
 		return false;
 
-# Return the volume
+# Return the linear volume
 func get_volume() -> int:
 	return _volume
 
+# Set the linear volume, which is stored in the base class. The actual volume
+# in db is converted and then passed to all the child sounds
 func set_volume(vol: int) -> bool:
-	return true
+	if (check_volume(vol)): 
+		_volume = vol
+		_set_children_db(_volume)
+		return true
+	else:
+		return false
 
 # Check volume bounds [0-100] inclusive
 func check_volume(volume: int) -> bool:
@@ -52,3 +62,10 @@ func check_volume(volume: int) -> bool:
 # cast to float to preserve info
 func volumeToDb(volume: int) -> int:
 	return linear_to_db(float(_volume)/100.0)
+	
+func _load_sounds() -> void:
+	_sounds = get_children()
+
+func _set_children_db(volume: int) -> void:
+	for sound in _sounds:
+		sound.volume_db = volumeToDb(volume)

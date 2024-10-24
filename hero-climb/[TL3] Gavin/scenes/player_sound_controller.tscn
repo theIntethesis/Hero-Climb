@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://dchv5luhiohep"]
 
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/player_sound_player1.gd" id="1_67umy"]
-[ext_resource type="AudioStream" uid="uid://bhx06ifwaflup" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/Fireball.mp3" id="2_u4nxu"]
-[ext_resource type="AudioStream" uid="uid://du1hiilbosiuo" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/PlayerJump.mp3" id="3_x8owk"]
-[ext_resource type="AudioStream" uid="uid://y5kdd23kvucb" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/Walking.mp3" id="4_3k8w5"]
-[ext_resource type="AudioStream" uid="uid://c3jkr6uu4cb04" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/PlayerDamage.mp3" id="5_k1784"]
+[ext_resource type="Script" path="res://[TL3] Gavin/scripts/player_sound_player2.gd" id="1_wa325"]
+[ext_resource type="AudioStream" uid="uid://6scrnrig2cb3" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/Fireball.mp3" id="2_u4nxu"]
+[ext_resource type="AudioStream" uid="uid://bqay0yqll4loe" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/PlayerJump.mp3" id="3_x8owk"]
+[ext_resource type="AudioStream" uid="uid://so8s37g5svcr" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/Walking.mp3" id="4_3k8w5"]
+[ext_resource type="AudioStream" uid="uid://je16ltf5fb4s" path="res://[TL3] Gavin/assets/sounds/PlayerSounds/PlayerDamage.mp3" id="5_k1784"]
 
 [node name="PlayerSoundController" type="Node2D"]
-script = ExtResource("1_67umy")
+script = ExtResource("1_wa325")
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_u4nxu")
