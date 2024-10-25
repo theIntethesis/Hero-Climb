@@ -19,13 +19,13 @@ public partial class PlayerCamera : Camera2D
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        hearts.SetMaxHealth(GetParent<Controller>().getHealth());
+        hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
         hearts.Set(GetParent<Controller>().getHealth());
 
         globalMenuHandler.OnPause += this.OnPauseEventHandler;
         globalMenuHandler.OnResume += this.OnResumeEventHandler;
 
-        // tbd,
+        /*
         ShopElement[] elements = new ShopElement[]
         {
             new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
@@ -36,7 +36,9 @@ public partial class PlayerCamera : Camera2D
             new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2)
         };
 
-        OpenShop(elements);
+        */
+
+        // OpenShop(elements);
     }
 
     public void OnPauseEventHandler()
