@@ -31,8 +31,7 @@ public partial class GlobalMenuHandler : Node
     public bool HasDied = false; // prevent popping the death screen
     public Node CurrentScene;
 
-    public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
-
+    
     // Ref is required since GetNode requires an element in the tree, and the class is decidedly not in the tree.
     public static GlobalMenuHandler GetSingleton(Node Ref)
     {
@@ -125,8 +124,6 @@ public partial class GlobalMenuHandler : Node
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
         
-        MostRecentClass = cType;
-
         Global.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);

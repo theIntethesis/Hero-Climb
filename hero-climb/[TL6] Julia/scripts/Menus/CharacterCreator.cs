@@ -13,6 +13,9 @@ public partial class CharacterCreator : MenuNode
 
     public Controller.ClassType CurrentType;
 
+    static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
+
+
     public override void _Ready() 
     {
         GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
@@ -28,7 +31,7 @@ public partial class CharacterCreator : MenuNode
         Fighter.Visible = false;
         Wizard.Visible = false;
 
-        switch (GlobalMenuHandler.MostRecentClass) 
+        switch (MostRecentClass) 
         {
             case Controller.ClassType.Fighter:
                 FighterButton.SetPressed(true);
@@ -76,6 +79,7 @@ public partial class CharacterCreator : MenuNode
 
     public void OnStartButtonPressed()
     {
+        MostRecentClass = CurrentType;
         GlobalMenuHandler.EnterGame(CurrentType);
     }
 }
