@@ -10,10 +10,11 @@ public partial class PlayerCamera : Camera2D
 
     public override void _Ready()
     {
-        globalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
+        globalMenuHandler = GlobalMenuHandler.GetSingleton(this);
     
         hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
 
+        // Use the Character Global class instead!
         if (!(GetParent() is Controller)) 
         {
             throw new Exception("PlayerCamera must be a child to a Controller");
