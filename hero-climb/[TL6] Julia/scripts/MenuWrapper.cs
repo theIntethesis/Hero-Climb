@@ -68,13 +68,16 @@ public partial class MenuWrapper : Node
     [Signal]
     public delegate void OnReturnToMainMenuEventHandler();
 
-    public readonly PackedScene InitialGameScene;
 
-    private CanvasLayer Menu;
-    public MenuStack Stack;
+    public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
+    private static readonly MenuWrapper _Instance = new MenuWrapper();
+
+    private CanvasLayer Menu; // contains the stack
+    public MenuStack Stack; // facade/state
 
     private bool InGame = false; // set as soon EnterGame() is called
     private bool HasDied = false; // prevent popping the death screen
+    
     private Node CurrentScene;
 
     // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
@@ -87,7 +90,6 @@ public partial class MenuWrapper : Node
         SettingsMenu = 5,
         WinScreen = 6, 
     }
-
 
     public static readonly Dictionary<BlueprintKeys, MenuNodeBlueprint> Blueprints = new Dictionary<BlueprintKeys, MenuNodeBlueprint>()
     {
@@ -133,21 +135,16 @@ public partial class MenuWrapper : Node
         ),
     }; 
 
-    private static readonly MenuWrapper _Instance = new MenuWrapper();
-
+    private MenuWrapper() { }
 
     // Ref is required since GetNode requires an element in the tree, and the static class is not in the tree.
     public static MenuWrapper Instance()
     {
+        // todo: make thread safe
         return _Instance;
     }
 
-    MenuWrapper()
-    {
-
-        InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
-    }
-
+    
 	public override void _Ready()
 	{
 		base._Ready();
@@ -160,6 +157,7 @@ public partial class MenuWrapper : Node
         Menu = new CanvasLayer();
         Menu.Name = "MenuCanvasLayer";
         Menu.ProcessMode = ProcessModeEnum.Inherit;
+        
         Menu.AddChild(Stack);
         
         
