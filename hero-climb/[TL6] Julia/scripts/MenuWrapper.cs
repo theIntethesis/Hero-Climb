@@ -52,9 +52,6 @@ https://sourcemaking.com/design_patterns/state
 */
 
 
-
-
-[GlobalClass]
 public partial class MenuWrapper : Node
 {
     private const string IntitialGameScenePath = "res://[TL2] Taran/scenes/Main Level.tscn";
@@ -68,9 +65,8 @@ public partial class MenuWrapper : Node
     [Signal]
     public delegate void OnReturnToMainMenuEventHandler();
 
-
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
-    private static readonly MenuWrapper _Instance = new MenuWrapper();
+    private static MenuWrapper _Instance;
 
     private CanvasLayer Menu; // contains the stack
     public MenuStack Stack; // facade/state
@@ -115,7 +111,6 @@ public partial class MenuWrapper : Node
         (
             foregound: "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn", 
             background: "/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn",
-            afterPop: MenuWrapper.Instance().ResumeGame,
             poppable: true
         ),
         [BlueprintKeys.QuitConfirm] = new MenuNodeBlueprint
@@ -152,11 +147,11 @@ public partial class MenuWrapper : Node
         Stack = new MenuStack();
         Stack.Name = "Stack";
         Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        Stack.ProcessMode = ProcessModeEnum.Inherit;
+        Stack.ProcessMode = ProcessModeEnum.Always;
 
         Menu = new CanvasLayer();
         Menu.Name = "MenuCanvasLayer";
-        Menu.ProcessMode = ProcessModeEnum.Inherit;
+        Menu.ProcessMode = ProcessModeEnum.Always;
         
         Menu.AddChild(Stack);
         
@@ -165,7 +160,9 @@ public partial class MenuWrapper : Node
 
 		ProcessMode = ProcessModeEnum.Always;
 		
-		AddChild(Menu);        
+		AddChild(Menu);     
+
+        _Instance = this;   
     }
 
 	public override void _Process(double _delta)

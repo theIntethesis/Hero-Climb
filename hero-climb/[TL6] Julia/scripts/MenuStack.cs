@@ -13,6 +13,7 @@ public partial class MenuStack : Control
         }
 
         MenuNode node = blueprint.Instantiate();
+        node.OnPush();
         
         if (node.BackgroundNode != null)
         {
@@ -32,12 +33,6 @@ public partial class MenuStack : Control
 
         if (GetChildren().Last() is MenuNode Child)
         {
-            if (Child.OnPop != null)
-            {
-                Child.OnPop();
-            }
-            
-
             if (Child.Poppable) 
             {
                 RemoveChild(Child);
@@ -48,13 +43,9 @@ public partial class MenuStack : Control
                     CanvasItem Last = (CanvasItem)GetChildren().Last();
                     Last.Visible = true;
                 }     
-
-                if (Child.AfterPop != null)
-                {
-                    Child.AfterPop();      
-                }
-                
             }   
+
+            Child.OnPop();
         }
     }
 

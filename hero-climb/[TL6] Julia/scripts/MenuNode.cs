@@ -6,9 +6,6 @@ public partial class MenuNode : Control
     
     public bool Poppable = false;
 
-    public System.Action OnPop; // Happens when Pop() is called, regardless of Poppable
-    public System.Action AfterPop; // Occurs only if popped    
-
     public Node BackgroundNode;
 
     public override void _Ready()
@@ -23,5 +20,14 @@ public partial class MenuNode : Control
         base._Ready();
     }
 
+    public virtual void OnPop()
+    {
+
+    }
+
+    public virtual void OnPush()
+    {
+
+    }
 
 }
