@@ -3,12 +3,8 @@ using Godot;
 
 public partial class MenuNode : Control
 {
-
-    [Export]
-    public PackedScene Background;
     
-    [Export]
-    public bool Poppable = true;
+    public bool Poppable = false;
 
     public System.Action OnPop; // Happens when Pop() is called, regardless of Poppable
     public System.Action AfterPop; // Occurs only if popped    
@@ -17,7 +13,6 @@ public partial class MenuNode : Control
 
     public override void _Ready()
     {
-        
         TreeExited += () => {
             if (BackgroundNode != null)
             {

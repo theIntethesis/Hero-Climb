@@ -6,11 +6,7 @@ public partial class MenuStack : Control
 {
     public void Push(MenuNodeBlueprint blueprint)
     {
-        if (blueprint.OnPush != null) 
-        {
-            blueprint.OnPush();
-        }
-        
+
 		if (GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)GetChildren().Last();
 		    Last.Visible = false;
@@ -18,20 +14,13 @@ public partial class MenuStack : Control
 
         MenuNode node = blueprint.Instantiate();
         
-        if (node.Background != null)
+        if (node.BackgroundNode != null)
         {
-            node.BackgroundNode = node.Background.Instantiate();
-            // Since MenuNode clears this when it exits the tree, this will never be directly popped.
             AddChild(node.BackgroundNode);
         }
 
         AddChild(node);
         node.Owner = this;
-
-        if (blueprint.AfterPush != null)
-        {
-            blueprint.AfterPush();
-        }
     }
 
     public void Pop()
