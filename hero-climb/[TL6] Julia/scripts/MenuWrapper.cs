@@ -67,13 +67,12 @@ public partial class MenuWrapper : Node
 
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
     private static MenuWrapper _Instance;
+    private static bool InGame = false; // set as soon EnterGame() is called
+    private static bool HasDied = false; // prevent popping the death screen
+    
 
     private CanvasLayer Menu; // contains the stack
     public MenuStack Stack; // facade/state
-
-    private bool InGame = false; // set as soon EnterGame() is called
-    private bool HasDied = false; // prevent popping the death screen
-    
     private Node CurrentScene;
 
     // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
@@ -138,7 +137,6 @@ public partial class MenuWrapper : Node
         // todo: make thread safe
         return _Instance;
     }
-
     
 	public override void _Ready()
 	{
