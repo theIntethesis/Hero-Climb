@@ -1,10 +1,13 @@
 using System.Linq;
 using Godot;
+using System.Collections.Generic;
 
 
 [GlobalClass]
 public partial class GlobalMenuHandler : Node
 {
+    private const string IntitialGameScenePath = "res://[TL2] Taran/scenes/Main Level.tscn";
+
     [Signal]
     public delegate void OnPauseEventHandler();
     
@@ -14,63 +17,106 @@ public partial class GlobalMenuHandler : Node
     [Signal]
     public delegate void OnReturnToMainMenuEventHandler();
 
-    public MenuNodeBlueprint MainMenuBP;
-    public MenuNodeBlueprint PauseMenuBP;
-    public MenuNodeBlueprint DeathScreenBP;
-    public MenuNodeBlueprint WinScreenBP;
-
-    public MenuNodeBlueprint QuitConfirmBP;
-
-    PackedScene InitialGameScene;
-    PackedScene GameHUD;
+    public readonly PackedScene InitialGameScene;
 
     private CanvasLayer Menu;
     public MenuStack Stack;
 
-    public bool InGame = false; // set as soon EnterGame() is called
-    public bool HasDied = false; // prevent popping the death screen
-    public Node CurrentScene;
+    private bool InGame = false; // set as soon EnterGame() is called
+    private bool HasDied = false; // prevent popping the death screen
+    private Node CurrentScene;
 
-    
-    // Ref is required since GetNode requires an element in the tree, and the class is decidedly not in the tree.
+    // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
+    public enum BlueprintKeys {
+        CharacterCreator = 0, 
+        DeathScreen = 1,
+        MainMenu = 2,
+        PauseMenu = 3,
+        QuitConfirm = 4,
+        SettingsMenu = 5,
+        WinScreen = 6, 
+    }
+
+    public readonly Dictionary<BlueprintKeys, MenuNodeBlueprint> Blueprints;
+
+    // Ref is required since GetNode requires an element in the tree, and the static class is not in the tree.
     public static GlobalMenuHandler GetSingleton(Node Ref)
     {
-
         return Ref.GetNode<GlobalMenuHandler>("/root/GlobalMenuHandler");
+    }
+
+    GlobalMenuHandler()
+    {
+        // Configure Blueprints
+        Blueprints = new Dictionary<BlueprintKeys, MenuNodeBlueprint>()
+        {
+            [BlueprintKeys.CharacterCreator] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn",
+                poppable: true
+            ),
+            [BlueprintKeys.DeathScreen] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/DeathScreen.tscn", 
+                background: "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn",
+                poppable: true
+            ),
+            [BlueprintKeys.MainMenu] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/MainMenu.tscn", 
+                background: "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn",
+                onPop: () => {
+                    Stack.Push(Blueprints[BlueprintKeys.QuitConfirm]);
+                },
+                poppable: false
+            ),
+            [BlueprintKeys.PauseMenu] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn", 
+                background: "/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn",
+                afterPop: ResumeGame,
+                poppable: true
+            ),
+            [BlueprintKeys.QuitConfirm] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn",
+                poppable: true
+            ),
+            [BlueprintKeys.SettingsMenu] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn",
+                poppable: true
+            ),
+            [BlueprintKeys.WinScreen] = new MenuNodeBlueprint
+            (
+                foregound: "res://[TL6] Julia/scenes/Menus/WinScreen.tscn",
+                poppable: true
+            ),
+        };
+
+        InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
     }
 
 	public override void _Ready()
 	{
 		base._Ready();
+        
+        Stack = new MenuStack();
+        Stack.Name = "Stack";
+        Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        Stack.ProcessMode = ProcessModeEnum.Inherit;
 
         Menu = new CanvasLayer();
         Menu.Name = "MenuCanvasLayer";
-        Stack = new MenuStack();
-        Stack.Name = "Stack";
-
+        Menu.ProcessMode = ProcessModeEnum.Inherit;
+        Menu.AddChild(Stack);
+        
+        
         CurrentScene = null;
 
 		ProcessMode = ProcessModeEnum.Always;
-		Menu.ProcessMode = ProcessModeEnum.Always;
-
-        Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
- 
-        Menu.AddChild(Stack);
-   
-		AddChild(Menu);
-
-        MainMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/HomeMenu.tscn"));
-        PauseMenuBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainPause.tscn"));
-        DeathScreenBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn"));
-        WinScreenBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/WinScreen.tscn"));
-        QuitConfirmBP = new MenuNodeBlueprint(ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn"));
-        InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
-
-        PauseMenuBP.AfterPop = ResumeGame;
-        
-        MainMenuBP.OnPop = () => {
-            Stack.Push(QuitConfirmBP);
-        };
+		
+		AddChild(Menu);        
     }
 
 	public override void _Process(double _delta)
@@ -97,7 +143,7 @@ public partial class GlobalMenuHandler : Node
         }
         
         Stack.Clear();
-        Stack.Push(MainMenuBP);
+        Stack.Push(Blueprints[BlueprintKeys.MainMenu]);
 
         GetTree().Paused = false;
         InGame = false;
@@ -123,11 +169,9 @@ public partial class GlobalMenuHandler : Node
 
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
-        
         Global.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);
-
         CurrentScene = NewScene;
     }
 
@@ -148,9 +192,7 @@ public partial class GlobalMenuHandler : Node
         if (!GetTree().Paused) 
         {
             GetTree().Paused = true;
-            
-            Stack.Push(PauseMenuBP);
-
+            Stack.Push(Blueprints[BlueprintKeys.PauseMenu]);
             EmitSignal(SignalName.OnPause);
         } 
     }
@@ -160,7 +202,6 @@ public partial class GlobalMenuHandler : Node
         if (GetTree().Paused)
         {
             GetTree().Paused = false;
-
             EmitSignal(SignalName.OnResume);
         }   
     }
@@ -171,8 +212,7 @@ public partial class GlobalMenuHandler : Node
         {
             GetTree().Paused = true;
             HasDied = true;
-            
-            Stack.Push(DeathScreenBP);
+            Stack.Push(Blueprints[BlueprintKeys.DeathScreen]);
         }
     }
 
@@ -180,7 +220,7 @@ public partial class GlobalMenuHandler : Node
     {
         if (!HasDied) {
             GetTree().Paused = true;
-            Stack.Push(WinScreenBP);
+            Stack.Push(Blueprints[BlueprintKeys.WinScreen]);
         } 
     }
 }

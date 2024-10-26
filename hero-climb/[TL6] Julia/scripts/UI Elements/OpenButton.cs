@@ -4,7 +4,7 @@ using System;
 public partial class OpenButton : Button
 {
 	[Export]
-	private PackedScene scene;
+	private GlobalMenuHandler.BlueprintKeys key;
 
 	private GlobalMenuHandler GlobalMenuHandler;
 
@@ -13,7 +13,7 @@ public partial class OpenButton : Button
 		GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
 
 		Pressed += () => {
-			GlobalMenuHandler.Stack.Push(new MenuNodeBlueprint(scene));
+			GlobalMenuHandler.Stack.Push(GlobalMenuHandler.Blueprints[key]);
 		};
     }
 }
