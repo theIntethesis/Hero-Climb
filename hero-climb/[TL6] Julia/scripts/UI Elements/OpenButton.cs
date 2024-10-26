@@ -4,16 +4,14 @@ using System;
 public partial class OpenButton : Button
 {
 	[Export]
-	private GlobalMenuHandler.BlueprintKeys key;
-
-	private GlobalMenuHandler GlobalMenuHandler;
+	private MenuWrapper.BlueprintKeys key;
 
     public override void _Ready()
     {
-		GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
+
 
 		Pressed += () => {
-			GlobalMenuHandler.Stack.Push(GlobalMenuHandler.Blueprints[key]);
+			 MenuWrapper.Instance().Stack.Push(MenuWrapper.Blueprints[key]);
 		};
     }
 }
