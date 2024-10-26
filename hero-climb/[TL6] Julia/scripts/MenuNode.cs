@@ -20,14 +20,11 @@ public partial class MenuNode : Control
         base._Ready();
     }
 
+
+    // called before its popped from the stack
     public virtual void OnPop()
     {
-
-    }
-
-    public virtual void OnPush()
-    {
-
+        
     }
 
 }

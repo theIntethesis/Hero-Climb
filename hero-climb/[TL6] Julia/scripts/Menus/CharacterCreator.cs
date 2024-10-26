@@ -44,6 +44,8 @@ public partial class CharacterCreator : MenuNode
                 OnRougeButtonPressed();
                 break;
         }
+
+        base._Ready();
     }
 
     public void OnFighterButtonPressed()
