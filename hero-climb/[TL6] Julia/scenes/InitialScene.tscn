@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4b25pti4tt2h"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/MainMenu.cs" id="1_3vhy0"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/InitialScene.cs" id="1_3vhy0"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
