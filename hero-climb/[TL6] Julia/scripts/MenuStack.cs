@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 
 [GlobalClass]
-public partial class MenuStack : MenuInterface
+public partial class MenuStack : MenuOutput
 {
     public override void Push(MenuNodeBlueprint blueprint)
     {

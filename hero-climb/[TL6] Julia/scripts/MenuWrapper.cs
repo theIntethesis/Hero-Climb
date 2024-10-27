@@ -2,17 +2,26 @@ using System.Linq;
 using Godot;
 using System.Collections.Generic;
 
-public abstract partial class MenuInterface : Control 
+public partial class MenuOutput : Control 
 {
-    public abstract void Push(MenuNodeBlueprint blueprint);
+    public virtual void Push(MenuNodeBlueprint blueprint) 
+    {
 
-    public abstract void Pop();
+    }
 
-    public abstract void Clear();
+    public virtual void Pop()
+    {
+
+    }
+
+    public virtual void Clear()
+    {
+
+    }
 }
 
 
-public partial class MenuWrapper : MenuInterface
+public partial class MenuWrapper : MenuOutput
 {
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
     private static bool InGame = false; // set as soon EnterGame() is called
@@ -81,7 +90,7 @@ public partial class MenuWrapper : MenuInterface
 
     // The only "state" that MenuWrapper has
     private CanvasLayer Menu; // contains the stack
-    private MenuStack Stack; // facade/state
+    private MenuOutput Stack; // facade/state
     
     public static MenuWrapper Instance()
     {

@@ -9,15 +9,12 @@ public partial class CharacterCreator : MenuNode
     private Button WizardButton;
     private Button RogueButton;
 
-
     public Controller.ClassType CurrentType;
 
     static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
-
     public override void _Ready() 
     {
-
         Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
         Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
         Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
