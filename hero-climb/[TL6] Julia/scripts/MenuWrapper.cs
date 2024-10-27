@@ -99,26 +99,35 @@ public partial class MenuWrapper : MenuInterface
     
 	public override void _Ready()
 	{
-		base._Ready();
-        
-        Stack = new MenuStack();
-        Stack.Name = "Stack";
-        Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        Stack.ProcessMode = ProcessModeEnum.Always;
+        lock (InstanceLock)
+        {
+            if (_Instance != null)
+            {
+                throw new System.Exception("MenuWrapper._Instance is not null");
+            }
+            
+            base._Ready();
+            
+            Stack = new MenuStack();
+            Stack.Name = "Stack";
+            Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+            Stack.ProcessMode = ProcessModeEnum.Always;
 
-        Menu = new CanvasLayer();
-        Menu.Name = "MenuCanvasLayer";
-        Menu.ProcessMode = ProcessModeEnum.Always;
-        
-        Menu.AddChild(Stack);
-        
-        CurrentScene = null;
+            Menu = new CanvasLayer();
+            Menu.Name = "MenuCanvasLayer";
+            Menu.ProcessMode = ProcessModeEnum.Always;
+            
+            Menu.AddChild(Stack);
+            
+            CurrentScene = null;
 
-		ProcessMode = ProcessModeEnum.Always;
-		
-		AddChild(Menu);     
+            ProcessMode = ProcessModeEnum.Always;
+            
+            AddChild(Menu);     
 
-        _Instance = this;   
+            _Instance = this; 
+        }
+		  
     }
 
 	public override void _Process(double _delta)
