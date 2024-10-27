@@ -119,7 +119,7 @@ public partial class MenuWrapper : MenuOutput
             base._Ready();
             
             // Dynamic Binding (`Superclass obj = new Subclass()`)
-            Output = new MenuOutput();
+            Output = new MenuStack();
 
             Output.Name = "Output";
             Output.SetAnchorsPreset(Control.LayoutPreset.FullRect);
