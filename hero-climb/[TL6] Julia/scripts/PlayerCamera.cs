@@ -6,12 +6,9 @@ public partial class PlayerCamera : Camera2D
 { 
     public HeartGrid hearts;
 
-    public GlobalMenuHandler globalMenuHandler;
-
     public override void _Ready()
     {
-        globalMenuHandler = GlobalMenuHandler.GetSingleton(this);
-    
+
         hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
 
         // Use the Character Global class instead!
@@ -23,8 +20,8 @@ public partial class PlayerCamera : Camera2D
         hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
         hearts.Set(GetParent<Controller>().getHealth());
 
-        globalMenuHandler.OnPause += this.OnPauseEventHandler;
-        globalMenuHandler.OnResume += this.OnResumeEventHandler;
+        MenuWrapper.Instance().OnPause += this.OnPauseEventHandler;
+        MenuWrapper.Instance().OnResume += this.OnResumeEventHandler;
 
         /*
         ShopElement[] elements = new ShopElement[]
@@ -59,20 +56,20 @@ public partial class PlayerCamera : Camera2D
 
     public void OnPlayerDeath() 
     {
-        globalMenuHandler.OnPlayerDeath();
+        MenuWrapper.Instance().OnPlayerDeath();
         
         GetNode<CanvasLayer>("HUD").Visible = false;
     }
 
     public void OnGameWin()
     {
-        globalMenuHandler.OnGameWin();
+        MenuWrapper.Instance().OnGameWin();
     }
 
     public override void _ExitTree()
     {
-        globalMenuHandler.OnPause -= this.OnPauseEventHandler;
-        globalMenuHandler.OnResume -= this.OnResumeEventHandler;
+        MenuWrapper.Instance().OnPause -= this.OnPauseEventHandler;
+        MenuWrapper.Instance().OnResume -= this.OnResumeEventHandler;
     }
 
     public void OpenShop(ShopElement[] elements)
