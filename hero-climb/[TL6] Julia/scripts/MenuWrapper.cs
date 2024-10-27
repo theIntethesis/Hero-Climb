@@ -15,13 +15,12 @@ public abstract partial class MenuInterface : Control
 public partial class MenuWrapper : MenuInterface
 {
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
-    private static MenuWrapper _Instance = null;
     private static bool InGame = false; // set as soon EnterGame() is called
     private static bool HasDied = false; // prevent popping the death screen
-    
-    private static object InstanceLock = new object();
-    
     private static Node CurrentScene;
+
+    private static object InstanceLock = new object();
+    private static MenuWrapper _Instance = null;
 
     // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
     public enum BlueprintKeys {
@@ -33,7 +32,7 @@ public partial class MenuWrapper : MenuInterface
         SettingsMenu = 5,
         WinScreen = 6, 
     }
-
+    
     // I guess its smart enough to know what each of these should cast to.
     public static readonly Dictionary<BlueprintKeys, MenuNodeBlueprint> Blueprints = new Dictionary<BlueprintKeys, MenuNodeBlueprint>()
     {
