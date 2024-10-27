@@ -96,46 +96,40 @@ public partial class MenuWrapper : MenuInterface
         WinScreen = 6, 
     }
 
+    // I guess its smart enough to know what each of these should cast to.
     public static readonly Dictionary<BlueprintKeys, MenuNodeBlueprint> Blueprints = new Dictionary<BlueprintKeys, MenuNodeBlueprint>()
     {
         
         [BlueprintKeys.CharacterCreator] = new MenuNodeBlueprint
         (
-            foregound: "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn",
-            poppable: true
+            foregound: "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn"
         ),
         [BlueprintKeys.DeathScreen] = new MenuNodeBlueprint
         (
             foregound: "res://[TL6] Julia/scenes/Menus/DeathScreen.tscn", 
-            background: "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn",
-            poppable: true
+            background: "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn"
         ),
         [BlueprintKeys.MainMenu] = new MenuNodeBlueprint
         (
             foregound: "res://[TL6] Julia/scenes/Menus/MainMenu.tscn", 
-            background: "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn",
-            poppable: false
+            background: "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn"
         ),
         [BlueprintKeys.PauseMenu] = new MenuNodeBlueprint
         (
             foregound: "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn", 
-            background: "/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn",
-            poppable: true
+            background: "/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn"
         ),
         [BlueprintKeys.QuitConfirm] = new MenuNodeBlueprint
         (
-            foregound: "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn",
-            poppable: true
+            foregound: "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn"
         ),
         [BlueprintKeys.SettingsMenu] = new MenuNodeBlueprint
         (
-            foregound: "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn",
-            poppable: true
+            foregound: "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn"
         ),
         [BlueprintKeys.WinScreen] = new MenuNodeBlueprint
         (
-            foregound: "res://[TL6] Julia/scenes/Menus/WinScreen.tscn",
-            poppable: true
+            foregound: "res://[TL6] Julia/scenes/Menus/WinScreen.tscn"
         ),
     }; 
 

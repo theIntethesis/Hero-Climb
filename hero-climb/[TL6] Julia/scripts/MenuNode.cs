@@ -4,7 +4,7 @@ using Godot;
 public partial class MenuNode : Control
 {
     
-    public bool Poppable = false;
+    virtual public bool Poppable { get { return true; }}
 
     public Node BackgroundNode;
 
