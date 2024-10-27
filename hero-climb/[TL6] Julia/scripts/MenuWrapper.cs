@@ -2,55 +2,6 @@ using System.Linq;
 using Godot;
 using System.Collections.Generic;
 
-
-
-/* What Pattern is This?
-- Singleton aka a Global
-    - only one instance of MenuWrapper,
-    - Ownership isn't really assigned
-    - Global Access to the single instance is provided, anything else isn't.
-
-    - requires:
-        private static MenuWrapper instance;
-        public static MenuWrapper GetSingleton();
-        also requires thread safe for multithreading!
-
-    - lazy initialization in the accessor function
-    - constructors must be private
-    - clients may only use the accessor
-
-    - does not rule out factory, builder, or prototype.
-    - facade objects are often singletons
-
-
-- Singleton Facade
-    - Simple interface, just push and pop from the stack a key
-    - wrapper is a global, encapsulates all behavior
-    - client is only coupled to the singleton facade
-
-- to ensure that it does not have a state, I could potentially make the stack a global variable that exists on the godot tree,
-- therefore, this has less of a state
-
-
-Singleton Checklist
-- private static instance
-- public static accessor
-- lazy initialization
-
-It may be worth seperating out "stack" and "game state" and then linking the two
-- stack is a facade
-- game state is a state object "singleton"/global variable
-
-State Pattern!!!!! - https://sourcemaking.com/design_patterns/state
-- the stack serves to track the current state
-
-Checklist
-- state machine and wrapper
-- state base class 
-
-https://sourcemaking.com/design_patterns/state
-*/
-
 public abstract partial class MenuInterface : Control 
 {
     public abstract void Push(MenuNodeBlueprint blueprint);
@@ -279,18 +230,15 @@ public partial class MenuWrapper : MenuInterface
     public override void Push(MenuNodeBlueprint blueprint)
     {
         Stack.Push(blueprint);
-        //throw new System.NotImplementedException();
     }
 
     public override void Pop()
     {
         Stack.Pop();
-        //throw new System.NotImplementedException();
     }
 
     public override void Clear()
     {
         Stack.Clear();
-        //throw new System.NotImplementedException();
     }
 }
