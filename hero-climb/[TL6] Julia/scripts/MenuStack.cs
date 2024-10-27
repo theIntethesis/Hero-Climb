@@ -1,9 +1,11 @@
 using System.Linq;
 using Godot;
 
+/* Subclass */
 [GlobalClass]
 public partial class MenuStack : MenuOutput
 {
+    // REMOVE 'override' and something different will happen
     public override void Push(MenuNodeBlueprint blueprint)
     {
 		if (GetChildCount() > 0) {

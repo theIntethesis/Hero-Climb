@@ -2,21 +2,22 @@ using System.Linq;
 using Godot;
 using System.Collections.Generic;
 
+/* Superclass */
 public partial class MenuOutput : Control 
 {
     public virtual void Push(MenuNodeBlueprint blueprint) 
     {
-
+        GD.Print("Definitely pushing something to the screen");
     }
 
     public virtual void Pop()
     {
-
+        GD.Print("Definitely popping something from the screen");
     }
 
     public virtual void Clear()
     {
-
+        GD.Print("Definitely clearing the screen");
     }
 }
 
@@ -90,7 +91,7 @@ public partial class MenuWrapper : MenuOutput
 
     // The only "state" that MenuWrapper has
     private CanvasLayer Menu; // contains the stack
-    private MenuOutput Stack; // facade/state
+    private MenuOutput Output; 
     
     public static MenuWrapper Instance()
     {
@@ -117,16 +118,18 @@ public partial class MenuWrapper : MenuOutput
             
             base._Ready();
             
-            Stack = new MenuStack();
-            Stack.Name = "Stack";
-            Stack.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-            Stack.ProcessMode = ProcessModeEnum.Always;
+            // Dynamic Binding (`Superclass obj = new Subclass()`)
+            Output = new MenuOutput();
+
+            Output.Name = "Output";
+            Output.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+            Output.ProcessMode = ProcessModeEnum.Always;
 
             Menu = new CanvasLayer();
             Menu.Name = "MenuCanvasLayer";
             Menu.ProcessMode = ProcessModeEnum.Always;
             
-            Menu.AddChild(Stack);
+            Menu.AddChild(Output);
             
             CurrentScene = null;
 
@@ -145,7 +148,7 @@ public partial class MenuWrapper : MenuOutput
 		{
             if (GetTree().Paused || !InGame) 
             {
-                Stack.Pop();
+                Pop();
             }
 			else 
 			{
@@ -185,7 +188,7 @@ public partial class MenuWrapper : MenuOutput
 		InGame = true;
 		HasDied = false;
 
-        Stack.Clear();
+        Output.Clear();
 
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
@@ -246,16 +249,16 @@ public partial class MenuWrapper : MenuOutput
 
     public override void Push(MenuNodeBlueprint blueprint)
     {
-        Stack.Push(blueprint);
+        Output.Push(blueprint);
     }
 
     public override void Pop()
     {
-        Stack.Pop();
+        Output.Pop();
     }
 
     public override void Clear()
     {
-        Stack.Clear();
+        Output.Clear();
     }
 }
