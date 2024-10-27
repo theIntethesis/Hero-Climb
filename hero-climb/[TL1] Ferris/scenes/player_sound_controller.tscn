@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo230qklt4eud"]
+[gd_scene load_steps=8 format=3 uid="uid://dchv5luhiohep"]
 
 [ext_resource type="Script" path="res://[TL3] Gavin/scripts/player_sound_controller.gd" id="1_wa325"]
 [ext_resource type="AudioStream" uid="uid://dog5v8q4vkbld" path="res://[TL3] Gavin/assets/PlayerSounds/WizardAttack.mp3" id="2_ln73a"]
