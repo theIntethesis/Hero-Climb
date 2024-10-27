@@ -13,6 +13,8 @@ public partial class MenuStack : MenuInterface
 
         MenuNode node = blueprint.Instantiate();
         
+        node.OnPush();
+
         if (node.BackgroundNode != null)
         {
             AddChild(node.BackgroundNode);

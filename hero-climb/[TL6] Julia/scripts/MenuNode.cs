@@ -3,7 +3,6 @@ using Godot;
 
 public partial class MenuNode : Control
 {
-    
     virtual public bool Poppable { get { return true; }}
 
     public Node BackgroundNode;
@@ -20,6 +19,10 @@ public partial class MenuNode : Control
         base._Ready();
     }
 
+    public virtual void OnPush()
+    {
+        
+    }
 
     // called before its popped from the stack
     public virtual void OnPop()
