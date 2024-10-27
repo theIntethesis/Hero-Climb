@@ -64,26 +64,13 @@ public abstract partial class MenuInterface : Control
 public partial class MenuWrapper : MenuInterface
 {
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
-
     private static MenuWrapper _Instance = null;
     private static bool InGame = false; // set as soon EnterGame() is called
     private static bool HasDied = false; // prevent popping the death screen
     
     private static object InstanceLock = new object();
-
-    [Signal]
-    public delegate void OnPauseEventHandler();
     
-    [Signal]
-    public delegate void OnResumeEventHandler();
-    
-    [Signal]
-    public delegate void OnReturnToMainMenuEventHandler();
-
-
-    private CanvasLayer Menu; // contains the stack
-    private MenuStack Stack; // facade/state
-    private Node CurrentScene;
+    private static Node CurrentScene;
 
     // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
     public enum BlueprintKeys {
@@ -133,6 +120,19 @@ public partial class MenuWrapper : MenuInterface
         ),
     }; 
 
+    [Signal]
+    public delegate void OnPauseEventHandler();
+    
+    [Signal]
+    public delegate void OnResumeEventHandler();
+    
+    [Signal]
+    public delegate void OnReturnToMainMenuEventHandler();
+
+    // The only "state" that MenuWrapper has
+    private CanvasLayer Menu; // contains the stack
+    private MenuStack Stack; // facade/state
+    
     public static MenuWrapper Instance()
     {
         if (_Instance == null)
