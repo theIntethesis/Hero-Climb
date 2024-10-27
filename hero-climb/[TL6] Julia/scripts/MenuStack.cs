@@ -2,9 +2,9 @@ using System.Linq;
 using Godot;
 
 [GlobalClass]
-public partial class MenuStack : Control
+public partial class MenuStack : MenuInterface
 {
-    public void Push(MenuNodeBlueprint blueprint)
+    public override void Push(MenuNodeBlueprint blueprint)
     {
 		if (GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)GetChildren().Last();
@@ -22,7 +22,7 @@ public partial class MenuStack : Control
         node.Owner = this;
     }
 
-    public void Pop()
+    public override void Pop()
     {
         if (GetChildCount() == 0) 
         {
@@ -48,7 +48,7 @@ public partial class MenuStack : Control
     }
 
     // Does not call OnPop or AfterPop
-    public void Clear()
+    public override void Clear()
     {   
         while (GetChildCount() > 0 && GetChildren().Last() is MenuNode Child)
         {

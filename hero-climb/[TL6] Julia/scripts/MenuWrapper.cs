@@ -51,10 +51,25 @@ Checklist
 https://sourcemaking.com/design_patterns/state
 */
 
-
-public partial class MenuWrapper : Node
+public abstract partial class MenuInterface : Control 
 {
-    private const string IntitialGameScenePath = "res://[TL2] Taran/scenes/Main Level.tscn";
+    public abstract void Push(MenuNodeBlueprint blueprint);
+
+    public abstract void Pop();
+
+    public abstract void Clear();
+}
+
+
+public partial class MenuWrapper : MenuInterface
+{
+    public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
+
+    private static MenuWrapper _Instance = null;
+    private static bool InGame = false; // set as soon EnterGame() is called
+    private static bool HasDied = false; // prevent popping the death screen
+    
+    private static object InstanceLock = new object();
 
     [Signal]
     public delegate void OnPauseEventHandler();
@@ -65,14 +80,9 @@ public partial class MenuWrapper : Node
     [Signal]
     public delegate void OnReturnToMainMenuEventHandler();
 
-    public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(IntitialGameScenePath);
-    private static MenuWrapper _Instance;
-    private static bool InGame = false; // set as soon EnterGame() is called
-    private static bool HasDied = false; // prevent popping the death screen
-    
 
     private CanvasLayer Menu; // contains the stack
-    public MenuStack Stack; // facade/state
+    private MenuStack Stack; // facade/state
     private Node CurrentScene;
 
     // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
@@ -129,14 +139,19 @@ public partial class MenuWrapper : Node
         ),
     }; 
 
-    private MenuWrapper() { }
-
-    // Ref is required since GetNode requires an element in the tree, and the static class is not in the tree.
     public static MenuWrapper Instance()
     {
-        // todo: make thread safe
-        return _Instance;
+        if (_Instance == null)
+        {
+            throw new System.Exception("MenuWrappper._Instance is null");
+        }
+        lock (InstanceLock)
+        {
+            return _Instance;
+        }
     }
+
+    private MenuWrapper() { }
     
 	public override void _Ready()
 	{
@@ -152,7 +167,6 @@ public partial class MenuWrapper : Node
         Menu.ProcessMode = ProcessModeEnum.Always;
         
         Menu.AddChild(Stack);
-        
         
         CurrentScene = null;
 
@@ -186,8 +200,8 @@ public partial class MenuWrapper : Node
             CurrentScene = null;
         }
         
-        Stack.Clear();
-        Stack.Push(Blueprints[BlueprintKeys.MainMenu]);
+        Clear();
+        Push(Blueprints[BlueprintKeys.MainMenu]);
 
         GetTree().Paused = false;
         InGame = false;
@@ -236,7 +250,7 @@ public partial class MenuWrapper : Node
         if (!GetTree().Paused) 
         {
             GetTree().Paused = true;
-            Stack.Push(Blueprints[BlueprintKeys.PauseMenu]);
+            Push(Blueprints[BlueprintKeys.PauseMenu]);
             EmitSignal(SignalName.OnPause);
         } 
     }
@@ -256,7 +270,7 @@ public partial class MenuWrapper : Node
         {
             GetTree().Paused = true;
             HasDied = true;
-            Stack.Push(Blueprints[BlueprintKeys.DeathScreen]);
+            Push(Blueprints[BlueprintKeys.DeathScreen]);
         }
     }
 
@@ -264,7 +278,25 @@ public partial class MenuWrapper : Node
     {
         if (!HasDied) {
             GetTree().Paused = true;
-            Stack.Push(Blueprints[BlueprintKeys.WinScreen]);
+            Push(Blueprints[BlueprintKeys.WinScreen]);
         } 
+    }
+
+    public override void Push(MenuNodeBlueprint blueprint)
+    {
+        Stack.Push(blueprint);
+        //throw new System.NotImplementedException();
+    }
+
+    public override void Pop()
+    {
+        Stack.Pop();
+        //throw new System.NotImplementedException();
+    }
+
+    public override void Clear()
+    {
+        Stack.Clear();
+        //throw new System.NotImplementedException();
     }
 }

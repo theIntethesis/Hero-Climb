@@ -11,7 +11,7 @@ public partial class OpenButton : Button
 
 
 		Pressed += () => {
-			 MenuWrapper.Instance().Stack.Push(MenuWrapper.Blueprints[key]);
+			 MenuWrapper.Instance().Push(MenuWrapper.Blueprints[key]);
 		};
     }
 }

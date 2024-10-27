@@ -16,7 +16,7 @@ public partial class BackButton : Button
 			}
 			else 
 			{
-				MenuWrapper.Instance().Stack.Pop();
+				MenuWrapper.Instance().Pop();
 			}
 		};
     }

@@ -5,7 +5,7 @@ public partial class MainMenu : MenuNode
 {
     public override void OnPop()
     {
-        MenuWrapper.Instance().Stack.Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
+        MenuWrapper.Instance().Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
 		base.OnPop();
     }
 }
