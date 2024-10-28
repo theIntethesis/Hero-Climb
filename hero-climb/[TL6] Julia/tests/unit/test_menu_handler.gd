@@ -1,11 +1,11 @@
 extends GutTest
 
 func test_initialization():
-    var node = get_tree().root.get_node("GlobalMenuHandler")
-    assert_eq(node is GlobalMenuHandler, true, "Initialization Failed")
+    var node = MenuWrapper.Instance();
+    assert_eq(node is MenuWrapper, true, "Initialization Failed")
 
 func test_return_to_main():
-    var node = get_tree().root.get_node("GlobalMenuHandler")
+    var node = MenuWrapper.Instance();
 
     node.ReturnToMainMenu()
     
@@ -18,7 +18,7 @@ func test_return_to_main():
     assert_eq(node.get_node('MenuCanvasLayer/Stack/HomeMenu') is Control, true, "")
 
 func test_enter_game():
-    var node = get_tree().root.get_node("GlobalMenuHandler")
+    var node = MenuWrapper.Instance();
     
     node.EnterGame(0) # this is the easiest way to get Controller.ClassType...
 

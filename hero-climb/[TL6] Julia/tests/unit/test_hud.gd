@@ -5,7 +5,7 @@ var _sender = InputSender.new(Input)
 
 func before_all():
     get_node("/root/GutRunner").process_mode = ProcessMode.PROCESS_MODE_ALWAYS
-    var node = get_tree().root.get_node("GlobalMenuHandler")
+    var node = MenuWrapper.Instance();
 
     node.EnterGame(0) # this is the easiest way to get Controller.ClassType...
 

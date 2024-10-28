@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://qnve0423nn22"]
+[gd_scene load_steps=4 format=3 uid="uid://b8l7kxydqmc6r"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/MenuNode.cs" id="1_sa3n4"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/PauseMenu.cs" id="1_x7e3b"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_24kcd"]
-[ext_resource type="PackedScene" uid="uid://cag8rn5gaudhb" path="res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn" id="2_acm8m"]
-[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="3_n8msa"]
-[ext_resource type="PackedScene" uid="uid://d220mtjktx1ci" path="res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn" id="3_vwwo0"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="5_5xhs7"]
 
 [node name="MainPause" type="Control"]
@@ -16,8 +13,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sa3n4")
-Background = ExtResource("2_acm8m")
+script = ExtResource("1_x7e3b")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -42,13 +38,12 @@ script = ExtResource("5_5xhs7")
 layout_mode = 2
 text = "Restart"
 script = ExtResource("2_24kcd")
-scene = ExtResource("3_n8msa")
 
 [node name="Settings" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Settings"
 script = ExtResource("2_24kcd")
-scene = ExtResource("3_vwwo0")
+key = 5
 
 [node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2

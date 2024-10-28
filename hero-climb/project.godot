@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="Hero-Climb"
-run/main_scene="res://[TL6] Julia/scenes/MainMenu.tscn"
+run/main_scene="res://[TL6] Julia/scenes/InitialScene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 boot_splash/bg_color=Color(0.72549, 0.752941, 0.760784, 1)
 boot_splash/image="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,6 +26,7 @@ PGlobal="*res://[TL1] Ferris/scripts/PlayerGlobal.cs"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 

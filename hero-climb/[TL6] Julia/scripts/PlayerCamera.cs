@@ -6,26 +6,24 @@ public partial class PlayerCamera : Camera2D
 { 
     public HeartGrid hearts;
 
-    public GlobalMenuHandler globalMenuHandler;
-
     public override void _Ready()
     {
-        globalMenuHandler = GetTree().Root.GetNode<GlobalMenuHandler>("GlobalMenuHandler");
-    
+
         hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
 
+        // Use the Character Global class instead!
         if (!(GetParent() is Controller)) 
         {
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        hearts.SetMaxHealth(GetParent<Controller>().getHealth());
+        hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
         hearts.Set(GetParent<Controller>().getHealth());
 
-        globalMenuHandler.OnPause += this.OnPauseEventHandler;
-        globalMenuHandler.OnResume += this.OnResumeEventHandler;
+        MenuWrapper.Instance().OnPause += this.OnPauseEventHandler;
+        MenuWrapper.Instance().OnResume += this.OnResumeEventHandler;
 
-        // tbd,
+        /*
         ShopElement[] elements = new ShopElement[]
         {
             new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
@@ -36,7 +34,9 @@ public partial class PlayerCamera : Camera2D
             new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2)
         };
 
-        OpenShop(elements);
+        */
+
+        // OpenShop(elements);
     }
 
     public void OnPauseEventHandler()
@@ -56,20 +56,20 @@ public partial class PlayerCamera : Camera2D
 
     public void OnPlayerDeath() 
     {
-        globalMenuHandler.OnPlayerDeath();
+        MenuWrapper.Instance().OnPlayerDeath();
         
         GetNode<CanvasLayer>("HUD").Visible = false;
     }
 
     public void OnGameWin()
     {
-        globalMenuHandler.OnGameWin();
+        MenuWrapper.Instance().OnGameWin();
     }
 
     public override void _ExitTree()
     {
-        globalMenuHandler.OnPause -= this.OnPauseEventHandler;
-        globalMenuHandler.OnResume -= this.OnResumeEventHandler;
+        MenuWrapper.Instance().OnPause -= this.OnPauseEventHandler;
+        MenuWrapper.Instance().OnResume -= this.OnResumeEventHandler;
     }
 
     public void OpenShop(ShopElement[] elements)
