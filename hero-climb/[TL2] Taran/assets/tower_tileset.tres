@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bdxyk11gje0e7" path="res://[TL1] Ferris/scenes/Tiles/PipeMiddle.tscn" id="5_8558p"]
 [ext_resource type="PackedScene" uid="uid://dwogm1x2srtwp" path="res://[TL1] Ferris/scenes/Tiles/PipeTop.tscn" id="6_4ig5w"]
 [ext_resource type="PackedScene" uid="uid://bq3pqw263ffnv" path="res://[TL1] Ferris/scenes/coin.tscn" id="7_70pd1"]
-[ext_resource type="Texture2D" uid="uid://ckcu6upem51gg" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="7_t8cn2"]
-[ext_resource type="Texture2D" uid="uid://ctk0p1wim78ht" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="8_hh3ni"]
+[ext_resource type="Texture2D" uid="uid://ylab4rt36nqy" path="res://[TL2] Taran/assets/Bricks Spritesheet.png" id="7_t8cn2"]
+[ext_resource type="Texture2D" uid="uid://dlm8oipjlt0qh" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="8_hh3ni"]
 [ext_resource type="PackedScene" uid="uid://b02t6gf5ac7hv" path="res://[TL1] Ferris/scenes/Wooden Box.tscn" id="8_k8kqr"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c63o7"]
