@@ -41,6 +41,7 @@ public partial class Controller : CharacterBody2D
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
+	protected Node SoundController;
 	public int getHealth() { return Health; }
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
@@ -240,6 +241,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Ready()
 	{
+		SoundController = GetNode("PlayerSoundController");
 		switch (Class)
 		{
 			case ClassType.Fighter:
