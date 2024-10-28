@@ -3,7 +3,7 @@ using Godot;
 /* Superclass */
 public partial class MenuOutput : Control 
 {
-    public virtual void Push(MenuNodeBlueprint blueprint) 
+    public virtual void Push(MenuNode node) 
     {
         GD.Print("Definitely pushing something to the screen");
     }

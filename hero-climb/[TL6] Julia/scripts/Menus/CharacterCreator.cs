@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 public partial class CharacterCreator : MenuNode
@@ -15,12 +16,12 @@ public partial class CharacterCreator : MenuNode
 
     public override void _Ready() 
     {
-        Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-        Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-        Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
-        WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
-        FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
-        RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
+        Wizard = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
+        Fighter = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
+        Rogue = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+        WizardButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
+        FighterButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
+        RogueButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
         Rogue.Visible = false;
         Fighter.Visible = false;
@@ -41,6 +42,12 @@ public partial class CharacterCreator : MenuNode
                 OnRougeButtonPressed();
                 break;
         }
+
+        FighterButton.Pressed += OnFighterButtonPressed;
+        RogueButton.Pressed += OnRougeButtonPressed;
+        WizardButton.Pressed += OnWizardButtonPressed;
+
+        ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += OnStartButtonPressed;
 
         base._Ready();
     }
@@ -78,5 +85,10 @@ public partial class CharacterCreator : MenuNode
     {
         MostRecentClass = CurrentType;
         MenuWrapper.Instance().EnterGame(CurrentType);
+    }
+
+    public CharacterCreator() : base("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
+    {
+
     }
 }

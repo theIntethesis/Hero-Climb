@@ -12,53 +12,7 @@ public partial class MenuWrapper : MenuOutput
     private static object InstanceLock = new object();
     private static MenuWrapper _Instance = null;
 
-    // using an enum with a dictionary to enusre that every blueprint lookup is valid - do not change defined integers
-    public enum BlueprintKeys {
-        CharacterCreator = 0, 
-        DeathScreen = 1,
-        MainMenu = 2,
-        PauseMenu = 3,
-        QuitConfirm = 4,
-        SettingsMenu = 5,
-        WinScreen = 6, 
-    }
-    
     // I guess its smart enough to know what each of these should cast to.
-    public static readonly Dictionary<BlueprintKeys, MenuNodeBlueprint> Blueprints = new Dictionary<BlueprintKeys, MenuNodeBlueprint>()
-    {
-        
-        [BlueprintKeys.CharacterCreator] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn"
-        ),
-        [BlueprintKeys.DeathScreen] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/DeathScreen.tscn", 
-            background: "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn"
-        ),
-        [BlueprintKeys.MainMenu] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/MainMenu.tscn", 
-            background: "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn"
-        ),
-        [BlueprintKeys.PauseMenu] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn", 
-            background: "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn"
-        ),
-        [BlueprintKeys.QuitConfirm] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn"
-        ),
-        [BlueprintKeys.SettingsMenu] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn"
-        ),
-        [BlueprintKeys.WinScreen] = new MenuNodeBlueprint
-        (
-            foregound: "res://[TL6] Julia/scenes/Menus/WinScreen.tscn"
-        ),
-    }; 
 
     [Signal]
     public delegate void OnPauseEventHandler();
@@ -150,7 +104,7 @@ public partial class MenuWrapper : MenuOutput
         }
         
         Clear();
-        Push(Blueprints[BlueprintKeys.MainMenu]);
+        Push(new MainMenu());
 
         GetTree().Paused = false;
         HasDied = false;
@@ -197,7 +151,7 @@ public partial class MenuWrapper : MenuOutput
         if (!GetTree().Paused) 
         {
             GetTree().Paused = true;
-            Push(Blueprints[BlueprintKeys.PauseMenu]);
+            Push(new PauseMenu());
             EmitSignal(SignalName.OnPause);
         } 
     }
@@ -217,7 +171,7 @@ public partial class MenuWrapper : MenuOutput
         {
             GetTree().Paused = true;
             HasDied = true;
-            Push(Blueprints[BlueprintKeys.DeathScreen]);
+            Push(new DeathScreen());
         }
     }
 
@@ -225,13 +179,13 @@ public partial class MenuWrapper : MenuOutput
     {
         if (!HasDied) {
             GetTree().Paused = true;
-            Push(Blueprints[BlueprintKeys.WinScreen]);
+            Push(new WinScreen());
         } 
     }
 
-    public override void Push(MenuNodeBlueprint blueprint)
+    public override void Push(MenuNode node)
     {
-        Output.Push(blueprint);
+        Output.Push(node);
     }
 
     public override void Pop()

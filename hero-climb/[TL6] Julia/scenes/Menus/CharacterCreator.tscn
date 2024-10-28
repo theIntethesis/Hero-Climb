@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf1mwj455rvja"]
+[gd_scene load_steps=5 format=3 uid="uid://cf1mwj455rvja"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/CharacterCreator.cs" id="1_ynb51"]
 [ext_resource type="PackedScene" uid="uid://7muxnjdf3dsv" path="res://[TL1] Ferris/scenes/RogueSprite.tscn" id="2_crrn4"]
 [ext_resource type="PackedScene" uid="uid://ddreyoyl54apb" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="3_88e77"]
@@ -15,7 +14,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ynb51")
 
 [node name="VFlowContainer" type="VFlowContainer" parent="."]
 layout_mode = 1
@@ -91,8 +89,3 @@ script = ExtResource("3_88e77")
 [node name="StartButton" type="Button" parent="VFlowContainer"]
 layout_mode = 2
 text = "Start"
-
-[connection signal="pressed" from="VFlowContainer/GridContainer/FighterButton" to="." method="OnFighterButtonPressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/WizardButton" to="." method="OnWizardButtonPressed"]
-[connection signal="pressed" from="VFlowContainer/GridContainer/RogueButton" to="." method="OnRougeButtonPressed"]
-[connection signal="pressed" from="VFlowContainer/StartButton" to="." method="OnStartButtonPressed"]

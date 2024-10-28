@@ -6,24 +6,18 @@ using Godot;
 public partial class MenuStack : MenuOutput
 {
     // REMOVE 'override' and something different will happen
-    public override void Push(MenuNodeBlueprint blueprint)
+    public override void Push(MenuNode Node)
     {
 		if (GetChildCount() > 0) {
-            CanvasItem Last = (CanvasItem)GetChildren().Last();
-		    Last.Visible = false;
+            MenuNode Last = (MenuNode)GetChildren().Last();
+		    Last.HideForeground();
         }
 
-        MenuNode node = blueprint.Instantiate();
-        
-        node.OnPush();
+    
+        Node.OnPush();
 
-        if (node.BackgroundNode != null)
-        {
-            AddChild(node.BackgroundNode);
-        }
-
-        AddChild(node);
-        node.Owner = this;
+        AddChild(Node);
+        Node.Owner = this;
     }
 
     public override void Pop()
@@ -44,8 +38,8 @@ public partial class MenuStack : MenuOutput
                 Child.QueueFree();
 
                 if (GetChildCount() > 0) {
-                    CanvasItem Last = (CanvasItem)GetChildren().Last();
-                    Last.Visible = true;
+                    MenuNode Last = (MenuNode)GetChildren().Last();
+                    Last.ShowForeground();
                 }     
             }      
         }

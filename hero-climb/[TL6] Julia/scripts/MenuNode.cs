@@ -1,56 +1,15 @@
-using System.Linq;
 using Godot;
-public class MenuNodeBlueprint
-{
-    private PackedScene Foreground;
-    private PackedScene Background;
-
-    public MenuNodeBlueprint(string foregound, string background = "")
-    {
-        Foreground = ResourceLoader.Load<PackedScene>(foregound);
-
-        if (background != "")
-        {
-            Background = ResourceLoader.Load<PackedScene>(background);
-        }
-        else 
-        {
-            Background = null;
-        }
-    }   
-
-    public MenuNodeBlueprint(PackedScene foreground, PackedScene background = null)
-    {
-        Foreground = foreground;
-        Background = background;
-    }
-
-    public MenuNode Instantiate()
-    {
-
-        MenuNode node = Foreground.Instantiate<MenuNode>();
-
-        if (Background != null)
-        {
-            node.BackgroundNode = Background.Instantiate<Node>();
-        }
-        else 
-        {
-            node.BackgroundNode = null;
-        }
-
-        return node;
-    }
-}
 
 public partial class MenuNode : Control
 {
     virtual public bool Poppable { get { return true; }}
 
-    public Node BackgroundNode;
+    protected Control ForegroundNode;
+    protected Control BackgroundNode;
 
     public override void _Ready()
     {
+        
         TreeExited += () => {
             if (BackgroundNode != null)
             {
@@ -70,5 +29,47 @@ public partial class MenuNode : Control
     public virtual void OnPop()
     {
         
+    }
+
+    protected MenuNode(string ForegroundScene, string BackgroundScene = "")
+    {
+        SetAnchorsPreset(LayoutPreset.FullRect);
+
+        if (BackgroundScene != "")
+        {
+            BackgroundNode = ResourceLoader.Load<PackedScene>(BackgroundScene).Instantiate<Control>();
+            AddChild(BackgroundNode);
+        }
+        else
+        {
+            BackgroundNode = null;
+        }
+
+        ForegroundNode = ResourceLoader.Load<PackedScene>(ForegroundScene).Instantiate<Control>();
+        AddChild(ForegroundNode);
+    }
+
+    public void HideForeground()
+    {
+        ForegroundNode.Visible = false;
+    }
+    public void ShowForeground()
+    {
+        ForegroundNode.Visible = true;
+    }
+
+    public void HideBackground()
+    {
+        if (BackgroundNode != null)
+        {
+            BackgroundNode.Visible = false;
+        }
+    }
+    public void ShowBackground()
+    {
+        if (BackgroundNode != null)
+        {
+            BackgroundNode.Visible = true;
+        }
     }
 }

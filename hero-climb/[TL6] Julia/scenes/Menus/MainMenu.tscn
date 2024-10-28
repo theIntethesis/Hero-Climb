@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://du73yk33och4t"]
+[gd_scene load_steps=3 format=3 uid="uid://du73yk33och4t"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/MainMenu.cs" id="1_5c6nr"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_y5klp"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="4_0pbvd"]
 
@@ -13,7 +12,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5c6nr")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
