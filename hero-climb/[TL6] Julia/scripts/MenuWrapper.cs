@@ -172,7 +172,7 @@ public partial class MenuWrapper : MenuOutput
 
         Node NewScene = InitialGameScene.Instantiate();
         Controller player = NewScene.GetNode("Player") as Controller;
-        Global.SetCharacterType(cType, player);
+        PlayerGlobal.SetCharacterType(cType, player);
  
         GetTree().Root.AddChild(NewScene);
         CurrentScene = NewScene;
