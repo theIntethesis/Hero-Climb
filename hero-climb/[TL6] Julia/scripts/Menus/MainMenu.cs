@@ -10,4 +10,5 @@ public partial class MainMenu : MenuNode
         MenuWrapper.Instance().Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
 		base.OnPop();
     }
+
 }

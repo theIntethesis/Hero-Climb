@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class MenuWrapper : MenuOutput
 {
     public static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>("res://[TL2] Taran/scenes/Main Level.tscn");
-    private static bool InGame = false; // set as soon EnterGame() is called
+    // private static bool InGame = false; // set as soon EnterGame() is called
     private static bool HasDied = false; // prevent popping the death screen
     private static Node CurrentScene;
 
@@ -44,7 +44,7 @@ public partial class MenuWrapper : MenuOutput
         [BlueprintKeys.PauseMenu] = new MenuNodeBlueprint
         (
             foregound: "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn", 
-            background: "/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn"
+            background: "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn"
         ),
         [BlueprintKeys.QuitConfirm] = new MenuNodeBlueprint
         (
@@ -99,15 +99,19 @@ public partial class MenuWrapper : MenuOutput
             base._Ready();
             
             // Dynamic Binding (`Superclass obj = new Subclass()`)
-            Output = new MenuStack();
+            Output = new MenuStack() 
+            { 
+                Name = "Output",
+                ProcessMode = ProcessModeEnum.Always 
+            }; 
 
-            Output.Name = "Output";
-            Output.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-            Output.ProcessMode = ProcessModeEnum.Always;
+            Output.SetAnchorsPreset(LayoutPreset.FullRect);
 
-            Menu = new CanvasLayer();
-            Menu.Name = "MenuCanvasLayer";
-            Menu.ProcessMode = ProcessModeEnum.Always;
+            Menu = new CanvasLayer() 
+            {
+                Name = "MenuCanvasLayer",
+                ProcessMode = ProcessModeEnum.Always
+            };
             
             Menu.AddChild(Output);
             
@@ -126,7 +130,7 @@ public partial class MenuWrapper : MenuOutput
 	{
 		if (Input.IsActionJustPressed("open_menu"))
 		{
-            if (GetTree().Paused || !InGame) 
+            if (GetTree().Paused || CurrentScene == null) 
             {
                 Pop();
             }
@@ -149,7 +153,6 @@ public partial class MenuWrapper : MenuOutput
         Push(Blueprints[BlueprintKeys.MainMenu]);
 
         GetTree().Paused = false;
-        InGame = false;
         HasDied = false;
 
         EmitSignal(SignalName.OnReturnToMainMenu);
@@ -165,7 +168,6 @@ public partial class MenuWrapper : MenuOutput
 		}
 
 		GetTree().Paused = false;
-		InGame = true;
 		HasDied = false;
 
         Output.Clear();
@@ -180,7 +182,7 @@ public partial class MenuWrapper : MenuOutput
 
 	public void QuitGame() 
 	{
-		if (InGame)
+		if (CurrentScene != null)
 		{
 			ReturnToMainMenu();
 		}
