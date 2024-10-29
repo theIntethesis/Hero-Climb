@@ -29,10 +29,8 @@ public partial class MenuStack : MenuComposite
                 RemoveChild(Child);
                 Child.QueueFree();
 
-
                 if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
-                {
-                    
+                {  
                     Last.Show();
                     Last.OnShow();
                 }     

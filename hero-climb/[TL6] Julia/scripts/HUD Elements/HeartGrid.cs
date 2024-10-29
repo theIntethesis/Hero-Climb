@@ -15,19 +15,38 @@ public partial class HeartGrid : MenuComposite
 	{
 		while (health > 0)
 		{
+			GD.Print(HeadIdx);
+
 			while (this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
 			{
 				this[HeadIdx].Health++;
 				health--;
 			}
 
-			HeadIdx++;
+			if (health > 0)
+			{
+				HeadIdx++;
+			}
 		}
 	}
 
 	public void Decrement(int value)
 	{
+		while (value > 0)
+		{
+			GD.Print(HeadIdx);
 
+			while (this[HeadIdx].Health > 0 && value > 0)
+			{
+				this[HeadIdx].Health--;
+				value--;
+			}
+
+			if (value > 0)
+			{
+				HeadIdx--;
+			}
+		}
 	}
 
 	public HeartGrid(MenuComposite parent, int maxhealth): base(parent, "HeartGrid")

@@ -94,7 +94,6 @@ public partial class DeathScreen : MenuStack
                 GameHandler.Instance().LoadMainMenu();
             };
         }
-
     }
 
     public DeathScreen(MenuComposite parent) : base(parent, "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn")
@@ -140,6 +139,11 @@ public partial class WinScreen : MenuLeaf
         ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
             Parent.Push(new CharacterCreator(Parent));
+        };
+        ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+        {
+            GameHandler.Instance().StopGame();
+            GameHandler.Instance().LoadMainMenu();
         };
     }
 }
