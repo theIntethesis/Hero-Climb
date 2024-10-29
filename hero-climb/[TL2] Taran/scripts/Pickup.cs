@@ -11,7 +11,7 @@ public partial class Pickup : Area2D
 	public int value = 0;
 	
 	public override void _Ready(){
-		Connect(SignalName.AreaEntered, Callable.From(PlayerDetected), (uint)GodotObject.ConnectFlags.OneShot);
+		
 	}
 	
 	public virtual void PlayerDetected(){

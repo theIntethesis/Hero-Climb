@@ -12,5 +12,7 @@ func add_new_level():
 	var new_level = preload("res://[TL2] Taran/scenes/base_level.tscn").instantiate()
 	add_child(new_level)
 	new_level.position = Vector2(0,current_level*-192)
+	if current_level%5==0:
+		new_level.add_shop()
 	new_level.build_level()
 	current_level += 1

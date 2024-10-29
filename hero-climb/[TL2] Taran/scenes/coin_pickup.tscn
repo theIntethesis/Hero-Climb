@@ -1,10 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://bagq1rj50rc26"]
+[gd_scene load_steps=21 format=3 uid="uid://bagq1rj50rc26"]
 
-[ext_resource type="Script" path="res://[TL2] Taran/scripts/Coin.cs" id="1_i14kf"]
 [ext_resource type="Texture2D" uid="uid://da3qufsnb4bgm" path="res://[TL2] Taran/assets/Coins.png" id="2_pvpc7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ucuii"]
-radius = 12.6491
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1adbx"]
 atlas = ExtResource("2_pvpc7")
@@ -150,15 +146,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="CoinPickup" type="Area2D"]
-collision_layer = 0
-collision_mask = 2
-script = ExtResource("1_i14kf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ucuii")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="CoinPickupSprite" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_hed6g")
 animation = &"CopperCoin"
 frame_progress = 0.70811
