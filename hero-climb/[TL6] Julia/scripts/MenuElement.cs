@@ -12,6 +12,10 @@ public partial class MenuElement : Control
 
     public virtual void OnPop() { }
 
+    public virtual void OnShow() { }
+
+    public virtual void OnHide() { }
+
     protected MenuElement(MenuComposite parent, string name)
     {
         ProcessMode = ProcessModeEnum.Always;

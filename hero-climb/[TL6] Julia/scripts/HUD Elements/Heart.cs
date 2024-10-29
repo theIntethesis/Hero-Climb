@@ -1,7 +1,8 @@
+using System.Text.RegularExpressions;
 using Godot;
 
 
-public partial class Heart : Control
+public partial class Heart : MenuElement
 {
 	private int state;
 
@@ -10,21 +11,30 @@ public partial class Heart : Control
 		get { return state; }
 		set { state = value; MatchState(); }
 	}
+	
+	private AnimatedSprite2D Sprite;
 
 	private void MatchState()
 	{
 		if (state == 2) 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("full");
+			Sprite.Play("full");
 		}
 		else if (state == 1) 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("half");
+			Sprite.Play("half");
 		}
 		else 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("empty");
+			Sprite.Play("empty");
 		}
 	}
 
+	public Heart(MenuComposite parent) : base(parent, "Heart")
+	{
+		Sprite = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn").Instantiate<AnimatedSprite2D>();
+		AddChild(Sprite);
+		MatchState();
+		CustomMinimumSize = new Vector2(16, 32);
+	}
 }

@@ -11,6 +11,7 @@ public partial class MenuStack : MenuComposite
         if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
         {
 		    Last.Hide();
+            Last.OnHide();
         }
         AddChild(Node);
         Node.Owner = this;
@@ -22,36 +23,42 @@ public partial class MenuStack : MenuComposite
         if (GetChildren().Last() is MenuElement Child)
         {
             Child.OnPop();
+
             if (Child.Poppable) 
             {
                 RemoveChild(Child);
                 Child.QueueFree();
-                if (BackgroundNode != null && GetChildren().Last() == BackgroundNode)
+
+
+                if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
                 {
-                    QueueFree();
-                }
-                else if (GetChildCount() > 0) 
-                {
-                    MenuElement Last = (MenuElement)GetChildren().Last();
+                    
                     Last.Show();
+                    Last.OnShow();
                 }     
             }  
+
+            if (GetChildren().Last() == BackgroundNode)
+            {
+                Parent.Pop();
+            }
+
             return Child;
         }
+        
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
     public MenuStack(MenuComposite parent, string BackgroundScene = "") : base(parent, "MenuStack", BackgroundScene)
-    {
-        Name = "MenuStack";         
+    {     
     }
 
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("open_menu"))
         {
-            Pop();
             GetViewport().SetInputAsHandled();
+            Pop();
         }        
     }
 }

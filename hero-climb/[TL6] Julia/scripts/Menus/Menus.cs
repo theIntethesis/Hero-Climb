@@ -45,8 +45,7 @@ public partial class PauseMenu : MenuStack
     {
         public override void OnPop()
         {
-            GetTree().Paused = false;
-            base.OnPop();
+            // GetTree().Paused = false;
         }
 
         public Leaf(MenuComposite parent) : base(parent, "PauseMenu", "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn")
@@ -133,6 +132,8 @@ public partial class SettingsMenu : MenuLeaf
 
 public partial class WinScreen : MenuLeaf
 {
+    override public bool Poppable { get { return false; }}
+
     public WinScreen(MenuComposite parent) : base(parent, "WinScreen", "res://[TL6] Julia/scenes/Menus/WinScreen.tscn")
     {
         ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 

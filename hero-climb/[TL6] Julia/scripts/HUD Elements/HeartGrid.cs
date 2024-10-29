@@ -1,60 +1,57 @@
 using Godot;
 using System;
+using System.Linq;
 
-public partial class HeartGrid : GridContainer
+public partial class HeartGrid : MenuComposite 
 {
-	PackedScene heart = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn");
-    
+	
+	GridContainer Hearts;
+
 	int MaxHealth = 0;
 
 	public void SetMaxHealth(int maxhealth)
 	{
-		MaxHealth = maxhealth;
-		
-		foreach (Node child in GetChildren())
+		for (int i = 0; i < maxhealth / 20; i++)
 		{
-			child.QueueFree();
-			RemoveChild(child);
-		}
-
-		PackedScene heart = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn");
-
-		for (int i = MaxHealth; i > 0; i -= 20)
-		{
-			AddChild(heart.Instantiate());
+			Push(new Heart(this));
 		}
 	}
 
-
 	void Reset()
 	{
-		for (int i = 0; i < GetChildCount(); i++)
-		{
-			GetChild<Heart>(i).State = 0;
-		}
+
 	}
 
 	public void Set(int health)
 	{
-		if (health < 0)
-		{
-			health = 0;
-		}
-		else if (health > MaxHealth)
-		{
-			health = MaxHealth;
-		}
-
-		Reset();
-		int NumHalfHearts = (health + health % 10) / 10;
-
-		for (int i = 0; i < GetChildCount(); i++)
-		{
-			while (NumHalfHearts > 0 && GetChild<Heart>(i).State < 2)
-			{
-				GetChild<Heart>(i).State++;
-				NumHalfHearts--;
-			}
-		}
+		
 	}
+
+	public HeartGrid(MenuComposite parent): base(parent, "HeartGrid")
+	{
+		Hearts = new GridContainer()
+		{
+			Columns = 5,
+			Name = "Container",
+			Scale = new Vector2(3, 3)
+		};
+
+
+		
+		AddChild(Hearts);
+	}
+
+    public override void Push(MenuElement node)
+    {
+        Hearts.AddChild(node);
+    }
+
+    public override MenuElement Pop()
+    {
+        MenuElement element = (MenuElement)Hearts.GetChildren().Last();
+
+		Hearts.GetChildren().Last().QueueFree();
+
+		return element;
+    }
 }

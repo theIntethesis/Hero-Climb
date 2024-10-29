@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 
 
@@ -9,16 +10,18 @@ public partial class MenuComposite : MenuElement
     
     public virtual void Push(MenuElement node) 
     {
-        GD.Print("Definitely pushing something to the screen");
+        AddChild(node);
     }
 
     public virtual MenuElement Pop()
     {
-        GD.Print("Definitely popping something from the screen");
-        return null;
+        MenuElement element = (MenuElement)GetChildren().Last();
+        
+        GetChildren().Last().QueueFree();
+        return element;
     }
 
-    protected MenuComposite(MenuComposite parent, string name, string BackgroundScene = "") : base(parent, name)
+    public MenuComposite(MenuComposite parent, string name, string BackgroundScene = "") : base(parent, name)
     {        
         SetAnchorsPreset(LayoutPreset.FullRect); 
         if (BackgroundScene != "")
