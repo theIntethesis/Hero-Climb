@@ -4,5 +4,3 @@
 
 [node name="EnemyController" type="Node2D"]
 script = ExtResource("1_pixh7")
-
-[node name="Marker2D" type="Marker2D" parent="."]

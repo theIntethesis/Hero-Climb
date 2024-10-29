@@ -3,78 +3,79 @@ using System;
 
 public abstract partial class BaseEnemy : CharacterBody2D
 {
-    [Export] public float Gravity = 10.0f;
-    [Export] public float Speed = 50.0f;
-    private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
-    private AnimatedSprite2D sprites;  // Reference to the sprite node
-    private Timer turnTimer;  // Timer for handling cooldown between direction changes
+	private float Gravity = 10.0f;
+	private float Speed = 50.0f;
+	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
+	private AnimatedSprite2D sprites;  // Reference to the sprite node
+	private Timer turnTimer;  // Timer for handling cooldown between direction changes
+	
+	private void OnBodyEntered(Node2D body)
+	{
+		Attack();
+	}
 
-    public override void _Ready()
-    {
-        GD.Print("BaseEnemy ready.");
 
-        // Get the sprite node
-        sprites = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	public override void _Ready()
+	{
+		GD.Print("BaseEnemy ready.");
 
-        // Initialize the timer
-        turnTimer = new Timer();
-        turnTimer.WaitTime = 0.25f; // Half a second buffer
-        turnTimer.OneShot = true;
-        turnTimer.Connect("timeout", new Callable(this, nameof(OnTurnTimeout)));
-        AddChild(turnTimer);
-    }
+		// Get the sprite node
+		sprites = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-    public virtual void SetupEnemy()
-    {
-        GD.Print("BaseEnemy setup.");
-    }
+		// Initialize the timer
+		turnTimer = new Timer();
+		turnTimer.WaitTime = 1.0f; //  One second buffer
+		turnTimer.OneShot = true;
+		turnTimer.Connect("timeout", new Callable(this, nameof(OnTurnTimeout)));
+		AddChild(turnTimer);
+	}
 
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Velocity;
+	public virtual void SetupEnemy()
+	{
+		GD.Print("BaseEnemy setup.");
+	}
 
-        // Apply gravity
-        if (!IsOnFloor())
-        {
-            velocity.Y += Gravity * (float)delta;
-        }
+	public override void _PhysicsProcess(double delta)
+	{
+		Vector2 velocity = Velocity;
 
-        // Move the enemy back and forth
-        velocity.X = direction.X * Speed;
+		// Apply gravity
+		if (!IsOnFloor())
+		{
+			velocity.Y += Gravity * (float)delta;
+		}
 
-        // Change direction on wall/ledge collision
-        if (IsOnWall() || !IsOnFloor())
-        {
-            if (turnTimer.IsStopped())
-            {
-                Gravity = -1.0f;
-                velocity.X = 0;  // Stop movement
-                direction.X *= -1;  // Reverse direction
-                FlipSprite();  // Flip the sprite
-                turnTimer.Start();  // Start the buffer timer
-            }
-        }
+		// Move the enemy back and forth
+		velocity.X = direction.X * Speed;
 
-        // Move the enemy
-        Velocity = velocity;
-        MoveAndSlide();
-    }
+		// Change direction on wall/ledge collision
+		if (IsOnWall() || !IsOnFloor())
+		{
+			if (turnTimer.IsStopped())
+			{
+				velocity.X = 0;  // Stop movement
+				direction.X *= -1;  // Reverse direction
+				FlipSprite();  // Flip the sprite
+				turnTimer.Start();  // Start the buffer timer
+			}
+		}
 
-    private void OnTurnTimeout()
-    {
-        Gravity = 10.0f;
-    }
+		// Move the enemy
+		Velocity = velocity;
+		MoveAndSlide();
+	}
 
-    private void FlipSprite()
-    {
-        sprites.FlipH = !sprites.FlipH;
-    }
+	private void OnTurnTimeout()
+	{
+		Gravity = 10.0f;
+	}
 
-    public virtual void OnAnimationFinished()
-    {
-    }
+	private void FlipSprite()
+	{
+		sprites.FlipH = !sprites.FlipH;
+	}
 
-    public virtual void Attack()
-    {
-    }
+	public virtual void Attack()
+	{
+	}
 }
