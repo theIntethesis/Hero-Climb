@@ -20,8 +20,8 @@ public partial class PlayerCamera : Camera2D
         hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
         hearts.Set(GetParent<Controller>().getHealth());
 
-        MenuWrapper.Instance().OnPause += this.OnPauseEventHandler;
-        MenuWrapper.Instance().OnResume += this.OnResumeEventHandler;
+        //MenuHead.Instance().OnPause += this.OnPauseEventHandler;
+        //MenuHead.Instance().OnResume += this.OnResumeEventHandler;
 
         /*
         ShopElement[] elements = new ShopElement[]
@@ -56,20 +56,20 @@ public partial class PlayerCamera : Camera2D
 
     public void OnPlayerDeath() 
     {
-        MenuWrapper.Instance().OnPlayerDeath();
+        //MenuHead.Instance().OnPlayerDeath();
         
         GetNode<CanvasLayer>("HUD").Visible = false;
     }
 
     public void OnGameWin()
     {
-        MenuWrapper.Instance().OnGameWin();
+        //MenuHead.Instance().OnGameWin();
     }
 
     public override void _ExitTree()
     {
-        MenuWrapper.Instance().OnPause -= this.OnPauseEventHandler;
-        MenuWrapper.Instance().OnResume -= this.OnResumeEventHandler;
+        //MenuHead.Instance().OnPause -= this.OnPauseEventHandler;
+        //MenuHead.Instance().OnResume -= this.OnResumeEventHandler;
     }
 
     public void OpenShop(ShopElement[] elements)
@@ -78,5 +78,16 @@ public partial class PlayerCamera : Camera2D
         GetNode<Node>("HUD/Margin").AddChild(shop);
         shop.Name = "Shop";
         shop.Init(elements);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("open_menu") && !GetTree().Paused)
+        {
+            MenuComposite pauseMenu = new PauseMenu(null);
+            GetNode<CanvasLayer>("HUD").AddChild(pauseMenu);
+            GetTree().Paused = true;
+        }
+        
     }
 }

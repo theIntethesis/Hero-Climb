@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class CharacterCreator : MenuNode
+public partial class CharacterCreator : MenuLeaf
 {
     private AnimatedSprite2D Fighter;
     private AnimatedSprite2D Wizard;
@@ -47,8 +47,7 @@ public partial class CharacterCreator : MenuNode
         RogueButton.Pressed += OnRougeButtonPressed;
         WizardButton.Pressed += OnWizardButtonPressed;
 
-        ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += OnStartButtonPressed;
-
+        
         base._Ready();
     }
 
@@ -81,14 +80,19 @@ public partial class CharacterCreator : MenuNode
         CurrentType = Controller.ClassType.Rogue;
     }
 
-    public void OnStartButtonPressed()
+    public CharacterCreator(MenuComposite parent) : base(parent, "CharacterCreator", "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
     {
-        MostRecentClass = CurrentType;
-        MenuWrapper.Instance().EnterGame(CurrentType);
-    }
+        ForegroundNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
+        {
+            Parent.Pop();
+        };
 
-    public CharacterCreator() : base("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
-    {
+        ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
+        {
+            MostRecentClass = CurrentType;
+            Parent.QueueFree();
+            GameHandler.Instance().StartGame(CurrentType);
+        };
 
     }
 }

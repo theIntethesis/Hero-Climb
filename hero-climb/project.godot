@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://[TL1] Ferris/scripts/Global.cs"
-MenuWrapper="*res://[TL6] Julia/scripts/MenuWrapper.cs"
+GameHandler="*res://[TL6] Julia/scripts/GameHandler.cs"
 
 [display]
 
