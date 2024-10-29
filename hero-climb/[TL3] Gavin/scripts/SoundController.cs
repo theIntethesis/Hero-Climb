@@ -4,28 +4,30 @@ using System.Collections.Generic;
 
 public partial class SoundController : Node
 {
-	private int volume;
+	private int volume = 80;
 	
-	public SoundController() {
-		setVolume(80);
-	}
-	
+	// Play a sound using the name
 	public void play(string sound) {
 		GetNode<AudioStreamPlayer>(sound).Play();
 	}
 	
+	// Print the names of each sound in this controller 
+	// and return the list.
 	public List<String> printSounds() {
 		List<String> sounds = new List<String>();
 		foreach (AudioStreamPlayer sound in GetChildren()) {
 			sounds.Add(sound.Name);
+			GD.Print(sound.Name);
 		}
 		return sounds;
 	}
 	
-	public bool changeVolume(int delta) {
-		return true;
+	// Change the volume by delta
+	public void changeVolume(int delta) {
+		setVolume(volume + delta);
 	}
 	
+	// Return the linear volume
 	public int getVolume() {
 		return volume;
 	}
@@ -38,6 +40,7 @@ public partial class SoundController : Node
 		return true;
 	}
 	
+	// Set the decibel volume of each sound child
 	private void setChildrenVolume(int vol) {
 		float db = volumeToDb(vol);
 		foreach (AudioStreamPlayer sound in GetChildren()) {
@@ -53,10 +56,5 @@ public partial class SoundController : Node
 	// Check that the volume is in range [0-100]
 	private bool checkVolume(int vol) {
 		return vol >= 0 && vol <= 100;
-	}
-	
-	// Load sounds, which are children nodes that play a single sound.
-	private bool loadSounds() {
-		return false;
 	}
 }
