@@ -9,8 +9,8 @@ public partial class SoundController : Node
 		setVolume(80);
 	}
 	
-	public bool play(string sound) {
-		return true;
+	public void play(string sound) {
+		GetNode<AudioStreamPlayer>(sound).Play();
 	}
 	
 	public string[] printSounds() {
