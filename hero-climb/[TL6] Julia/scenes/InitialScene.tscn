@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4b25pti4tt2h"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/InitialScene.cs" id="1_3vhy0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3vhy0")

@@ -13,3 +13,16 @@
    - Shop NPC, spend coins for benefits on the current climb.
 
 Here Ferris is making a change :)
+
+# Minimum Requirements
+- Windows 10, Linux, or Android
+- .NET 8.0 or newer
+- An OpenGL 3.0 capable GPU 
+- x86_64 on Windows or Linux, arm on Android
+
+# Download
+You can download the latest version [here](https://github.com/theIntethesis/Hero-Climb/releases). Unzip and move the containing file to a suitable location, and then run the appropriate executable. An installer may come in the future.
+
+# Building
+- Requires Godot Mono (C#/.NET) 4.3, .NET 8.0
+- Packaging (using the makefile in build/) requires a linux machine with zip and make.

@@ -9,14 +9,12 @@ public partial class CharacterCreator : MenuNode
     private Button WizardButton;
     private Button RogueButton;
 
-    private GlobalMenuHandler GlobalMenuHandler;
-
     public Controller.ClassType CurrentType;
+
+    static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
     public override void _Ready() 
     {
-        GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
-
         Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
         Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
         Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
@@ -28,7 +26,7 @@ public partial class CharacterCreator : MenuNode
         Fighter.Visible = false;
         Wizard.Visible = false;
 
-        switch (GlobalMenuHandler.MostRecentClass) 
+        switch (MostRecentClass) 
         {
             case Controller.ClassType.Fighter:
                 FighterButton.SetPressed(true);
@@ -43,6 +41,8 @@ public partial class CharacterCreator : MenuNode
                 OnRougeButtonPressed();
                 break;
         }
+
+        base._Ready();
     }
 
     public void OnFighterButtonPressed()
@@ -76,6 +76,7 @@ public partial class CharacterCreator : MenuNode
 
     public void OnStartButtonPressed()
     {
-        GlobalMenuHandler.EnterGame(CurrentType);
+        MostRecentClass = CurrentType;
+        MenuWrapper.Instance().EnterGame(CurrentType);
     }
 }

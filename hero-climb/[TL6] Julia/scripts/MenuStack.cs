@@ -1,16 +1,13 @@
 using System.Linq;
 using Godot;
 
+/* Subclass */
 [GlobalClass]
-public partial class MenuStack : Control
+public partial class MenuStack : MenuOutput
 {
-    public void Push(MenuNodeBlueprint blueprint)
+    // REMOVE 'override' and something different will happen
+    public override void Push(MenuNodeBlueprint blueprint)
     {
-        if (blueprint.OnPush != null) 
-        {
-            blueprint.OnPush();
-        }
-        
 		if (GetChildCount() > 0) {
             CanvasItem Last = (CanvasItem)GetChildren().Last();
 		    Last.Visible = false;
@@ -18,23 +15,18 @@ public partial class MenuStack : Control
 
         MenuNode node = blueprint.Instantiate();
         
-        if (node.Background != null)
+        node.OnPush();
+
+        if (node.BackgroundNode != null)
         {
-            node.BackgroundNode = node.Background.Instantiate();
-            // Since MenuNode clears this when it exits the tree, this will never be directly popped.
             AddChild(node.BackgroundNode);
         }
 
         AddChild(node);
         node.Owner = this;
-
-        if (blueprint.AfterPush != null)
-        {
-            blueprint.AfterPush();
-        }
     }
 
-    public void Pop()
+    public override void Pop()
     {
         if (GetChildCount() == 0) 
         {
@@ -43,11 +35,7 @@ public partial class MenuStack : Control
 
         if (GetChildren().Last() is MenuNode Child)
         {
-            if (Child.OnPop != null)
-            {
-                Child.OnPop();
-            }
-            
+            Child.OnPop();
 
             if (Child.Poppable) 
             {
@@ -59,18 +47,12 @@ public partial class MenuStack : Control
                     CanvasItem Last = (CanvasItem)GetChildren().Last();
                     Last.Visible = true;
                 }     
-
-                if (Child.AfterPop != null)
-                {
-                    Child.AfterPop();      
-                }
-                
-            }   
+            }      
         }
     }
 
     // Does not call OnPop or AfterPop
-    public void Clear()
+    public override void Clear()
     {   
         while (GetChildCount() > 0 && GetChildren().Last() is MenuNode Child)
         {
