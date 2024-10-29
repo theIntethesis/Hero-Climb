@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class SoundController : Node
 {
@@ -13,8 +14,12 @@ public partial class SoundController : Node
 		GetNode<AudioStreamPlayer>(sound).Play();
 	}
 	
-	public string[] printSounds() {
-		return null;
+	public List<String> printSounds() {
+		List<String> sounds = new List<String>();
+		foreach (AudioStreamPlayer sound in GetChildren()) {
+			sounds.Add(sound.Name);
+		}
+		return sounds;
 	}
 	
 	public bool changeVolume(int delta) {
