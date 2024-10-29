@@ -22,7 +22,7 @@ public partial class SoundController : Node
 	}
 	
 	public int getVolume() {
-		return 100;
+		return volume;
 	}
 	
 	// Set linear volume and then db volume of children
@@ -36,7 +36,7 @@ public partial class SoundController : Node
 	private void setChildrenVolume(int vol) {
 		float db = volumeToDb(vol);
 		foreach (AudioStreamPlayer sound in GetChildren()) {
-			sound.setVolumeDB(db);
+			sound.VolumeDb = db;
 		}
 	}
 	
