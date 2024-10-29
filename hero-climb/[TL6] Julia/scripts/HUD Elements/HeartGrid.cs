@@ -7,27 +7,30 @@ public partial class HeartGrid : MenuComposite
 	
 	GridContainer Hearts;
 
+	int HeadIdx;
+
 	int MaxHealth = 0;
 
-	public void SetMaxHealth(int maxhealth)
+	public void Increment(int health)
 	{
-		for (int i = 0; i < maxhealth / 20; i++)
+		while (health > 0)
 		{
-			Push(new Heart(this));
+			while (this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
+			{
+				this[HeadIdx].Health++;
+				health--;
+			}
+
+			HeadIdx++;
 		}
 	}
 
-	void Reset()
+	public void Decrement(int value)
 	{
 
 	}
 
-	public void Set(int health)
-	{
-		
-	}
-
-	public HeartGrid(MenuComposite parent): base(parent, "HeartGrid")
+	public HeartGrid(MenuComposite parent, int maxhealth): base(parent, "HeartGrid")
 	{
 		Hearts = new GridContainer()
 		{
@@ -36,14 +39,24 @@ public partial class HeartGrid : MenuComposite
 			Scale = new Vector2(3, 3)
 		};
 
-
-		
 		AddChild(Hearts);
+
+		MaxHealth = maxhealth;
+
+		for (int i = 0; i < MaxHealth / 20; i++)
+		{
+			Push(new Heart(this));
+		}
+
+		HeadIdx = 0;
 	}
 
     public override void Push(MenuElement node)
     {
-        Hearts.AddChild(node);
+        if (node is Heart heart)
+		{
+			Hearts.AddChild(heart);
+		}
     }
 
     public override MenuElement Pop()
@@ -53,5 +66,11 @@ public partial class HeartGrid : MenuComposite
 		Hearts.GetChildren().Last().QueueFree();
 
 		return element;
+    }
+	
+
+	public override Heart this[int index]
+    {
+        get => (Heart)Hearts.GetChildren()[index];
     }
 }

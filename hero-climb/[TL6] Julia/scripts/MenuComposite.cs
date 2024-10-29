@@ -31,5 +31,18 @@ public partial class MenuComposite : MenuElement
             AddChild(BackgroundNode);
         }  
     }
+
+    public virtual MenuElement this[int index]
+    {
+        get => (MenuElement)GetChildren()[index];
+    }
+
+    public virtual void Clear()
+    {
+        foreach (MenuElement Child in GetChildren())
+        {
+            Child.QueueFree();
+        }
+    }
 }
 

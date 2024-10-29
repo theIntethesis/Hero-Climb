@@ -9,33 +9,46 @@ public partial class PlayerCamera : Camera2D
 
     private PlayerCameraStack Stack;
 
+    int PlayerHealth;
+
+    int CurrentPlayerHealth 
+    {
+        get { return GetParent<Controller>().getHealth(); }
+    }
+
+    int MaxHealth
+    {
+        get { return GetParent<Controller>().MaxHealth; }
+    }
+
     public override void _Ready()
     {
-
         Interface = GetNode<CanvasLayer>("Interface");
 
-        Stack = new PlayerCameraStack();
+        Stack = new PlayerCameraStack(MaxHealth);
 
         Interface.AddChild(Stack);
 
         // Use the Character Global class instead!
-        if (!(GetParent() is Controller)) 
+        if (GetParent() is not Controller) 
         {
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        Stack.HUD.Hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
-        Stack.HUD.Hearts.Set(GetParent<Controller>().getHealth());
+        PlayerHealth = CurrentPlayerHealth;
+
+        Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
+        
     }
 
     public void InjuryEventHandler() 
     {
-        Stack.HUD.Hearts.Set(GetParent<Controller>().getHealth());
+        Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
+        PlayerHealth = CurrentPlayerHealth;
     }
 
     public void OnPlayerDeath() 
     {        
-        GetNode<CanvasLayer>("HUD").Visible = false;
         Stack.Push(new DeathScreen(Stack));
     }
 

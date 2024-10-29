@@ -4,23 +4,25 @@ using Godot;
 
 public partial class Heart : MenuElement
 {
-	private int state;
+	public const int MAX_HEART_HEALTH = 20;
 
-	public int State 
+	private int health;
+
+	public int Health
 	{
-		get { return state; }
-		set { state = value; MatchState(); }
+		get { return health; }
+		set { health = value; MatchState(); }
 	}
 	
 	private AnimatedSprite2D Sprite;
 
 	private void MatchState()
 	{
-		if (state == 2) 
+		if (health > 10) 
 		{
 			Sprite.Play("full");
 		}
-		else if (state == 1) 
+		else if (health > 0) 
 		{
 			Sprite.Play("half");
 		}

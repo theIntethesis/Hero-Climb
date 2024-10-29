@@ -43,11 +43,6 @@ public partial class PauseMenu : MenuStack
 {
     private partial class Leaf : MenuLeaf
     {
-        public override void OnPop()
-        {
-            // GetTree().Paused = false;
-        }
-
         public Leaf(MenuComposite parent) : base(parent, "PauseMenu", "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn")
         {
             ForegroundNode.GetNode<Button>("GridContainer/Resume").Pressed += () => 
@@ -91,9 +86,15 @@ public partial class DeathScreen : MenuStack
             ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
             {
                 Parent.Push(new CharacterCreator(Parent));
-                // Parent.Pop();
+            };
+
+            ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+            {
+                GameHandler.Instance().StopGame();
+                GameHandler.Instance().LoadMainMenu();
             };
         }
+
     }
 
     public DeathScreen(MenuComposite parent) : base(parent, "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn")
