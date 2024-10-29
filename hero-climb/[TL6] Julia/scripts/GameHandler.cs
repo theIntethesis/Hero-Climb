@@ -25,7 +25,7 @@ public partial class GameHandler : Node
 
         Controller Player = ActiveGame.GetNode<Controller>("Player");
         
-        Global.SetCharacterType(classType, Player);
+        PlayerGlobal.SetCharacterType(classType, Player);
 
         GetTree().Root.AddChild(ActiveGame);
     }
