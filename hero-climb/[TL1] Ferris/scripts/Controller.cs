@@ -1,9 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public partial class Controller : CharacterBody2D
 {
@@ -35,16 +32,16 @@ public partial class Controller : CharacterBody2D
 
 	[Signal]
 	public delegate void InjuryEventHandler();
+
 	public int MaxHealth = 100;
 	protected int Health = 100;
-	public int Money = 0;
-	protected InjuryEventHandler injury;
 
 	protected bool attackCooldown = false;
 	protected float attackCooldownFrames;
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
+	protected Node SoundController;
 	public int getHealth() { return Health; }
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
@@ -53,7 +50,7 @@ public partial class Controller : CharacterBody2D
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
-		if (!IsOnFloor() || Global.isClimbing)
+		if (!IsOnFloor() && !PlayerGlobal.isClimbing)
 		{
 			var grav = GetGravity();
 			velocity += grav * (float)delta;
@@ -61,33 +58,49 @@ public partial class Controller : CharacterBody2D
 		}
 
 		// Handle climb. Only works if Controller is a Rogue, as that's the only ClassType that collides with pipes.
-		if (Input.IsActionPressed("move_up") && Global.isClimbing)
+		if (Input.IsActionPressed("move_up") && PlayerGlobal.isClimbing)
 		{
 			velocity += new Vector2(0, -ClimbSpeed * (float)delta);
 			GD.Print(velocity);
 		}
-		else if (Input.IsActionPressed("move_down") && Global.isClimbing)
+		else if (Input.IsActionPressed("move_down") && PlayerGlobal.isClimbing)
 		{
 			velocity += new Vector2(0, ClimbSpeed * (float)delta);
 			GD.Print(velocity);
 		}
-		else if (Global.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up") && !Input.IsActionPressed("jump"))
+		else if (PlayerGlobal.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up") && !Input.IsActionPressed("jump"))
 		{
 			velocity = Vector2.Zero;
 		}
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
+		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
 		{
 			velocity.Y += JumpVelocity;
 		}
 
-		velocity.X = horizonalMovement().X;
+		if (Math.Abs(Velocity.X) > Math.Abs(Speed))
+		{
+			if (IsOnFloor())
+			{
+				velocity.X = (float)Mathf.MoveToward(Velocity.X, horizonalMovement().X, 50);
+			}
+			else
+				velocity.X = Velocity.X;
+		}
+		else
+			velocity.X = horizonalMovement().X;
 
-		Velocity = velocity;
+        if (Input.IsActionJustPressed("ability") && !IsMovementLocked)
+        {
+            velocity += Ability();
+			velocity = velocity.Clamp(new Vector2(-700, -980), new Vector2(700, 980));
+        }
+
+        Velocity = velocity;
 		MoveAndSlide();
 
-		if (!Global.isAttacking) Animation();
+		if (!PlayerGlobal.isAttacking) Animation();
 
 	}
 	public void PlayerDeath()
@@ -104,7 +117,8 @@ public partial class Controller : CharacterBody2D
 			/*var enemy = body as Enemy;
 			var damage = enemy.damage;*/
 			Health -= 20;
-			GD.Print($"Collided With Enemy: {body.Name}");
+			EmitSignal(SignalName.Injury);
+			//GD.Print($"Collided With Enemy: {body.Name}");
 			if(body.Name == "RisingLava")
 			{
 				Health = 0;
@@ -112,21 +126,19 @@ public partial class Controller : CharacterBody2D
 
 			if (Health <= 0)
 			{
-				GD.Print("Dead");
+				//GD.Print("Dead");
 				PlayerDeath();
 			}
 			else
 			{
-				GD.Print(Health);
 				//sprites.Play("Hurt");
-				EmitSignal(SignalName.Injury);
-				GD.Print("Injury");
+				// Add I-Frames here
 			}
 		}
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && (IsOnFloor() || Global.isClimbing) && !IsMovementLocked)
+		if (@event.IsActionPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
 		{
 			sprites.Offset = getSpriteOffset("jump");
 			sprites.Play("jump");
@@ -161,21 +173,19 @@ public partial class Controller : CharacterBody2D
 
 	protected void Animation()
 	{
-		if (Input.IsActionPressed("move_left") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		if (Input.IsActionPressed("move_left") && (IsOnFloor() || PlayerGlobal.isClimbing) && !PlayerGlobal.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = getSpriteOffset("move_left");
 			sprites.FlipH = true;
-			(GetNode("Attack Hitbox") as Area2D).Position = new Vector2(-15, 0);
 			sprites.Play("run");
 		}
-		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		else if (Input.IsActionPressed("move_right") && (IsOnFloor() || PlayerGlobal.isClimbing) && !PlayerGlobal.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = getSpriteOffset("move_right");
 			sprites.FlipH = false;
-			(GetNode("Attack Hitbox") as Area2D).Position = new Vector2(15, 0);
 			sprites.Play("run");
 		}
-		else if (!Input.IsAnythingPressed() && (IsOnFloor() || Global.isClimbing) && !Global.isAttacking && !IsMovementLocked)
+		else if (!Input.IsAnythingPressed() && (IsOnFloor() || PlayerGlobal.isClimbing) && !PlayerGlobal.isAttacking && !IsMovementLocked)
 		{
 			sprites.Offset = getSpriteOffset("idle");
 			sprites.Play("idle");
@@ -184,35 +194,54 @@ public partial class Controller : CharacterBody2D
 
 	public void _on_sprites_animation_finished()
 	{
-		if (Global.isAttacking)
+		if (PlayerGlobal.isAttacking)
 		{
 			attackCooldown = false;
-			Global.isAttacking = false;
-			(GetNode("Attack Hitbox/CollisionShape2D") as CollisionShape2D).Disabled = true;
+			PlayerGlobal.isAttacking = false;
+			GetNode("Attack").Free();
 			if (Input.IsActionPressed("attack"))
 				Attack();
 		}
 		if(Health <= 0)
 		{
 			EmitSignal(SignalName.IsDead);
-			GD.Print("IsDead Emitted");
+			//GD.Print("IsDead Emitted");
 		}
+		OnAnimationEnd();
 	}
 
 	public virtual void Attack()
 	{
-		EmitSignal(SignalName.Attacking);
+        attackCooldown = true;
+        PlayerGlobal.isAttacking = true;
+        sprites.Play("attack");
+        EmitSignal(SignalName.Attacking);
+        var AttackArea = new Area2D();
+        var AttackHitBox = new CollisionShape2D();
+        AttackHitBox.Shape = new CapsuleShape2D();
+        AttackArea.CollisionLayer = 0b_0011;
+        AttackArea.CollisionMask = 0b_0011;
+		AttackArea.Name = "Attack";
+
+        AttackArea.AddChild(AttackHitBox);
+        AddChild(AttackArea);
+        AttackArea.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
+    }
+	protected virtual Vector2 Ability()
+	{
+		return Vector2.Zero;
 	}
-	public virtual void Ability()
+	protected virtual void OnAnimationEnd()
 	{
 
 	}
 	public Controller()
 	{
-		injury += () => { EmitSignal(SignalName.Injury); };
+
 	}
 	public override void _Ready()
 	{
+		SoundController = GetNode("PlayerSoundController");
 		switch (Class)
 		{
 			case ClassType.Fighter:
