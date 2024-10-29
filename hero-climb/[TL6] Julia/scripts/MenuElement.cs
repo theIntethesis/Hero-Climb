@@ -8,16 +8,9 @@ public partial class MenuElement : Control
 
     protected MenuComposite Parent;
 
-    public virtual void OnPush()
-    {
+    public virtual void OnPush() { }
 
-    }
-
-    // called before its popped from the stack
-    public virtual void OnPop()
-    {
-        
-    }
+    public virtual void OnPop() { }
 
     protected MenuElement(MenuComposite parent, string name)
     {

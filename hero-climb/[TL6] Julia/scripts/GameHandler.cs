@@ -18,15 +18,10 @@ public partial class GameHandler : Node
     public void StartGame(Controller.ClassType classType)
     {
         StopGame();
-
         GetTree().Paused = false;
-
         ActiveGame = InitialGameScene.Instantiate();
-
         Controller Player = ActiveGame.GetNode<Controller>("Player");
-        
         PlayerGlobal.SetCharacterType(classType, Player);
-
         GetTree().Root.AddChild(ActiveGame);
     }
 

@@ -7,7 +7,6 @@ public partial class MenuComposite : MenuElement
 {
     protected Node BackgroundNode;
     
-
     public virtual void Push(MenuElement node) 
     {
         GD.Print("Definitely pushing something to the screen");
@@ -21,8 +20,7 @@ public partial class MenuComposite : MenuElement
 
     protected MenuComposite(MenuComposite parent, string name, string BackgroundScene = "") : base(parent, name)
     {        
-        SetAnchorsPreset(LayoutPreset.FullRect);
-
+        SetAnchorsPreset(LayoutPreset.FullRect); 
         if (BackgroundScene != "")
         {
             BackgroundNode = ResourceLoader.Load<PackedScene>(BackgroundScene).Instantiate<Control>();

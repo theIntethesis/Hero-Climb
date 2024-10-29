@@ -5,46 +5,39 @@ using Godot;
 /* Subclass */
 [GlobalClass]
 public partial class MenuStack : MenuComposite
-{
-    
-    // REMOVE 'override' and something different will happen
+{  
     public override void Push(MenuElement Node)
     {
-        if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) {
+        if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
+        {
 		    Last.Hide();
         }
-
-        
         AddChild(Node);
         Node.Owner = this;
         Node.OnPush();
     }
-
+    
     public override MenuElement Pop()
     {
         if (GetChildren().Last() is MenuElement Child)
         {
             Child.OnPop();
-
             if (Child.Poppable) 
             {
                 RemoveChild(Child);
                 Child.QueueFree();
-                
-
                 if (BackgroundNode != null && GetChildren().Last() == BackgroundNode)
                 {
                     QueueFree();
                 }
-                else if (GetChildCount() > 0) {
+                else if (GetChildCount() > 0) 
+                {
                     MenuElement Last = (MenuElement)GetChildren().Last();
                     Last.Show();
                 }     
             }  
-
             return Child;
         }
-
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
@@ -59,8 +52,6 @@ public partial class MenuStack : MenuComposite
         {
             Pop();
             GetViewport().SetInputAsHandled();
-        }
-        
-        //base._Input(@event);
+        }        
     }
 }
