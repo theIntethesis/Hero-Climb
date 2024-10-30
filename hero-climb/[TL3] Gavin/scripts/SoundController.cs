@@ -12,7 +12,7 @@ public partial class SoundController : Node
 {
 	private int volume = 100;	// Set to 100 because children are at 0db.
 	
-	// Play a sound using its name
+	// Play a sound using its name	
 	public virtual void play(string sound) {
 		foreach (AudioStreamPlayer child in GetChildren()) 
 		{

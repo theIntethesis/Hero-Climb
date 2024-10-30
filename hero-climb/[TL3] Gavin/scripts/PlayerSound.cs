@@ -16,6 +16,7 @@ public partial class PlayerSound : SoundController
 	{
 		setVolume(80);
 		SetHeroClass("Fighter");
+		play("Attack");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
