@@ -34,8 +34,8 @@ public partial class SoundController : Node
 	}
 	
 	// Modify the volume by delta
-	public void changeVolume(int delta) {
-		setVolume(volume+delta);
+	public bool changeVolume(int delta) {
+		return setVolume(volume+delta);
 	}
 	
 	// Get the linear volume
