@@ -8,13 +8,21 @@ using System.Threading.Tasks;
 public partial class Pickup : Area2D
 {
 	[Export]
-	public int value = 0;
+	public int pickup_value = 0;
+	
+	protected AnimatedSprite2D sprites;
+	
 	
 	public override void _Ready(){
-		
+		uint pickup_type = GD.Randi()%4;
+		if (pickup_type == 0){
+			SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/HealthPickup.cs"));
+		}else{
+			SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/CoinPickup.cs"));
+		}
 	}
 	
 	public virtual void PlayerDetected(){
-		
+		GD.Print(pickup_value);
 	}
 }

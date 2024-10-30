@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://d351p5u10nd5f"]
+[gd_scene load_steps=10 format=3 uid="uid://d351p5u10nd5f"]
 
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/main_level.gd" id="1_dljh1"]
 [ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_0wibc"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="3_gak21"]
 [ext_resource type="PackedScene" uid="uid://dd7f85xccmjqk" path="res://[TL2] Taran/scenes/tower pieces/bottom_floor.tscn" id="3_hcb7c"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="4_lx3yn"]
-[ext_resource type="Texture2D" uid="uid://cmpeda35plkj3" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
-[ext_resource type="Texture2D" uid="uid://bamtpekji4wsl" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
-[ext_resource type="Texture2D" uid="uid://c61cw4jc13vb1" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
+[ext_resource type="Texture2D" uid="uid://disdull45dgu8" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
+[ext_resource type="Texture2D" uid="uid://dyptpgmtodyfp" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
+[ext_resource type="Texture2D" uid="uid://bdyhedjyk81cs" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
+[ext_resource type="PackedScene" uid="uid://vmvoyenvqm7l" path="res://[TL2] Taran/scenes/pickup_item.tscn" id="9_kohwq"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_dljh1")
@@ -37,6 +38,15 @@ texture = ExtResource("6_h3mma")
 
 [node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/Sprite2D/Sprite2D2"]
 texture = ExtResource("7_hv7cs")
+
+[node name="PickupItem" parent="." instance=ExtResource("9_kohwq")]
+position = Vector2(82, -24)
+
+[node name="PickupItem2" parent="." instance=ExtResource("9_kohwq")]
+position = Vector2(130, -25)
+
+[node name="PickupItem3" parent="." instance=ExtResource("9_kohwq")]
+position = Vector2(174, -25)
 
 [connection signal="Injury" from="Player" to="Player/PlayerCamera" method="InjuryEventHandler"]
 [connection signal="IsDead" from="Player" to="Player/PlayerCamera" method="OnPlayerDeath"]
