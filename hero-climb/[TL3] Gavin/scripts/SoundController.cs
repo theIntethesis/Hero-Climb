@@ -1,20 +1,31 @@
+// SoundController.cs
+// Gavin Haynes
+// October 29, 2024
+// CS383 Software Engineering
+// Base class for sound controllers to handle playing sounds and changing volume.
+
 using Godot;
 using System;
 using System.Collections.Generic;
 
 public partial class SoundController : Node
 {
-	private int volume;
+	private int volume = 100;	// Set to 100 because children are at 0db.
 	
-	public SoundController() {
-		setVolume(80);
-	}
-	
+	// Play a sound using its name
 	public void play(string sound) {
-		GetNode<AudioStreamPlayer>(sound).Play();
+		foreach (AudioStreamPlayer child in GetChildren()) 
+		{
+			if (child.Name == sound)
+			{
+				child.Play();
+				break;
+			}
+		}
 	}
 	
-	public List<String> printSounds() {
+	// Get a list of all playable sounds
+	public List<String> listSounds() {
 		List<String> sounds = new List<String>();
 		foreach (AudioStreamPlayer sound in GetChildren()) {
 			sounds.Add(sound.Name);
@@ -22,10 +33,12 @@ public partial class SoundController : Node
 		return sounds;
 	}
 	
-	public bool changeVolume(int delta) {
-		return true;
+	// Modify the volume by delta
+	public void changeVolume(int delta) {
+		setVolume(volume+delta);
 	}
 	
+	// Get the linear volume
 	public int getVolume() {
 		return volume;
 	}
@@ -38,6 +51,7 @@ public partial class SoundController : Node
 		return true;
 	}
 	
+	// Set the volume of each sound child in decibles 
 	private void setChildrenVolume(int vol) {
 		float db = volumeToDb(vol);
 		foreach (AudioStreamPlayer sound in GetChildren()) {
@@ -47,16 +61,11 @@ public partial class SoundController : Node
 	
 	// Convert a linear volume to decibels.
 	private float volumeToDb(int vol) {
-		return (float)Math.Log10(vol) * 20.0f;
+		return Mathf.LinearToDb(vol/100);
 	}
 	
 	// Check that the volume is in range [0-100]
 	private bool checkVolume(int vol) {
 		return vol >= 0 && vol <= 100;
-	}
-	
-	// Load sounds, which are children nodes that play a single sound.
-	private bool loadSounds() {
-		return false;
 	}
 }
