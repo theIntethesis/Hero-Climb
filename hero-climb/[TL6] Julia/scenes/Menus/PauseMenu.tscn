@@ -1,8 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8l7kxydqmc6r"]
-
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/PauseMenu.cs" id="1_x7e3b"]
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="2_24kcd"]
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="5_5xhs7"]
+[gd_scene format=3 uid="uid://b8l7kxydqmc6r"]
 
 [node name="MainPause" type="Control"]
 layout_mode = 3
@@ -13,7 +9,6 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x7e3b")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -32,21 +27,15 @@ grow_vertical = 2
 [node name="Resume" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Resume"
-script = ExtResource("5_5xhs7")
 
 [node name="Restart" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Restart"
-script = ExtResource("2_24kcd")
 
 [node name="Settings" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Settings"
-script = ExtResource("2_24kcd")
-key = 5
 
 [node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Quit to Menu"
-script = ExtResource("5_5xhs7")
-QuitsGame = true
