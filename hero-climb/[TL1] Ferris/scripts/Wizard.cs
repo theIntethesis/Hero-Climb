@@ -13,7 +13,6 @@ public partial class Wizard : Controller
 	public Wizard()
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
-		attackCooldownFrames = 48f;
 		AddChild(sprites);
 		sprites.Position = Vector2.Zero;
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
@@ -85,8 +84,8 @@ public partial class Wizard : Controller
 				fireballsummon = false;
 				fireballCountdown = 30;
 			}
-        }
+		}
 
-        if (Health <= 0) PlayerDeath();
-    }
+		if (Health <= 0) PlayerDeath();
+	}
 }

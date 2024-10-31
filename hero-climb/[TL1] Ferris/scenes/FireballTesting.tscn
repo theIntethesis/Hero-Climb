@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cch0x8xeihauw"]
+
+[ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="1_w8nux"]
+[ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_rirsg"]
+[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_ngoy3"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("1_w8nux")]
+
+[node name="Player" parent="." instance=ExtResource("2_rirsg")]
+position = Vector2(2, -47)
+Class = 2
+
+[node name="PlayerCamera" parent="Player" instance=ExtResource("3_ngoy3")]

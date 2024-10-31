@@ -3,14 +3,18 @@ extends GutTest
 func test_level_gen():
 	var scene = preload("res://[TL2] Taran/scenes/base_level.tscn").instantiate()
 	add_child(scene)
-	for i in range(0, 100000):
-		if not scene.level_layout.has("Y"):
-			print(i)
-			assert_true(false)
-			scene.queue_free()
-			return
+	for i in range(0, 10000):
+		assert_true(scene.level_layout.has("Y"))
 		scene.randomize_level()
-	assert_true(true)
+	scene.queue_free()
+
+func test_add_shop():
+	var scene = preload("res://[TL2] Taran/scenes/base_level.tscn").instantiate()
+	add_child(scene)
+	for i in range(0, 100000):
+		scene.add_shop()
+		assert_true(scene.level_layout.has("S"))
+		scene.randomize_level()
 	scene.queue_free()
 
 func test_floor_works():

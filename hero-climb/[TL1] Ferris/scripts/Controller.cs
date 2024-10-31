@@ -14,7 +14,6 @@ public partial class Controller : CharacterBody2D
 	public bool AttackFollowMouse = true;
 	[Export]
 	public float ClimbSpeed = 100f;
-
 	public enum ClassType
 	{
 		Fighter, Rogue, Wizard
@@ -35,13 +34,13 @@ public partial class Controller : CharacterBody2D
 
 	public int MaxHealth = 100;
 	protected int Health = 100;
-
 	protected bool attackCooldown = false;
-	protected float attackCooldownFrames;
+
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
 	protected Node SoundController;
+	protected Timer iFrames = new();
 	public int getHealth() { return Health; }
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
@@ -91,13 +90,13 @@ public partial class Controller : CharacterBody2D
 		else
 			velocity.X = horizonalMovement().X;
 
-        if (Input.IsActionJustPressed("ability") && !IsMovementLocked)
-        {
-            velocity += Ability();
+		if (Input.IsActionJustPressed("ability") && !IsMovementLocked)
+		{
+			velocity += Ability();
 			velocity = velocity.Clamp(new Vector2(-700, -980), new Vector2(700, 980));
-        }
+		}
 
-        Velocity = velocity;
+		Velocity = velocity;
 		MoveAndSlide();
 
 		if (!PlayerGlobal.isAttacking) Animation();
@@ -109,32 +108,46 @@ public partial class Controller : CharacterBody2D
 		IsMovementLocked = true;
 		sprites.Play("death");
 	}
-	public void CollideWithEnemy(Area2D body)
+	public void CollideWithEnemy(Node2D b)
 	{
-		uint layer3 = body.CollisionLayer & 0b_0100;
-		if (layer3 > 0)
+		if (b.Name == "Player") return;
+
+		if(b is CharacterBody2D)
 		{
-			/*var enemy = body as Enemy;
-			var damage = enemy.damage;*/
-			Health -= 20;
-			EmitSignal(SignalName.Injury);
-			//GD.Print($"Collided With Enemy: {body.Name}");
-			if(body.Name == "RisingLava")
+			var body = b as CharacterBody2D;
+			uint layer3 = body.CollisionLayer & 0b_0100;
+			if (layer3 > 0)
+			{
+				GD.Print("Collided with Enemy!");
+				var enemy = body as BaseEnemy;
+				//GD.Print($"{Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+				Health -= enemy.Damage;
+				EmitSignal(SignalName.Injury);
+			}
+		}
+		else if (b.Name == "RisingLava")
+		{
+			if (b.Name == "RisingLava")
 			{
 				Health = 0;
 			}
-
-			if (Health <= 0)
-			{
-				//GD.Print("Dead");
-				PlayerDeath();
-			}
-			else
-			{
-				//sprites.Play("Hurt");
-				// Add I-Frames here
-			}
+			EmitSignal(SignalName.Injury);
 		}
+
+		if (Health <= 0)
+		{
+			PlayerDeath();
+		}
+		else
+		{
+			//sprites.Play("Hurt");
+			(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+			iFrames.Start();
+		}
+	}
+	private void stopIFrames()
+	{
+		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -153,7 +166,6 @@ public partial class Controller : CharacterBody2D
 	{
 		Vector2 velocity = new();
 		var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
-
 		if (inputStr != 0)
 		{
 			velocity.X = inputStr * Speed;
@@ -198,35 +210,35 @@ public partial class Controller : CharacterBody2D
 		{
 			attackCooldown = false;
 			PlayerGlobal.isAttacking = false;
-			GetNode("Attack").Free();
+			if(this is not Wizard) GetNode("Attack").Free();
 			if (Input.IsActionPressed("attack"))
 				Attack();
 		}
 		if(Health <= 0)
 		{
 			EmitSignal(SignalName.IsDead);
-			//GD.Print("IsDead Emitted");
 		}
 		OnAnimationEnd();
 	}
 
 	public virtual void Attack()
 	{
-        attackCooldown = true;
-        PlayerGlobal.isAttacking = true;
-        sprites.Play("attack");
-        EmitSignal(SignalName.Attacking);
-        var AttackArea = new Area2D();
-        var AttackHitBox = new CollisionShape2D();
-        AttackHitBox.Shape = new CapsuleShape2D();
-        AttackArea.CollisionLayer = 0b_0011;
-        AttackArea.CollisionMask = 0b_0011;
+		attackCooldown = true;
+		PlayerGlobal.isAttacking = true;
+		sprites.Play("attack");
+		EmitSignal(SignalName.Attacking);
+		var AttackArea = new Area2D();
+		var AttackHitBox = new CollisionShape2D();
+		AttackHitBox.Shape = new CapsuleShape2D();
+		AttackArea.CollisionLayer = 0b_0011;
+		AttackArea.CollisionMask = 0b_0011;
 		AttackArea.Name = "Attack";
+		AttackArea.SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Attack.cs"));
 
-        AttackArea.AddChild(AttackHitBox);
-        AddChild(AttackArea);
-        AttackArea.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
-    }
+		AttackArea.AddChild(AttackHitBox);
+		AddChild(AttackArea);
+		AttackArea.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
+	}
 	protected virtual Vector2 Ability()
 	{
 		return Vector2.Zero;
@@ -237,8 +249,12 @@ public partial class Controller : CharacterBody2D
 	}
 	public Controller()
 	{
-
-	}
+        iFrames.OneShot = true;
+        iFrames.WaitTime = 1.5;
+        iFrames.Autostart = true;
+        AddChild(iFrames);
+        iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
+    }
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");

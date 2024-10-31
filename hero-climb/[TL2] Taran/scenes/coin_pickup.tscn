@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://bagq1rj50rc26"]
+
+[ext_resource type="Texture2D" uid="uid://da3qufsnb4bgm" path="res://[TL2] Taran/assets/Coins.png" id="2_pvpc7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1adbx"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d5tc"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejlsi"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mt6f"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc4mp"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ja25"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmy43"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ep36"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3wpf"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvqew"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1gfx"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkent"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w5q2"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyunx"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(208, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffhjj"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(224, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cy4ia"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(240, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrila"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(256, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfbaa"]
+atlas = ExtResource("2_pvpc7")
+region = Rect2(272, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hed6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1adbx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d5tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejlsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mt6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ja25")
+}],
+"loop": true,
+"name": &"CopperCoin",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmy43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ep36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3wpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvqew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1gfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkent")
+}],
+"loop": true,
+"name": &"GoldCoin",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w5q2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyunx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffhjj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cy4ia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrila")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfbaa")
+}],
+"loop": true,
+"name": &"SilverCoin",
+"speed": 10.0
+}]
+
+[node name="CoinPickupSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_hed6g")
+animation = &"CopperCoin"
+frame_progress = 0.70811

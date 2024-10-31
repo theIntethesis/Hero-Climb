@@ -1,6 +1,8 @@
 extends Node2D
 class_name Level
 
+# Matrix representing how many of each piece type exist.
+# Must be manually updated.
 const PIECE_COUNTS = {"LY":2, "LC":2, "LN":2,
 					"CY":2, "CC":2, "CN":2,
 					"RY":2, "RC":2, "RN":2,}
@@ -25,6 +27,11 @@ func randomize_level():
 func verify_level():
 	if not level_layout.has("Y"):
 		level_layout[randi_range(0,3)] = "Y"
+
+func add_shop():
+	while not level_layout.has("S"):
+		level_layout[randi_range(0,3)] = "S"
+		verify_level()
 
 func build_level():
 	var level_place = 0
