@@ -2,13 +2,11 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Fireball : Area2D
+internal partial class Fireball : Attack
 
 {
 	[Export]
 	public float Speed = 150f;
-	[Export]
-	public float Damage = 20f;
 	[Export]
 	public float DeleteAfterNFrames = 300f;
 
@@ -36,7 +34,7 @@ public partial class Fireball : Area2D
 	}
 	public void setVelocity(bool followMouse = true, bool facingLeft = false)
 	{
-		// addLine();
+		addLine();
 		var angle = GetAngleTo(target.Position);
 		if (!followMouse)
 			angle = facingLeft ? (float)Math.PI : 0;
@@ -53,8 +51,15 @@ public partial class Fireball : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2) / 4;
-		// GD.PushWarning($"Target:\t{target.Position}");
+		var Player = GetParent().FindChild("Player") as Controller;
+		/*var Camera = Player.FindChild("PlayerCamera") as Camera2D;
+		var diff = Camera.GetScreenCenterPosition() - Player.Position;
+		GD.Print($"Camera Offset: \t{Camera.GetScreenCenterPosition()}");
+		GD.Print($"Player Offset: \t{Player.Position}");
+		GD.Print($"Difference: \t{diff}");*/
+		Damage = Player.Damage;
+		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
+		// GD.Print($"Target:\t{target.Position}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

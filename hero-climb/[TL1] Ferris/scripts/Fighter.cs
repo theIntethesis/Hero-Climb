@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 
 public partial class Fighter : Controller
 {
+	Timer bashTimer = new();
 	public Fighter()
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterSprite.tscn").Instantiate() as AnimatedSprite2D;
-		attackCooldownFrames = 48f;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
-	}
+        bashTimer.WaitTime = .5;
+        bashTimer.OneShot = true;
+        bashTimer.Connect(Timer.SignalName.Timeout, Callable.From(removeShieldBash));
+        AddChild(bashTimer);
+    }
 	protected override Vector2 getSpriteOffset(string clause)
 	{
 		Vector2 Vec = Vector2.Zero;
@@ -60,13 +64,19 @@ public partial class Fighter : Controller
 		ShieldBashHitbox.AddChild(ShieldBashShape);
 		AddChild(ShieldBashHitbox);
 		ShieldBashHitbox.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
-
+		bashTimer.Start();
 		return sprites.FlipH ? new Vector2(-700, 0) : new Vector2(700, 0);
 	}
+	private void removeShieldBash()
+	{
+		GD.Print("In Bash End");
+		GetNode("Shield Bash").Free();
+        /*var bash = FindChildren("Shield Bash");
+		GD.Print(bash);
+        foreach (var node in bash) node.QueueFree();*/
+    }
 	protected override void OnAnimationEnd()
 	{
 		GD.Print("In Animation End");
-		var bash = FindChildren("Shield Bash");
-        foreach (var node in bash) node.QueueFree();
     }
 }
