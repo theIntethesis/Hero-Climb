@@ -20,7 +20,7 @@ public partial class MenuStack : MenuComposite
             cast.Owner = this;
         }
         
-        node.OnPush();
+        node.OnPush(this);
     }
     
     public override MenuElement Pop()
@@ -52,7 +52,7 @@ public partial class MenuStack : MenuComposite
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
-    public MenuStack(IMenuComposite parent, string name, string BackgroundScene = "") : base(parent, name, BackgroundScene)
+    public MenuStack(string name, string BackgroundScene = "") : base(name, BackgroundScene)
     {     
     }
 

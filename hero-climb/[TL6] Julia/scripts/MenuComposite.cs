@@ -23,8 +23,8 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         if (node is Node cast)
         {
             AddChild(cast);
+            node.OnPush(this);
         }
-        
     }
 
     public virtual IMenuElement Pop()
@@ -34,12 +34,12 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         if (element is Node cast)
         {
             cast.QueueFree();
+            element.OnPop();
         }
-        
         return element;
     }
 
-    public MenuComposite(IMenuComposite parent, string name, string BackgroundScene = "") : base(parent, name)
+    public MenuComposite(string name, string BackgroundScene = "") : base(name)
     {        
         SetAnchorsPreset(LayoutPreset.FullRect); 
         if (BackgroundScene != "")
@@ -62,6 +62,19 @@ public partial class MenuComposite : MenuElement, IMenuComposite
             if (Child.Name == name)
             {
                 return Child;
+            }
+        }
+        
+        return null;
+    }
+
+    public virtual T Child<T>(string name) where T : MenuElement
+    {
+        foreach (MenuElement Child in GetChildren())
+        {
+            if (Child.Name == name)
+            {
+                return (T)Child;
             }
         }
         

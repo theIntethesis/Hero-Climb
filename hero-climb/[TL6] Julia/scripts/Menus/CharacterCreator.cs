@@ -82,7 +82,7 @@ public partial class CharacterCreator : MenuLeaf
         CurrentType = Controller.ClassType.Rogue;
     }
 
-    public CharacterCreator(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
+    public CharacterCreator() : base(NAME, "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
     {
         ForegroundNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
         {

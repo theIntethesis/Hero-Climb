@@ -5,7 +5,7 @@ public interface IMenuElement
 {
     public abstract IMenuComposite Parent();
 
-    public abstract void OnPush();
+    public abstract void OnPush(IMenuComposite parent);
 
     public abstract void OnPop();
 
@@ -21,18 +21,24 @@ public partial class MenuElement : Control, IMenuElement
 
     private IMenuComposite _Parent;
 
-    public virtual void OnPush() { }
+    public virtual void OnPush(IMenuComposite parent) 
+    { 
+        _Parent = parent;
+    }
 
-    public virtual void OnPop() { }
+    public virtual void OnPop() 
+    { 
+        _Parent = null;
+    }
 
     public virtual void OnShow() { }
 
     public virtual void OnHide() { }
 
-    protected MenuElement(IMenuComposite parent, string name)
+    protected MenuElement(string name)
     {
         ProcessMode = ProcessModeEnum.Always;
-        _Parent = parent;
+
         Name = name;
     }
 
@@ -40,4 +46,6 @@ public partial class MenuElement : Control, IMenuElement
     {
         return _Parent;
     }
+
+
 }

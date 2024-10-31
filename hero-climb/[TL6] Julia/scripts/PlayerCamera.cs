@@ -20,7 +20,7 @@ public partial class PlayerCamera : Camera2D
     {
         Interface = GetNode<CanvasLayer>("Interface");
 
-        Stack = new PlayerCameraStack(null, PlayerGlobal.MaxHealth);
+        Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
 
         Interface.AddChild(Stack);
 
@@ -51,16 +51,26 @@ public partial class PlayerCamera : Camera2D
 
     public void OnPlayerDeath() 
     {        
-        Stack.Push(new DeathScreen(Stack));
+        Stack.Push(new DeathScreen());
     }
 
     public void OnGameWin()
     {
-        Stack.Push(new WinScreen(Stack));
+        Stack.Push(new WinScreen());
     }
 
     public void OpenShop()
     {
-        Stack.OpenShop();
+        GameShop.Element[] elements = new GameShop.Element[]
+        {
+            new GameShop.Element("Element.0"),
+            new GameShop.Element("Element.1"),
+            new GameShop.Element("Element.2"),
+            new GameShop.Element("Element.3"),
+            new GameShop.Element("Element.4"),
+            new GameShop.Element("Element.5")
+        };
+        Stack.OpenShop(elements);
+        
     }
 }   

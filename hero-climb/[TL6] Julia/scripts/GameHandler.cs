@@ -41,7 +41,7 @@ public partial class GameHandler : Node
 
     public void LoadMainMenu()
     {
-        MenuComposite mainMenu = new MainMenu(null);
+        MenuComposite mainMenu = new MainMenu();
 		GetTree().Root.CallDeferred("add_child", mainMenu);
     }
 }

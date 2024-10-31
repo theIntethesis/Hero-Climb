@@ -6,7 +6,7 @@ public partial class MobileControls : MenuLeaf
 {
     public const string NAME = "MobileControls";
 
-    public MobileControls(MenuComposite parent): base(parent, NAME, "res://[TL6] Julia/scenes/HUD Elements/MobileControls.tscn")
+    public MobileControls(): base(NAME, "res://[TL6] Julia/scenes/HUD Elements/MobileControls.tscn")
     {
 
     }
@@ -20,10 +20,10 @@ public partial class GameHUD : MenuComposite
 
     public MobileControls Controls = null;
 
-    public GameHUD(MenuComposite parent, int maxhealth) : base(parent, NAME)
+    public GameHUD(int maxhealth) : base(NAME)
     {
-        Hearts = new HeartGrid(this, maxhealth);
-        Controls = new MobileControls(this);
+        Hearts = new HeartGrid(maxhealth);
+        Controls = new MobileControls();
 
         Push(Hearts);
         
@@ -47,50 +47,7 @@ public partial class GameHUD : MenuComposite
 
     public override void OnPop()
     {
-        Parent().Push(new PauseMenu(Parent()));
-    }
-}
-
-public partial class GameShop : MenuComposite
-{
-    public const string NAME = "GameShop";
-
-    public partial class Element : MenuLeaf
-    {
-        public Element(MenuComposite parent, string name) : base(parent, name, "res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn")
-        {
-            
-        }
-    }
-
-    public GameShop(MenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/HUD Elements/Shop.tscn")
-    {
-    
-    }
-
-    public override void Push(IMenuElement node)
-    {
-        if (node is Node cast)
-        {
-            GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
-        }
-    }
-
-    public override MenuElement Pop()
-    {
-        MenuElement last = (MenuElement)GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
-        last.QueueFree();
-
-        return last;
-    }
-
-    public override void _Ready()
-    {
-        BackgroundNode.GetNode<Button>("Control/Close").Pressed += () => 
-        {
-            GD.Print("here");
-            QueueFree();
-        };
+        Parent().Push(new PauseMenu());
     }
 }
 
@@ -102,18 +59,25 @@ public partial class PlayerCameraStack : MenuStack
     public GameHUD HUD;
 
 
-    public PlayerCameraStack(MenuComposite parent, int maxhealth) : base(parent, NAME)
+    public PlayerCameraStack(int maxhealth) : base(NAME)
     {
         
-        HUD = new GameHUD(this, maxhealth);
+        HUD = new GameHUD(maxhealth);
         Push(HUD);
     }
 
-    public void OpenShop()
+    public void OpenShop(GameShop.Element[] elements)
     {
         if (HUD.Child(GameShop.NAME) == null)
         {
-            HUD.Push(new GameShop(HUD));
+            GameShop shop = new GameShop();
+            
+            HUD.Push(shop);
+
+            foreach (GameShop.Element element in elements)
+            {
+                shop.Push(element);
+            }
         }
     }
 
