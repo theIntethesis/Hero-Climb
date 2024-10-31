@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://bti28delkicbq"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/zombie.gd" id="1_uwk7b"]
-[ext_resource type="Texture2D" uid="uid://c47x5bxm3jg85" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
+[ext_resource type="Texture2D" uid="uid://di7glf2xgtigv" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j8b2"]
 size = Vector2(24, 30)
@@ -133,8 +133,10 @@ script = ExtResource("1_uwk7b")
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_6j8b2")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_xo5jw")
 animation = &"attack"
 

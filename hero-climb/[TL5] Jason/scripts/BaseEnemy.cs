@@ -3,9 +3,10 @@ using System;
 
 public abstract partial class BaseEnemy : CharacterBody2D
 {
-	[Export] public int health = 100;
+	[Export] public int Damage = 20;
 	private float Gravity = 10.0f;
 	private float Speed = 50.0f;
+	private int Health = 100;
 	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes
@@ -16,6 +17,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public override void _Ready()
 	{
 		GD.Print("BaseEnemy ready.");
+
 
 		// Get the sprite node
 		sprites = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -32,6 +34,22 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		GD.Print("BaseEnemy setup.");
 	}
 
+//	public override void _Process(double delta)
+//	{
+//		if (IsDetectingPlayer){
+//			if (GlobalPosition.X - playerPosition.X < 0){
+//				direction = new Vector2(1,0);
+//				FlipSprite();
+//				GD.Print("Walking right towards player");
+//			} else {
+//				direction = new Vector2(-1,0);
+//				FlipSprite();
+//				GD.Print("Walking left towards player");
+//			}
+//		} else {
+//			GD.Print("Not Detecting Player");
+//		}
+//	}
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -42,15 +60,6 @@ public abstract partial class BaseEnemy : CharacterBody2D
 			velocity.Y += Gravity * (float)delta;
 		}
 
-		if (IsDetectingPlayer){
-			if (GlobalPosition.X - playerPosition.X < 0){
-				direction = new Vector2(1,0);
-				GD.Print("Walking right towards player");
-			} else {
-				direction = new Vector2(-1,0);
-				GD.Print("Walking left towards player");
-			}
-		}
 
 		// Move the enemy back and forth
 		velocity.X = direction.X * Speed;
@@ -87,7 +96,15 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		if (body is Controller){
 			IsDetectingPlayer = true;
 			playerPosition = body.GlobalPosition;
-			GD.Print("Setting new player position");
+			GD.Print("Player Detected");
+		}
+	}
+
+	private void OnDetectorBodyExited(Node2D body)
+	{
+		if (body is Controller){
+			IsDetectingPlayer = false;
+			GD.Print("Player Exited Range");
 		}
 	}
 
