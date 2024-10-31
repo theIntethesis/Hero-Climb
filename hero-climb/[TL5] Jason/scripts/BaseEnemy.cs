@@ -4,9 +4,9 @@ using System;
 public abstract partial class BaseEnemy : CharacterBody2D
 {
 	[Export] public int Damage = 20;
-	private float Gravity = 10.0f;
-	private float Speed = 50.0f;
-	private int Health = 100;
+	public float Gravity = 10.0f;
+	public float Speed = 50.0f;
+	public int Health = 100;
 	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes

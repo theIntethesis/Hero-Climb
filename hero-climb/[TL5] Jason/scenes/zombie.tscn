@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://ckmahlg5ea5bj"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Zombie.cs" id="1_so3sa"]
-[ext_resource type="Texture2D" uid="uid://di7glf2xgtigv" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
+[ext_resource type="Texture2D" uid="uid://c47x5bxm3jg85" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 30)

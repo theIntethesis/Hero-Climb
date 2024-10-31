@@ -5,8 +5,11 @@ public partial class Zombie : BaseEnemy
 {
 	public override void SetupEnemy()
 	{
-		base.SetupEnemy();
+		base.Damage = 25;
+		base.Health = 100;
+		base.Speed = 25;
 		GD.Print("Zombie setup complete.");
+
 	}
 
 	public override void Attack()
