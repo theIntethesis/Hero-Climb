@@ -121,7 +121,7 @@ public partial class Controller : CharacterBody2D
 				GD.Print("Collided with Enemy!");
 				var enemy = body as BaseEnemy;
 				//GD.Print($"{Health} - {enemy.Damage} = {Health -= enemy.Damage}");
-				Health -= enemy.Damage;
+				// Health -= enemy.Damage;
 				EmitSignal(SignalName.Injury);
 			}
 		}
@@ -148,6 +148,7 @@ public partial class Controller : CharacterBody2D
 	private void stopIFrames()
 	{
 		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+	
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -251,7 +252,7 @@ public partial class Controller : CharacterBody2D
 	{
         iFrames.OneShot = true;
         iFrames.WaitTime = 1.5;
-        iFrames.Autostart = true;
+        // iFrames.Autostart = true;
         AddChild(iFrames);
         iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
     }
@@ -271,6 +272,7 @@ public partial class Controller : CharacterBody2D
 				break;
 		}
 	}
+
 	public override void _Process(double delta)
 	{
 		if (Health <= 0) PlayerDeath();
