@@ -4,7 +4,7 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
-    public HeartGrid hearts;
+	public HeartGrid hearts;
 
     public override void _Ready()
     {
@@ -39,20 +39,20 @@ public partial class PlayerCamera : Camera2D
         // OpenShop(elements);
     }
 
-    public void OnPauseEventHandler()
-    {
-        GetNode<CanvasLayer>("HUD").Visible = false;
-    }
+	public void OnPauseEventHandler()
+	{
+		GetNode<CanvasLayer>("HUD").Visible = false;
+	}
 
-    public void OnResumeEventHandler()
-    {
-        GetNode<CanvasLayer>("HUD").Visible = true;
-    }
+	public void OnResumeEventHandler()
+	{
+		GetNode<CanvasLayer>("HUD").Visible = true;
+	}
 
-    public void InjuryEventHandler() 
-    {
-        hearts.Set(GetParent<Controller>().getHealth());
-    }
+	public void InjuryEventHandler() 
+	{
+		hearts.Set(GetParent<Controller>().getHealth());
+	}
 
     public void OnPlayerDeath() 
     {

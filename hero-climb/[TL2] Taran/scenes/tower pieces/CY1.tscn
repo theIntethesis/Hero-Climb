@@ -14,3 +14,22 @@ tile_map_data = PackedByteArray("AAAOAP//AAALAAcAAAAOAP7/AAAJAAEAAAAOAP3/AAAMAAY
 tile_set = ExtResource("2_u2b2b")
 
 [node name="Center" parent="." instance=ExtResource("2_o7xj3")]
+
+[node name="CollectibleLocations" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="CollectibleLocations"]
+position = Vector2(229, -125)
+
+[node name="Marker2D2" type="Marker2D" parent="CollectibleLocations"]
+position = Vector2(148, -129)
+
+[node name="Marker2D3" type="Marker2D" parent="CollectibleLocations"]
+position = Vector2(71, -129)
+
+[node name="EnemyLocations" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="EnemyLocations"]
+position = Vector2(-161, -21)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemyLocations"]
+position = Vector2(152, -24)

@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://ih7xpcoscwf"]
+
+[ext_resource type="Texture2D" uid="uid://blhejpyhkvxlq" path="res://[TL2] Taran/assets/Heart Pickup.png" id="2_6wkeu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkpyk"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwox8"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bf5s4"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_earc3"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_runmm"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13n1n"]
+atlas = ExtResource("2_6wkeu")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u7rct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkpyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwox8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf5s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_earc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_runmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13n1n")
+}],
+"loop": true,
+"name": &"HealthPickup",
+"speed": 10.0
+}]
+
+[node name="HealthPickupSprite" type="AnimatedSprite2D"]
+visible = false
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_u7rct")
+animation = &"HealthPickup"
+frame_progress = 0.131336
