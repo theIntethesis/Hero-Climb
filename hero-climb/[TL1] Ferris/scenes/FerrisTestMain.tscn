@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="1_3rf27"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_uw4pv"]
+[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_4ooue"]
 [ext_resource type="PackedScene" uid="uid://nahvss2rb0ky" path="res://[TL1] Ferris/scenes/tower_tileset.tscn" id="3_v8vpi"]
-[ext_resource type="PackedScene" uid="uid://bti28delkicbq" path="res://[TL5] Jason/scenes/zombie.tscn" id="4_w1g58"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_intdh"]
+[ext_resource type="PackedScene" uid="uid://ckmahlg5ea5bj" path="res://[TL5] Jason/scenes/zombie.tscn" id="4_vm04u"]
 
 [node name="Node" type="Node"]
 
@@ -13,20 +12,26 @@
 
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
 unique_name_in_owner = true
-position = Vector2(63, -87)
+position = Vector2(37, -30)
+Class = 0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(5, 5)
-
-[node name="Area2D" type="StaticBody2D" parent="."]
-position = Vector2(61, -29)
-scale = Vector2(0.832504, 0.832504)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_intdh")
+[node name="PlayerCamera" parent="Player" instance=ExtResource("3_4ooue")]
 
 [node name="TowerTileset" parent="." instance=ExtResource("3_v8vpi")]
-position = Vector2(9, -21)
 
-[node name="Zombie" parent="." instance=ExtResource("4_w1g58")]
-position = Vector2(-135, -57)
+[node name="Zombie" parent="." instance=ExtResource("4_vm04u")]
+position = Vector2(144, -42)
+
+[connection signal="body_entered" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@98608" to="TowerTileset/@Area2D@98608" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@98608" to="TowerTileset/@Area2D@98608" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@98609" to="TowerTileset/@Area2D@98609" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@98609" to="TowerTileset/@Area2D@98609" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@98610" to="TowerTileset/@Area2D@98610" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@98610" to="TowerTileset/@Area2D@98610" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@98611" to="TowerTileset/@Area2D@98611" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@98611" to="TowerTileset/@Area2D@98611" method="OnBodyExited"]
+[connection signal="area_entered" from="TowerTileset/Coin" to="TowerTileset/Coin" method="OnAreaEntered"]
+[connection signal="area_entered" from="TowerTileset/@Area2D@98613" to="TowerTileset/@Area2D@98613" method="OnAreaEntered"]
+[connection signal="area_entered" from="TowerTileset/@Area2D@98614" to="TowerTileset/@Area2D@98614" method="OnAreaEntered"]

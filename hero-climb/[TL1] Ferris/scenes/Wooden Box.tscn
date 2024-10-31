@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b02t6gf5ac7hv"]
+[gd_scene load_steps=10 format=3 uid="uid://b02t6gf5ac7hv"]
 
-[ext_resource type="Texture2D" uid="uid://b2b274wawrxvw" path="res://[TL1] Ferris/assets/Wood/box/1.png" id="1_581ex"]
-[ext_resource type="Texture2D" uid="uid://c3n5jcxfstu27" path="res://[TL1] Ferris/assets/Wood/box/2.png" id="2_h10tp"]
-[ext_resource type="Texture2D" uid="uid://dk1fs0yf6mg2n" path="res://[TL1] Ferris/assets/Wood/box/3.png" id="3_nla15"]
-[ext_resource type="Texture2D" uid="uid://dflvci377rfgc" path="res://[TL1] Ferris/assets/Wood/box/4.png" id="4_oxyqu"]
-[ext_resource type="Texture2D" uid="uid://bmwegkai33qji" path="res://[TL1] Ferris/assets/Wood/box/5.png" id="5_1kdns"]
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/BreakableBox.cs" id="1_2xbaa"]
+[ext_resource type="Texture2D" uid="uid://ciowc5bpksm16" path="res://[TL1] Ferris/assets/Wood/box/1.png" id="1_581ex"]
+[ext_resource type="Texture2D" uid="uid://67sxgoacs415" path="res://[TL1] Ferris/assets/Wood/box/2.png" id="2_h10tp"]
+[ext_resource type="Texture2D" uid="uid://dn27a8awvsu26" path="res://[TL1] Ferris/assets/Wood/box/3.png" id="3_nla15"]
+[ext_resource type="Texture2D" uid="uid://duf2b60bp8gfm" path="res://[TL1] Ferris/assets/Wood/box/4.png" id="4_oxyqu"]
+[ext_resource type="Texture2D" uid="uid://cx51r73alls2d" path="res://[TL1] Ferris/assets/Wood/box/5.png" id="5_1kdns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34nvw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t0y6q"]
 animations = [{
@@ -32,24 +35,33 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_581ex")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55hk8"]
 
-[node name="Box" type="Area2D"]
+[node name="Box" type="StaticBody2D"]
+scale = Vector2(0.8, 0.8)
+script = ExtResource("1_2xbaa")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_34nvw")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 2
-scale = Vector2(0.043, 0.043)
+scale = Vector2(0.054, 0.054)
 sprite_frames = SubResource("SpriteFrames_t0y6q")
-animation = &"break"
-frame = 4
-frame_progress = 1.0
+autoplay = "default"
 offset = Vector2(0, -71)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(0.8, 0.8)
+[node name="BreakCollider" type="Area2D" parent="."]
+scale = Vector2(0.9, 0.9)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakCollider"]
 shape = SubResource("RectangleShape2D_55hk8")
+
+[connection signal="area_entered" from="BreakCollider" to="." method="OnBashEntered"]

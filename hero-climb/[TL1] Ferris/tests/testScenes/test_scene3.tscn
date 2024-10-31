@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqlgqhaa6euwh"]
+
+[ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="2_4b4rw"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" parent="." instance=ExtResource("2_4b4rw")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -31)
+zoom = Vector2(7, 7)

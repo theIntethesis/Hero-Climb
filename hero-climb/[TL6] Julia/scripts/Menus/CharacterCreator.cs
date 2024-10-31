@@ -1,6 +1,7 @@
+using System;
 using Godot;
 
-public partial class CharacterCreator : MenuNode
+public partial class CharacterCreator : MenuLeaf
 {
     private AnimatedSprite2D Fighter;
     private AnimatedSprite2D Wizard;
@@ -9,26 +10,24 @@ public partial class CharacterCreator : MenuNode
     private Button WizardButton;
     private Button RogueButton;
 
-    private GlobalMenuHandler GlobalMenuHandler;
-
     public Controller.ClassType CurrentType;
+
+    static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
     public override void _Ready() 
     {
-        GlobalMenuHandler = GlobalMenuHandler.GetSingleton(this);
-
-        Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-        Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-        Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
-        WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
-        FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
-        RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
+        Wizard = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
+        Fighter = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
+        Rogue = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+        WizardButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
+        FighterButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
+        RogueButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
         Rogue.Visible = false;
         Fighter.Visible = false;
         Wizard.Visible = false;
 
-        switch (GlobalMenuHandler.MostRecentClass) 
+        switch (MostRecentClass) 
         {
             case Controller.ClassType.Fighter:
                 FighterButton.SetPressed(true);
@@ -43,6 +42,13 @@ public partial class CharacterCreator : MenuNode
                 OnRougeButtonPressed();
                 break;
         }
+
+        FighterButton.Pressed += OnFighterButtonPressed;
+        RogueButton.Pressed += OnRougeButtonPressed;
+        WizardButton.Pressed += OnWizardButtonPressed;
+
+        
+        base._Ready();
     }
 
     public void OnFighterButtonPressed()
@@ -74,8 +80,19 @@ public partial class CharacterCreator : MenuNode
         CurrentType = Controller.ClassType.Rogue;
     }
 
-    public void OnStartButtonPressed()
+    public CharacterCreator(MenuComposite parent) : base(parent, "CharacterCreator", "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
     {
-        GlobalMenuHandler.EnterGame(CurrentType);
+        ForegroundNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
+        {
+            Parent.Pop();
+        };
+
+        ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
+        {
+            MostRecentClass = CurrentType;
+            Parent.QueueFree();
+            GameHandler.Instance().StartGame(CurrentType);
+        };
+
     }
 }

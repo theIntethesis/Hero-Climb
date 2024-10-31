@@ -1,6 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://7muxnjdf3dsv"]
+[gd_scene load_steps=27 format=3 uid="uid://7muxnjdf3dsv"]
 
-[ext_resource type="Texture2D" uid="uid://c1j2uedg36fau" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
+[ext_resource type="Texture2D" uid="uid://6edd0wlk1kqv" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e24la"]
 atlas = ExtResource("1_0wk0x")
@@ -33,6 +33,22 @@ region = Rect2(240, 15, 40, 25)
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnkwo"]
 atlas = ExtResource("1_0wk0x")
 region = Rect2(280, 15, 40, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2t6m"]
+atlas = ExtResource("1_0wk0x")
+region = Rect2(480, 15, 40, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euqot"]
+atlas = ExtResource("1_0wk0x")
+region = Rect2(520, 15, 40, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gohhp"]
+atlas = ExtResource("1_0wk0x")
+region = Rect2(560, 15, 40, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5uqi"]
+atlas = ExtResource("1_0wk0x")
+region = Rect2(600, 15, 40, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4t71"]
 atlas = ExtResource("1_0wk0x")
@@ -115,6 +131,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_o2t6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euqot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gohhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5uqi")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g4t71")
 }, {
 "duration": 1.0,
@@ -168,5 +201,7 @@ animations = [{
 [node name="Sprites" type="AnimatedSprite2D"]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_56s6i")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0

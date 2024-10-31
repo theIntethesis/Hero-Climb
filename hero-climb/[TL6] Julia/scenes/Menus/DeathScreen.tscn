@@ -1,10 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://5xibd377yp6u"]
-
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/OpenButton.cs" id="1_1yoih"]
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/MenuNode.cs" id="1_ovrx4"]
-[ext_resource type="PackedScene" uid="uid://bur0nyypmnbm2" path="res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn" id="2_eqm1v"]
-[ext_resource type="PackedScene" uid="uid://cf1mwj455rvja" path="res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn" id="2_pbbud"]
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/UI Elements/BackButton.cs" id="4_i1a6e"]
+[gd_scene format=3 uid="uid://5xibd377yp6u"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,9 +7,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ovrx4")
-Background = ExtResource("2_eqm1v")
-Poppable = false
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -34,11 +25,7 @@ grow_vertical = 2
 [node name="Restart" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Restart"
-script = ExtResource("1_1yoih")
-scene = ExtResource("2_pbbud")
 
 [node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Return to Main Menu"
-script = ExtResource("4_i1a6e")
-QuitsGame = true
