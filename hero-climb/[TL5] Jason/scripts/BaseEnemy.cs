@@ -3,17 +3,15 @@ using System;
 
 public abstract partial class BaseEnemy : CharacterBody2D
 {
+	[Export] public int health = 100;
 	private float Gravity = 10.0f;
 	private float Speed = 50.0f;
 	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes
-	
-	private void OnBodyEntered(Node2D body)
-	{
-		Attack();
-	}
-
+	private Node player;
+	private bool IsDetectingPlayer = false;
+	private Vector2 playerPosition;
 
 	public override void _Ready()
 	{
@@ -26,7 +24,6 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		turnTimer = new Timer();
 		turnTimer.WaitTime = 1.0f; //  One second buffer
 		turnTimer.OneShot = true;
-		turnTimer.Connect("timeout", new Callable(this, nameof(OnTurnTimeout)));
 		AddChild(turnTimer);
 	}
 
@@ -43,6 +40,16 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		if (!IsOnFloor())
 		{
 			velocity.Y += Gravity * (float)delta;
+		}
+
+		if (IsDetectingPlayer){
+			if (GlobalPosition.X - playerPosition.X < 0){
+				direction = new Vector2(1,0);
+				GD.Print("Walking right towards player");
+			} else {
+				direction = new Vector2(-1,0);
+				GD.Print("Walking left towards player");
+			}
 		}
 
 		// Move the enemy back and forth
@@ -64,10 +71,24 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-
-	private void OnTurnTimeout()
+	
+	private void OnArea2DBodyEntered(Node2D body)
 	{
-		Gravity = 10.0f;
+		if (body is Controller){
+			GD.Print("Yipee");
+		}
+		if (body is Fireball){
+			GD.Print("Ouch");
+		}
+	}
+
+	private void OnDetectorBodyEntered(Node2D body)
+	{
+		if (body is Controller){
+			IsDetectingPlayer = true;
+			playerPosition = body.GlobalPosition;
+			GD.Print("Setting new player position");
+		}
 	}
 
 	private void FlipSprite()

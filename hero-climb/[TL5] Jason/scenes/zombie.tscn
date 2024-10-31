@@ -1,7 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://ckmahlg5ea5bj"]
+[gd_scene load_steps=21 format=3 uid="uid://ckmahlg5ea5bj"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Zombie.cs" id="1_so3sa"]
 [ext_resource type="Texture2D" uid="uid://c47x5bxm3jg85" path="res://[TL5] Jason/assets/Zombie.png" id="2_yufh8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
+size = Vector2(25.5, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_faxtv"]
 atlas = ExtResource("2_yufh8")
@@ -121,12 +124,22 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
-size = Vector2(25.5, 30)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns2qv"]
+radius = 105.0
 
 [node name="Zombie" type="CharacterBody2D"]
-collision_layer = 6
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_so3sa")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 2)
+scale = Vector2(1.35, 1.35)
+shape = SubResource("RectangleShape2D_hoygl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5qvl3")
@@ -138,3 +151,13 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, 1)
 shape = SubResource("RectangleShape2D_hoygl")
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+shape = SubResource("CircleShape2D_ns2qv")
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnArea2DBodyEntered"]
+[connection signal="body_entered" from="Detector" to="." method="OnDetectorBodyEntered"]
