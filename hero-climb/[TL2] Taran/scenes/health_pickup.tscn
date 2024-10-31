@@ -53,8 +53,8 @@ animations = [{
 }]
 
 [node name="HealthPickupSprite" type="AnimatedSprite2D"]
-visible = false
-scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_u7rct")
 animation = &"HealthPickup"
-frame_progress = 0.131336
+autoplay = "HealthPickup"
+frame = 5
+frame_progress = 0.835209

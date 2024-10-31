@@ -249,12 +249,12 @@ public partial class Controller : CharacterBody2D
 	}
 	public Controller()
 	{
-        iFrames.OneShot = true;
-        iFrames.WaitTime = 1.5;
-        iFrames.Autostart = true;
-        AddChild(iFrames);
-        iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
-    }
+		iFrames.OneShot = true;
+		iFrames.WaitTime = 1.5;
+		iFrames.Autostart = true;
+		AddChild(iFrames);
+		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
+	}
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");

@@ -22,7 +22,11 @@ public partial class Pickup : Area2D
 		}
 	}
 	
-	public virtual void PlayerDetected(){
+	public void OnAreaEntered(Area2D area){
+		PickupEffect();
+	}
+	
+	public virtual void PickupEffect(){
 		GD.Print(pickup_value);
 	}
 }
