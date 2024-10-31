@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdbl3gmav48np"]
+
+[ext_resource type="Script" path="res://[TL2] Taran/scripts/collectable_manager.gd" id="1_cnucm"]
+
+[node name="CollectableManager" type="Node2D"]
+script = ExtResource("1_cnucm")
