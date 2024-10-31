@@ -3,6 +3,8 @@ using Godot;
 
 public partial class CharacterCreator : MenuLeaf
 {
+    public const string NAME = "CharacterCreator";
+
     private AnimatedSprite2D Fighter;
     private AnimatedSprite2D Wizard;
     private AnimatedSprite2D Rogue;
@@ -80,17 +82,21 @@ public partial class CharacterCreator : MenuLeaf
         CurrentType = Controller.ClassType.Rogue;
     }
 
-    public CharacterCreator(MenuComposite parent) : base(parent, "CharacterCreator", "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
+    public CharacterCreator(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")
     {
         ForegroundNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
         {
-            Parent.Pop();
+            Parent().Pop();
         };
 
         ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
         {
             MostRecentClass = CurrentType;
-            Parent.QueueFree();
+            if (Parent() is Node parent) 
+            {
+                parent.QueueFree();
+            }
+
             GameHandler.Instance().StartGame(CurrentType);
         };
 

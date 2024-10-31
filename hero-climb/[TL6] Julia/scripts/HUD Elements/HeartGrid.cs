@@ -45,7 +45,7 @@ public partial class HeartGrid : MenuComposite
 		}
 	}
 
-	public HeartGrid(MenuComposite parent, int maxhealth): base(parent, "HeartGrid")
+	public HeartGrid(IMenuComposite parent, int maxhealth): base(parent, "HeartGrid")
 	{
 		Hearts = new GridContainer()
 		{
@@ -66,7 +66,7 @@ public partial class HeartGrid : MenuComposite
 		HeadIdx = 0;
 	}
 
-    public override void Push(MenuElement node)
+    public override void Push(IMenuElement node)
     {
         if (node is Heart heart)
 		{

@@ -16,16 +16,11 @@ public partial class PlayerCamera : Camera2D
         get { return GetParent<Controller>().getHealth(); }
     }
 
-    int MaxHealth
-    {
-        get { return GetParent<Controller>().MaxHealth; }
-    }
-
     public override void _Ready()
     {
         Interface = GetNode<CanvasLayer>("Interface");
 
-        Stack = new PlayerCameraStack(MaxHealth);
+        Stack = new PlayerCameraStack(null, PlayerGlobal.MaxHealth);
 
         Interface.AddChild(Stack);
 
@@ -37,8 +32,15 @@ public partial class PlayerCamera : Camera2D
 
         PlayerHealth = CurrentPlayerHealth;
 
+        if (GetParent() is Controller controller)
+        {
+            controller.Injury += InjuryEventHandler;
+            controller.IsDead += OnPlayerDeath;
+        }
+
         Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
         
+        OpenShop();
     }
 
     public void InjuryEventHandler() 
@@ -57,14 +59,8 @@ public partial class PlayerCamera : Camera2D
         Stack.Push(new WinScreen(Stack));
     }
 
-
-    public void OpenShop(ShopElement[] elements)
+    public void OpenShop()
     {
-        // Shop shop = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn").Instantiate() as Shop;
-        // GetNode<Node>("HUD/Margin").AddChild(shop);
-        // shop.Name = "Shop";
-        // shop.Init(elements);
+        Stack.OpenShop();
     }
-
-    
-}
+}   

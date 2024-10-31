@@ -6,16 +6,21 @@ using Godot;
 [GlobalClass]
 public partial class MenuStack : MenuComposite
 {  
-    public override void Push(MenuElement Node)
+    public override void Push(IMenuElement node)
     {
         if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
         {
 		    Last.Hide();
             Last.OnHide();
         }
-        AddChild(Node);
-        Node.Owner = this;
-        Node.OnPush();
+
+        if (node is Node cast)
+        {
+            AddChild(cast);
+            cast.Owner = this;
+        }
+        
+        node.OnPush();
     }
     
     public override MenuElement Pop()
@@ -38,7 +43,7 @@ public partial class MenuStack : MenuComposite
 
             if (GetChildren().Last() == BackgroundNode)
             {
-                Parent.Pop();
+                Parent().Pop();
             }
 
             return Child;
@@ -47,7 +52,7 @@ public partial class MenuStack : MenuComposite
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
-    public MenuStack(MenuComposite parent, string BackgroundScene = "") : base(parent, "MenuStack", BackgroundScene)
+    public MenuStack(IMenuComposite parent, string name, string BackgroundScene = "") : base(parent, name, BackgroundScene)
     {     
     }
 

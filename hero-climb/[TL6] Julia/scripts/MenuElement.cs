@@ -1,12 +1,25 @@
 
 using Godot;
 
+public interface IMenuElement
+{
+    public abstract IMenuComposite Parent();
+
+    public abstract void OnPush();
+
+    public abstract void OnPop();
+
+    public abstract void OnShow();
+
+    public abstract void OnHide(); 
+}
+
 // Interface
-public partial class MenuElement : Control
+public partial class MenuElement : Control, IMenuElement
 {
     virtual public bool Poppable { get { return true; }}
 
-    protected MenuComposite Parent;
+    private IMenuComposite _Parent;
 
     public virtual void OnPush() { }
 
@@ -16,10 +29,15 @@ public partial class MenuElement : Control
 
     public virtual void OnHide() { }
 
-    protected MenuElement(MenuComposite parent, string name)
+    protected MenuElement(IMenuComposite parent, string name)
     {
         ProcessMode = ProcessModeEnum.Always;
-        Parent = parent;
+        _Parent = parent;
         Name = name;
+    }
+
+    public IMenuComposite Parent()
+    {
+        return _Parent;
     }
 }

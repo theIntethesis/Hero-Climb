@@ -4,35 +4,39 @@ using System;
 
 public partial class MainMenu : MenuStack
 {
+    public const string NAME = "MainMenuStack";
+
     private partial class Leaf : MenuLeaf
     {
+        public const string NAME = "MainMenu";
+
         override public bool Poppable { get { return false; }}
 
         public override void OnPop()
         {
             // MenuWrapper.Instance().Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
-            Parent.Push(new QuitConfirm(Parent));
+            Parent().Push(new QuitConfirm(Parent()));
             base.OnPop();
         }
 
-        public Leaf(MenuComposite parent) : base(parent, "MainMenu", "res://[TL6] Julia/scenes/Menus/MainMenu.tscn")
+        public Leaf(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/MainMenu.tscn")
         {
             ForegroundNode.GetNode<Button>("GridContainer/Start").Pressed += () => 
             {
-                Parent.Push(new CharacterCreator(Parent));
+                Parent().Push(new CharacterCreator(Parent()));
             };
             ForegroundNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
             {
-                Parent.Push(new SettingsMenu(Parent));
+                Parent().Push(new SettingsMenu(Parent()));
             };
             ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
-                Parent.Pop();
+                Parent().Pop();
             };
         }
     }
 
-    public MainMenu(MenuComposite parent) : base(parent, "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn")
+    public MainMenu(MenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn")
     {
         Push(new Leaf(this));
     }
@@ -41,21 +45,25 @@ public partial class MainMenu : MenuStack
 
 public partial class PauseMenu : MenuStack
 {
+    public const string NAME = "PauseMenuStack";
+
     private partial class Leaf : MenuLeaf
     {
-        public Leaf(MenuComposite parent) : base(parent, "PauseMenu", "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn")
+        public const string NAME = "PauseMenu";
+
+        public Leaf(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/PauseMenu.tscn")
         {
             ForegroundNode.GetNode<Button>("GridContainer/Resume").Pressed += () => 
             {
-                Parent.Pop();
+                Parent().Pop();
             };
             ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
             {
-                Parent.Push(new CharacterCreator(Parent));
+                Parent().Push(new CharacterCreator(Parent()));
             };
             ForegroundNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
             {
-                Parent.Push(new SettingsMenu(Parent));
+                Parent().Push(new SettingsMenu(Parent()));
             };            
             ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
@@ -66,7 +74,7 @@ public partial class PauseMenu : MenuStack
         }
     }
 
-    public PauseMenu(MenuComposite parent) : base(parent, "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn")
+    public PauseMenu(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn")
     {
         Leaf leaf = new Leaf(this);
         Push(leaf);
@@ -77,15 +85,19 @@ public partial class PauseMenu : MenuStack
 
 public partial class DeathScreen : MenuStack
 {
+    public const string NAME = "DeathScreenStack";
+
     private partial class Leaf : MenuLeaf
     {
+        public const string NAME = "DeathScreen";
+
         override public bool Poppable { get { return false; }}
 
-        public Leaf(MenuComposite parent) : base(parent, "DeathScreen", "res://[TL6] Julia/scenes/Menus/DeathScreen.tscn")
+        public Leaf(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/DeathScreen.tscn")
         {
             ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
             {
-                Parent.Push(new CharacterCreator(Parent));
+                Parent().Push(new CharacterCreator(Parent()));
             };
 
             ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
@@ -96,7 +108,7 @@ public partial class DeathScreen : MenuStack
         }
     }
 
-    public DeathScreen(MenuComposite parent) : base(parent, "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn")
+    public DeathScreen(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn")
     {
         Push(new Leaf(this));
     }
@@ -105,11 +117,13 @@ public partial class DeathScreen : MenuStack
 
 public partial class QuitConfirm : MenuLeaf
 {
-    public QuitConfirm(MenuComposite parent) : base(parent, "QuitConfirm", "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn")
+    public const string NAME = "QuitConfirm";
+
+    public QuitConfirm(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn")
     {
         ForegroundNode.GetNode<Button>("GridContainer/Back").Pressed += () => 
         {
-            Parent.Pop();
+            Parent().Pop();
         };
         ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
@@ -120,11 +134,13 @@ public partial class QuitConfirm : MenuLeaf
 
 public partial class SettingsMenu : MenuLeaf
 {
-    public SettingsMenu(MenuComposite parent) : base(parent, "SettingsMenu", "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn")
+    public const string NAME = "SettingsMenu";
+
+    public SettingsMenu(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn")
     {
         ForegroundNode.GetNode<Button>("Control/Button").Pressed += () => 
         {
-            Parent.Pop();
+            Parent().Pop();
         };
     }
 }
@@ -132,13 +148,15 @@ public partial class SettingsMenu : MenuLeaf
 
 public partial class WinScreen : MenuLeaf
 {
+    public const string NAME = "WinScreen";
+
     override public bool Poppable { get { return false; }}
 
-    public WinScreen(MenuComposite parent) : base(parent, "WinScreen", "res://[TL6] Julia/scenes/Menus/WinScreen.tscn")
+    public WinScreen(IMenuComposite parent) : base(parent, NAME, "res://[TL6] Julia/scenes/Menus/WinScreen.tscn")
     {
         ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
-            Parent.Push(new CharacterCreator(Parent));
+            Parent().Push(new CharacterCreator(Parent()));
         };
         ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
