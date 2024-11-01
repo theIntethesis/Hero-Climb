@@ -1,30 +1,42 @@
+using System.Text.RegularExpressions;
 using Godot;
 
 
-public partial class Heart : Control
+public partial class Heart : MenuElement
 {
-	private int state;
+	public const int MAX_HEART_HEALTH = 20;
 
-	public int State 
+	private int health;
+
+	public int Health
 	{
-		get { return state; }
-		set { state = value; MatchState(); }
+		get { return health; }
+		set { health = value; MatchState(); }
 	}
+	
+	private AnimatedSprite2D Sprite;
 
 	private void MatchState()
 	{
-		if (state == 2) 
+		if (health > 10) 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("full");
+			Sprite.Play("full");
 		}
-		else if (state == 1) 
+		else if (health > 0) 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("half");
+			Sprite.Play("half");
 		}
 		else 
 		{
-			GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play("empty");
+			Sprite.Play("empty");
 		}
 	}
 
+	public Heart() : base("Heart")
+	{
+		Sprite = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn").Instantiate<AnimatedSprite2D>();
+		AddChild(Sprite);
+		MatchState();
+		CustomMinimumSize = new Vector2(16, 32);
+	}
 }

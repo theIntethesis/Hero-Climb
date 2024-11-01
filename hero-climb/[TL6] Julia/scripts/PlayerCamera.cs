@@ -4,90 +4,73 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
-	public HeartGrid hearts;
+
+    private CanvasLayer Interface;
+
+    private PlayerCameraStack Stack;
+
+    int PlayerHealth;
+
+    int CurrentPlayerHealth 
+    {
+        get { return GetParent<Controller>().getHealth(); }
+    }
 
     public override void _Ready()
     {
+        Interface = GetNode<CanvasLayer>("Interface");
 
-        hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
+        Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
+
+        Interface.AddChild(Stack);
 
         // Use the Character Global class instead!
-        if (!(GetParent() is Controller)) 
+        if (GetParent() is not Controller) 
         {
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
-        hearts.Set(GetParent<Controller>().getHealth());
+        PlayerHealth = CurrentPlayerHealth;
 
-        //MenuHead.Instance().OnPause += this.OnPauseEventHandler;
-        //MenuHead.Instance().OnResume += this.OnResumeEventHandler;
-
-        /*
-        ShopElement[] elements = new ShopElement[]
+        if (GetParent() is Controller controller)
         {
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2)
-        };
+            controller.Injury += InjuryEventHandler;
+            controller.IsDead += OnPlayerDeath;
+        }
 
-        */
-
-        // OpenShop(elements);
+        Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
+        
+        OpenShop();
     }
 
-	public void OnPauseEventHandler()
-	{
-		GetNode<CanvasLayer>("HUD").Visible = false;
-	}
-
-	public void OnResumeEventHandler()
-	{
-		GetNode<CanvasLayer>("HUD").Visible = true;
-	}
-
-	public void InjuryEventHandler() 
-	{
-		hearts.Set(GetParent<Controller>().getHealth());
-	}
+    public void InjuryEventHandler() 
+    {
+        Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
+        PlayerHealth = CurrentPlayerHealth;
+    }
 
     public void OnPlayerDeath() 
-    {
-        //MenuHead.Instance().OnPlayerDeath();
-        
-        GetNode<CanvasLayer>("HUD").Visible = false;
+    {        
+        Stack.Push(new DeathScreen());
     }
 
     public void OnGameWin()
     {
-        //MenuHead.Instance().OnGameWin();
+        Stack.Push(new WinScreen());
     }
 
-    public override void _ExitTree()
+    public void OpenShop()
     {
-        //MenuHead.Instance().OnPause -= this.OnPauseEventHandler;
-        //MenuHead.Instance().OnResume -= this.OnResumeEventHandler;
-    }
-
-    public void OpenShop(ShopElement[] elements)
-    {
-        Shop shop = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn").Instantiate() as Shop;
-        GetNode<Node>("HUD/Margin").AddChild(shop);
-        shop.Name = "Shop";
-        shop.Init(elements);
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("open_menu") && !GetTree().Paused)
+        GameShop.Element[] elements = new GameShop.Element[]
         {
-            MenuComposite pauseMenu = new PauseMenu(null);
-            GetNode<CanvasLayer>("HUD").AddChild(pauseMenu);
-            GetTree().Paused = true;
-        }
+            new GameShop.Element("Element.0"),
+            new GameShop.Element("Element.1"),
+            new GameShop.Element("Element.2"),
+            new GameShop.Element("Element.3"),
+            new GameShop.Element("Element.4"),
+            new GameShop.Element("Element.5")
+        };
+        Stack.OpenShop(elements);
         
     }
-}
+}   

@@ -6,15 +6,21 @@ using Godot;
 [GlobalClass]
 public partial class MenuStack : MenuComposite
 {  
-    public override void Push(MenuElement Node)
+    public override void Push(IMenuElement node)
     {
         if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
         {
 		    Last.Hide();
+            Last.OnHide();
         }
-        AddChild(Node);
-        Node.Owner = this;
-        Node.OnPush();
+
+        if (node is Node cast)
+        {
+            AddChild(cast);
+            cast.Owner = this;
+        }
+        
+        node.OnPush(this);
     }
     
     public override MenuElement Pop()
@@ -22,36 +28,40 @@ public partial class MenuStack : MenuComposite
         if (GetChildren().Last() is MenuElement Child)
         {
             Child.OnPop();
+
             if (Child.Poppable) 
             {
                 RemoveChild(Child);
                 Child.QueueFree();
-                if (BackgroundNode != null && GetChildren().Last() == BackgroundNode)
-                {
-                    QueueFree();
-                }
-                else if (GetChildCount() > 0) 
-                {
-                    MenuElement Last = (MenuElement)GetChildren().Last();
+
+                if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
+                {  
                     Last.Show();
+                    Last.OnShow();
                 }     
             }  
+
+            if (GetChildren().Last() == BackgroundNode)
+            {
+                Parent().Pop();
+            }
+
             return Child;
         }
+        
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
-    public MenuStack(MenuComposite parent, string BackgroundScene = "") : base(parent, "MenuStack", BackgroundScene)
-    {
-        Name = "MenuStack";         
+    public MenuStack(string name, string BackgroundScene = "") : base(name, BackgroundScene)
+    {     
     }
 
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("open_menu"))
         {
-            Pop();
             GetViewport().SetInputAsHandled();
+            Pop();
         }        
     }
 }

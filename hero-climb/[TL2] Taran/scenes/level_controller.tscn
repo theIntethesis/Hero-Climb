@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://dnr44osrux1n"]
+[gd_scene load_steps=7 format=4 uid="uid://dnr44osrux1n"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_572et"]
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/level_controller.gd" id="1_lbon1"]
 [ext_resource type="TileSet" uid="uid://b6a61awdl3lo6" path="res://[TL2] Taran/assets/tower_background_tileset.tres" id="2_oppe0"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="4_nvts4"]
+[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="5_0hnyn"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="5_ga4ha"]
 
 [node name="LevelController" type="Node2D"]
@@ -22,8 +23,7 @@ tile_set = ExtResource("2_oppe0")
 position = Vector2(0, -16)
 Class = 0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+[node name="PlayerCamera" parent="Player" instance=ExtResource("5_0hnyn")]
 
 [node name="RisingLava" parent="." instance=ExtResource("5_ga4ha")]
 position = Vector2(695, 462)

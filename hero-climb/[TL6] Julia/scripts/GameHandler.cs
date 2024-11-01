@@ -2,7 +2,7 @@ using Godot;
 
 public partial class GameHandler : Node
 {
-    const string InitialGameScenePath = "res://[TL2] Taran/scenes/Main Level.tscn";
+    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn"; // "res://[TL2] Taran/scenes/Main Level.tscn";
     
     static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
     
@@ -41,7 +41,7 @@ public partial class GameHandler : Node
 
     public void LoadMainMenu()
     {
-        MenuComposite mainMenu = new MainMenu(null);
+        MenuComposite mainMenu = new MainMenu();
 		GetTree().Root.CallDeferred("add_child", mainMenu);
     }
 }

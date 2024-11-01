@@ -53,7 +53,6 @@ position = Vector2(-128, -384)
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_up"
-visibility_mode = 1
 
 [node name="right" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(384, -128)
@@ -61,7 +60,6 @@ rotation = 1.5708
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_right"
-visibility_mode = 1
 
 [node name="down" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(128, 384)
@@ -69,7 +67,6 @@ rotation = 3.14159
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_down"
-visibility_mode = 1
 
 [node name="left" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-384, 128)
@@ -77,7 +74,6 @@ rotation = 4.71239
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "move_left"
-visibility_mode = 1
 
 [node name="Bottom Left Corner" type="Control" parent="."]
 layout_mode = 1
@@ -95,7 +91,6 @@ anchor_bottom = 1.0
 offset_top = -800.0
 offset_right = 800.0
 grow_vertical = 0
-script = ExtResource("1_3dbuv")
 
 [node name="2DOrigin" type="Control" parent="Bottom Left Corner/Bounding Box"]
 layout_mode = 1
@@ -107,12 +102,25 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="up" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
-position = Vector2(-128, -128)
+[node name="Control" type="Control" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3dbuv")
+
+[node name="up" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin/Control"]
 texture_normal = ExtResource("1_7hwgo")
 texture_pressed = ExtResource("2_f1xns")
 action = "jump"
-visibility_mode = 1
 
 [node name="Top Right Corner" type="Control" parent="."]
 layout_mode = 1
@@ -147,4 +155,3 @@ position = Vector2(-128, -128)
 texture_normal = ExtResource("3_ipc0l")
 texture_pressed = ExtResource("4_1t18e")
 action = "open_menu"
-visibility_mode = 1
