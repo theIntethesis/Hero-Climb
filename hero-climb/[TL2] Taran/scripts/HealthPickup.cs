@@ -15,11 +15,9 @@ public partial class HealthPickup : Pickup
 		sprites.Animation = "HealthPickup";
 	}
 	
-	public override void _Ready(){
-		Connect(SignalName.AreaEntered, Callable.From(PlayerDetected), (uint)GodotObject.ConnectFlags.OneShot);
-	}
-	
-	public override void PlayerDetected(){
-		
+	public override void PickupEffect(){
+		GD.Print(pickup_value);
+		// PlayerGlobal.Health += pickup_value;
+		QueueFree();
 	}
 }

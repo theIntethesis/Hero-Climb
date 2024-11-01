@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bq3pqw263ffnv"]
 
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Coin.cs" id="1_51wq8"]
-[ext_resource type="Texture2D" uid="uid://b848w413qfya5" path="res://[TL1] Ferris/assets/Coins_topdown_outline_18x18res.png" id="2_g8su4"]
+[ext_resource type="Texture2D" uid="uid://bsjrnhjgp0j0e" path="res://[TL1] Ferris/assets/Coins_topdown_outline_18x18res.png" id="2_g8su4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnllh"]
 

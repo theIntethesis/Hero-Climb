@@ -14,11 +14,11 @@ public partial class Fighter : Controller
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
-        bashTimer.WaitTime = .5;
-        bashTimer.OneShot = true;
-        bashTimer.Connect(Timer.SignalName.Timeout, Callable.From(removeShieldBash));
-        AddChild(bashTimer);
-    }
+		bashTimer.WaitTime = .5;
+		bashTimer.OneShot = true;
+		bashTimer.Connect(Timer.SignalName.Timeout, Callable.From(removeShieldBash));
+		AddChild(bashTimer);
+	}
 	protected override Vector2 getSpriteOffset(string clause)
 	{
 		Vector2 Vec = Vector2.Zero;
@@ -71,12 +71,12 @@ public partial class Fighter : Controller
 	{
 		GD.Print("In Bash End");
 		GetNode("Shield Bash").Free();
-        /*var bash = FindChildren("Shield Bash");
+		/*var bash = FindChildren("Shield Bash");
 		GD.Print(bash);
-        foreach (var node in bash) node.QueueFree();*/
-    }
+		foreach (var node in bash) node.QueueFree();*/
+	}
 	protected override void OnAnimationEnd()
 	{
 		GD.Print("In Animation End");
-    }
+	}
 }

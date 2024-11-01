@@ -1,4 +1,5 @@
 extends Node2D
+class_name level_controller
 
 var current_level = 1
 
@@ -16,3 +17,9 @@ func add_new_level():
 		new_level.add_shop()
 	new_level.build_level()
 	current_level += 1
+
+func add_collectable(point : Vector2):
+	%CollectableManager.instantiate_collectable(point)
+
+func add_enemy(point : Vector2):
+	pass
