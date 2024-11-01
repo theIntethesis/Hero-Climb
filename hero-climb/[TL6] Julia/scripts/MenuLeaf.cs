@@ -6,10 +6,11 @@ public partial class MenuLeaf : MenuElement
 {
     protected Control ForegroundNode;
     
-    protected MenuLeaf(MenuComposite parent, string name, string ForegroundScene) : base(parent, name)
+    protected MenuLeaf(string name, string ForegroundScene) : base(name)
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
         ForegroundNode = ResourceLoader.Load<PackedScene>(ForegroundScene).Instantiate<Control>();
+        CustomMinimumSize = ForegroundNode.CustomMinimumSize;
         AddChild(ForegroundNode);
         Name = name; 
     }
