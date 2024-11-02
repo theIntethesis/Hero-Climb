@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-internal partial class Fireball : Attack
+public partial class Fireball : Attack
 
 {
 	[Export]

@@ -121,9 +121,8 @@ public partial class Controller : CharacterBody2D
 			uint layer3 = body.CollisionLayer & 0b_0100;
 			if (layer3 > 0)
 			{
-				GD.Print("Collided with Enemy!");
 				var enemy = body as BaseEnemy;
-				GD.Print($"{Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+				GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
 				//Health -= enemy.Damage;
 				EmitSignal(SignalName.Injury);
 			}
