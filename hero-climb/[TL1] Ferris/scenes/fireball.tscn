@@ -72,8 +72,7 @@ animations = [{
 [node name="Fireball" type="Area2D"]
 texture_filter = 2
 scale = Vector2(0.25, 0.25)
-collision_layer = 3
-collision_mask = 3
+collision_mask = 5
 script = ExtResource("1_dcw50")
 Speed = 125.0
 

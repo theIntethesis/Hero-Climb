@@ -13,9 +13,11 @@
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
 unique_name_in_owner = true
 position = Vector2(37, -30)
-Class = 0
+Class = 2
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("3_4ooue")]
+drag_horizontal_enabled = false
+drag_vertical_enabled = false
 
 [node name="TowerTileset" parent="." instance=ExtResource("3_v8vpi")]
 
@@ -24,14 +26,14 @@ position = Vector2(144, -42)
 
 [connection signal="body_entered" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyEntered"]
 [connection signal="body_exited" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@98608" to="TowerTileset/@Area2D@98608" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@98608" to="TowerTileset/@Area2D@98608" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@98609" to="TowerTileset/@Area2D@98609" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@98609" to="TowerTileset/@Area2D@98609" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@98610" to="TowerTileset/@Area2D@98610" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@98610" to="TowerTileset/@Area2D@98610" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@98611" to="TowerTileset/@Area2D@98611" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@98611" to="TowerTileset/@Area2D@98611" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@144743" to="TowerTileset/@Area2D@144743" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@144743" to="TowerTileset/@Area2D@144743" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@144744" to="TowerTileset/@Area2D@144744" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@144744" to="TowerTileset/@Area2D@144744" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@144745" to="TowerTileset/@Area2D@144745" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@144745" to="TowerTileset/@Area2D@144745" method="OnBodyExited"]
+[connection signal="body_entered" from="TowerTileset/@Area2D@144746" to="TowerTileset/@Area2D@144746" method="OnBodyEntered"]
+[connection signal="body_exited" from="TowerTileset/@Area2D@144746" to="TowerTileset/@Area2D@144746" method="OnBodyExited"]
 [connection signal="area_entered" from="TowerTileset/Coin" to="TowerTileset/Coin" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@98613" to="TowerTileset/@Area2D@98613" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@98614" to="TowerTileset/@Area2D@98614" method="OnAreaEntered"]
+[connection signal="area_entered" from="TowerTileset/@Area2D@144748" to="TowerTileset/@Area2D@144748" method="OnAreaEntered"]
+[connection signal="area_entered" from="TowerTileset/@Area2D@144749" to="TowerTileset/@Area2D@144749" method="OnAreaEntered"]

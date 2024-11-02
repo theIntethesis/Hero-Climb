@@ -16,6 +16,7 @@ internal partial class Fireball : Attack
 	
 	public void DeleteOnCollision(Node2D body)
 	{
+		GD.Print($"Fireball collided with {body.Name}");
 		if (!body.IsAncestorOf(this) && body.Name != "Player")
 		{
 			foreach(Line2D line in lines) {line.QueueFree(); }
@@ -34,7 +35,7 @@ internal partial class Fireball : Attack
 	}
 	public void setVelocity(bool followMouse = true, bool facingLeft = false)
 	{
-		addLine();
+		if(OS.IsDebugBuild()) addLine();
 		var angle = GetAngleTo(target.Position);
 		if (!followMouse)
 			angle = facingLeft ? (float)Math.PI : 0;

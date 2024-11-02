@@ -17,16 +17,17 @@ public partial class Wizard : Controller
 		sprites.Position = Vector2.Zero;
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 	}
-	public override void Attack()
+	protected override Vector2 Ability()
 	{
 		// play arcane words sound
 		attackCooldown = true;
 		PlayerGlobal.isAttacking = true;
-		sprites.Play("attack");
+		sprites.Play("fireball");
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
 		if(AttackFollowMouse) sprites.FlipH = angle.X > 0 ? false : true;
-		sprites.Offset = getSpriteOffset("attack");
+		sprites.Offset = getSpriteOffset("fireball");
 		fireballsummon = true;
+		return Vector2.Zero;
 	}
 
 	protected void SummonFireball()
@@ -57,11 +58,14 @@ public partial class Wizard : Controller
 			case "death":
 				Vec = sprites.FlipH ? new Vector2(-15, -31) : new Vector2(15, -31);
 				break;
-			case "attack":
+			case "fireball":
 				Vec = sprites.FlipH ? new Vector2(-15, -3) : new Vector2(15, -3);
 				break;
 			case "jump":
 				Vec = sprites.FlipH ? new Vector2(-10, -10) : new Vector2(10, -10);
+				break;
+			case "attack":
+				Vec = Vector2.Zero;
 				break;
 			default:
 				Vec = Vector2.Zero;
@@ -86,6 +90,6 @@ public partial class Wizard : Controller
 			}
 		}
 
-		if (Health <= 0) PlayerDeath();
+		if (Health <= 0) OnPlayerDeath();
 	}
 }

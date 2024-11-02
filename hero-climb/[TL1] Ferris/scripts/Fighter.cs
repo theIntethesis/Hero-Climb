@@ -69,14 +69,6 @@ public partial class Fighter : Controller
 	}
 	private void removeShieldBash()
 	{
-		GD.Print("In Bash End");
 		GetNode("Shield Bash").Free();
-        /*var bash = FindChildren("Shield Bash");
-		GD.Print(bash);
-        foreach (var node in bash) node.QueueFree();*/
-    }
-	protected override void OnAnimationEnd()
-	{
-		GD.Print("In Animation End");
     }
 }
