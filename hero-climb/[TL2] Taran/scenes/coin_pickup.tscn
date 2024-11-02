@@ -148,5 +148,5 @@ animations = [{
 
 [node name="CoinPickupSprite" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_hed6g")
-animation = &"CopperCoin"
-frame_progress = 0.70811
+animation = &"SilverCoin"
+autoplay = "SilverCoin"

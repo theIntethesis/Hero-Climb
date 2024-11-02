@@ -49,4 +49,23 @@ func build_level():
 		
 		add_child(level_piece)
 		level_piece.position.x = level_place*464
+		
+		get_collectables(level_piece)
+		#get_enemies(level_piece)
 		level_place += 1
+
+func get_collectables(room):
+	var collectables = room.find_child("CollectableLocations")
+	if collectables!=null:
+		for point in collectables.get_children():
+			get_parent().add_collectable(point.global_position)
+			point.queue_free()
+		collectables.queue_free()
+
+func get_enemies(room):
+	var enemies = room.find_child("EnemyLocations")
+	if enemies:
+		for point in enemies.get_children():
+			get_parent().add_enemy(point.global_position)
+			point.queue_free()
+		enemies.queue_free()
