@@ -154,12 +154,12 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
+		if (@event.IsActionPressed("jump") && CanJump())
 		{
 			sprites.Offset = getSpriteOffset("jump");
 			sprites.Play("jump");
 		}
-		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
+		if (@event.IsActionPressed("attack") && CanAttack())
 		{
 			Attack();
 		}
@@ -228,6 +228,16 @@ public partial class Controller : CharacterBody2D
 			EmitSignal(SignalName.PlayerDeath);
 		}
 		OnAnimationEnd();
+	}
+
+	public bool CanAttack()
+	{
+		return !attackCooldown && !IsMovementLocked;
+	}
+
+	public bool CanJump()
+	{
+		return  (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked;
 	}
 
 	public virtual void Attack()
