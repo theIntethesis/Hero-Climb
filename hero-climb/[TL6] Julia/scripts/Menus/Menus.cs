@@ -14,9 +14,8 @@ public partial class MainMenu : MenuStack
 
         public override void OnPop()
         {
-            // MenuWrapper.Instance().Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
             Parent().Push(new QuitConfirm());
-            base.OnPop();
+            // base.OnPop();
         }
 
         public Leaf() : base(NAME, "res://[TL6] Julia/scenes/Menus/MainMenu.tscn")

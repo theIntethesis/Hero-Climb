@@ -14,20 +14,45 @@ public partial class MobileControls : MenuLeaf
 
 public partial class GameHUD : MenuComposite
 {
-    public const string NAME = "GameHUD";
+    public partial class HUDLeaf: MenuLeaf
+    {
+        public HeartGrid Hearts;
 
-    public HeartGrid Hearts;
+        public ScoreLabel Score;
+
+        public HUDLeaf(int maxhealth) : base("HUDLeaf", "")
+        {
+            ForegroundNode = new GridContainer();
+
+            Hearts = new HeartGrid(maxhealth);
+            Score = new ScoreLabel();
+            
+            Scale = new Vector2(3.0f, 3.0f);
+        }
+
+        public override void _Ready()
+        {
+            AddChild(ForegroundNode);
+            ForegroundNode.AddChild(Hearts);
+            ForegroundNode.AddChild(Score);
+        }
+    }
+    
+    public HUDLeaf leaf;
+
+    public const string NAME = "GameHUD";
 
     public MobileControls Controls = null;
 
     public GameHUD(int maxhealth) : base(NAME)
     {
-        Hearts = new HeartGrid(maxhealth);
+        leaf = new HUDLeaf(maxhealth);
+
         Controls = new MobileControls();
 
-        Push(Hearts);
+        Push(leaf);
         
-        if (OS.GetName() == "Android")
+        if (OS.GetName() == "Android" || 1 == 1)
         {
             Push(Controls);
         }
@@ -58,12 +83,24 @@ public partial class PlayerCameraStack : MenuStack
 
     public GameHUD HUD;
 
+    Controller PlayerRef;
 
-    public PlayerCameraStack(int maxhealth) : base(NAME)
+
+    public PlayerCameraStack(Controller player) : base(NAME)
     {
-        
-        HUD = new GameHUD(maxhealth);
+        PlayerRef = player;
+    }
+
+    public override void _Ready()
+    {
+        HUD = new GameHUD(PlayerRef.MaxHealth);
         Push(HUD);
+
+        HUD.leaf.Hearts.Increment(PlayerRef.getHealth());
+        HUD.leaf.Score.SetScore(PlayerGlobal.Money);
+
+        PlayerRef.Injury += InjuryEventHandler;
+        PlayerRef.PlayerDeath += OnPlayerDeath;
     }
 
     public void OpenShop(GameShop.Element[] elements)
@@ -88,4 +125,20 @@ public partial class PlayerCameraStack : MenuStack
             HUD.Remove(GameShop.NAME);
         }
     }
+
+    public void InjuryEventHandler()
+    {
+        HUD.leaf.Hearts.Decrement(HUD.leaf.Hearts.DisplayedHealth - PlayerGlobal.Health);
+    }
+
+    public void OnPlayerDeath() 
+    {        
+        Push(new DeathScreen());
+    }
+
+    public void OnGameWin()
+    {
+        Push(new WinScreen());
+    }
+
 }

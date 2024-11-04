@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dnr44osrux1n"]
+[gd_scene load_steps=8 format=4 uid="uid://dnr44osrux1n"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_572et"]
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/level_controller.gd" id="1_lbon1"]

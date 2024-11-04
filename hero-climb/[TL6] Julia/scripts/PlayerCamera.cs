@@ -4,25 +4,14 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
-
     private CanvasLayer Interface;
 
     private PlayerCameraStack Stack;
 
-    int PlayerHealth;
-
-    int CurrentPlayerHealth 
-    {
-        get { return GetParent<Controller>().getHealth(); }
-    }
-
+    
     public override void _Ready()
     {
         Interface = GetNode<CanvasLayer>("Interface");
-
-        Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
-
-        Interface.AddChild(Stack);
 
         // Use the Character Global class instead!
         if (GetParent() is not Controller) 
@@ -30,45 +19,25 @@ public partial class PlayerCamera : Camera2D
             throw new Exception("PlayerCamera must be a child to a Controller");
         }
 
-        PlayerHealth = CurrentPlayerHealth;
-
         if (GetParent() is Controller controller)
         {
-            controller.Injury += InjuryEventHandler;
-            controller.IsDead += OnPlayerDeath;
+            Stack = new PlayerCameraStack(controller);
+            Interface.AddChild(Stack);
         }
 
-        Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
-        
-        OpenShop();
-    }
-
-    public void InjuryEventHandler() 
-    {
-        Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
-        PlayerHealth = CurrentPlayerHealth;
-    }
-
-    public void OnPlayerDeath() 
-    {        
-        Stack.Push(new DeathScreen());
-    }
-
-    public void OnGameWin()
-    {
-        Stack.Push(new WinScreen());
+        // OpenShop();
     }
 
     public void OpenShop()
     {
         GameShop.Element[] elements = new GameShop.Element[]
         {
-            new GameShop.Element("Element.0"),
-            new GameShop.Element("Element.1"),
-            new GameShop.Element("Element.2"),
-            new GameShop.Element("Element.3"),
-            new GameShop.Element("Element.4"),
-            new GameShop.Element("Element.5")
+            new(10, "Element.0"),
+            new(10, "Element.1"),
+            new(10, "Element.2"),
+            new(10, "Element.3"),
+            new(10, "Element.4"),
+            new(10, "Element.5")
         };
         Stack.OpenShop(elements);
         
