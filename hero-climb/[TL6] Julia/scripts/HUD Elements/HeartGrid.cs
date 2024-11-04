@@ -18,6 +18,18 @@ public partial class HeartGrid : MenuComposite
 		private set { _displayedHealth = value; }
 	}
 
+	public void SetHealth(int newHealth)
+	{
+		if (newHealth < DisplayedHealth)
+		{
+			Decrement(DisplayedHealth - newHealth);
+		}
+		else if (newHealth > DisplayedHealth)
+		{
+			Increment(newHealth - DisplayedHealth);
+		}
+	}
+
 	public void Increment(int health)
 	{
 		DisplayedHealth += health;

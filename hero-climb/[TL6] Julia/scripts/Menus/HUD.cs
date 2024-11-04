@@ -99,7 +99,8 @@ public partial class PlayerCameraStack : MenuStack
         HUD.leaf.Hearts.Increment(PlayerRef.getHealth());
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
-        PlayerRef.Injury += InjuryEventHandler;
+        //PlayerRef.PlayerHealthChange += PlayerHealthChangeEventHandler;
+        PlayerRef.Injury += PlayerHealthChangeEventHandler;
         PlayerRef.PlayerDeath += OnPlayerDeath;
     }
 
@@ -126,9 +127,9 @@ public partial class PlayerCameraStack : MenuStack
         }
     }
 
-    public void InjuryEventHandler()
+    public void PlayerHealthChangeEventHandler()
     {
-        HUD.leaf.Hearts.Decrement(HUD.leaf.Hearts.DisplayedHealth - PlayerGlobal.Health);
+        HUD.leaf.Hearts.SetHealth(PlayerGlobal.Health);
     }
 
     public void OnPlayerDeath() 
