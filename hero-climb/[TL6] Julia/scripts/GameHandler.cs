@@ -20,9 +20,12 @@ public partial class GameHandler : Node
         StopGame();
         GetTree().Paused = false;
         ActiveGame = InitialGameScene.Instantiate();
-        Controller Player = ActiveGame.GetNode<Controller>("Player");
-        PlayerGlobal.SetCharacterType(classType, Player);
+        
+        PlayerGlobal.SetPlayer(ActiveGame.GetNode<Controller>("Player"));
+        PlayerGlobal.SetCharacterType(classType);
         GetTree().Root.AddChild(ActiveGame);
+
+        Input.EmulateMouseFromTouch = false;
     }
 
     public void StopGame()
@@ -31,8 +34,11 @@ public partial class GameHandler : Node
         {
             ActiveGame.QueueFree();
             ActiveGame = null;
+            Input.EmulateMouseFromTouch = true;
         }
     }
+
+    private GameHandler() { }
 
     public override void _Ready()
     {

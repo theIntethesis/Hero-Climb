@@ -11,8 +11,29 @@ public partial class HeartGrid : MenuComposite
 
 	int MaxHealth = 0;
 
+	int _displayedHealth;
+	public int DisplayedHealth
+	{
+		get { return _displayedHealth; }
+		private set { _displayedHealth = value; }
+	}
+
+	public void SetHealth(int newHealth)
+	{
+		if (newHealth < DisplayedHealth)
+		{
+			Decrement(DisplayedHealth - newHealth);
+		}
+		else if (newHealth > DisplayedHealth)
+		{
+			Increment(newHealth - DisplayedHealth);
+		}
+	}
+
 	public void Increment(int health)
 	{
+		DisplayedHealth += health;
+		
 		while (health > 0)
 		{
 			while (this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
@@ -30,6 +51,7 @@ public partial class HeartGrid : MenuComposite
 
 	public void Decrement(int value)
 	{
+		DisplayedHealth -= value;
 		while (value > 0)
 		{
 			while (this[HeadIdx].Health > 0 && value > 0)
@@ -51,8 +73,9 @@ public partial class HeartGrid : MenuComposite
 		{
 			Columns = 5,
 			Name = "Container",
-			Scale = new Vector2(3, 3)
 		};
+
+		CustomMinimumSize = new Vector2(8, 9);
 
 		AddChild(Hearts);
 

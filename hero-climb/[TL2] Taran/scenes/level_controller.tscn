@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=9 format=4 uid="uid://dnr44osrux1n"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_572et"]
@@ -29,6 +30,7 @@ position = Vector2(0, -16)
 Class = 0
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("5_0hnyn")]
+zoom = Vector2(2.5, 2.5)
 
 [node name="EnemyController" parent="." instance=ExtResource("7_wlqnk")]
 unique_name_in_owner = true

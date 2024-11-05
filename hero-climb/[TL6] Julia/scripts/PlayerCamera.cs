@@ -5,72 +5,95 @@ using System;
 public partial class PlayerCamera : Camera2D
 { 
 
-	private CanvasLayer Interface;
+    private CanvasLayer Interface;
 
-	private PlayerCameraStack Stack;
+    private PlayerCameraStack Stack;
 
-	int PlayerHealth;
+    int ShakeFrame = 0;
+    bool Shaking = false;
 
-	int CurrentPlayerHealth 
-	{
-		get { return GetParent<Controller>().getHealth(); }
-	}
 
-	public override void _Ready()
-	{
-		Interface = GetNode<CanvasLayer>("Interface");
+    [ExportGroup("Camera Shake")]
+    
+    [Export]
+    float Amplitude = 3.0f;
+    
+    [Export]
+    float PeriodMultiplier = 40.0f;
 
-		Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
+    [Export]
+    float Duration = 1.0f;
 
-		Interface.AddChild(Stack);
 
-		// Use the Character Global class instead!
-		if (GetParent() is not Controller) 
-		{
-			throw new Exception("PlayerCamera must be a child to a Controller");
-		}
+    float CurrentDuration;
 
-		PlayerHealth = CurrentPlayerHealth;
 
-		if (GetParent() is Controller controller)
-		{
-			controller.Injury += InjuryEventHandler;
-		 //   controller.IsDead += OnPlayerDeath;
-		}
+    Vector2 DefaultOffset;
 
-		Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
-		
-		OpenShop();
-	}
+    public PlayerCamera()
+    {
+        DefaultOffset = Offset;
+    }
 
-	public void InjuryEventHandler() 
-	{
-		Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
-		PlayerHealth = CurrentPlayerHealth;
-	}
+    public override void _Ready()
+    {
+        Interface = GetNode<CanvasLayer>("Interface");
 
-	public void OnPlayerDeath() 
-	{        
-		Stack.Push(new DeathScreen());
-	}
+        // Use the Character Global class instead!
+        Stack = new PlayerCameraStack(this);
+        Interface.AddChild(Stack);
 
-	public void OnGameWin()
-	{
-		Stack.Push(new WinScreen());
-	}
+        // OpenShop();
+    }
 
-	public void OpenShop()
-	{
-		GameShop.Element[] elements = new GameShop.Element[]
-		{
-			new GameShop.Element("Element.0"),
-			new GameShop.Element("Element.1"),
-			new GameShop.Element("Element.2"),
-			new GameShop.Element("Element.3"),
-			new GameShop.Element("Element.4"),
-			new GameShop.Element("Element.5")
-		};
-		Stack.OpenShop(elements);
-		
-	}
+    public void OpenShop()
+    {
+        GameShop.Element[] elements = new GameShop.Element[]
+        {
+            new(10, "Element.0"),
+            new(10, "Element.1"),
+            new(10, "Element.2"),
+            new(10, "Element.3"),
+            new(10, "Element.4"),
+            new(10, "Element.5")
+        };
+        Stack.OpenShop(elements);  
+    }
+
+    public override void _Process(double delta)
+    {
+        if (Shaking)
+        {
+            ShakeFrame += 1;
+            CurrentDuration += (float)delta;
+
+            float theta = ShakeFrame * MathF.PI / 180.0f;
+
+            GD.Print(theta);
+
+            Vector2 vec = new Vector2(0, MathF.Sin(theta * PeriodMultiplier) * Amplitude / CurrentDuration);
+           
+            GD.Print(vec);
+            Offset = vec;
+
+            
+            if (CurrentDuration >= Duration && (Offset.Y < 0.2 || Offset.Y > -0.2))
+            {
+                Shaking = false;
+            }
+        }
+        else
+        {
+            Offset = new Vector2(0.0f, 0.0f);
+        }
+    }
+
+    public void ShakeCamera()
+    {
+        if (!Shaking)
+        {
+            Shaking = true;
+            CurrentDuration = 0.0f;
+        }
+    }
 }   
