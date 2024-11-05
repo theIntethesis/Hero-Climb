@@ -14,9 +14,7 @@ public partial class MainMenu : MenuStack
 
         public override void OnPop()
         {
-            // MenuWrapper.Instance().Push(MenuWrapper.Blueprints[MenuWrapper.BlueprintKeys.QuitConfirm]);
             Parent().Push(new QuitConfirm());
-            base.OnPop();
         }
 
         public Leaf() : base(NAME, "res://[TL6] Julia/scenes/Menus/MainMenu.tscn")
@@ -28,6 +26,10 @@ public partial class MainMenu : MenuStack
             ForegroundNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
             {
                 Parent().Push(new SettingsMenu());
+            };
+            ForegroundNode.GetNode<Button>("GridContainer/Credits").Pressed += () => 
+            {
+                Parent().Push(new CreditsMenu());
             };
             ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
@@ -42,6 +44,18 @@ public partial class MainMenu : MenuStack
     }
 }
 
+public partial class CreditsMenu : MenuLeaf
+{
+    public const string NAME = "CreditsMenu";
+
+    public CreditsMenu() : base(NAME, "res://[TL6] Julia/scenes/Menus/CreditsMenu.tscn")
+    {
+        ForegroundNode.GetNode<Button>("GridContainer/Control/Button").Pressed += () =>
+        {
+            Parent().Pop();
+        };
+    }
+}
 
 public partial class PauseMenu : MenuStack
 {
@@ -73,6 +87,8 @@ public partial class PauseMenu : MenuStack
             };
         }
     }
+
+
 
     public PauseMenu() : base(NAME, "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn")
     {

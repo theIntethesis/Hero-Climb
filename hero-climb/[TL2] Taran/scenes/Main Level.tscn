@@ -47,6 +47,3 @@ position = Vector2(130, -25)
 
 [node name="PickupItem3" parent="." instance=ExtResource("9_kohwq")]
 position = Vector2(174, -25)
-
-[connection signal="Injury" from="Player" to="Player/PlayerCamera" method="InjuryEventHandler"]
-[connection signal="IsDead" from="Player" to="Player/PlayerCamera" method="OnPlayerDeath"]

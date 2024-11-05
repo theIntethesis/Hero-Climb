@@ -47,8 +47,9 @@ public partial class Controller : CharacterBody2D
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
+		Health += amount;
 		EmitSignal(SignalName.PlayerHealthChange);
-		return Health += amount;
+		return Health;
 	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
@@ -112,12 +113,14 @@ public partial class Controller : CharacterBody2D
 	}
 	public void OnPlayerDeath()
 	{
+		GD.Print("OnPlayerDeath");
 		sprites.Offset = getSpriteOffset("death");
 		IsMovementLocked = true;
 		sprites.Play("death");
 	}
 	public void CollideWithEnemy(Node2D b)
 	{
+		GD.Print("CollideWithEnemy");
 		GD.Print(b.Name);
 		if (b.Name == "Player") return;
 
@@ -128,9 +131,10 @@ public partial class Controller : CharacterBody2D
 			if (layer3 > 0)
 			{
 				var enemy = body as BaseEnemy;
-				GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+				// GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
 				//Health -= enemy.Damage;
-				EmitSignal(SignalName.PlayerHealthChange);
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
 			}
 		}
 		else if (b.GetParent() is CharacterBody2D)
@@ -140,9 +144,10 @@ public partial class Controller : CharacterBody2D
             if (layer3 > 0)
             {
                 var enemy = body as BaseEnemy;
-                GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+                // GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
                 //Health -= enemy.Damage;
-                EmitSignal(SignalName.PlayerHealthChange);
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
             }
         }
 		else if (b.Name == "RisingLava")
@@ -156,6 +161,7 @@ public partial class Controller : CharacterBody2D
 
 		if (Health <= 0)
 		{
+			
 			OnPlayerDeath();
 		}
 		else
@@ -168,16 +174,15 @@ public partial class Controller : CharacterBody2D
 	private void stopIFrames()
 	{
 		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
-	
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
+		if (@event.IsActionPressed("jump") && CanJump())
 		{
 			sprites.Offset = getSpriteOffset("jump");
 			sprites.Play("jump");
 		}
-		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
+		if (@event.IsActionPressed("attack") && CanAttack())
 		{
 			Attack();
 		}
@@ -248,6 +253,16 @@ public partial class Controller : CharacterBody2D
 		OnAnimationEnd();
 	}
 
+	public bool CanAttack()
+	{
+		return !attackCooldown && !IsMovementLocked;
+	}
+
+	public bool CanJump()
+	{
+		return  (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked;
+	}
+
 	public virtual void Attack()
 	{
 		attackCooldown = true;
@@ -295,6 +310,6 @@ public partial class Controller : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		if (Health <= 0) OnPlayerDeath();
+		// if (Health <= 0) OnPlayerDeath();
 	}
 }

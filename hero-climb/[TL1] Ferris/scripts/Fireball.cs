@@ -51,8 +51,14 @@ public partial class Fireball : Attack
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		var Player = GetParent().FindChild("Player") as Controller;
-		Damage = Player.Damage;
+		try
+		{
+			var Player = GetParent().FindChild("Player") as Controller;
+			Damage = Player.Damage;
+		}
+		catch (NullReferenceException) {
+			Damage = 50;
+		}
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
 	}/*
 	public Fireball()

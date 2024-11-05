@@ -12,9 +12,9 @@ public partial class Zombie : BaseEnemy
 
 	}
 
-	public override void Attack()
+	public override void EnemyAttack()
 	{
-		base.Attack();
+		base.EnemyAttack();
 		GD.Print("Zombie attacks!");
 	}
 

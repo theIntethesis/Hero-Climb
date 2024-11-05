@@ -21,7 +21,12 @@ public partial class Pickup : Area2D
 	}
 	
 	public void OnAreaEntered(Area2D area){
-		PickupEffect();
+		if (area.GetParent() is Controller)
+		{
+			GD.Print($"Player Name {area.Name}");
+			PickupEffect();
+		}
+		
 	}
 	
 	public virtual void PickupEffect(){

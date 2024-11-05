@@ -35,11 +35,11 @@ public partial class Fighter : Controller
 				Vec = new Vector2(0, -13);
 				break;
 			case "death":
-				Vec = Vector2.Zero;
-				break;
+                Vec = new Vector2(-4, -13);
+                break;
 			case "attack":
-				Vec = Vector2.Zero;
-				break;
+				Vec = new Vector2(-4, -13);
+                break;
 			case "jump":
 				Vec = Vector2.Zero;
 				break;

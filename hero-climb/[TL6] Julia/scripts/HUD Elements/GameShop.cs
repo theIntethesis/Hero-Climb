@@ -7,8 +7,16 @@ public partial class GameShop : MenuComposite
 
     public partial class Element : MenuLeaf
     {
-        public Element(string name) : base(name, "res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn")
+        readonly int Price;
+
+        public Element(int price, string name) : base(name, "res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn")
         {
+            Price = price;
+        }
+
+        public override void _Ready()
+        {
+            ForegroundNode.GetNode<Label>("Label").Text = Price.ToString();
         }
     }
 
