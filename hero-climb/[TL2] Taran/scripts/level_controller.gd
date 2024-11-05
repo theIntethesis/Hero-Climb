@@ -25,5 +25,6 @@ func add_collectable(point : Vector2):
 	%CollectableManager.instantiate_collectable(point)
 
 func add_enemy(point : Vector2):
+	print(point)
 	if randi_range(0,3) == 0:
 		enemy_array.append_array(PackedVector2Array([point]))

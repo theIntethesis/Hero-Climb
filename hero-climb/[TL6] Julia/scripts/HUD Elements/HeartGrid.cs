@@ -20,14 +20,18 @@ public partial class HeartGrid : MenuComposite
 
 	public void SetHealth(int newHealth)
 	{
-		if (newHealth < DisplayedHealth)
+		if (DisplayedHealth > 0)
 		{
-			Decrement(DisplayedHealth - newHealth);
+			if (newHealth < DisplayedHealth)
+			{
+				Decrement(DisplayedHealth - newHealth);
+			}
+			else if (newHealth > DisplayedHealth)
+			{
+				Increment(newHealth - DisplayedHealth);
+			}
 		}
-		else if (newHealth > DisplayedHealth)
-		{
-			Increment(newHealth - DisplayedHealth);
-		}
+		
 	}
 
 	public void Increment(int health)
@@ -61,7 +65,7 @@ public partial class HeartGrid : MenuComposite
 	public void Decrement(int value)
 	{
 		DisplayedHealth -= value;
-		while (value > 0)
+		while (value > 0 && DisplayedHealth >= 0 && HeadIdx > 0)
 		{
 			while (this[HeadIdx].Health > 0 && value > 0)
 			{

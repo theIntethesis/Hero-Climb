@@ -113,12 +113,14 @@ public partial class Controller : CharacterBody2D
 	}
 	public void OnPlayerDeath()
 	{
+		GD.Print("OnPlayerDeath");
 		sprites.Offset = getSpriteOffset("death");
 		IsMovementLocked = true;
 		sprites.Play("death");
 	}
 	public void CollideWithEnemy(Node2D b)
 	{
+		GD.Print("CollideWithEnemy");
 		GD.Print(b.Name);
 		if (b.Name == "Player") return;
 
@@ -159,6 +161,7 @@ public partial class Controller : CharacterBody2D
 
 		if (Health <= 0)
 		{
+			
 			OnPlayerDeath();
 		}
 		else

@@ -1,11 +1,11 @@
 [gd_scene load_steps=30 format=3 uid="uid://j5pyhb5yaxvl"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Skeleton.cs" id="1_dt3i0"]
-[ext_resource type="Texture2D" uid="uid://c7uciem0y7i0w" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
-[ext_resource type="Texture2D" uid="uid://c4vv332il05cb" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
-[ext_resource type="Texture2D" uid="uid://brg305huk7srl" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
-[ext_resource type="Texture2D" uid="uid://i6vbecargdvx" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
-[ext_resource type="Texture2D" uid="uid://bvt7b4w5u3luw" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
+[ext_resource type="Texture2D" uid="uid://cbjmgg13b4t1j" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
+[ext_resource type="Texture2D" uid="uid://l8ermin647vb" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
+[ext_resource type="Texture2D" uid="uid://c60wfortgu8sx" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
+[ext_resource type="Texture2D" uid="uid://4wyvn2fm5u2s" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
+[ext_resource type="Texture2D" uid="uid://c5llpk4rbfamw" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 26)

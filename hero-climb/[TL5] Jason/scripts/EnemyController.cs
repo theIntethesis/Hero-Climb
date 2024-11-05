@@ -12,9 +12,9 @@ public partial class EnemyController : Node2D
 
 	public override void _Ready()
 	{
-		GD.Print("EnemyController ready.");
-		GD.Print("Calling SpawnEnemies...");
-		SpawnEnemies();
+		// GD.Print("EnemyController ready.");
+		// GD.Print("Calling SpawnEnemies...");
+		// SpawnEnemies();
 	}
 
 
@@ -36,27 +36,26 @@ public partial class EnemyController : Node2D
 			{
 				case 0:
 					BaseEnemy enemy0 = (Zombie)ZombieScene.Instantiate();
-					AddChild(enemy0);
 					enemy0.GlobalPosition = spawnPoint;
 					AddChild(enemy0);
 					enemy0.SetupEnemy();  // Custom setup method for enemies
 					break;
 				case 1:
 					BaseEnemy enemy1 = (Skeleton)SkeletonScene.Instantiate();
-					AddChild(enemy1);
 					enemy1.GlobalPosition = spawnPoint;
+					AddChild(enemy1);
 					enemy1.SetupEnemy();  // Custom setup method for enemies
 					break;
 				case 2:
 					BaseEnemy enemy2 = (Slime)SlimeScene.Instantiate();
-					AddChild(enemy2);
 					enemy2.GlobalPosition = spawnPoint;
+					AddChild(enemy2);
 					enemy2.SetupEnemy();  // Custom setup method for enemies
 					break;
 				case 3:
 					BaseEnemy enemy3 = (Goblin)GoblinScene.Instantiate();
-					AddChild(enemy3);
 					enemy3.GlobalPosition = spawnPoint;
+					AddChild(enemy3);
 					enemy3.SetupEnemy();  // Custom setup method for enemies
 					break;
 			}

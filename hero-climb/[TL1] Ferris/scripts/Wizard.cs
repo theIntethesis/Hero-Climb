@@ -90,6 +90,6 @@ public partial class Wizard : Controller
 			}
 		}
 
-		if (Health <= 0) OnPlayerDeath();
+		// if (Health <= 0) OnPlayerDeath();
 	}
 }
