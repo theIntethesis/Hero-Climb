@@ -38,6 +38,7 @@ public partial class GameHandler : Node
             ActiveGame.QueueFree();
             ActiveGame = null;
             Input.EmulateMouseFromTouch = true;
+            PlayerGlobal.SetPlayer(null);
         }
     }
 

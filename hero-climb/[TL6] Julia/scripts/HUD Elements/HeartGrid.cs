@@ -37,9 +37,9 @@ public partial class HeartGrid : MenuComposite
 	public void Increment(int health)
 	{
 		
-		while (health > 0)
+		while (health > 0 && DisplayedHealth < MaxHealth)
 		{
-			while (DisplayedHealth <= MaxHealth && this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
+			while (this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
 			{
 				if (health > Heart.MAX_HEART_HEALTH)
 				{
@@ -65,9 +65,9 @@ public partial class HeartGrid : MenuComposite
 
 	public void Decrement(int value)
 	{
-		while (value > 0)
+		while (value > 0 && DisplayedHealth > 0)
 		{
-			while (DisplayedHealth >= 0 && this[HeadIdx].Health > 0 && value > 0)
+			while (this[HeadIdx].Health > 0 && value > 0)
 			{
 				this[HeadIdx].Health--;
 				value--;
