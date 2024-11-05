@@ -1,3 +1,9 @@
+// PlayerSound.cs
+// Gavin Haynes
+// October 29, 2024
+// CS383
+// Interface for the PlayerSoundController, which extends SoundController.cs
+
 using Godot;
 using System;
 

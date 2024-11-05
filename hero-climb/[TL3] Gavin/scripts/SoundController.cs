@@ -8,7 +8,14 @@ public partial class SoundController : Node
 	
 	// Play a sound using the name
 	public void play(string sound) {
-		GetNode<AudioStreamPlayer>(sound).Play();
+		foreach (AudioStreamPlayer child in GetChildren())
+		{
+			if (child.Name == sound)
+			{
+				child.Play();
+				break;
+			}
+		}
 	}
 	
 	// Print the names of each sound in this controller 
@@ -43,14 +50,16 @@ public partial class SoundController : Node
 	// Set the decibel volume of each sound child
 	private void setChildrenVolume(int vol) {
 		float db = volumeToDb(vol);
+		GD.Print("Setting DB to " + db);
 		foreach (AudioStreamPlayer sound in GetChildren()) {
 			sound.VolumeDb = db;
 		}
 	}
 	
-	// Convert a linear volume to decibels.
-	private float volumeToDb(int vol) {
-		return (float)Math.Log10(vol) * 20.0f;
+	// Convert a linear volume to decibels. If the volume is 0,
+	// set decibels to the lowest value possible.
+	public float volumeToDb(float vol) {
+		return (float)Mathf.LinearToDb(vol/100.0);
 	}
 	
 	// Check that the volume is in range [0-100]

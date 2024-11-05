@@ -13,15 +13,12 @@ script = ExtResource("1_eboj7")
 
 [node name="WizardAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ln73a")
-volume_db = -80.0
 
 [node name="FighterAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1nj3d")
-volume_db = -30.672
 
 [node name="RogueAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n37xr")
-volume_db = -30.672
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x8owk")
