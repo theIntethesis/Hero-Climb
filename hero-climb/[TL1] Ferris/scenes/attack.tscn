@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw3wyeb4tbyea"]
+
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/Attack.cs" id="1_ufykg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdbei"]
+
+[node name="Attack" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_ufykg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kdbei")

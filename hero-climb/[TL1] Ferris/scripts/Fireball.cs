@@ -48,20 +48,19 @@ public partial class Fireball : Attack
 		velocity = new Vector2(x, y) * Speed;
 		Rotation = angle + (float)Math.PI;
 	}
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		var Player = GetParent().FindChild("Player") as Controller;
-		/*var Camera = Player.FindChild("PlayerCamera") as Camera2D;
-		var diff = Camera.GetScreenCenterPosition() - Player.Position;
-		GD.Print($"Camera Offset: \t{Camera.GetScreenCenterPosition()}");
-		GD.Print($"Player Offset: \t{Player.Position}");
-		GD.Print($"Difference: \t{diff}");*/
 		Damage = Player.Damage;
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
-		// GD.Print($"Target:\t{target.Position}");
-	}
+	}/*
+	public Fireball()
+	{
+		var Player = GetParent().FindChild("Player") as Controller;
+		Damage = Player.Damage;
+		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
+	}*/
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

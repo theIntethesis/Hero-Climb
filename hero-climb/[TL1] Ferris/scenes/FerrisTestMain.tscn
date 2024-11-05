@@ -21,17 +21,3 @@ Class = 2
 
 [node name="Zombie" parent="." instance=ExtResource("4_vm04u")]
 position = Vector2(144, -42)
-
-[connection signal="body_entered" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@46757" to="TowerTileset/@Area2D@46757" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@46757" to="TowerTileset/@Area2D@46757" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@46758" to="TowerTileset/@Area2D@46758" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@46758" to="TowerTileset/@Area2D@46758" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@46759" to="TowerTileset/@Area2D@46759" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@46759" to="TowerTileset/@Area2D@46759" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@46760" to="TowerTileset/@Area2D@46760" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@46760" to="TowerTileset/@Area2D@46760" method="OnBodyExited"]
-[connection signal="area_entered" from="TowerTileset/Coin" to="TowerTileset/Coin" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@46762" to="TowerTileset/@Area2D@46762" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@46763" to="TowerTileset/@Area2D@46763" method="OnAreaEntered"]

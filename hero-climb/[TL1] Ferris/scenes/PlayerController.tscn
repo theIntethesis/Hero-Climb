@@ -25,4 +25,5 @@ shape = SubResource("CapsuleShape2D_uhtvn")
 
 [node name="PlayerSoundController" parent="." instance=ExtResource("2_q8fjq")]
 
+[connection signal="area_entered" from="Hitbox" to="." method="CollideWithEnemy"]
 [connection signal="body_entered" from="Hitbox" to="." method="CollideWithEnemy"]
