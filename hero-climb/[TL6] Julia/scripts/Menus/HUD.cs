@@ -59,7 +59,7 @@ public partial class GameHUD : MenuComposite
 
         Push(leaf);
         
-        if (OS.GetName() == "Android")
+        if (OS.GetName() == "Android" || OS.IsDebugBuild())
         {
             Push(Controls);
         }
@@ -70,6 +70,8 @@ public partial class GameHUD : MenuComposite
     public override void OnShow()
     {
         GetTree().Paused = false;
+        Input.EmulateMouseFromTouch = false;
+
     }
 
     public override void OnHide()
@@ -81,7 +83,6 @@ public partial class GameHUD : MenuComposite
     public override void OnPop()
     {
         Parent().Push(new PauseMenu());
-        Input.EmulateMouseFromTouch = false;
     }
 }
 
