@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 public partial class Fighter : Controller
 {
+	private float BashSpeed = 400;
 	Timer bashTimer = new();
 	public Fighter()
 	{
@@ -65,7 +66,7 @@ public partial class Fighter : Controller
 		AddChild(ShieldBashHitbox);
 		ShieldBashHitbox.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
 		bashTimer.Start();
-		return sprites.FlipH ? new Vector2(-700, 0) : new Vector2(700, 0);
+		return sprites.FlipH ? new Vector2(-BashSpeed, 0) : new Vector2(BashSpeed, 0);
 	}
 	private void removeShieldBash()
 	{

@@ -20,7 +20,7 @@ public partial class PlayerCamera : Camera2D
     {
         Interface = GetNode<CanvasLayer>("Interface");
 
-        Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
+        Stack = new PlayerCameraStack(PlayerGlobal.GetPlayerMaxHealth());
 
         Interface.AddChild(Stack);
 
@@ -34,8 +34,8 @@ public partial class PlayerCamera : Camera2D
 
         if (GetParent() is Controller controller)
         {
-            controller.Injury += InjuryEventHandler;
-            controller.IsDead += OnPlayerDeath;
+            controller.PlayerHealthChange += InjuryEventHandler;
+            controller.PlayerDeath += OnPlayerDeath;
         }
 
         Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
