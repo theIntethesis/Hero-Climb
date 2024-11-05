@@ -20,8 +20,9 @@ public partial class GameHandler : Node
         StopGame();
         GetTree().Paused = false;
         ActiveGame = InitialGameScene.Instantiate();
-        Controller Player = ActiveGame.GetNode<Controller>("Player");
-        PlayerGlobal.SetCharacterType(classType, Player);
+        
+        PlayerGlobal.SetPlayer(ActiveGame.GetNode<Controller>("Player"));
+        PlayerGlobal.SetCharacterType(classType);
         GetTree().Root.AddChild(ActiveGame);
 
         Input.EmulateMouseFromTouch = false;

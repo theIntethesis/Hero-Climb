@@ -90,27 +90,24 @@ public partial class PlayerCameraStack : MenuStack
 
     public GameHUD HUD;
 
-    Controller PlayerRef;
     PlayerCamera ParentCam;
 
 
-    public PlayerCameraStack(Controller player, PlayerCamera parent) : base(NAME)
+    public PlayerCameraStack(PlayerCamera parent) : base(NAME)
     {
-        PlayerRef = player;
         ParentCam = parent;
     }
 
     public override void _Ready()
     {
-        HUD = new GameHUD(PlayerRef.MaxHealth);
+        HUD = new GameHUD(PlayerGlobal.GetPlayerMaxHealth());
         Push(HUD);
 
-        HUD.leaf.Hearts.Increment(PlayerRef.getHealth());
+        HUD.leaf.Hearts.Increment(PlayerGlobal.GetPlayerHealth());
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
-        //PlayerRef.PlayerHealthChange += PlayerHealthChangeEventHandler;
-        PlayerRef.Injury += PlayerHealthChangeEventHandler;
-        PlayerRef.PlayerDeath += OnPlayerDeath;
+        PlayerGlobal.Player.PlayerHealthChange += PlayerHealthChangeEventHandler;
+        PlayerGlobal.Player.PlayerDeath += OnPlayerDeath;
     }
 
     public void OpenShop(GameShop.Element[] elements)
@@ -138,12 +135,12 @@ public partial class PlayerCameraStack : MenuStack
 
     public void PlayerHealthChangeEventHandler()
     {
-        if (PlayerGlobal.Health - HUD.leaf.Hearts.DisplayedHealth < 0)
+        if (PlayerGlobal.GetPlayerHealth() - HUD.leaf.Hearts.DisplayedHealth < 0)
         {
             ParentCam.ShakeCamera();
         }
 
-        HUD.leaf.Hearts.SetHealth(PlayerGlobal.Health);
+        HUD.leaf.Hearts.SetHealth(PlayerGlobal.GetPlayerHealth());
     }
 
     public void OnPlayerDeath() 

@@ -39,16 +39,8 @@ public partial class PlayerCamera : Camera2D
         Interface = GetNode<CanvasLayer>("Interface");
 
         // Use the Character Global class instead!
-        if (GetParent() is not Controller) 
-        {
-            throw new Exception("PlayerCamera must be a child to a Controller");
-        }
-
-        if (GetParent() is Controller controller)
-        {
-            Stack = new PlayerCameraStack(controller, this);
-            Interface.AddChild(Stack);
-        }
+        Stack = new PlayerCameraStack(this);
+        Interface.AddChild(Stack);
 
         // OpenShop();
     }
