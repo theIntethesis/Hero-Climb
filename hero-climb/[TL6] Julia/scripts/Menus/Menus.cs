@@ -86,16 +86,6 @@ public partial class PauseMenu : MenuStack
                 GameHandler.Instance().LoadMainMenu();
             };
         }
-
-        public override void _Ready()
-        {
-            Input.EmulateMouseFromTouch = true;
-        }
-
-        public override void OnPop()
-        {
-            Input.EmulateMouseFromTouch = false;
-        }
     }
 
 
