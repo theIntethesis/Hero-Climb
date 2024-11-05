@@ -3,9 +3,9 @@ class_name Level
 
 # Matrix representing how many of each piece type exist.
 # Must be manually updated.
-const PIECE_COUNTS = {"LY":2, "LC":2, "LN":2,
-					"CY":2, "CC":2, "CN":2,
-					"RY":2, "RC":2, "RN":2,}
+const PIECE_COUNTS = {"LY":2, "LC":3, "LN":2,
+					  "CY":2, "CC":3, "CN":2,
+					  "RY":2, "RC":3, "RN":2,}
 
 # L is left, C is center, R is right
 const LAYOUT_MAP = ["L","C","C","R"]
@@ -51,7 +51,7 @@ func build_level():
 		level_piece.position.x = level_place*464
 		
 		get_collectables(level_piece)
-		#get_enemies(level_piece)
+		get_enemies(level_piece)
 		level_place += 1
 
 func get_collectables(room):

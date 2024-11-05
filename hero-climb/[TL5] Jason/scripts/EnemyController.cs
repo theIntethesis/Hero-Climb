@@ -39,8 +39,8 @@ public partial class EnemyController : Node2D
 			{
 				case 0:
 					BaseEnemy enemy0 = (BaseEnemy)ZombieScene.Instantiate();
-					AddChild(enemy0);
 					enemy0.GlobalPosition = spawnPoint;
+					AddChild(enemy0);
 					enemy0.SetupEnemy();  // Custom setup method for enemies
 					break;
 				/*

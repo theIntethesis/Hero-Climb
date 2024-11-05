@@ -95,7 +95,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void OnAttackEntered(Area2D body)
 	{
 		if(body is Attack)
-        {
+		{
 			GD.Print($"Zombie: {Health} - {(body as Attack).Damage} = {Health -= (body as Attack).Damage}");
             EmitSignal(SignalName.TakeDamage);
         }

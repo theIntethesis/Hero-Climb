@@ -29,7 +29,6 @@ public partial class CoinPickup : Pickup
 	
 	public override void PickupEffect(){
 		PlayerGlobal.Money += pickup_value;
-		GD.Print(PlayerGlobal.Money);
 		QueueFree();
 	}
 }
