@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bo230qklt4eud"]
 
 [ext_resource type="Script" path="res://[TL3] Gavin/scripts/PlayerSound.cs" id="1_eboj7"]
-[ext_resource type="AudioStream" uid="uid://dog5v8q4vkbld" path="res://[TL3] Gavin/assets/PlayerSounds/WizardAttack.mp3" id="2_ln73a"]
-[ext_resource type="AudioStream" uid="uid://13h5sgtfa0uu" path="res://[TL3] Gavin/assets/PlayerSounds/FighterAttack.mp3" id="3_1nj3d"]
-[ext_resource type="AudioStream" uid="uid://du1hiilbosiuo" path="res://[TL3] Gavin/assets/PlayerSounds/PlayerJump.mp3" id="3_x8owk"]
-[ext_resource type="AudioStream" uid="uid://y5kdd23kvucb" path="res://[TL3] Gavin/assets/PlayerSounds/Walking.mp3" id="4_3k8w5"]
-[ext_resource type="AudioStream" uid="uid://dvp2v3nnwocjv" path="res://[TL3] Gavin/assets/PlayerSounds/RogueAttack.mp3" id="4_n37xr"]
-[ext_resource type="AudioStream" uid="uid://c3jkr6uu4cb04" path="res://[TL3] Gavin/assets/PlayerSounds/PlayerDamage.mp3" id="5_k1784"]
+[ext_resource type="AudioStream" uid="uid://b0tvahlwgrl1i" path="res://[TL3] Gavin/assets/PlayerSounds/WizardAttack.mp3" id="2_ln73a"]
+[ext_resource type="AudioStream" uid="uid://bu5uni3we0bu6" path="res://[TL3] Gavin/assets/PlayerSounds/FighterAttack.mp3" id="3_1nj3d"]
+[ext_resource type="AudioStream" uid="uid://das8mu47amcwf" path="res://[TL3] Gavin/assets/PlayerSounds/PlayerJump.mp3" id="3_x8owk"]
+[ext_resource type="AudioStream" uid="uid://bmjtowqvwrxc1" path="res://[TL3] Gavin/assets/PlayerSounds/Walking.mp3" id="4_3k8w5"]
+[ext_resource type="AudioStream" uid="uid://b23acevywrss" path="res://[TL3] Gavin/assets/PlayerSounds/RogueAttack.mp3" id="4_n37xr"]
+[ext_resource type="AudioStream" uid="uid://c518xteisaoso" path="res://[TL3] Gavin/assets/PlayerSounds/PlayerDamage.mp3" id="5_k1784"]
 
 [node name="PlayerSoundController" type="Node2D"]
 script = ExtResource("1_eboj7")
