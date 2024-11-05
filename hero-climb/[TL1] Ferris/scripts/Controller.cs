@@ -168,7 +168,6 @@ public partial class Controller : CharacterBody2D
 	private void stopIFrames()
 	{
 		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
-	
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -305,6 +304,6 @@ public partial class Controller : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
-		if (Health <= 0) OnPlayerDeath();
+		// if (Health <= 0) OnPlayerDeath();
 	}
 }

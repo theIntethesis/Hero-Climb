@@ -14,6 +14,9 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private bool IsDetectingPlayer = false;
 	private Vector2 playerPosition;
 
+	[Signal] public delegate void AttackPlayerEventHandler();
+	[Signal] public delegate void TakeDamageEventHandler();
+
 	public override void _Ready()
 	{
 		GD.Print("BaseEnemy ready.");
@@ -85,6 +88,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		if (body is Controller){
 			GD.Print("Yippee");
+			EmitSignal(SignalName.AttackPlayer);
         }
 	}
 
@@ -93,8 +97,8 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		if(body is Attack)
         {
 			GD.Print($"Zombie: {Health} - {(body as Attack).Damage} = {Health -= (body as Attack).Damage}");
+            EmitSignal(SignalName.TakeDamage);
         }
-
     }
 
 	private void OnDetectorBodyEntered(Node2D body)

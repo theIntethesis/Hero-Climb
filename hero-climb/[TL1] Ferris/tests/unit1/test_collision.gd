@@ -24,7 +24,7 @@ func test_lava_and_player():
 	add_child_autofree(load("res://[TL2] Taran/scenes/rising_lava.tscn").instantiate())
 	assert_true(await wait_for_signal(_player.PlayerDeath, 5))
 
-func test_player_from_zombie():
+func test_player_and_zombie():
 	var pC = player.instantiate()
 	pC.Class = 2
 	_player = add_child_autofree(pC)
@@ -32,17 +32,10 @@ func test_player_from_zombie():
 	var zC = zombieScene.instantiate()
 	zC.position = Vector2(70, -20)
 	var zombie = add_child_autofree(zC)
-	assert_true(await wait_for_signal(_player.Injury, 5))
-
-func test_zombie_from_player():
-	var pC = player.instantiate()
-	pC.Class = 2
-	_player = add_child_autofree(pC)
-	var zC = zombieScene.instantiate()
-	zC.position = Vector2(70, -20)
-	var zombie = add_child_autofree(zC)
 	watch_signals(zombie)
-	assert_true(await wait_for_signal(zombie.AttackPlayer, 5))
+	await wait_for_signal(_player.PlayerHealthChange, 5)
+	assert_signal_emit_count(zombie, "AttackPlayer", 1)
+	assert_signal_emit_count(_player, "PlayerHealthChange", 1)
 
 func test_fireball_and_zombie():
 	var zC = zombieScene.instantiate()

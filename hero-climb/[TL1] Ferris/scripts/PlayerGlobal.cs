@@ -10,35 +10,35 @@ public partial class PlayerGlobal : Node
 	public static int Money { set; get; } = 0;
 	public static bool InShopArea = false;
 	public static Controller Player;
-    private static void CheckPlayerSet()
-    {
-        if (Player == null)
-        {
-            throw new NullReferenceException("Player not set to a node!");
-        }
-    }
+	private static void CheckPlayerSet()
+	{
+		if (Player == null)
+		{
+			throw new NullReferenceException("Player not set to a node!");
+		}
+	}
 	public static int AffectPlayerHealth(int amount)
 	{
-        CheckPlayerSet();
-        return Player.affectHealth(amount);
-    }
+		CheckPlayerSet();
+		return Player.affectHealth(amount);
+	}
 	public static int GetPlayerHealth()
 	{
-        CheckPlayerSet();
-        return Player.getHealth();
-    }
-    public static int GetPlayerMaxHealth()
-    {
-        CheckPlayerSet();
-        return Player.MaxHealth;
-    }
-    public static void BumpPlayerMaxHealth(int amount)
-    {
-        CheckPlayerSet();
-        Player.MaxHealth += amount;
-    }
+		CheckPlayerSet();
+		return Player.getHealth();
+	}
+	public static int GetPlayerMaxHealth()
+	{
+		CheckPlayerSet();
+		return Player.MaxHealth;
+	}
+	public static void BumpPlayerMaxHealth(int amount)
+	{
+		CheckPlayerSet();
+		Player.MaxHealth += amount;
+	}
 
-    public static void SetPlayer(Controller p) {  Player = p; }
+	public static void SetPlayer(Controller p) {  Player = p; }
 	public static void SetCharacterType(Controller.ClassType cType)
 	{
 		Player.SetClass(cType);
