@@ -1,13 +1,22 @@
-﻿using System;
+using System;
 using Godot;
 
-internal partial class Attack : Area2D
+public partial class Attack : Area2D
 {
-    [Export]
-    public int Damage;
-    public override void _Ready()
-    {
-        Damage = (Owner as Controller).Damage;
-        // GD.Print("Attack Ready");
-    }
+	[Export]
+	public int Damage = 0;/*
+	public Attack()
+	{
+		Damage = (GetParent() as Controller).Damage;
+		GD.Print($"Attack Ready; Damage: {Damage}");
+	}*/
+	public override void _Ready()
+	{
+		Damage = (GetParent() as Controller).Damage;
+		GD.Print($"Attack Ready; Damage: {Damage}");
+	}
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+	}
 }

@@ -19,6 +19,9 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	#endregion
 	
+	[Signal] public delegate void AttackPlayerEventHandler();
+	[Signal] public delegate void TakeDamageEventHandler();
+
 	#region SETUP
 	public override void _Ready()
 	{

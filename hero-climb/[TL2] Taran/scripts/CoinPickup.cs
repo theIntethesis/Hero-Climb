@@ -27,12 +27,8 @@ public partial class CoinPickup : Pickup
 		}
 	}
 	
-	public override void _Ready(){
-		Connect(SignalName.AreaEntered, Callable.From(PlayerDetected), (uint)GodotObject.ConnectFlags.OneShot);
-		GD.Print(pickup_value);
-	}
-	
-	public override void PlayerDetected(){
-		
+	public override void PickupEffect(){
+		PlayerGlobal.Money += pickup_value;
+		QueueFree();
 	}
 }

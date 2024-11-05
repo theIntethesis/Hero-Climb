@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfcdbdgy0vle1"]
-
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD Elements/Shop.cs" id="1_nw2l6"]
+[gd_scene format=3 uid="uid://bfcdbdgy0vle1"]
 
 [node name="Shop" type="PanelContainer"]
 anchors_preset = 8
@@ -14,7 +12,6 @@ offset_right = 120.0
 offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nw2l6")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
@@ -47,5 +44,3 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Close
 "
-
-[connection signal="pressed" from="Control/Close" to="." method="OnClosePressed"]

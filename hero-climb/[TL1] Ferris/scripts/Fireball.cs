@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-internal partial class Fireball : Attack
+public partial class Fireball : Attack
 
 {
 	[Export]
@@ -16,6 +16,7 @@ internal partial class Fireball : Attack
 	
 	public void DeleteOnCollision(Node2D body)
 	{
+		GD.Print($"Fireball collided with {body.Name}");
 		if (!body.IsAncestorOf(this) && body.Name != "Player")
 		{
 			foreach(Line2D line in lines) {line.QueueFree(); }
@@ -34,7 +35,7 @@ internal partial class Fireball : Attack
 	}
 	public void setVelocity(bool followMouse = true, bool facingLeft = false)
 	{
-		addLine();
+		if(OS.IsDebugBuild()) addLine();
 		var angle = GetAngleTo(target.Position);
 		if (!followMouse)
 			angle = facingLeft ? (float)Math.PI : 0;
@@ -47,20 +48,25 @@ internal partial class Fireball : Attack
 		velocity = new Vector2(x, y) * Speed;
 		Rotation = angle + (float)Math.PI;
 	}
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		try
+		{
+			var Player = GetParent().FindChild("Player") as Controller;
+			Damage = Player.Damage;
+		}
+		catch (NullReferenceException) {
+			Damage = 50;
+		}
+		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
+	}/*
+	public Fireball()
+	{
 		var Player = GetParent().FindChild("Player") as Controller;
-		/*var Camera = Player.FindChild("PlayerCamera") as Camera2D;
-		var diff = Camera.GetScreenCenterPosition() - Player.Position;
-		GD.Print($"Camera Offset: \t{Camera.GetScreenCenterPosition()}");
-		GD.Print($"Player Offset: \t{Player.Position}");
-		GD.Print($"Difference: \t{diff}");*/
 		Damage = Player.Damage;
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
-		// GD.Print($"Target:\t{target.Position}");
-	}
+	}*/
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)

@@ -12,17 +12,20 @@ public partial class Pickup : Area2D
 	
 	protected AnimatedSprite2D sprites;
 	
-	
-	public override void _Ready(){
-		uint pickup_type = GD.Randi()%4;
-		if (pickup_type == 0){
-			SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/HealthPickup.cs"));
-		}else{
-			SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/CoinPickup.cs"));
-		}
+	public void SetAsCoin(){
+		SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/CoinPickup.cs"));
 	}
 	
-	public virtual void PlayerDetected(){
+	public void SetAsHeal(){
+		SetScript(GD.Load<Script>("res://[TL2] Taran/scripts/HealthPickup.cs"));
+	}
+	
+	public void OnAreaEntered(Area2D area){
+		GD.Print($"Player Name {area.Name}");
+		PickupEffect();
+	}
+	
+	public virtual void PickupEffect(){
 		GD.Print(pickup_value);
 	}
 }

@@ -2,7 +2,7 @@ using Godot;
 
 public partial class GameHandler : Node
 {
-    const string InitialGameScenePath = "res://[TL2] Taran/scenes/Main Level.tscn";
+    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn"; // "res://[TL2] Taran/scenes/Main Level.tscn";
     
     static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
     
@@ -20,9 +20,15 @@ public partial class GameHandler : Node
         StopGame();
         GetTree().Paused = false;
         ActiveGame = InitialGameScene.Instantiate();
-        Controller Player = ActiveGame.GetNode<Controller>("Player");
-        PlayerGlobal.SetCharacterType(classType, Player);
+        
+        PlayerGlobal.SetPlayer(ActiveGame.GetNode<Controller>("Player"));
+        PlayerGlobal.SetCharacterType(classType);
+        PlayerGlobal.Money = 0;
         GetTree().Root.AddChild(ActiveGame);
+
+        PlayerGlobal.SetPlayer(GetTree().Root.GetNode<Controller>("LevelController/Player"));
+
+        Input.EmulateMouseFromTouch = false;
     }
 
     public void StopGame()
@@ -31,8 +37,11 @@ public partial class GameHandler : Node
         {
             ActiveGame.QueueFree();
             ActiveGame = null;
+            Input.EmulateMouseFromTouch = true;
         }
     }
+
+    private GameHandler() { }
 
     public override void _Ready()
     {
@@ -41,7 +50,7 @@ public partial class GameHandler : Node
 
     public void LoadMainMenu()
     {
-        MenuComposite mainMenu = new MainMenu(null);
+        MenuComposite mainMenu = new MainMenu();
 		GetTree().Root.CallDeferred("add_child", mainMenu);
     }
 }

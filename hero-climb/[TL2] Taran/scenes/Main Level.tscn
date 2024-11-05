@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="3_gak21"]
 [ext_resource type="PackedScene" uid="uid://dd7f85xccmjqk" path="res://[TL2] Taran/scenes/tower pieces/bottom_floor.tscn" id="3_hcb7c"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="4_lx3yn"]
-[ext_resource type="Texture2D" uid="uid://disdull45dgu8" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
-[ext_resource type="Texture2D" uid="uid://dyptpgmtodyfp" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
-[ext_resource type="Texture2D" uid="uid://bdyhedjyk81cs" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
+[ext_resource type="Texture2D" uid="uid://cmpeda35plkj3" path="res://[TL2] Taran/assets/background1.png" id="5_wdpbn"]
+[ext_resource type="Texture2D" uid="uid://bamtpekji4wsl" path="res://[TL2] Taran/assets/background2.png" id="6_h3mma"]
+[ext_resource type="Texture2D" uid="uid://c61cw4jc13vb1" path="res://[TL2] Taran/assets/background3.png" id="7_hv7cs"]
 [ext_resource type="PackedScene" uid="uid://vmvoyenvqm7l" path="res://[TL2] Taran/scenes/pickup_item.tscn" id="9_kohwq"]
 
 [node name="MainLevel" type="Node2D"]

@@ -4,90 +4,95 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
-	public HeartGrid hearts;
+	private CanvasLayer Interface;
 
-    public override void _Ready()
-    {
+	private PlayerCameraStack Stack;
 
-        hearts = GetNode<HeartGrid>("HUD/Margin/HeartGrid");
+	int ShakeFrame = 0;
+	bool Shaking = false;
 
-        // Use the Character Global class instead!
-        if (!(GetParent() is Controller)) 
-        {
-            throw new Exception("PlayerCamera must be a child to a Controller");
-        }
 
-        hearts.SetMaxHealth(GetParent<Controller>().MaxHealth);
-        hearts.Set(GetParent<Controller>().getHealth());
+	[ExportGroup("Camera Shake")]
+	
+	[Export]
+	float Amplitude = 1.0f;
+	
+	[Export]
+	float PeriodMultiplier = 40.0f;
 
-        //MenuHead.Instance().OnPause += this.OnPauseEventHandler;
-        //MenuHead.Instance().OnResume += this.OnResumeEventHandler;
+	[Export]
+	float Duration = 1.0f;
 
-        /*
-        ShopElement[] elements = new ShopElement[]
-        {
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2),
-            new ShopElement("res://[TL6] Julia/assets/heart 15x15.png", 2)
-        };
 
-        */
+	float CurrentDuration;
 
-        // OpenShop(elements);
-    }
 
-	public void OnPauseEventHandler()
+	Vector2 DefaultOffset;
+
+	public PlayerCamera()
 	{
-		GetNode<CanvasLayer>("HUD").Visible = false;
+		DefaultOffset = Offset;
 	}
 
-	public void OnResumeEventHandler()
+	public override void _Ready()
 	{
-		GetNode<CanvasLayer>("HUD").Visible = true;
+		Interface = GetNode<CanvasLayer>("Interface");
+
+		// Use the Character Global class instead!
+		Stack = new PlayerCameraStack(this);
+		Interface.AddChild(Stack);
+
+		// OpenShop();
 	}
 
-	public void InjuryEventHandler() 
+	public void OpenShop()
 	{
-		hearts.Set(GetParent<Controller>().getHealth());
+		GameShop.Element[] elements = new GameShop.Element[]
+		{
+			new(10, "Element.0"),
+			new(10, "Element.1"),
+			new(10, "Element.2"),
+			new(10, "Element.3"),
+			new(10, "Element.4"),
+			new(10, "Element.5")
+		};
+		Stack.OpenShop(elements);  
 	}
 
-    public void OnPlayerDeath() 
-    {
-        //MenuHead.Instance().OnPlayerDeath();
-        
-        GetNode<CanvasLayer>("HUD").Visible = false;
-    }
+	public override void _Process(double delta)
+	{
+		if (Shaking)
+		{
+			ShakeFrame += 1;
+			CurrentDuration += (float)delta;
 
-    public void OnGameWin()
-    {
-        //MenuHead.Instance().OnGameWin();
-    }
+			float theta = ShakeFrame * MathF.PI / 180.0f;
 
-    public override void _ExitTree()
-    {
-        //MenuHead.Instance().OnPause -= this.OnPauseEventHandler;
-        //MenuHead.Instance().OnResume -= this.OnResumeEventHandler;
-    }
+			GD.Print(theta);
 
-    public void OpenShop(ShopElement[] elements)
-    {
-        Shop shop = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn").Instantiate() as Shop;
-        GetNode<Node>("HUD/Margin").AddChild(shop);
-        shop.Name = "Shop";
-        shop.Init(elements);
-    }
+			Vector2 vec = new Vector2(0, MathF.Sin(theta * PeriodMultiplier) * Amplitude / CurrentDuration);
+		   
+			GD.Print(vec);
+			Offset = vec;
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("open_menu") && !GetTree().Paused)
-        {
-            MenuComposite pauseMenu = new PauseMenu(null);
-            GetNode<CanvasLayer>("HUD").AddChild(pauseMenu);
-            GetTree().Paused = true;
-        }
-        
-    }
-}
+			
+			if (CurrentDuration >= Duration && (Offset.Y < 0.2 || Offset.Y > -0.2))
+			{
+				Shaking = false;
+			}
+		}
+		else
+		{
+			Offset = new Vector2(0.0f, 0.0f);
+		}
+	}
+
+	public void ShakeCamera()
+	{
+		if (!Shaking)
+		{
+			Shaking = true;
+			CurrentDuration = 0.0f;
+		}
+	}
+}   

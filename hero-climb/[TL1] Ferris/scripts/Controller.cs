@@ -24,13 +24,16 @@ public partial class Controller : CharacterBody2D
 	public int Damage = 50;
 
 	[Signal]
-	public delegate void IsDeadEventHandler();
+	public delegate void PlayerDeathEventHandler();
 
 	[Signal]
 	public delegate void AttackingEventHandler();
 
 	[Signal]
-	public delegate void InjuryEventHandler();
+	public delegate void PlayerHealthChangeEventHandler();
+
+	[Signal]
+	public delegate void ShutUpAndTakeMyMoneyEventHandler();
 
 	public int MaxHealth = 100;
 	protected int Health = 100;
@@ -42,6 +45,12 @@ public partial class Controller : CharacterBody2D
 	protected Node SoundController;
 	protected Timer iFrames = new();
 	public int getHealth() { return Health; }
+	public int affectHealth(int amount)
+	{
+		Health += amount;
+		EmitSignal(SignalName.PlayerHealthChange);
+		return Health;
+	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
 	public override void _PhysicsProcess(double delta)
@@ -102,7 +111,7 @@ public partial class Controller : CharacterBody2D
 		if (!PlayerGlobal.isAttacking) Animation();
 
 	}
-	public void PlayerDeath()
+	public void OnPlayerDeath()
 	{
 		sprites.Offset = getSpriteOffset("death");
 		IsMovementLocked = true;
@@ -110,6 +119,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public void CollideWithEnemy(Node2D b)
 	{
+		GD.Print(b.Name);
 		if (b.Name == "Player") return;
 
 		if(b is CharacterBody2D)
@@ -118,25 +128,38 @@ public partial class Controller : CharacterBody2D
 			uint layer3 = body.CollisionLayer & 0b_0100;
 			if (layer3 > 0)
 			{
-				GD.Print("Collided with Enemy!");
 				var enemy = body as BaseEnemy;
-				//GD.Print($"{Health} - {enemy.Damage} = {Health -= enemy.Damage}");
-				Health -= enemy.Damage;
-				EmitSignal(SignalName.Injury);
+				// GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+				//Health -= enemy.Damage;
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
 			}
 		}
+		else if (b.GetParent() is CharacterBody2D)
+		{
+            var body = b.GetParent() as CharacterBody2D;
+            uint layer3 = body.CollisionLayer & 0b_0100;
+            if (layer3 > 0)
+            {
+                var enemy = body as BaseEnemy;
+                // GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+                //Health -= enemy.Damage;
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
+            }
+        }
 		else if (b.Name == "RisingLava")
 		{
 			if (b.Name == "RisingLava")
 			{
 				Health = 0;
 			}
-			EmitSignal(SignalName.Injury);
+			EmitSignal(SignalName.PlayerHealthChange);
 		}
 
 		if (Health <= 0)
 		{
-			PlayerDeath();
+			OnPlayerDeath();
 		}
 		else
 		{
@@ -151,14 +174,18 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
+		if (@event.IsActionPressed("jump") && CanJump())
 		{
 			sprites.Offset = getSpriteOffset("jump");
 			sprites.Play("jump");
 		}
-		if (@event.IsActionPressed("attack") && !attackCooldown && !IsMovementLocked)
+		if (@event.IsActionPressed("attack") && CanAttack())
 		{
 			Attack();
+		}
+		if(@event.IsActionPressed("interact") && PlayerGlobal.InShopArea)
+		{
+			EmitSignal(SignalName.ShutUpAndTakeMyMoney);
 		}
 	}
 
@@ -210,34 +237,40 @@ public partial class Controller : CharacterBody2D
 		{
 			attackCooldown = false;
 			PlayerGlobal.isAttacking = false;
-			if(this is not Wizard) GetNode("Attack").Free();
+
+			GetNode("Attack")?.QueueFree();
+
 			if (Input.IsActionPressed("attack"))
 				Attack();
 		}
 		if(Health <= 0)
 		{
-			EmitSignal(SignalName.IsDead);
+			EmitSignal(SignalName.PlayerDeath);
 		}
 		OnAnimationEnd();
+	}
+
+	public bool CanAttack()
+	{
+		return !attackCooldown && !IsMovementLocked;
+	}
+
+	public bool CanJump()
+	{
+		return  (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked;
 	}
 
 	public virtual void Attack()
 	{
 		attackCooldown = true;
 		PlayerGlobal.isAttacking = true;
+		sprites.Offset = getSpriteOffset("attack");
 		sprites.Play("attack");
-		EmitSignal(SignalName.Attacking);
-		var AttackArea = new Area2D();
-		var AttackHitBox = new CollisionShape2D();
-		AttackHitBox.Shape = new CapsuleShape2D();
-		AttackArea.CollisionLayer = 0b_0011;
-		AttackArea.CollisionMask = 0b_0011;
-		AttackArea.Name = "Attack";
-		AttackArea.SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Attack.cs"));
+        var Attack = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/attack.tscn").Instantiate() as Attack;
+		GD.Print("Attacking");
+        Attack.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
+		AddChild(Attack);
 
-		AttackArea.AddChild(AttackHitBox);
-		AddChild(AttackArea);
-		AttackArea.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
 	}
 	protected virtual Vector2 Ability()
 	{
@@ -249,12 +282,12 @@ public partial class Controller : CharacterBody2D
 	}
 	public Controller()
 	{
-        iFrames.OneShot = true;
-        iFrames.WaitTime = 1.5;
-        iFrames.Autostart = true;
-        AddChild(iFrames);
-        iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
-    }
+		iFrames.OneShot = true;
+		iFrames.WaitTime = 1.5;
+		AddChild(iFrames);
+		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
+	}
+
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");
@@ -271,8 +304,9 @@ public partial class Controller : CharacterBody2D
 				break;
 		}
 	}
+
 	public override void _Process(double delta)
 	{
-		if (Health <= 0) PlayerDeath();
+		// if (Health <= 0) OnPlayerDeath();
 	}
 }
