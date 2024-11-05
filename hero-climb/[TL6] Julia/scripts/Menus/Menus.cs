@@ -15,7 +15,6 @@ public partial class MainMenu : MenuStack
         public override void OnPop()
         {
             Parent().Push(new QuitConfirm());
-            // base.OnPop();
         }
 
         public Leaf() : base(NAME, "res://[TL6] Julia/scenes/Menus/MainMenu.tscn")
@@ -71,7 +70,19 @@ public partial class PauseMenu : MenuStack
                 GameHandler.Instance().LoadMainMenu();
             };
         }
+
+        public override void _Ready()
+        {
+            Input.EmulateMouseFromTouch = true;
+        }
+
+        public override void OnPop()
+        {
+            Input.EmulateMouseFromTouch = false;
+        }
     }
+
+
 
     public PauseMenu() : base(NAME, "res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn")
     {

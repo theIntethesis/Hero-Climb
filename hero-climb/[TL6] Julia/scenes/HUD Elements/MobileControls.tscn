@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://0bdwm75lg5b8"]
+[gd_scene load_steps=7 format=3 uid="uid://0bdwm75lg5b8"]
 
 [ext_resource type="Texture2D" uid="uid://bn1wlu8iufplv" path="res://[TL6] Julia/assets/button_unpressed.png" id="1_7hwgo"]
 [ext_resource type="Texture2D" uid="uid://ce67uortob6be" path="res://[TL6] Julia/assets/button_pressed.png" id="2_f1xns"]
+[ext_resource type="Texture2D" uid="uid://c4dudwchsgw4o" path="res://[TL6] Julia/assets/attack_unpressed.png" id="3_g3bmh"]
 [ext_resource type="Texture2D" uid="uid://bdue1j7r83l84" path="res://[TL6] Julia/assets/menu_unpressed.png" id="3_ipc0l"]
 [ext_resource type="Texture2D" uid="uid://n2mv6hp8en3v" path="res://[TL6] Julia/assets/menu_pressed.png" id="4_1t18e"]
+[ext_resource type="Texture2D" uid="uid://da5sjme50gc2n" path="res://[TL6] Julia/assets/attack_pressed.png" id="4_i8hj5"]
 
 [node name="MobileControls" type="Control"]
 layout_mode = 3
@@ -108,8 +110,8 @@ action = "jump"
 
 [node name="attack" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
 position = Vector2(128, -128)
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+texture_normal = ExtResource("3_g3bmh")
+texture_pressed = ExtResource("4_i8hj5")
 action = "attack"
 
 [node name="Top Right Corner" type="Control" parent="."]
