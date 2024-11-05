@@ -23,14 +23,6 @@ public partial class PlayerCameraStack : MenuStack
         HUD.leaf.Hearts.Increment(PlayerGlobal.GetPlayerHealth());
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
-        // PlayerGlobal.Player.PlayerHealthChange += PlayerHealthChangeEventHandler;
-        // PlayerGlobal.Player.PlayerDeath += OnPlayerDeath;
-
-        // GetTree().Root.GetNode<Controller>("LevelController/Player").PlayerHealthChange += PlayerHealthChangeEventHandler;
-        // GetTree().Root.GetNode<Controller>("LevelController/Player").PlayerDeath += OnPlayerDeath;
-
-        // GetTree().Root.GetNode<Controller>("LevelController/Player").Connect(Controller.SignalName.PlayerHealthChange, Callable.From(PlayerHealthChangeEventHandler));
-        // GetTree().Root.GetNode<Controller>("LevelController/Player").Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From(PlayerHealthChangeEventHandler));  
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
     }
