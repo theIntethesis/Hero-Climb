@@ -32,6 +32,10 @@ text = "Start Game"
 layout_mode = 2
 text = "Settings"
 
+[node name="Credits" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Credits"
+
 [node name="Quit" type="Button" parent="GridContainer"]
 layout_mode = 2
 text = "Quit Game"

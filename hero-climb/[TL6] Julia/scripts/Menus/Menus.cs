@@ -27,6 +27,10 @@ public partial class MainMenu : MenuStack
             {
                 Parent().Push(new SettingsMenu());
             };
+            ForegroundNode.GetNode<Button>("GridContainer/Credits").Pressed += () => 
+            {
+                Parent().Push(new CreditsMenu());
+            };
             ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
                 Parent().Pop();
@@ -40,6 +44,18 @@ public partial class MainMenu : MenuStack
     }
 }
 
+public partial class CreditsMenu : MenuLeaf
+{
+    public const string NAME = "CreditsMenu";
+
+    public CreditsMenu() : base(NAME, "res://[TL6] Julia/scenes/Menus/CreditsMenu.tscn")
+    {
+        ForegroundNode.GetNode<Button>("GridContainer/Control/Button").Pressed += () =>
+        {
+            Parent().Pop();
+        };
+    }
+}
 
 public partial class PauseMenu : MenuStack
 {

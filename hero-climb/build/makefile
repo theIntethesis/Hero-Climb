@@ -19,7 +19,6 @@ package_windows:
 	mkdir Pkg/$(windows_pkg)
 	cp ../../README.md Pkg/$(windows_pkg)
 	cp ../../Manual.md Pkg/$(windows_pkg)
-	cp -r ../../Licenses Pkg/$(windows_pkg)
 	cp -r Windows/* Pkg/$(windows_pkg)
 	cd Pkg; zip -r $(windows_pkg).zip $(windows_pkg)
 
@@ -27,7 +26,6 @@ package_linux:
 	mkdir Pkg/$(linux_pkg)
 	cp ../../README.md Pkg/$(linux_pkg)
 	cp ../../Manual.md Pkg/$(linux_pkg)
-	cp -r ../../Licenses Pkg/$(linux_pkg)
 	cp -r Linux/* Pkg/$(linux_pkg)
 	cd Pkg; zip -r $(linux_pkg).zip $(linux_pkg)
 
