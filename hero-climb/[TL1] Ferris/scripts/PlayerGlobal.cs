@@ -9,7 +9,7 @@ public partial class PlayerGlobal : Node
 	public static bool isAttacking = false;
 	public static int Money { set; get; } = 0;
 	public static bool InShopArea = false;
-	public static Controller Player;
+	public static Controller Player = null;
 	private static void CheckPlayerSet()
 	{
 		if (Player == null)

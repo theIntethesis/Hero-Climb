@@ -15,7 +15,7 @@ public partial class PlayerCamera : Camera2D
 	[ExportGroup("Camera Shake")]
 	
 	[Export]
-	float Amplitude = 3.0f;
+	float Amplitude = 1.0f;
 	
 	[Export]
 	float PeriodMultiplier = 40.0f;

@@ -47,8 +47,9 @@ public partial class Controller : CharacterBody2D
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
+		Health += amount;
 		EmitSignal(SignalName.PlayerHealthChange);
-		return Health += amount;
+		return Health;
 	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
@@ -128,9 +129,10 @@ public partial class Controller : CharacterBody2D
 			if (layer3 > 0)
 			{
 				var enemy = body as BaseEnemy;
-				GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+				// GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
 				//Health -= enemy.Damage;
-				EmitSignal(SignalName.PlayerHealthChange);
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
 			}
 		}
 		else if (b.GetParent() is CharacterBody2D)
@@ -140,9 +142,10 @@ public partial class Controller : CharacterBody2D
             if (layer3 > 0)
             {
                 var enemy = body as BaseEnemy;
-                GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+                // GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
                 //Health -= enemy.Damage;
-                EmitSignal(SignalName.PlayerHealthChange);
+				affectHealth(-enemy.Damage);
+				// EmitSignal(SignalName.PlayerHealthChange);
             }
         }
 		else if (b.Name == "RisingLava")

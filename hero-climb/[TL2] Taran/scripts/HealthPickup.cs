@@ -17,7 +17,10 @@ public partial class HealthPickup : Pickup
 	
 	public override void PickupEffect(){
 		GD.Print($"Heal GP {GlobalPosition}");
-		PlayerGlobal.Health += pickup_value;
+		//PlayerGlobal.Health += pickup_value;
+		// Julia Abdel-Monem
+		PlayerGlobal.AffectPlayerHealth(pickup_value);
+		
 		QueueFree();
 	}
 }
