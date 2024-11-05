@@ -16,7 +16,7 @@ public partial class HealthPickup : Pickup
 	}
 	
 	public override void PickupEffect(){
-		GD.Print(pickup_value);
+		GD.Print($"Heal GP {GlobalPosition}");
 		PlayerGlobal.Health += pickup_value;
 		QueueFree();
 	}

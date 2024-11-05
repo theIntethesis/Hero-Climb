@@ -5,72 +5,72 @@ using System;
 public partial class PlayerCamera : Camera2D
 { 
 
-    private CanvasLayer Interface;
+	private CanvasLayer Interface;
 
-    private PlayerCameraStack Stack;
+	private PlayerCameraStack Stack;
 
-    int PlayerHealth;
+	int PlayerHealth;
 
-    int CurrentPlayerHealth 
-    {
-        get { return GetParent<Controller>().getHealth(); }
-    }
+	int CurrentPlayerHealth 
+	{
+		get { return GetParent<Controller>().getHealth(); }
+	}
 
-    public override void _Ready()
-    {
-        Interface = GetNode<CanvasLayer>("Interface");
+	public override void _Ready()
+	{
+		Interface = GetNode<CanvasLayer>("Interface");
 
-        Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
+		Stack = new PlayerCameraStack(PlayerGlobal.MaxHealth);
 
-        Interface.AddChild(Stack);
+		Interface.AddChild(Stack);
 
-        // Use the Character Global class instead!
-        if (GetParent() is not Controller) 
-        {
-            throw new Exception("PlayerCamera must be a child to a Controller");
-        }
+		// Use the Character Global class instead!
+		if (GetParent() is not Controller) 
+		{
+			throw new Exception("PlayerCamera must be a child to a Controller");
+		}
 
-        PlayerHealth = CurrentPlayerHealth;
+		PlayerHealth = CurrentPlayerHealth;
 
-        if (GetParent() is Controller controller)
-        {
-            controller.Injury += InjuryEventHandler;
-            controller.IsDead += OnPlayerDeath;
-        }
+		if (GetParent() is Controller controller)
+		{
+			controller.Injury += InjuryEventHandler;
+		 //   controller.IsDead += OnPlayerDeath;
+		}
 
-        Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
-        
-        OpenShop();
-    }
+		Stack.HUD.Hearts.Increment(CurrentPlayerHealth);
+		
+		OpenShop();
+	}
 
-    public void InjuryEventHandler() 
-    {
-        Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
-        PlayerHealth = CurrentPlayerHealth;
-    }
+	public void InjuryEventHandler() 
+	{
+		Stack.HUD.Hearts.Decrement(PlayerHealth - CurrentPlayerHealth);
+		PlayerHealth = CurrentPlayerHealth;
+	}
 
-    public void OnPlayerDeath() 
-    {        
-        Stack.Push(new DeathScreen());
-    }
+	public void OnPlayerDeath() 
+	{        
+		Stack.Push(new DeathScreen());
+	}
 
-    public void OnGameWin()
-    {
-        Stack.Push(new WinScreen());
-    }
+	public void OnGameWin()
+	{
+		Stack.Push(new WinScreen());
+	}
 
-    public void OpenShop()
-    {
-        GameShop.Element[] elements = new GameShop.Element[]
-        {
-            new GameShop.Element("Element.0"),
-            new GameShop.Element("Element.1"),
-            new GameShop.Element("Element.2"),
-            new GameShop.Element("Element.3"),
-            new GameShop.Element("Element.4"),
-            new GameShop.Element("Element.5")
-        };
-        Stack.OpenShop(elements);
-        
-    }
+	public void OpenShop()
+	{
+		GameShop.Element[] elements = new GameShop.Element[]
+		{
+			new GameShop.Element("Element.0"),
+			new GameShop.Element("Element.1"),
+			new GameShop.Element("Element.2"),
+			new GameShop.Element("Element.3"),
+			new GameShop.Element("Element.4"),
+			new GameShop.Element("Element.5")
+		};
+		Stack.OpenShop(elements);
+		
+	}
 }   

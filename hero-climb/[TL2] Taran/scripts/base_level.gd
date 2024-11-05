@@ -51,7 +51,7 @@ func build_level():
 		level_piece.position.x = level_place*464
 		
 		get_collectables(level_piece)
-		#get_enemies(level_piece)
+		get_enemies(level_piece)
 		level_place += 1
 
 func get_collectables(room):

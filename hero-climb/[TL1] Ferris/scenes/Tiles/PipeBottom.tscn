@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://u7j7582q6ury"]
 
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Pipe.cs" id="1_1cwiy"]
-[ext_resource type="Texture2D" uid="uid://cuhlj8nb8lnmk" path="res://[TL1] Ferris/assets/Tiles/PipeBottom.png" id="1_nyoo0"]
+[ext_resource type="Texture2D" uid="uid://ksld0lhk0ici" path="res://[TL1] Ferris/assets/Tiles/PipeBottom.png" id="1_nyoo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbc26"]
 
 [node name="Pipe" type="Area2D"]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_1cwiy")
 
