@@ -91,11 +91,13 @@ public partial class PlayerCameraStack : MenuStack
     public GameHUD HUD;
 
     Controller PlayerRef;
+    PlayerCamera ParentCam;
 
 
-    public PlayerCameraStack(Controller player) : base(NAME)
+    public PlayerCameraStack(Controller player, PlayerCamera parent) : base(NAME)
     {
         PlayerRef = player;
+        ParentCam = parent;
     }
 
     public override void _Ready()
@@ -136,6 +138,11 @@ public partial class PlayerCameraStack : MenuStack
 
     public void PlayerHealthChangeEventHandler()
     {
+        if (PlayerGlobal.Health - HUD.leaf.Hearts.DisplayedHealth < 0)
+        {
+            ParentCam.ShakeCamera();
+        }
+
         HUD.leaf.Hearts.SetHealth(PlayerGlobal.Health);
     }
 
