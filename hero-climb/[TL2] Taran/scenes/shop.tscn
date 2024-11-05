@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfy6qcqw284o3"]
 
-[ext_resource type="Texture2D" uid="uid://sqtmhwiehlge" path="res://[TL2] Taran/assets/The Old Shop.png" id="1_0a2x4"]
+[ext_resource type="Texture2D" uid="uid://co517d6aybdx6" path="res://[TL2] Taran/assets/The Old Shop.png" id="1_0a2x4"]
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/Shop.cs" id="1_sttld"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_py4e6"]

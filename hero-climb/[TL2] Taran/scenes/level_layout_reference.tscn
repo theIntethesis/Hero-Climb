@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0r47srjd4qm4"]
 
 [node name="Center" type="Marker2D"]
+position = Vector2(813, -44)
 
 [node name="BottomLeft" type="Marker2D" parent="."]
 position = Vector2(-232, 8)

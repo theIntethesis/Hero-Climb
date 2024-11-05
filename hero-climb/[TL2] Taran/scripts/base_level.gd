@@ -69,3 +69,7 @@ func get_enemies(room):
 			get_parent().add_enemy(point.global_position)
 			point.queue_free()
 		enemies.queue_free()
+
+func delete_floor(_area : Area2D):
+	print("deleting floor")
+	queue_free()
