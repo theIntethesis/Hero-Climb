@@ -75,7 +75,7 @@ public partial class HeartGrid : MenuComposite
 			Name = "Container",
 		};
 
-		CustomMinimumSize = new Vector2(8, 8);
+		CustomMinimumSize = new Vector2(8, 9);
 
 		AddChild(Hearts);
 

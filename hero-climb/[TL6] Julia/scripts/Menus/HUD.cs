@@ -50,6 +50,13 @@ public partial class GameHUD : MenuComposite
 
         Controls = new MobileControls();
 
+        const float margin = 0.02f;
+
+        SetAnchor(Side.Left, margin);
+        SetAnchor(Side.Right, 1.0f - margin);
+        SetAnchor(Side.Top, margin);
+        SetAnchor(Side.Bottom, 1.0f - margin);
+
         Push(leaf);
         
         if (OS.GetName() == "Android" || 1 == 1)
