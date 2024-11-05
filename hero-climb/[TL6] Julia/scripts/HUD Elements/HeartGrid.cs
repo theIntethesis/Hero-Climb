@@ -38,8 +38,17 @@ public partial class HeartGrid : MenuComposite
 		{
 			while (this[HeadIdx].Health < Heart.MAX_HEART_HEALTH && health > 0)
 			{
-				this[HeadIdx].Health++;
-				health--;
+				if (health > Heart.MAX_HEART_HEALTH)
+				{
+					int val = Heart.MAX_HEART_HEALTH - this[HeadIdx].Health;
+					this[HeadIdx].Health += val;
+					health -= val;
+				}
+				else
+				{
+					this[HeadIdx].Health++;
+					health--;
+				}
 			}
 
 			if (health > 0)
