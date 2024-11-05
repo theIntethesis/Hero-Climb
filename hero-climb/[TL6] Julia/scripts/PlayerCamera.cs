@@ -4,6 +4,7 @@ using System;
 // add signal for death screen
 public partial class PlayerCamera : Camera2D
 { 
+
     private CanvasLayer Interface;
 
     private PlayerCameraStack Stack;

@@ -85,17 +85,17 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		if (body is Controller){
 			GD.Print("Yippee");
-        }
+		}
 	}
 
 	private void OnAttackEntered(Area2D body)
 	{
 		if(body is Attack)
-        {
+		{
 			GD.Print($"Zombie: {Health} - {(body as Attack).Damage} = {Health -= (body as Attack).Damage}");
-        }
+		}
 
-    }
+	}
 
 	private void OnDetectorBodyEntered(Node2D body)
 	{

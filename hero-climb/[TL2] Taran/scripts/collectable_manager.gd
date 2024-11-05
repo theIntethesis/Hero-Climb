@@ -9,12 +9,12 @@ func instantiate_collectable(point : Vector2):
 	if rand>3:
 		const PICKUP = preload("res://[TL2] Taran/scenes/pickup_item.tscn")
 		var new_collectable = PICKUP.instantiate()
-		add_child(new_collectable)
 		new_collectable.global_position = point
+		add_child(new_collectable)
 		new_collectable.SetAsCoin()
 	elif rand==3:
 		const PICKUP = preload("res://[TL2] Taran/scenes/pickup_item.tscn")
 		var new_collectable = PICKUP.instantiate()
-		add_child(new_collectable)
 		new_collectable.global_position = point
+		add_child(new_collectable)
 		new_collectable.SetAsHeal()
