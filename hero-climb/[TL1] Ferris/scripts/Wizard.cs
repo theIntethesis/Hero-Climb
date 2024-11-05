@@ -9,6 +9,7 @@ public partial class Wizard : Controller
 {
 	private float fireballCountdown = 30f;
 	private bool fireballsummon = false;
+	private Timer FireballSummon = new();
 
 	public Wizard()
 	{
@@ -16,7 +17,12 @@ public partial class Wizard : Controller
 		AddChild(sprites);
 		sprites.Position = Vector2.Zero;
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
-	}
+
+        FireballSummon.OneShot = true;
+        FireballSummon.WaitTime = .5;
+        AddChild(FireballSummon);
+        FireballSummon.Connect(Timer.SignalName.Timeout, Callable.From(SummonFireball));
+    }
 	protected override Vector2 Ability()
 	{
 		// play arcane words sound
@@ -26,7 +32,7 @@ public partial class Wizard : Controller
 		var angle = GetViewport().GetMousePosition() - GetViewportRect().Size / 2;
 		if(AttackFollowMouse) sprites.FlipH = angle.X > 0 ? false : true;
 		sprites.Offset = getSpriteOffset("fireball");
-		fireballsummon = true;
+		FireballSummon.Start();
 		return Vector2.Zero;
 	}
 

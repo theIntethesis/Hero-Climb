@@ -29,7 +29,7 @@ func remove_health():
 	var rnjesus = RandomNumberGenerator.new()
 	for i in (_player.MaxHealth/4 + 10):
 		await wait_seconds(1)
-		_player.Health -= rnjesus.randi_range(1, 5)
+		_player.affectHealth(-rnjesus.randi_range(1, 5))
 		print_debug(_player.Health)
 		if get_signal_emit_count(_player, "PlayerDeath") > 0:
 			return

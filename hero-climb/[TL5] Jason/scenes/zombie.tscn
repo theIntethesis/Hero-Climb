@@ -285,10 +285,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 shape = SubResource("CircleShape2D_ns2qv")
 
-
-[connection signal="area_entered" from="Hitbox" to="." method="OnArea2Entered"]
-
 [connection signal="area_entered" from="Hitbox" to="." method="OnArea2DEntered"]
+[connection signal="area_entered" from="Hitbox" to="." method="OnArea2Entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="OnArea2DBodyEntered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="Detector" to="." method="OnDetectorBodyEntered"]

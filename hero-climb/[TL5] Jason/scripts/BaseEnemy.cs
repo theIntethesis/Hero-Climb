@@ -27,7 +27,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		GD.Print("BaseEnemy ready.");
 
-		player =  (CharacterBody2D)GetParent().GetParent().GetNode("Player");
+		player = (CharacterBody2D)GetParent().GetParent().GetNode("Player");
 		// Get the sprite node
 		sprites = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprites.Play("play");
@@ -94,7 +94,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 		// Move the enemy
 		if (IsDead || IsIdle){
-			Velocity= new Vector2(0,0);
+			Velocity = new Vector2(0,0);
 		} else {
 			Velocity = velocity;
 		}
@@ -113,6 +113,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void OnArea2DEntered(Area2D area)
 	{
 		if (area is Attack){
+			EmitSignal(SignalName.TakeDamage);
 			var attack = (Attack)area;
 			sprites.Play("damage");
 			Health = Health - attack.Damage;
@@ -146,6 +147,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public virtual void EnemyAttack()
 	{
 		sprites.Play("attack");
+		EmitSignal(SignalName.AttackPlayer);
 	}
 
 	public void OnAnimationFinished()
@@ -162,7 +164,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		
 	}
 
-	private async void Die()
+	private void Die()
 	{
 		sprites.Play("die");
 		GD.Print("Death animation playing");
