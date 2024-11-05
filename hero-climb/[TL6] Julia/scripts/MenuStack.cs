@@ -52,7 +52,7 @@ public partial class MenuStack : MenuComposite
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
-    public MenuStack(string name, string BackgroundScene = "") : base(name, BackgroundScene)
+    public MenuStack() : base()
     {     
     }
 

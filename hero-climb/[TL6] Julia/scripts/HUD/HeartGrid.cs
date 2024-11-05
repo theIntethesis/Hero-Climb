@@ -4,6 +4,7 @@ using System.Linq;
 
 public partial class HeartGrid : MenuComposite 
 {
+	public const string NAME = "HeartGrid";
 	
 	GridContainer Hearts;
 
@@ -81,8 +82,9 @@ public partial class HeartGrid : MenuComposite
 		}
 	}
 
-	public HeartGrid(int maxhealth): base("HeartGrid")
+	public HeartGrid(int maxhealth): base()
 	{
+		Name = NAME;
 		Hearts = new GridContainer()
 		{
 			Columns = 5,

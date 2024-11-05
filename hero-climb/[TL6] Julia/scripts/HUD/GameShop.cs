@@ -9,9 +9,11 @@ public partial class GameShop : MenuComposite
     {
         readonly int Price;
 
-        public Element(int price, string name) : base(name, "res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn")
+        public Element(int price, string name) : base()
         {
             Price = price;
+            Name = name;
+            SetForeground("res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn");
         }
 
         public override void _Ready()
@@ -20,9 +22,15 @@ public partial class GameShop : MenuComposite
         }
     }
 
-    public GameShop() : base(NAME, "res://[TL6] Julia/scenes/HUD Elements/Shop.tscn")
+    public GameShop() : base()
     {
-    
+        Name = NAME;
+        SetBackground("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
+    }
+
+    public Element CreateElement(int price, string name)
+    {
+        return new Element(price, name);
     }
 
     public override void Push(IMenuElement node)

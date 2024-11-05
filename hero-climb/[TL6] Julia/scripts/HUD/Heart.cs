@@ -32,8 +32,9 @@ public partial class Heart : MenuElement
 		}
 	}
 
-	public Heart() : base("Heart")
+	public Heart() : base()
 	{
+		Name = "Heart";
 		Sprite = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn").Instantiate<AnimatedSprite2D>();
 		AddChild(Sprite);
 		MatchState();

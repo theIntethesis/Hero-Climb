@@ -3,8 +3,10 @@ using Godot;
 public partial class ScoreLabel : MenuLeaf
 {
     public const string NAME = "SCORE";
-    public ScoreLabel(): base(NAME, "res://[TL6] Julia/scenes/HUD Elements/score.tscn")
+    public ScoreLabel(): base()
     {
+        Name = NAME;
+        SetForeground("res://[TL6] Julia/scenes/HUD Elements/score.tscn");
         CustomMinimumSize = ForegroundNode.Size;
     }
 

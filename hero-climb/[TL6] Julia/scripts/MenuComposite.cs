@@ -39,13 +39,16 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         return element;
     }
 
-    public MenuComposite(string name, string BackgroundScene = "") : base(name)
+    public MenuComposite() : base()
     {        
         SetAnchorsPreset(LayoutPreset.FullRect); 
+    }
+
+    public void SetBackground(string BackgroundScene)
+    {
         if (BackgroundScene != "")
         {
             BackgroundNode = ResourceLoader.Load<PackedScene>(BackgroundScene).Instantiate<Control>();
-            BackgroundNode.Name = name + "_Background";
             AddChild(BackgroundNode);
         }  
     }

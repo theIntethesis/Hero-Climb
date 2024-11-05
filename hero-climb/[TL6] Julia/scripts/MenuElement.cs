@@ -35,11 +35,9 @@ public partial class MenuElement : Control, IMenuElement
 
     public virtual void OnHide() { }
 
-    protected MenuElement(string name)
+    protected MenuElement()
     {
         ProcessMode = ProcessModeEnum.Always;
-
-        Name = name;
     }
 
     public IMenuComposite Parent()
