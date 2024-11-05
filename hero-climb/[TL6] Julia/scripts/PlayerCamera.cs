@@ -94,5 +94,7 @@ public partial class PlayerCamera : Camera2D
 			Shaking = true;
 			CurrentDuration = 0.0f;
 		}
+
+		Input.VibrateHandheld(500);
 	}
 }   

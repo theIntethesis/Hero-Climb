@@ -30,6 +30,7 @@ Class = 0
 
 [node name="PlayerCamera" parent="Player" instance=ExtResource("5_0hnyn")]
 zoom = Vector2(2.5, 2.5)
+Amplitude = 0.25
 
 [node name="EnemyController" parent="." instance=ExtResource("7_wlqnk")]
 unique_name_in_owner = true
