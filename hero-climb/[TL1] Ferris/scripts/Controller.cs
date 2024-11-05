@@ -30,7 +30,7 @@ public partial class Controller : CharacterBody2D
 	public delegate void AttackingEventHandler();
 
 	[Signal]
-	public delegate void InjuryEventHandler();
+	public delegate void PlayerHealthChangeEventHandler();
 
 	[Signal]
 	public delegate void ShutUpAndTakeMyMoneyEventHandler();
@@ -45,6 +45,11 @@ public partial class Controller : CharacterBody2D
 	protected Node SoundController;
 	protected Timer iFrames = new();
 	public int getHealth() { return Health; }
+	public int affectHealth(int amount)
+	{
+		EmitSignal(SignalName.PlayerHealthChange);
+		return Health += amount;
+	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
 
 	public override void _PhysicsProcess(double delta)
@@ -113,6 +118,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public void CollideWithEnemy(Node2D b)
 	{
+		GD.Print(b.Name);
 		if (b.Name == "Player") return;
 
 		if(b is CharacterBody2D)
@@ -124,16 +130,28 @@ public partial class Controller : CharacterBody2D
 				var enemy = body as BaseEnemy;
 				GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
 				//Health -= enemy.Damage;
-				EmitSignal(SignalName.Injury);
+				EmitSignal(SignalName.PlayerHealthChange);
 			}
 		}
+		else if (b.GetParent() is CharacterBody2D)
+		{
+            var body = b.GetParent() as CharacterBody2D;
+            uint layer3 = body.CollisionLayer & 0b_0100;
+            if (layer3 > 0)
+            {
+                var enemy = body as BaseEnemy;
+                GD.Print($"Player: {Health} - {enemy.Damage} = {Health -= enemy.Damage}");
+                //Health -= enemy.Damage;
+                EmitSignal(SignalName.PlayerHealthChange);
+            }
+        }
 		else if (b.Name == "RisingLava")
 		{
 			if (b.Name == "RisingLava")
 			{
 				Health = 0;
 			}
-			EmitSignal(SignalName.Injury);
+			EmitSignal(SignalName.PlayerHealthChange);
 		}
 
 		if (Health <= 0)
@@ -218,7 +236,7 @@ public partial class Controller : CharacterBody2D
 			attackCooldown = false;
 			PlayerGlobal.isAttacking = false;
 
-			GetNode("Attack")?.Free();
+			GetNode("Attack")?.QueueFree();
 
 			if (Input.IsActionPressed("attack"))
 				Attack();
@@ -236,16 +254,10 @@ public partial class Controller : CharacterBody2D
 		PlayerGlobal.isAttacking = true;
 		sprites.Offset = getSpriteOffset("attack");
 		sprites.Play("attack");
-		var AttackArea = new Area2D();
-        AttackArea.Name = "Attack";
-        var AttackHitBox = new CollisionShape2D();
-        AttackArea.CollisionLayer = 0b_0011;
-        AttackArea.CollisionMask = 0b_0011;
-        AttackArea.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
-        AddChild(AttackArea);
-        AttackArea.AddChild(AttackHitBox);
-        AttackArea.SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Attack.cs"));
-        AttackHitBox.Shape = new CapsuleShape2D();
+        var Attack = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/attack.tscn").Instantiate() as Attack;
+		GD.Print("Attacking");
+        Attack.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
+		AddChild(Attack);
 
 	}
 	protected virtual Vector2 Ability()
