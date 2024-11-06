@@ -12,6 +12,8 @@ public interface IMenuElement
     public abstract void OnShow();
 
     public abstract void OnHide(); 
+
+    public abstract void SetTreeScene(string scene);
 }
 
 // Interface
@@ -20,6 +22,8 @@ public partial class MenuElement : Control, IMenuElement
     virtual public bool Poppable { get { return true; }}
 
     private IMenuComposite _Parent;
+    protected Control TreeNode;
+    
 
     public virtual void OnPush(IMenuComposite parent) 
     { 
@@ -45,5 +49,14 @@ public partial class MenuElement : Control, IMenuElement
         return _Parent;
     }
 
+    public void SetTreeScene(string ForegroundScene)
+    {
+        if (ForegroundScene != "")
+        {
+            TreeNode = ResourceLoader.Load<PackedScene>(ForegroundScene).Instantiate<Control>();
+            CustomMinimumSize = TreeNode.CustomMinimumSize;
+            AddChild(TreeNode);
+        }
+    }
 
 }

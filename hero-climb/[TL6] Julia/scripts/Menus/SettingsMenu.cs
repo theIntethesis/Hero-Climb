@@ -7,8 +7,8 @@ public partial class SettingsMenu : MenuLeaf
     public SettingsMenu() : base()
     {
         Name = NAME;
-        SetForeground("res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn");
-        ForegroundNode.GetNode<Button>("Control/Button").Pressed += () => 
+        SetTreeScene("res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn");
+        TreeNode.GetNode<Button>("Control/Button").Pressed += () => 
         {
             Parent().Pop();
         };

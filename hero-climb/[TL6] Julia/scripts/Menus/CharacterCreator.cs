@@ -18,12 +18,12 @@ public partial class CharacterCreator : MenuLeaf
 
     public override void _Ready() 
     {
-        Wizard = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-        Fighter = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-        Rogue = ForegroundNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
-        WizardButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
-        FighterButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
-        RogueButton = ForegroundNode.GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
+        Wizard = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
+        Fighter = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
+        Rogue = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+        WizardButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
+        FighterButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
+        RogueButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
         Rogue.Visible = false;
         Fighter.Visible = false;
@@ -85,14 +85,14 @@ public partial class CharacterCreator : MenuLeaf
     public CharacterCreator() : base()
     {
         Name = NAME;
-        SetForeground("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn");
+        SetTreeScene("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn");
        
-        ForegroundNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
+        TreeNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
         {
             Parent().Pop();
         };
 
-        ForegroundNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
+        TreeNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
         {
             MostRecentClass = CurrentType;
             if (Parent() is Node parent) 

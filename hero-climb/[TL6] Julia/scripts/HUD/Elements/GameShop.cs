@@ -13,19 +13,19 @@ public partial class GameShop : MenuComposite
         {
             Price = price;
             Name = name;
-            SetForeground("res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn");
+            SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn");
         }
 
         public override void _Ready()
         {
-            ForegroundNode.GetNode<Label>("Label").Text = Price.ToString();
+            TreeNode.GetNode<Label>("Label").Text = Price.ToString();
         }
     }
 
     public GameShop() : base()
     {
         Name = NAME;
-        SetBackground("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
+        SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
     }
 
     public Element CreateElement(int price, string name)
@@ -37,14 +37,14 @@ public partial class GameShop : MenuComposite
     {
         if (node is Node cast)
         {
-            BackgroundNode.GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
+            TreeNode.GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
             node.OnPush(this);
         }
     }
 
     public override MenuElement Pop()
     {
-        MenuElement last = (MenuElement)BackgroundNode.GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
+        MenuElement last = (MenuElement)TreeNode.GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
         last.QueueFree();
         last.OnPop();
 
@@ -53,7 +53,7 @@ public partial class GameShop : MenuComposite
 
     public override void _Ready()
     {
-        BackgroundNode.GetNode<Button>("Control/Close").Pressed += () => 
+        TreeNode.GetNode<Button>("Control/Close").Pressed += () => 
         {
             GD.Print("here");
             QueueFree();

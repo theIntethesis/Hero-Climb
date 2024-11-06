@@ -11,21 +11,21 @@ public partial class PauseMenu : MenuStack
         public Leaf() : base()
         {
             Name = NAME;
-            SetForeground("res://[TL6] Julia/scenes/Menus/PauseMenu.tscn");
+            SetTreeScene("res://[TL6] Julia/scenes/Menus/PauseMenu.tscn");
 
-            ForegroundNode.GetNode<Button>("GridContainer/Resume").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Resume").Pressed += () => 
             {
                 Parent().Pop();
             };
-            ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
             {
                 Parent().Push(new CharacterCreator());
             };
-            ForegroundNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
             {
                 Parent().Push(new SettingsMenu());
             };            
-            ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
                 // Parent.Pop();
                 GameHandler.Instance().StopGame();
@@ -39,7 +39,7 @@ public partial class PauseMenu : MenuStack
     public PauseMenu() : base()
     {
         Name = NAME;
-        SetBackground("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn");
+        SetTreeScene("res://[TL6] Julia/scenes/Backgrounds/PauseBackground.tscn");
         Leaf leaf = new Leaf();
         Push(leaf);
     }

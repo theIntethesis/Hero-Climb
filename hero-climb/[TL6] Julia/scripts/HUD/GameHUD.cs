@@ -11,7 +11,7 @@ public partial class GameHUD : MenuComposite
         public HUDLeaf(int maxhealth) : base()
         {
             Name = "HUDLeaf";
-            ForegroundNode = new GridContainer();
+            TreeNode = new GridContainer();
 
             Hearts = new HeartGrid(maxhealth);
             Score = new ScoreLabel();
@@ -21,9 +21,9 @@ public partial class GameHUD : MenuComposite
 
         public override void _Ready()
         {
-            AddChild(ForegroundNode);
-            ForegroundNode.AddChild(Hearts);
-            ForegroundNode.AddChild(Score);
+            AddChild(TreeNode);
+            TreeNode.AddChild(Hearts);
+            TreeNode.AddChild(Score);
         }
     }
     

@@ -7,12 +7,12 @@ public partial class QuitConfirm : MenuLeaf
     public QuitConfirm() : base()
     {
         Name = NAME;
-        SetForeground("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn");
-        ForegroundNode.GetNode<Button>("GridContainer/Back").Pressed += () => 
+        SetTreeScene("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn");
+        TreeNode.GetNode<Button>("GridContainer/Back").Pressed += () => 
         {
             Parent().Pop();
         };
-        ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+        TreeNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
             GetTree().Quit();
         };

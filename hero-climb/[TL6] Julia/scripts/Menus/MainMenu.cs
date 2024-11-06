@@ -18,21 +18,21 @@ public partial class MainMenu : MenuStack
         public Leaf() : base()
         {
             Name = NAME;
-            SetForeground("res://[TL6] Julia/scenes/Menus/MainMenu.tscn");
+            SetTreeScene("res://[TL6] Julia/scenes/Menus/MainMenu.tscn");
             
-            ForegroundNode.GetNode<Button>("GridContainer/Start").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Start").Pressed += () => 
             {
                 Parent().Push(new CharacterCreator());
             };
-            ForegroundNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Settings").Pressed += () => 
             {
                 Parent().Push(new SettingsMenu());
             };
-            ForegroundNode.GetNode<Button>("GridContainer/Credits").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Credits").Pressed += () => 
             {
                 Parent().Push(new CreditsMenu());
             };
-            ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
                 Parent().Pop();
             };
@@ -42,7 +42,7 @@ public partial class MainMenu : MenuStack
     public MainMenu() : base()
     {
         Name = NAME;
-        SetBackground("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn");
+        SetTreeScene("res://[TL6] Julia/scenes/Backgrounds/HomeBackground.tscn");
         Push(new Leaf());
     }
 }

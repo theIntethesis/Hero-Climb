@@ -13,14 +13,14 @@ public partial class DeathScreen : MenuStack
         public Leaf() : base()
         {
             Name = NAME;
-            SetForeground("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn");
+            SetTreeScene("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn");
 
-            ForegroundNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Restart").Pressed += () => 
             {
                 Parent().Push(new CharacterCreator());
             };
 
-            ForegroundNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
+            TreeNode.GetNode<Button>("GridContainer/Quit").Pressed += () => 
             {
                 GameHandler.Instance().StopGame();
                 GameHandler.Instance().LoadMainMenu();
@@ -31,7 +31,7 @@ public partial class DeathScreen : MenuStack
     public DeathScreen() : base()
     {
         Name = NAME;
-        SetBackground("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn");
+        SetTreeScene("res://[TL6] Julia/scenes/Backgrounds/DeathBackground.tscn");
         Push(new Leaf());
     }
 }
