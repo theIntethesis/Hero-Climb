@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 public partial class SoundController : Node
 {
-	private int volume;
+	private int volume;		// linear volume [0-100]
 	
 	// SoundController constructor
 	public SoundController()
@@ -18,15 +18,16 @@ public partial class SoundController : Node
 	}
 
 	// Play a sound using the name
-	public void play(string sound) {
+	public bool play(string sound) {
 		foreach (AudioStreamPlayer child in GetChildren())
 		{
 			if (child.Name == sound)
 			{
 				child.Play();
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	// Print the names of each sound in this controller 
@@ -70,7 +71,7 @@ public partial class SoundController : Node
 	// Convert a linear volume to decibels. If the volume is 0,
 	// set decibels to the lowest value possible.
 	public float volumeToDb(float vol) {
-		return (float)Mathf.LinearToDb(vol/100.0);
+		return (float)Mathf.LinearToDb((double)vol/80.0);
 	}
 	
 	// Check that the volume is in range [0-100]
