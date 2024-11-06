@@ -1,11 +1,22 @@
+// SoundController.cs
+// Gavin Haynes
+// November 5, 2024
+// Base class for all of my sound objects
+
 using Godot;
 using System;
 using System.Collections.Generic;
 
 public partial class SoundController : Node
 {
-	private int volume = 80;
+	private int volume;
 	
+	// SoundController constructor
+	public SoundController()
+	{
+		setVolume(80);
+	}
+
 	// Play a sound using the name
 	public void play(string sound) {
 		foreach (AudioStreamPlayer child in GetChildren())

@@ -2,6 +2,8 @@ namespace GdMUT;
 
 public static class TestPlayerSound
 {
+    static PlayerSound Player;
+    
     [CSTestFunction]
     public static Result SetVolume1()
     {
