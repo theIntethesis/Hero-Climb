@@ -30,7 +30,7 @@ public partial class Controller : CharacterBody2D
 	public delegate void AttackingEventHandler();
 
 	[Signal]
-	public delegate void PlayerHealthChangeEventHandler();
+	public delegate void PlayerHealthChangeEventHandler(int change);
 
 	[Signal]
 	public delegate void ShutUpAndTakeMyMoneyEventHandler();
@@ -47,8 +47,8 @@ public partial class Controller : CharacterBody2D
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
+		EmitSignal(SignalName.PlayerHealthChange, amount);
 		Health += amount;
-		EmitSignal(SignalName.PlayerHealthChange);
 		if (Health <= 0) OnPlayerDeath();
 		else if (amount < 0) startIFrames();
 		return Health;

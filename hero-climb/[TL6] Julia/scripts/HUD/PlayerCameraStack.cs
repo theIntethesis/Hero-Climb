@@ -23,7 +23,7 @@ public partial class PlayerCameraStack : MenuStack
         HUD.leaf.Hearts.Increment(PlayerGlobal.GetPlayerHealth());
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
-        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From(PlayerHealthChangeEventHandler));  
+        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
     }
 
@@ -56,14 +56,14 @@ public partial class PlayerCameraStack : MenuStack
         }
     }
 
-    public void PlayerHealthChangeEventHandler()
+    public void PlayerHealthChangeEventHandler(int change)
     {
-        if (PlayerGlobal.GetPlayerHealth() - HUD.leaf.Hearts.DisplayedHealth < 0)
+        if (change < 0)
         {
             ParentCam.ShakeCamera();
         }
 
-        HUD.leaf.Hearts.SetHealth(PlayerGlobal.GetPlayerHealth());
+        HUD.leaf.Hearts.SetHealth(change);
     }
 
     public void OnPlayerDeath() 
