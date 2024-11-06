@@ -5,32 +5,13 @@ public partial class GameShop : MenuComposite
 {
     public const string NAME = "GameShop";
 
-    public partial class Element : MenuLeaf
-    {
-        readonly int Price;
+    Controller.ClassType ClassType;
 
-        public Element(int price, string name) : base()
-        {
-            Price = price;
-            Name = name;
-            SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/ShopElement.tscn");
-        }
-
-        public override void _Ready()
-        {
-            TreeNode.GetNode<Label>("Label").Text = Price.ToString();
-        }
-    }
-
-    public GameShop() : base()
+    public GameShop(Controller.ClassType classType) : base()
     {
         Name = NAME;
+        ClassType = classType;
         SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
-    }
-
-    public Element CreateElement(int price, string name)
-    {
-        return new Element(price, name);
     }
 
     public override void Push(IMenuElement node)
@@ -58,5 +39,10 @@ public partial class GameShop : MenuComposite
             GD.Print("here");
             QueueFree();
         };
+
+    
+
+        // generate items
+
     }
 }

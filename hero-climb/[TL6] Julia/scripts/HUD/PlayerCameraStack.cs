@@ -26,6 +26,7 @@ public partial class PlayerCameraStack : MenuStack
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
         PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(OnKaChing));
+        PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(OpenShop));
     }
 
 
@@ -34,21 +35,16 @@ public partial class PlayerCameraStack : MenuStack
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
     }
 
-    public void OpenShop(GameShop.Element[] elements)
+    public void OpenShop()
     {
         if (HUD.Child(GameShop.NAME) == null)
         {
-            GameShop shop = new GameShop();
+            GameShop shop = new GameShop(PlayerGlobal.Player.Class);
             
             HUD.Push(shop);
 
-            foreach (GameShop.Element element in elements)
-            {
-                shop.Push(element);
-            }
         }
     }
-
 
     public void CloseShop()
     {

@@ -8,6 +8,4 @@ public partial class MenuLeaf : MenuElement
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
     }
-
-
 }

@@ -8,7 +8,7 @@ public partial class MainMenu : MenuStack
     {
         public const string NAME = "MainMenu";
 
-        override public bool Poppable { get { return false; }}
+        override public bool Poppable() { return false; }
 
         public override void OnPop()
         {

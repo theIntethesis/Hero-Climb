@@ -8,7 +8,7 @@ public partial class DeathScreen : MenuStack
     {
         public const string NAME = "DeathScreen";
 
-        override public bool Poppable { get { return false; }}
+        override public bool Poppable() { return false; }
 
         public Leaf() : base()
         {

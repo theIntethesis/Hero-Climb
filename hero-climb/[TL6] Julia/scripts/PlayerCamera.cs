@@ -42,21 +42,6 @@ public partial class PlayerCamera : Camera2D
 		Stack = new PlayerCameraStack(this);
 		Interface.AddChild(Stack);
 
-		// OpenShop();
-	}
-
-	public void OpenShop()
-	{
-		GameShop.Element[] elements = new GameShop.Element[]
-		{
-			new(10, "Element.0"),
-			new(10, "Element.1"),
-			new(10, "Element.2"),
-			new(10, "Element.3"),
-			new(10, "Element.4"),
-			new(10, "Element.5")
-		};
-		Stack.OpenShop(elements);  
 	}
 
 	public override void _Process(double delta)

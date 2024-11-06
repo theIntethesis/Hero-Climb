@@ -14,12 +14,14 @@ public interface IMenuElement
     public abstract void OnHide(); 
 
     public abstract void SetTreeScene(string scene);
+
+    public abstract bool Poppable();
 }
 
 // Interface
 public partial class MenuElement : Control, IMenuElement
 {
-    virtual public bool Poppable { get { return true; }}
+    virtual public bool Poppable() { return true; }
 
     private IMenuComposite _Parent;
     protected Control TreeNode;

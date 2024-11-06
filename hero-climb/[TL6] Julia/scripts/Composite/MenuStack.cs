@@ -27,7 +27,7 @@ public partial class MenuStack : MenuComposite
         {
             Child.OnPop();
 
-            if (Child.Poppable) 
+            if (Child.Poppable()) 
             {
                 RemoveChild(Child);
                 Child.QueueFree();

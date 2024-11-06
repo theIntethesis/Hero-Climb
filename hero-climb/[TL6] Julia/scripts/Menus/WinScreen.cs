@@ -4,7 +4,7 @@ public partial class WinScreen : MenuLeaf
 {
     public const string NAME = "WinScreen";
 
-    override public bool Poppable { get { return false; }}
+    override public bool Poppable() {  return false; }
 
     public WinScreen() : base()
     {
