@@ -25,9 +25,11 @@ public partial class PlayerCameraStack : MenuStack
 
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
+        PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(OnKaChing));
     }
 
-    public override void _Process(double _delta)
+
+    public void OnKaChing()
     {
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
     }
