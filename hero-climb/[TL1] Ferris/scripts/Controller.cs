@@ -30,10 +30,13 @@ public partial class Controller : CharacterBody2D
 	public delegate void AttackingEventHandler();
 
 	[Signal]
-	public delegate void PlayerHealthChangeEventHandler();
+	public delegate void PlayerHealthChangeEventHandler(int change);
 
 	[Signal]
 	public delegate void ShutUpAndTakeMyMoneyEventHandler();
+
+	[Signal]
+	public delegate void KaChingEventHandler();
 
 	public int MaxHealth = 100;
 	protected int Health = 100;
@@ -48,13 +51,12 @@ public partial class Controller : CharacterBody2D
 	public int affectHealth(int amount)
 	{
 		Health += amount;
-		EmitSignal(SignalName.PlayerHealthChange);
+		EmitSignal(SignalName.PlayerHealthChange, amount);
 		if (Health <= 0) OnPlayerDeath();
 		else if (amount < 0) startIFrames();
 		return Health;
 	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
-
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -268,7 +270,6 @@ public partial class Controller : CharacterBody2D
 		AddChild(iFrames);
 		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
 	}
-
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");
@@ -285,9 +286,8 @@ public partial class Controller : CharacterBody2D
 				break;
 		}
 	}
-
 	public override void _Process(double delta)
 	{
-		// if (Health <= 0) OnPlayerDeath();
+
 	}
 }
