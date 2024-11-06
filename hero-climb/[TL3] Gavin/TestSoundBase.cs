@@ -1,3 +1,10 @@
+// TestSoundBase.cs
+// Gavin Haynes
+// CS383 Software Engineering
+// Fall '24
+// Test the functionality of the SoundController class, which is the base
+// for all other sound controllers.     
+
 using System;
 using System.Diagnostics;
 
