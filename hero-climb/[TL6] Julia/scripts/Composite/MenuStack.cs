@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Linq;
 using Godot;
 
 /* Subclass */
-[GlobalClass]
 public partial class MenuStack : MenuComposite
 {  
     public override void Push(IMenuElement node)
@@ -41,7 +39,7 @@ public partial class MenuStack : MenuComposite
                 }     
             }  
 
-            if (GetChildren().Last() == BackgroundNode)
+            if (GetChildren().Last() == TreeNode)
             {
                 Parent().Pop();
             }
@@ -52,7 +50,7 @@ public partial class MenuStack : MenuComposite
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
-    public MenuStack(string name, string BackgroundScene = "") : base(name, BackgroundScene)
+    public MenuStack() : base()
     {     
     }
 

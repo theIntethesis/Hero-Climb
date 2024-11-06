@@ -2,7 +2,7 @@ using Godot;
 
 public partial class GameHandler : Node
 {
-    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn"; // "res://[TL2] Taran/scenes/Main Level.tscn";
+    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn";
     
     static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
     

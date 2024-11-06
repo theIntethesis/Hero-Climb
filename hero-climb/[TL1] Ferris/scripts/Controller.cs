@@ -50,8 +50,8 @@ public partial class Controller : CharacterBody2D
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
-		Health += amount;
 		EmitSignal(SignalName.PlayerHealthChange, amount);
+		Health += amount;
 		if (Health <= 0) OnPlayerDeath();
 		else if (amount < 0) startIFrames();
 		return Health;

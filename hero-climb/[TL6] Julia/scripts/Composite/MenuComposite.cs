@@ -16,8 +16,6 @@ public interface IMenuComposite : IMenuElement
 /* Superclass */
 public partial class MenuComposite : MenuElement, IMenuComposite
 {
-    protected Node BackgroundNode;
-    
     public virtual void Push(IMenuElement node) 
     {
         if (node is Node cast)
@@ -30,24 +28,18 @@ public partial class MenuComposite : MenuElement, IMenuComposite
     public virtual IMenuElement Pop()
     {
         IMenuElement element = (IMenuElement)GetChildren().Last();
-        
+        RemoveChild(GetChildren().Last());
+
         if (element is Node cast)
-        {
-            cast.QueueFree();
+        {   
             element.OnPop();
         }
         return element;
     }
 
-    public MenuComposite(string name, string BackgroundScene = "") : base(name)
+    public MenuComposite() : base()
     {        
         SetAnchorsPreset(LayoutPreset.FullRect); 
-        if (BackgroundScene != "")
-        {
-            BackgroundNode = ResourceLoader.Load<PackedScene>(BackgroundScene).Instantiate<Control>();
-            BackgroundNode.Name = name + "_Background";
-            AddChild(BackgroundNode);
-        }  
     }
 
     public virtual MenuElement this[int index]
