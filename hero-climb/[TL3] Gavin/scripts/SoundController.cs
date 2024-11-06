@@ -18,7 +18,7 @@ public partial class SoundController : Node
 	}
 
 	// Play a sound using the name
-	public bool play(string sound) {
+	public virtual bool play(string sound) {
 		foreach (AudioStreamPlayer child in GetChildren())
 		{
 			if (child.Name == sound)
@@ -57,6 +57,14 @@ public partial class SoundController : Node
 		volume = vol;
 		setChildrenVolume(vol);
 		return true;
+	}
+
+	public void StopAll()
+	{
+		foreach (AudioStreamPlayer sound in GetChildren())
+		{
+			sound.Stop();
+		}
 	}
 	
 	// Set the decibel volume of each sound child

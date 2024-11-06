@@ -14,8 +14,8 @@ namespace GdMUT;
 public static class TestSoundBase   
 {
     static PlayerSound Player = new();
-    static String scene = "res://[TL3] Gavin/scenes/player_sound_controller.tscn";
-    static PlayerSound Player2 = ResourceLoader.Load<PackedScene>(scene).Instantiate<PlayerSound>();
+    // static String scene = "res://[TL3] Gavin/scenes/player_sound_controller.tscn";
+    // static PlayerSound Player2 = ResourceLoader.Load<PackedScene>(scene).Instantiate<PlayerSound>();
 
     [CSTestFunction]
     public static Result InitialVolumeInRange()
@@ -27,31 +27,31 @@ public static class TestSoundBase
     [CSTestFunction]
     public static Result SetVolumeInRange1()
     {
-        return (Player.setVolume(100)) ? Result.Success : Result.Failure;
+        return Player.setVolume(100) ? Result.Success : Result.Failure;
     }
 
     [CSTestFunction]
     public static Result SetVolumeInRange2()
     {
-        return (Player.setVolume(0)) ? Result.Success : Result.Failure;
+        return Player.setVolume(0) ? Result.Success : Result.Failure;
     }
 
     [CSTestFunction]
     public static Result SetVolumeInRange3()
     {
-        return (Player.setVolume(-0)) ? Result.Success : Result.Failure;
+        return Player.setVolume(-0) ? Result.Success : Result.Failure;
     }
 
     [CSTestFunction]
     public static Result SetVolumeOutBounds1()
     {
-        return (Player.setVolume(105)) ? Result.Failure : Result.Success;
+        return Player.setVolume(105) ? Result.Failure : Result.Success;
     }
 
     [CSTestFunction]
     public static Result SetVolumeOutBounds2()
     {
-        return (Player.setVolume(-5)) ? Result.Failure : Result.Success;
+        return Player.setVolume(-5) ? Result.Failure : Result.Success;
     }
 
     [CSTestFunction]
@@ -74,9 +74,7 @@ public static class TestSoundBase
     public static Result GetVolume3()
     {
         Player.setVolume(68);
-        Debug.Print("GetVolume3(): " + Player.getVolume());
         Player.setVolume(105);
-        Debug.Print("GetVolume3(): " + Player.getVolume());
         return (Player.getVolume() == 68) ? Result.Success : Result.Failure;
     }
 
