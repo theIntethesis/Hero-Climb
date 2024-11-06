@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://2ccfs0wftglh"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Slime.cs" id="1_yuxhf"]
-[ext_resource type="Texture2D" uid="uid://b10jkr4ycpgxn" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
+[ext_resource type="Texture2D" uid="uid://dp51lv60kt4q4" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 15)
@@ -240,8 +240,8 @@ collision_mask = 5
 script = ExtResource("1_yuxhf")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 5
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.5, 2)
@@ -260,7 +260,7 @@ position = Vector2(0.25, 3.5)
 shape = SubResource("RectangleShape2D_hoygl")
 
 [node name="Detector" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]

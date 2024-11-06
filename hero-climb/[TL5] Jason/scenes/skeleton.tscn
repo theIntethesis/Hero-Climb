@@ -1,11 +1,11 @@
 [gd_scene load_steps=30 format=3 uid="uid://j5pyhb5yaxvl"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Skeleton.cs" id="1_dt3i0"]
-[ext_resource type="Texture2D" uid="uid://cbjmgg13b4t1j" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
-[ext_resource type="Texture2D" uid="uid://l8ermin647vb" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
-[ext_resource type="Texture2D" uid="uid://c60wfortgu8sx" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
-[ext_resource type="Texture2D" uid="uid://4wyvn2fm5u2s" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
-[ext_resource type="Texture2D" uid="uid://c5llpk4rbfamw" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
+[ext_resource type="Texture2D" uid="uid://dcfq4ehblj583" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
+[ext_resource type="Texture2D" uid="uid://bdhlvve8iuyaq" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
+[ext_resource type="Texture2D" uid="uid://v7td4h6ysqea" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
+[ext_resource type="Texture2D" uid="uid://dwk4i4wj6brur" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
+[ext_resource type="Texture2D" uid="uid://bbpcu71e532vt" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 26)
@@ -188,8 +188,8 @@ collision_mask = 5
 script = ExtResource("1_dt3i0")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 5
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.5, 2)
@@ -206,7 +206,7 @@ position = Vector2(0.25, 2)
 shape = SubResource("RectangleShape2D_hoygl")
 
 [node name="Detector" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]

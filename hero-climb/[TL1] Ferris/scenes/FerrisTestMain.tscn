@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpsqusybt8d0j"]
+[gd_scene load_steps=7 format=3 uid="uid://dpsqusybt8d0j"]
 
 [ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="1_3rf27"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_uw4pv"]
 [ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_4ooue"]
 [ext_resource type="PackedScene" uid="uid://nahvss2rb0ky" path="res://[TL1] Ferris/scenes/tower_tileset.tscn" id="3_v8vpi"]
 [ext_resource type="PackedScene" uid="uid://ckmahlg5ea5bj" path="res://[TL5] Jason/scenes/zombie.tscn" id="4_vm04u"]
+[ext_resource type="PackedScene" uid="uid://b02t6gf5ac7hv" path="res://[TL1] Ferris/scenes/Wooden Box.tscn" id="6_su521"]
 
 [node name="Node" type="Node"]
 
@@ -22,16 +23,5 @@ Class = 0
 [node name="Zombie" parent="." instance=ExtResource("4_vm04u")]
 position = Vector2(144, -42)
 
-[connection signal="body_entered" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/Pipe" to="TowerTileset/Pipe" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@50696" to="TowerTileset/@Area2D@50696" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@50696" to="TowerTileset/@Area2D@50696" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@50697" to="TowerTileset/@Area2D@50697" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@50697" to="TowerTileset/@Area2D@50697" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@50698" to="TowerTileset/@Area2D@50698" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@50698" to="TowerTileset/@Area2D@50698" method="OnBodyExited"]
-[connection signal="body_entered" from="TowerTileset/@Area2D@50699" to="TowerTileset/@Area2D@50699" method="OnBodyEntered"]
-[connection signal="body_exited" from="TowerTileset/@Area2D@50699" to="TowerTileset/@Area2D@50699" method="OnBodyExited"]
-[connection signal="area_entered" from="TowerTileset/Coin" to="TowerTileset/Coin" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@50701" to="TowerTileset/@Area2D@50701" method="OnAreaEntered"]
-[connection signal="area_entered" from="TowerTileset/@Area2D@50702" to="TowerTileset/@Area2D@50702" method="OnAreaEntered"]
+[node name="Box" parent="." instance=ExtResource("6_su521")]
+position = Vector2(38, -8)
