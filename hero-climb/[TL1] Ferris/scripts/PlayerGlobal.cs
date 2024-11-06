@@ -29,25 +29,20 @@ public partial class PlayerGlobal : Node
 			throw new NullReferenceException("Player not set to a node!");
 		}
 	}
-	public static int AffectPlayerHealth(int amount)
+	public static int AffectPlayerHealth(int amount = 0)
 	{
 		CheckPlayerSet();
 		return Player.affectHealth(amount);
 	}
-	public static int GetPlayerHealth()
+	public static int HealToFull()
 	{
-		CheckPlayerSet();
-		return Player.getHealth();
+		return AffectPlayerHealth(Player.MaxHealth);
 	}
-	public static int GetPlayerMaxHealth()
-	{
-		CheckPlayerSet();
-		return Player.MaxHealth;
-	}
-	public static void BumpPlayerMaxHealth(int amount)
+	public static void GetSetPlayerMaxHealth(int amount = 0)
 	{
 		CheckPlayerSet();
 		Player.MaxHealth += amount;
+		Player.EmitSignal(Controller.SignalName.PlayerMaxHealthChange, amount);
 		Player.affectHealth(amount);
 	}
 	public static int GetSetMoney(int amount = 0)
