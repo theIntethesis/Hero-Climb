@@ -1,0 +1,112 @@
+using System;
+using System.Diagnostics;
+
+namespace GdMUT;
+
+public static class TestSoundBase   
+{
+    static PlayerSound Player = new();
+
+    [CSTestFunction]
+    public static Result InitialVolumeInRange()
+    {
+        var vol = Player.getVolume();
+        return (vol >= 0 && vol <= 100) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result SetVolumeInRange1()
+    {
+        return (Player.setVolume(100)) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result SetVolumeInRange2()
+    {
+        return (Player.setVolume(0)) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result SetVolumeInRange3()
+    {
+        return (Player.setVolume(-0)) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result SetVolumeOutBounds1()
+    {
+        return (Player.setVolume(105)) ? Result.Failure : Result.Success;
+    }
+
+    [CSTestFunction]
+    public static Result SetVolumeOutBounds2()
+    {
+        return (Player.setVolume(-5)) ? Result.Failure : Result.Success;
+    }
+
+    [CSTestFunction]
+    public static Result GetVolume1()
+    {
+        Player.setVolume(0);
+        return (Player.getVolume() == 0) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result GetVolume2()
+    {
+        Player.setVolume(100);
+        return (Player.getVolume() == 100) 
+            ? new Result(true, "Volume in range")
+            : new Result(false, "Volume out of bounds");
+    }
+
+    [CSTestFunction]
+    public static Result GetVolume3()
+    {
+        Player.setVolume(68);
+        Debug.Print("GetVolume3(): " + Player.getVolume());
+        Player.setVolume(105);
+        Debug.Print("GetVolume3(): " + Player.getVolume());
+        return (Player.getVolume() == 68) ? Result.Success : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result ChangeVolume1()
+    {
+        Player.setVolume(95);
+        Player.changeVolume(5);
+        return (Player.getVolume() == 100) 
+            ? new Result(true, "Volume in range")
+            : new Result(false, "Volume out of bounds");
+    }
+
+    [CSTestFunction]
+    public static Result ChangeVolume2()
+    {
+        Player.setVolume(6);
+        Player.changeVolume(-6);
+        return (Player.getVolume() == 0) 
+            ? new Result(true, "Volume in range")
+            : new Result(false, "Volume out of bounds");
+    }
+
+    [CSTestFunction]
+    public static Result ChangeVolume3()
+    {
+        Player.setVolume(100);
+        Player.changeVolume(5);
+        return Player.getVolume() == 100
+            ? Result.Success
+            : Result.Failure;
+    }
+
+    [CSTestFunction]
+    public static Result ChangeVolume4()
+    {
+        Player.setVolume(100);
+        Player.changeVolume(5);
+        return Player.getVolume() == 100
+            ? Result.Success
+            : Result.Failure;
+    }
+}

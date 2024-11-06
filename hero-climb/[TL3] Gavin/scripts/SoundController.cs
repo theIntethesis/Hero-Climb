@@ -54,7 +54,7 @@ public partial class SoundController : Node
 	public bool setVolume(int vol) {
 		if (!checkVolume(vol)) return false;
 		volume = vol;
-		setChildrenVolume(volume);
+		setChildrenVolume(vol);
 		return true;
 	}
 	
