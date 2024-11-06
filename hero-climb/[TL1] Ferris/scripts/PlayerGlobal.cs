@@ -7,10 +7,22 @@ public partial class PlayerGlobal : Node
 	public static int pipes = 0;
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
-	public static int Money { set; get; } = 0;
+	private static int _Money = 0;
+	public static int Money
+	{
+		set { _Money = value; Player.EmitSignal(Controller.SignalName.KaChing); }
+		get { return _Money; }
+	}
 	public static bool InShopArea = false;
 	public static Controller Player = null;
-	private static void CheckPlayerSet()
+	public static int[] Attributes = { 0, 0, 0, 0 };
+    /*
+	 * Attributes[0] = Number of Attack Damage Increases purchased.
+	 * Attributes[1] = Number of Movement Speed Increases purchased.
+	 * Attributes[2] = Number of Max Health Increases purchased.
+	 * Attributes[3] = Number of "Heal to Full" boons purchased.
+	 */
+    private static void CheckPlayerSet()
 	{
 		if (Player == null)
 		{
@@ -36,8 +48,24 @@ public partial class PlayerGlobal : Node
 	{
 		CheckPlayerSet();
 		Player.MaxHealth += amount;
+		Player.affectHealth(amount);
 	}
-
+	public static int GetSetMoney(int amount = 0)
+	{
+		CheckPlayerSet();
+		Player.EmitSignal(Controller.SignalName.KaChing);
+		return Money += amount;
+	}
+	public static int AffectBaseDamage(int amount)
+	{
+		CheckPlayerSet();
+		return Player.Damage += amount;
+	}
+	public static int AffectBaseMovement(float amount)
+	{
+		CheckPlayerSet();
+		return (int)(Player.Speed += amount);
+	}
 	public static void SetPlayer(Controller p) {  Player = p; }
 	public static void SetCharacterType(Controller.ClassType cType)
 	{
