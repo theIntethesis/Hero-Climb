@@ -59,12 +59,22 @@ public partial class SoundController : Node
 		return true;
 	}
 
+	public bool Stop(string sound)
+	{
+		foreach (AudioStreamPlayer othersound in GetChildren()) {
+			if (sound == othersound.Name)
+			{
+				sound.Stop();
+				return true;
+			}
+		} 
+		return false;
+	}
+
+	// Stop all sounds from playing
 	public void StopAll()
 	{
-		foreach (AudioStreamPlayer sound in GetChildren())
-		{
-			sound.Stop();
-		}
+		foreach (AudioStreamPlayer sound in GetChildren()) sound.Stop();
 	}
 	
 	// Set the decibel volume of each sound child
