@@ -37,7 +37,7 @@ The tower is procedurally generated based off of many different pieces.
 - Dash that can break wooden crates
 
 # Controls
-- W to climb (for the rouge)
+- W to climb (for the rogue)
 - A to move left
 - S to move down (through platforms)
 - D to move right

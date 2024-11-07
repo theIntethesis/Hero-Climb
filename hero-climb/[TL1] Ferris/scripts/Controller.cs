@@ -38,6 +38,9 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void KaChingEventHandler();
 
+	[Signal]
+	public delegate void PlayerMaxHealthChangeEventHandler(int change);
+
 	public int MaxHealth = 100;
 	protected int Health = 100;
 	protected bool attackCooldown = false;
@@ -50,6 +53,9 @@ public partial class Controller : CharacterBody2D
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
+		if (Health + amount > MaxHealth)
+			amount = MaxHealth - Health;
+
 		EmitSignal(SignalName.PlayerHealthChange, amount);
 		Health += amount;
 		if (Health <= 0) OnPlayerDeath();

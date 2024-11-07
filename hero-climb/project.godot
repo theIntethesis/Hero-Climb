@@ -34,7 +34,7 @@ project/assembly_name="Hero-Climb"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDMUT/plugin.cfg", "res://addons/gut/plugin.cfg")
 
 [input]
 

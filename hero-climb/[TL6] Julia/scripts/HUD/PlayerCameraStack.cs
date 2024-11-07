@@ -17,10 +17,10 @@ public partial class PlayerCameraStack : MenuStack
 
     public override void _Ready()
     {
-        HUD = new GameHUD(PlayerGlobal.GetPlayerMaxHealth());
+        HUD = new GameHUD(PlayerGlobal.GetSetPlayerMaxHealth());
         Push(HUD);
 
-        HUD.leaf.Hearts.Increment(PlayerGlobal.GetPlayerHealth());
+        HUD.leaf.Hearts.Increment(PlayerGlobal.AffectPlayerHealth());
         HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
