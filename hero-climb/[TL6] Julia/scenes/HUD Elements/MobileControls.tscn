@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://da5sjme50gc2n" path="res://[TL6] Julia/assets/attack_pressed.png" id="4_i8hj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62s1i"]
-size = Vector2(950, 500)
+size = Vector2(650, 500)
 
 [node name="MobileControlElement" type="Control"]
 layout_mode = 3
