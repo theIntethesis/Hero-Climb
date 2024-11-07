@@ -41,6 +41,10 @@ public partial class SoundController : Node2D
 		}
 		return sounds;
 	}
+
+	public int CountSounds() {
+		return PrintSounds().Count;
+	}
 	
 	// Change the volume by delta
 	public void ChangeVolume(int delta) {
