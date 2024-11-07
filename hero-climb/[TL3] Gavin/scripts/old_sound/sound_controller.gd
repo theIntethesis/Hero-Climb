@@ -7,8 +7,6 @@
 
 extends Node
 
-class_name SoundController
-
 var _volume: int			# linear volume [0-100]
 var _sounds: Array		# list of child nodes
 
