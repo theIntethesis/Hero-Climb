@@ -7,7 +7,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class SoundController : Node
+public partial class SoundController : Node2D
 {
 	private int volume;		// linear volume [0-100]
 	

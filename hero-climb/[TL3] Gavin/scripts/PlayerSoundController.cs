@@ -32,17 +32,21 @@ public partial class PlayerSound : SoundController
 				break;
 			case "Fighter":	
 				break;
-			default:		return false;
+			default:	// doesn't match available options		
+				return false;
 		}
 		_hero = choice;
 		return true;
 	}
 
+	// Get the name of the current hero.
 	public string getHero()
 	{
 		return _hero;
 	}
 
+	// Prefix a sound's name with the name of the current Hero Class
+	// if playing "Attack" since there are three total Attack sounds.
 	public override bool play(string sound)
 	{
 		if (sound == "Attack") sound = _hero + "Attack";
