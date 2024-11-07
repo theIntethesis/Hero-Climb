@@ -283,6 +283,8 @@ scale = Vector2(1.35, 1.35)
 shape = SubResource("RectangleShape2D_hoygl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_5qvl3")
 animation = &"stand"
 autoplay = "play"

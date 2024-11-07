@@ -31,7 +31,7 @@ public partial class EnemyController : Node2D
 		int enemyType;
 		foreach (var spawnPoint in spawns)
 		{
-			enemyType = rand.Next(3);
+			enemyType = rand.Next(4);
 			switch (enemyType)
 			{
 				case 0:

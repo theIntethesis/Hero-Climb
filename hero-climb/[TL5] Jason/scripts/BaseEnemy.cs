@@ -22,6 +22,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	[Signal] public delegate void OnDeathEventHandler();
 	[Signal] public delegate void AttackPlayerEventHandler();
 	[Signal] public delegate void TakeDamageEventHandler();
+	[Signal] public delegate void DetectingEventHandler();
 
 	#region SETUP
 	public override void _Ready()
@@ -62,12 +63,13 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 		if (IsDetectingPlayer && !IsDead && !IsIdle){
 			if (GlobalPosition.X - player.GlobalPosition.X < 0){
+				EmitSignal(SignalName.Detecting);
 				direction = new Vector2(1,0);
-				sprites.Scale = new Vector2(-1,1);
 			} else {
+				EmitSignal(SignalName.Detecting);
 				direction = new Vector2(-1,0);
-				sprites.Scale = new Vector2(1,1);
 			}
+			sprites.FlipH = direction.X > 0 ? true : false;
 		}
 
 		Vector2 velocity = Velocity;
@@ -169,6 +171,8 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void Die()
 	{
 		sprites.Play("die");
+		var Hitbox = GetNode("Hitbox");
+		(Hitbox.GetNode("CollisionShape2D") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 		GD.Print("Death animation playing");
 		IsDead = true;
 	}
