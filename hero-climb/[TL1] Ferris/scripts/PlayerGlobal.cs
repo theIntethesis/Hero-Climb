@@ -15,13 +15,6 @@ public partial class PlayerGlobal : Node
 	}
 	public static bool InShopArea = false;
 	public static Controller Player = null;
-	// public static int[] Attributes = { 0, 0, 0, 0 };
-    /*
-	 * Attributes[0] = Number of Attack Damage Increases purchased.
-	 * Attributes[1] = Number of Movement Speed Increases purchased.
-	 * Attributes[2] = Number of Max Health Increases purchased.
-	 * Attributes[3] = Number of "Heal to Full" boons purchased.
-	 */
     private static void CheckPlayerSet()
 	{
 		if (Player == null)

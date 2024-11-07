@@ -85,17 +85,6 @@ public partial class Wizard : Controller
 	}
 	public override void _Process(double delta)
 	{
-		if (fireballsummon)
-		{
-			fireballCountdown--;
-			if (fireballCountdown <= 0)
-			{
-				SummonFireball();
-				fireballsummon = false;
-				fireballCountdown = 30;
-			}
-		}
 
-		// if (Health <= 0) OnPlayerDeath();
 	}
 }
