@@ -3,6 +3,11 @@ using System;
 
 public partial class Goblin : BaseEnemy
 {
+
+	public Goblin()
+	{
+		Connect(SignalName.Detecting, Callable.From(EnemyAttack));
+	}
 	public override void SetupEnemy()
 	{
 		base.Damage = 25;
@@ -14,6 +19,7 @@ public partial class Goblin : BaseEnemy
 
 	public override void EnemyAttack()
 	{
+		base.Velocity += new Vector2(100,100);
 		base.EnemyAttack();
 		GD.Print("Goblin attacks!");
 	}

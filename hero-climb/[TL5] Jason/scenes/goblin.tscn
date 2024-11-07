@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://2l4wcj2m0427"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Goblin.cs" id="1_qfasw"]
-[ext_resource type="Texture2D" uid="uid://fs5cac1dqdy5" path="res://[TL5] Jason/assets/GoblinPack/GoblinScout-Sheet.png" id="2_h6kqq"]
+[ext_resource type="Texture2D" uid="uid://d0qiki7ddb1ui" path="res://[TL5] Jason/assets/GoblinPack/GoblinScout-Sheet.png" id="2_h6kqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 30)
@@ -283,6 +283,8 @@ scale = Vector2(1.35, 1.35)
 shape = SubResource("RectangleShape2D_hoygl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, 1)
+scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_5qvl3")
 animation = &"stand"
 autoplay = "play"
