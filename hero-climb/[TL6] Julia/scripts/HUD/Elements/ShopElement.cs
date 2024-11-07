@@ -1,13 +1,37 @@
 using Godot;
 
-public abstract partial class ShopElement : MenuLeaf
+public partial class ShopElement : MenuLeaf
 {
-    public abstract void Buy();
+    protected int CurrentPrice;
+    protected readonly int CurrentIncrease;
 
-    public ShopElement(string path)
+    public bool CanBuy()
+    {
+        return PlayerGlobal.Money >= CurrentPrice;
+    }
+    
+    public virtual void Buy()
+    {
+        PlayerGlobal.Money -= CurrentPrice;
+        CurrentPrice += CurrentIncrease;
+        TreeNode.GetNode<Label>("Label").Text = CurrentPrice.ToString();
+    }
+
+    public ShopElement(string path, int currentPrice, int currentIncrease)
     {
         SetTreeScene(path);
-        
+        CurrentPrice = currentPrice;
+        CurrentIncrease = currentIncrease;
+    }
+
+    public override void _Ready()
+    {
+        if (TreeNode.GetNode<Label>("Label") == null)
+        {
+            throw new System.Exception("A ShopElement needs a 'Label' in the scene");
+        }
+
+        TreeNode.GetNode<Label>("Label").Text = CurrentPrice.ToString();
     }
 
 }

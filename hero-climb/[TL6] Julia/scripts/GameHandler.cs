@@ -23,7 +23,7 @@ public partial class GameHandler : Node
         
         PlayerGlobal.SetPlayer(ActiveGame.GetNode<Controller>("Player"));
         PlayerGlobal.SetCharacterType(classType);
-        ShopElementFactory.Reset(classType);
+        ShopElementFactory.Reset((int)classType);
         PlayerGlobal.Money = 0;
         
         GetTree().Root.AddChild(ActiveGame);
