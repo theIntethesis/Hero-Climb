@@ -1,13 +1,13 @@
-// GameSound.cs
+// EnemySoundController.cs
 // Gavin Haynes
 // November 6, 2024
 // CS383 Software Engineering
-// The interface to control playing the game soundtrack
+// The interface to control playing enemy sounds.
 
 using Godot;
 using System;
 
-public partial class GameSoundController : SoundController
+public partial class EnemySoundController : SoundController
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -19,11 +19,4 @@ public partial class GameSoundController : SoundController
 	public override void _Process(double delta)
 	{
 	}
-    
-    // Modify SoundController base class to stop all other tracks before beginning another track
-    public override bool Play(string sound)
-    {
-        StopAll();
-        return base.Play(sound);
-    }
 }

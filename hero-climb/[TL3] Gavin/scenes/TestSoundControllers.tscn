@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://le3hbh0ssl4m"]
-
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/TestSoundControllers.cs" id="1_174ek"]
-[ext_resource type="PackedScene" uid="uid://cq2380k7j404h" path="res://[TL3] Gavin/scenes/game_music_controller.tscn" id="2_gagcw"]
-
-[node name="TestSoundControllers" type="Node2D"]
-script = ExtResource("1_174ek")
-
-[node name="GameMusicPlayer" parent="." instance=ExtResource("2_gagcw")]

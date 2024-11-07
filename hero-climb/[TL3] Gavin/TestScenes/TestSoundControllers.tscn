@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgpmpdavxtcbm"]
+
+[ext_resource type="Script" path="res://[TL3] Gavin/scripts/TestSoundControllers.cs" id="1_ao3mm"]
+[ext_resource type="PackedScene" uid="uid://bfvj8ns243kh4" path="res://[TL3] Gavin/scenes/EnemySoundController.tscn" id="2_j3m54"]
+
+[node name="TestGameSoundController" type="Node2D"]
+script = ExtResource("1_ao3mm")
+
+[node name="EnemySoundController" parent="." instance=ExtResource("2_j3m54")]
