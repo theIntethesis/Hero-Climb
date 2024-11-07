@@ -2,7 +2,7 @@ using Godot;
 
 public partial class GameHandler : Node
 {
-    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn"; // "res://[TL2] Taran/scenes/Main Level.tscn";
+    const string InitialGameScenePath = "res://[TL2] Taran/scenes/level_controller.tscn";
     
     static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
     
@@ -23,7 +23,9 @@ public partial class GameHandler : Node
         
         PlayerGlobal.SetPlayer(ActiveGame.GetNode<Controller>("Player"));
         PlayerGlobal.SetCharacterType(classType);
+        ShopElementFactory.Reset(classType);
         PlayerGlobal.Money = 0;
+        
         GetTree().Root.AddChild(ActiveGame);
 
         PlayerGlobal.SetPlayer(GetTree().Root.GetNode<Controller>("LevelController/Player"));

@@ -1,15 +1,16 @@
+v0.3.0
+
 # Gameplay
 
 ## Objective
-Get to the top without dying.
+Climb as far as you can without dtng
 
 ## Health
 You start off with 5 hearts, equivalent to 100 hp. Each half heart represents 10 hp.
 
-You loose health if you are hit by an enemy, and you can gain health by collecting hearts scattered thoughout the tower.
+You loose health if you are hit by an enemy, and you can gain health by collecting hearts scattered thoughout the tower or by purchasing an upgrade from the shop.
 
-## Score
-
+## Coins
 | Coin | Value |
 | --- | --- |
 | Copper | 1 |
@@ -19,7 +20,8 @@ You loose health if you are hit by an enemy, and you can gain health by collecti
 Coins can be spent at the shop
 
 ## Shop
-[TO BE COMPLETED]
+Tap or Press F while hovering over the shop to open the menu. From there, you can purchase a max health increase, a full healing, a damage increase, and a speed increase. Each time you buy one the price increases.
+
 
 ## Main level
 The tower is procedurally generated based off of many different pieces.
@@ -37,7 +39,7 @@ The tower is procedurally generated based off of many different pieces.
 - Dash that can break wooden crates
 
 # Controls
-- W to climb (for the rouge)
+- W to climb (for the rogue)
 - A to move left
 - S to move down (through platforms)
 - D to move right
@@ -46,6 +48,9 @@ The tower is procedurally generated based off of many different pieces.
 - right click to use the special ability 
 
 On screen controls display instead on mobile, and (in the future) can be manually displayed in settings
+
+On mobile the top left button only appears with the rogue and fighter, and is the ability button. To use the wizards ability tap anywhere close to the center of the screen. The right button on the left side is the melee attack, and the left button is the jump button.
+
 
 # Settings
 [TO BE COMPLETED]

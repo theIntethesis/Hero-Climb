@@ -1,5 +1,5 @@
 pkgname = heroclimb
-pkgver = 0.2.2
+pkgver = 0.3.0
 arch = x86_64
 
 windows_pkg = $(pkgname)-windows-$(pkgver)-$(arch)
