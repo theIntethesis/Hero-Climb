@@ -14,8 +14,6 @@ namespace GdMUT;
 public static class TestSoundBase   
 {
     static SoundController Player = new();
-    // static String scene = "res://[TL3] Gavin/scenes/player_sound_controller.tscn";
-    // static PlayerSound Player2 = ResourceLoader.Load<PackedScene>(scene).Instantiate<PlayerSound>();
 
     [CSTestFunction]
     public static Result InitialVolumeInRange()
