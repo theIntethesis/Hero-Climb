@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bfcdbdgy0vle1"]
+[gd_scene load_steps=2 format=3 uid="uid://bfcdbdgy0vle1"]
+
+[ext_resource type="PackedScene" uid="uid://2vi1xf5ppita" path="res://[TL6] Julia/scenes/HUD Elements/DamageIncreaseShopElement.tscn" id="1_iu1jp"]
 
 [node name="Shop" type="PanelContainer"]
 anchors_preset = 8
@@ -6,10 +8,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -128.0
-offset_right = 120.0
-offset_bottom = 128.0
+offset_left = -145.5
+offset_top = -85.5
+offset_right = 145.5
+offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -20,15 +22,28 @@ layout_mode = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.05
+anchor_top = 0.4
 anchor_right = 0.5
-anchor_bottom = 0.05
-offset_left = -94.0
-offset_top = 0.2
-offset_right = 94.0
-offset_bottom = 192.2
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -45.0
+offset_right = 126.0
+offset_bottom = 45.0
 grow_horizontal = 2
-columns = 3
+grow_vertical = 2
+columns = 4
+
+[node name="ShopElement" parent="Control/GridContainer" instance=ExtResource("1_iu1jp")]
+layout_mode = 2
+
+[node name="ShopElement2" parent="Control/GridContainer" instance=ExtResource("1_iu1jp")]
+layout_mode = 2
+
+[node name="ShopElement3" parent="Control/GridContainer" instance=ExtResource("1_iu1jp")]
+layout_mode = 2
+
+[node name="ShopElement4" parent="Control/GridContainer" instance=ExtResource("1_iu1jp")]
+layout_mode = 2
 
 [node name="Close" type="Button" parent="Control"]
 layout_mode = 1
@@ -44,3 +59,8 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Close
 "
+
+[node name="Control" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

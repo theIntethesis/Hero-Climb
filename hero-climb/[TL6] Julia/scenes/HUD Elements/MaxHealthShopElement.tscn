@@ -8,6 +8,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
+tooltip_text = "Increase Max Health"
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 60)
@@ -16,6 +17,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2
+tooltip_text = "Increase Max Health"
 icon = ExtResource("1_78r7j")
 icon_alignment = 1
 expand_icon = true

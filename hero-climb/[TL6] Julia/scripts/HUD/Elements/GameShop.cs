@@ -42,7 +42,12 @@ public partial class GameShop : MenuComposite
 
     
 
-        // generate items
+        ShopElement[] elements = ShopElementFactory.GenerateElements(); 
+
+        foreach (ShopElement element in elements)
+        {
+            Push(element);
+        }
 
     }
 }
