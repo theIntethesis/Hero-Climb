@@ -19,6 +19,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	#endregion
 	
+	[Signal] public delegate void OnDeathEventHandler();
 	[Signal] public delegate void AttackPlayerEventHandler();
 	[Signal] public delegate void TakeDamageEventHandler();
 
@@ -153,6 +154,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public void OnAnimationFinished()
 	{
 		if (IsDead){
+			EmitSignal(SignalName.OnDeath);
 			QueueFree();
 		} else if (IsIdle) {
 			sprites.Play("stand");

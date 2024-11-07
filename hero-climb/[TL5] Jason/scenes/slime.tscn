@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://2ccfs0wftglh"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Slime.cs" id="1_yuxhf"]
-[ext_resource type="Texture2D" uid="uid://dp51lv60kt4q4" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
+[ext_resource type="Texture2D" uid="uid://tf1ygd1a2sg7" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 15)
@@ -266,6 +266,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
 shape = SubResource("CircleShape2D_ns2qv")
 
+[connection signal="TakeDamage" from="." to="." method="OnTakeDamage"]
 [connection signal="area_entered" from="Hitbox" to="." method="OnArea2DEntered"]
 [connection signal="body_entered" from="Hitbox" to="." method="OnArea2DBodyEntered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]

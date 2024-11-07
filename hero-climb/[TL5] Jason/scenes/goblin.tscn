@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://2l4wcj2m0427"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Goblin.cs" id="1_qfasw"]
-[ext_resource type="Texture2D" uid="uid://fs5cac1dqdy5" path="res://[TL5] Jason/assets/GoblinPack/GoblinScout-Sheet.png" id="2_h6kqq"]
+[ext_resource type="Texture2D" uid="uid://d0qiki7ddb1ui" path="res://[TL5] Jason/assets/GoblinPack/GoblinScout-Sheet.png" id="2_h6kqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 30)
