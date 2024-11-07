@@ -5,8 +5,8 @@ public static partial class ShopElementFactory
 {
     public partial class MaxHealthIncrease : ShopElement
     {
-        static readonly int[] ClassBasePrice = {1, 1, 1};
-        static readonly int[] ClassIncrease = {1, 1, 1};
+        static readonly int[] ClassBasePrice = {10, 10, 10};
+        static readonly int[] ClassIncrease = {5, 5, 5};
 
         static int Price;
         static int Increase;
@@ -15,9 +15,13 @@ public static partial class ShopElementFactory
 
         public override void Buy()
         {   
-            PlayerGlobal.Money -= Price;
-            PlayerGlobal.BumpPlayerMaxHealth(HealthIncrease);
-            Price += Increase;
+            if (PlayerGlobal.Money >= Price) 
+            {
+                PlayerGlobal.Money -= Price;
+                PlayerGlobal.GetSetPlayerMaxHealth(HealthIncrease);
+                Price += Increase;
+                TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            }
         }
 
         public static void Reset(Controller.ClassType classType)
@@ -33,23 +37,28 @@ public static partial class ShopElementFactory
         public override void _Ready()
         {
             TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+
         }
     }
 
     public partial class FullHeal : ShopElement
     {
-        static readonly int[] ClassBasePrice = {1, 1, 1};
-        static readonly int[] ClassIncrease = {1, 1, 1};
+        static readonly int[] ClassBasePrice = {15, 15, 15};
+        static readonly int[] ClassIncrease = {5, 5, 5};
 
         static int Price;
         static int Increase;
         
         public override void Buy()
         {   
-            PlayerGlobal.Money -= Price;
-            PlayerGlobal.AffectPlayerHealth(PlayerGlobal.GetPlayerMaxHealth());
-            Price += Increase;
-            TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            if (PlayerGlobal.Money >= Price) 
+            {
+                PlayerGlobal.Money -= Price;
+                PlayerGlobal.HealToFull();
+                Price += Increase;
+                TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            }
         }
 
         public static void Reset(Controller.ClassType classType)
@@ -65,13 +74,15 @@ public static partial class ShopElementFactory
         public override void _Ready()
         {
             TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+
         }
     }
 
     public partial class DamageIncrease : ShopElement
     {
-        static readonly int[] ClassBasePrice = {1, 1, 1};
-        static readonly int[] ClassIncrease = {1, 1, 1};
+        static readonly int[] ClassBasePrice = {5, 5, 5};
+        static readonly int[] ClassIncrease = {10, 5, 15};
 
         static int Price;
         static int Increase;
@@ -80,10 +91,13 @@ public static partial class ShopElementFactory
 
         public override void Buy()
         {   
-            PlayerGlobal.Money -= Price;
-            PlayerGlobal.Player.Damage += DmgIncrease;
-            Price += Increase;
-            base.Buy();
+            if (PlayerGlobal.Money >= Price) 
+            {
+                PlayerGlobal.Money -= Price;
+                PlayerGlobal.AffectBaseDamage(DmgIncrease);
+                Price += Increase;
+                TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            }
         }
 
         public static void Reset(Controller.ClassType classType)
@@ -92,48 +106,56 @@ public static partial class ShopElementFactory
             Increase = ClassIncrease[(int)classType];
         }
 
-        public DamageIncrease() : base("")
+        public DamageIncrease() : base("res://[TL6] Julia/scenes/HUD Elements/DamageIncreaseShopElement.tscn")
         {
         }
         
         public override void _Ready()
         {
             TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+
         }
     }
 
     public partial class SpeedIncrease : ShopElement
     {
-        static readonly int[] ClassBasePrice = {1, 1, 1};
-        static readonly int[] ClassIncrease = {1, 1, 1};
+        static readonly int[] ClassBasePrice = {5, 5, 5};
+        static readonly int[] ClassIncrease = {10, 5, 15};
 
         static int Price;
         static int Increase;
 
-        static int SpdIncrease = 20;
+        static int[] ClassSpdIncrease = {15, 20, 5};
+
+        static int SpdIncrease;
 
         public override void Buy()
         {   
-            PlayerGlobal.Money -= Price;
-            PlayerGlobal.Player.Speed += SpdIncrease;
-            Price += Increase;
-
-            base.Buy();
+            if (PlayerGlobal.Money >= Price)
+            {
+                PlayerGlobal.Money -= Price;
+                PlayerGlobal.AffectBaseMovement(SpdIncrease);
+                Price += Increase;
+                TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            }
         }
 
         public static void Reset(Controller.ClassType classType)
         {
             Price = ClassBasePrice[(int)classType];
             Increase = ClassIncrease[(int)classType];
+            SpdIncrease = ClassSpdIncrease[(int)classType];
         }
 
-        public SpeedIncrease() : base("")
+        public SpeedIncrease() : base("res://[TL6] Julia/scenes/HUD Elements/SpeedIncreaseShopElement.tscn")
         {
         }
 
         public override void _Ready()
         {
             TreeNode.GetNode<Label>("Label").Text = Price.ToString();
+            TreeNode.GetNode<Button>("Button").Pressed += Buy;
         }
     }
 

@@ -27,6 +27,8 @@ public partial class PlayerCameraStack : MenuStack
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
         PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(OnKaChing));
         PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(OpenShop));
+        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(PlayerMaxHealthChangeEventHandler));
+
     }
 
 
@@ -62,6 +64,11 @@ public partial class PlayerCameraStack : MenuStack
         }
 
         HUD.leaf.Hearts.SetHealth(change);
+    }
+
+    public void PlayerMaxHealthChangeEventHandler(int change)
+    {
+        HUD.leaf.Hearts.IncreaseMaxHealth(change);
     }
 
     public void OnPlayerDeath() 

@@ -40,8 +40,6 @@ public partial class GameShop : MenuComposite
             QueueFree();
         };
 
-    
-
         ShopElement[] elements = ShopElementFactory.GenerateElements(); 
 
         foreach (ShopElement element in elements)

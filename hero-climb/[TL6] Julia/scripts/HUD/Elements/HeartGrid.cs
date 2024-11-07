@@ -40,7 +40,7 @@ public partial class HeartGrid : MenuComposite
 			Sprite = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn").Instantiate<AnimatedSprite2D>();
 			AddChild(Sprite);
 			MatchState();
-			CustomMinimumSize = new Vector2(16, 32);
+			CustomMinimumSize = new Vector2(16, 16);
 		}
 	}
 
@@ -74,6 +74,19 @@ public partial class HeartGrid : MenuComposite
 			}
 		}
 		
+	}
+
+	public void IncreaseMaxHealth(int increase)
+	{
+		MaxHealth += increase;
+
+		for (int i = 0; i < increase / 20; i++)
+		{
+			Push(new Heart());
+		}
+
+		CustomMinimumSize = new Vector2(Hearts.Columns * 16, MathF.Ceiling((float)Hearts.GetChildCount() / (float)5) * 16);
+
 	}
 
 	public void Increment(int health)
@@ -132,16 +145,11 @@ public partial class HeartGrid : MenuComposite
 			Name = "Container",
 		};
 
-		CustomMinimumSize = new Vector2(8, 9);
+		CustomMinimumSize = new Vector2(Hearts.Columns * 16, 16);
 
 		AddChild(Hearts);
 
-		MaxHealth = maxhealth;
-
-		for (int i = 0; i < MaxHealth / 20; i++)
-		{
-			Push(new Heart());
-		}
+		IncreaseMaxHealth(maxhealth);
 
 		HeadIdx = 0;
 	}
