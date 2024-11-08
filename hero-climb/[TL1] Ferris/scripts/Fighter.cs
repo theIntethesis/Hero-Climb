@@ -26,11 +26,11 @@ public partial class Fighter : Controller
 		switch (clause)
 		{
 			case "move_left":
-				Vec = Vector2.Zero;
-				break;
+				Vec = new Vector2(0, -13);
+                break;
 			case "move_right":
-				Vec = Vector2.Zero;
-				break;
+				Vec = new Vector2(0, -13);
+                break;
 			case "idle":
 				Vec = new Vector2(0, -13);
 				break;
@@ -41,7 +41,7 @@ public partial class Fighter : Controller
 				Vec = new Vector2(-4, -13);
                 break;
 			case "jump":
-				Vec = Vector2.Zero;
+				Vec = new Vector2(0, -13);
 				break;
 			default:
 				Vec = Vector2.Zero;
@@ -71,12 +71,5 @@ public partial class Fighter : Controller
 	private void removeShieldBash()
 	{
 		GetNode("Shield Bash").Free();
-		/*var bash = FindChildren("Shield Bash");
-		GD.Print(bash);
-		foreach (var node in bash) node.QueueFree();*/
-	}
-	protected override void OnAnimationEnd()
-	{
-		GD.Print("In Animation End");
 	}
 }
