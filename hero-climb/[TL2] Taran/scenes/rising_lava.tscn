@@ -22,7 +22,7 @@ offset_bottom = 2335.0
 color = Color(1, 0.466667, 0, 0.901961)
 
 [node name="RisingLava" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 132
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RisingLava"]
 position = Vector2(9.5, 198.5)
