@@ -6,7 +6,7 @@ Team Tappa Tappa Keyboard
                         Hero Climb Sound Interface Package
 
 
-Overview:
+Overview
  
     A sound interface is necessary in games to provide ques to the player, alerting
 in-game events and enhancing immersion. Our game, Hero Climb, consists of several 
@@ -19,7 +19,7 @@ sound controllers which are responsible for one area of the game, comprised of:
 Additionally there is MainSoundController, which controls the volume of all SoundControllers.
 
 
-Setup:
+Setup
 
     This guide assumes that you have an existing game in GoDot. These tools are all written in C#.
 Each SoundController is designed to operate as a child of whatever thing you want to give sound,
@@ -43,7 +43,7 @@ Instantiate each appropriate SoundController scene, would resemble:
 You don't need to use every provided controller, these are just defined examples.
 
 
-Usage:
+Usage
 
     Now, to play sounds, each SoundController must be appropriately connected to the desired scene.
 Suppose some script called PlayerController which is attached to Player as above. To connect
@@ -72,7 +72,7 @@ with the private member VolumeToDb(float) to convert a linear volume scale [0-10
 [-80-0] decibel range.
 
 
-Example Usage of HUDSoundController:
+Example Usage of HUDSoundController
 
 public partial class MyHudController : Node
 {
@@ -90,3 +90,25 @@ public partial class MyHudController : Node
 	}
 }
 
+
+Writing your Own SoundController
+
+    Now, suppose you want to repurpose the SoundController base class for your own project. It's pretty easy!
+Create a new GoDot C# script and attach to an empty Node2D. At the top, extend SoundController (which is a child of Node2D). 
+Ex. public partial class PlayerSoundController : SoundController. Now, your node has the full functionality of the
+base class already. Now, for each sound you want to add, create a new AudioStreamPlayer and add as a child to your Node2D.
+For example:
+* Node2D
+    * AudioStreamPlayer
+    * AudioStreamPlayer
+    * AudioStreamPlayer
+Now, rename each AudioStreamPlayer. SoundController works by playing sounds given the name of the AudioStreamPlayer to reduce
+ambiguity. 
+* Node2D
+    * Jump
+    * Attack
+    * Walk
+And you're done! There are a couple different cases I've thought of which require an extension of a SoundController. For 
+Hero Climb, there are several options for Heroes, which repurpose many of the same sounds including Walking, Jump, and Damaged.
+For my teammate's PlayerController, I extend SoundController's Play(string) to account for the Hero's current class,
+So that regardless of which Hero is currently being played, their appropriate sound can be played with the same Play("Attack").
