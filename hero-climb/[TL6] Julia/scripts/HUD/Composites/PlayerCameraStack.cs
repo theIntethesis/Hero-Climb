@@ -3,14 +3,14 @@ using Godot;
 public partial class PlayerCameraStack : MenuStack
 {
     public CharacterHUD HUD;
-
-
     PlayerCamera ParentCam;
 
     public PlayerCameraStack(PlayerCamera parent) : base()
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
         ParentCam = parent;
+
+
     }
 
     public override void _Ready()
