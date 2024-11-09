@@ -19,7 +19,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_soyv3")
 
-[node name="Control2" type="Control" parent="."]
+[node name="Control2" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_w122x")
+InitialParent = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="Control2"]
 process_mode = 3
@@ -38,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,6 +47,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_okjo3")
+_IsPoppable = false
+InitialParent = NodePath("..")
 
 [node name="GridContainer" type="GridContainer" parent="Control"]
 layout_mode = 1

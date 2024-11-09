@@ -31,7 +31,10 @@ public abstract partial class MenuElement : Control
 
     public virtual void OnPop() 
     { 
-        _Parent = null;
+        if (Poppable())
+        {
+            _Parent = null;
+        }
     }
 
     public virtual void OnShow() { }

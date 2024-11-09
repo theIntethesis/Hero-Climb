@@ -9,7 +9,7 @@ public partial class DeathScreen : MenuLeaf
 
     public override void _Ready()
     {
-
+        base._Ready();
         GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
             Parent().Push(MenuFactory.CharacterCreator());
