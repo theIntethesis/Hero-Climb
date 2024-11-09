@@ -15,7 +15,11 @@ public partial class PlayerGlobal : Node
 		get { return _Money; }
 	}
 	public static bool InShopArea = false;
-	public static Controller Player = null;
+	private static Controller Player = null;
+	public static void ConnectPlayerSignal(StringName signalName, Callable callable)
+	{
+		Player.Connect(signalName, callable);
+	}
 	private static void CheckPlayerSet()
 	{
 		if (Player == null)
@@ -37,6 +41,10 @@ public partial class PlayerGlobal : Node
 	{
 		return AffectPlayerHealth(Player.MaxHealth);
 	}
+	public static Controller.ClassType GetClassType()
+	{
+		return Player.Class;
+	}
 	public static int GetSetPlayerMaxHealth(int amount = 0)
 	{
 		CheckPlayerSet();
@@ -54,7 +62,7 @@ public partial class PlayerGlobal : Node
 		Player.EmitSignal(Controller.SignalName.KaChing);
 		return Money += amount;
 	}
-	public static int AffectBaseDamage(int amount)
+	public static int AffectBaseDamage(int amount = 0)
 	{
 		CheckPlayerSet();
 		return Player.Damage += amount;
