@@ -5,27 +5,23 @@ public partial class GameShop : MenuComposite
 {
     public const string NAME = "GameShop";
 
-    Controller.ClassType ClassType;
-
-    public GameShop(Controller.ClassType classType) : base()
+    public GameShop() : base()
     {
         Name = NAME;
-        ClassType = classType;
-        // SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
     }
 
     public override void Push(MenuElement node)
     {
         if (node is Node cast)
         {
-            GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
+            GetNode<GridContainer>("Shop/BoundingBox/GridContainer").AddChild(cast);
             node.OnPush(this);
         }
     }
 
     public override MenuElement Pop()
     {
-        MenuElement last = (MenuElement)GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
+        MenuElement last = (MenuElement)GetNode<GridContainer>("Shop/BoundingBox/GridContainer").GetChildren().Last();
         last.QueueFree();
         last.OnPop();
 
@@ -34,7 +30,7 @@ public partial class GameShop : MenuComposite
 
     public override void _Ready()
     {
-        GetNode<Button>("Control/Close").Pressed += () => 
+        GetNode<Button>("Shop/BoundingBox/Close").Pressed += () => 
         {
             // GD.Print("here");
             QueueFree();
@@ -48,4 +44,20 @@ public partial class GameShop : MenuComposite
         }
 
     }
+
+    public override MenuElement Child(string name)
+    {
+        foreach (MenuElement Child in GetNode<GridContainer>("Shop/BoundingBox/GridContainer").GetChildren())
+        {
+            if (Child.Name == name)
+            {
+                return Child;
+            }
+        }
+        
+        return null;
+    }
+
 }
+
+

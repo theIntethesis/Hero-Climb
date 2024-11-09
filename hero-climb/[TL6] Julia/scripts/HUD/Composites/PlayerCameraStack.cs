@@ -4,6 +4,7 @@ public partial class PlayerCameraStack : MenuStack
 {
     public CharacterHUD HUD;
 
+
     PlayerCamera ParentCam;
 
     public PlayerCameraStack(PlayerCamera parent) : base()
@@ -21,33 +22,18 @@ public partial class PlayerCameraStack : MenuStack
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
         PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(OnKaChing));
-        PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(OpenShop));
+        PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(HUD.OpenShop));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(PlayerMaxHealthChangeEventHandler));
+
+        HUD.OpenShop();
     }
 
     public void OnKaChing()
     {
-        HUD.moneyLabel.SetScore(PlayerGlobal.Money);
+        HUD.characterInfo.moneyLabel.SetScore(PlayerGlobal.Money);
     }
 
-    public void OpenShop()
-    {
-        if (HUD.Child(GameShop.NAME) == null)
-        {
-            GameShop shop = new GameShop(PlayerGlobal.Player.Class);
-            
-            HUD.Push(shop);
 
-        }
-    }
-
-    public void CloseShop()
-    {
-        if (HUD.Child(GameShop.NAME) != null)
-        {
-            HUD.Remove(GameShop.NAME);
-        }
-    }
 
     public void PlayerHealthChangeEventHandler(int change)
     {
@@ -56,12 +42,12 @@ public partial class PlayerCameraStack : MenuStack
             ParentCam.ShakeCamera();
         }
 
-        HUD.heartGrid.SetHealth(change);
+        HUD.characterInfo.heartGrid.SetHealth(change);
     }
 
     public void PlayerMaxHealthChangeEventHandler(int change)
     {
-        HUD.heartGrid.IncreaseMaxHealth(change);
+        HUD.characterInfo.heartGrid.IncreaseMaxHealth(change);
     }
 
     public void OnPlayerDeath() 

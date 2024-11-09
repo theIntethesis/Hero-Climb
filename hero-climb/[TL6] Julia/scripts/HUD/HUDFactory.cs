@@ -7,14 +7,15 @@ public static class HUDFactory
     enum ElementName
     {
         MoneyLabel,
-        Heart
+        Heart,
+        GameShop
     }
 
     static Dictionary<ElementName, PackedScene> MenuScenes = new Dictionary<ElementName, PackedScene>
     {
         {ElementName.MoneyLabel, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MoneyLabel.tscn")},
         {ElementName.Heart, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/Heart.tscn")},
-
+        {ElementName.GameShop, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/Shop.tscn")},
     };
 
     public static MoneyLabel MoneyLabel()
@@ -40,5 +41,10 @@ public static class HUDFactory
     public static Heart Heart()
     {
         return (Heart)MenuScenes[ElementName.Heart].Instantiate();
+    }
+
+    public static GameShop GameShop()
+    {
+        return (GameShop)MenuScenes[ElementName.GameShop].Instantiate();
     }
 }

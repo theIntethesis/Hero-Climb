@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class ShopElement : MenuLeaf
+public abstract partial class ShopElement : MenuLeaf
 {
     protected int CurrentPrice;
     protected readonly int CurrentIncrease;
@@ -17,7 +17,7 @@ public partial class ShopElement : MenuLeaf
         GetNode<Label>("Label").Text = CurrentPrice.ToString();
     }
 
-    public ShopElement(string path, int currentPrice, int currentIncrease)
+    public ShopElement(int currentPrice, int currentIncrease)
     {
         // SetTreeScene(path);
         CurrentPrice = currentPrice;

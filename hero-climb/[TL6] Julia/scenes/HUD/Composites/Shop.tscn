@@ -1,6 +1,18 @@
-[gd_scene format=3 uid="uid://bfcdbdgy0vle1"]
+[gd_scene load_steps=2 format=3 uid="uid://bfcdbdgy0vle1"]
 
-[node name="Shop" type="PanelContainer"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Composites/GameShop.cs" id="1_pnpkh"]
+
+[node name="ShopContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pnpkh")
+
+[node name="Shop" type="PanelContainer" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -13,10 +25,10 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control" type="Control" parent="."]
+[node name="BoundingBox" type="Control" parent="Shop"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
+[node name="GridContainer" type="GridContainer" parent="Shop/BoundingBox"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -31,7 +43,7 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 4
 
-[node name="Close" type="Button" parent="Control"]
+[node name="Close" type="Button" parent="Shop/BoundingBox"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -46,7 +58,7 @@ grow_vertical = 0
 text = "Close
 "
 
-[node name="Control" type="Control" parent="Control"]
+[node name="Control" type="Control" parent="Shop/BoundingBox"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

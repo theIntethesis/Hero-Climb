@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdsx1cgl0852s"]
+[gd_scene load_steps=3 format=3 uid="uid://bdsx1cgl0852s"]
 
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/MaxHealthIncrease.cs" id="1_8kpp2"]
 [ext_resource type="Texture2D" uid="uid://lnosw1tm4x2" path="res://[TL6] Julia/assets/heart 15x15.png" id="1_78r7j"]
 
 [node name="ShopElement" type="Control"]
@@ -9,6 +10,7 @@ anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
 tooltip_text = "Increase Max Health"
+script = ExtResource("1_8kpp2")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 60)
