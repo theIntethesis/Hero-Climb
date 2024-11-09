@@ -9,22 +9,12 @@ public partial class EnemyController : Node2D
 	public PackedScene SkeletonScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/skeleton.tscn");
 	public PackedScene SlimeScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/slime.tscn");
 	public PackedScene GoblinScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/goblin.tscn");
-
-	public override void _Ready()
-	{
-		// GD.Print("EnemyController ready.");
-		// GD.Print("Calling SpawnEnemies...");
-		// SpawnEnemies();
-	}
-
-
+	public PackedScene ArrowScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/arrow.tscn");
 
 	private void SpawnEnemies()
 	{
 
 		var rand = new Random();
-		
-
 
 		GD.Print("Spawning enemies...");
 
@@ -32,6 +22,7 @@ public partial class EnemyController : Node2D
 		foreach (var spawnPoint in spawns)
 		{
 			enemyType = rand.Next(4);
+			enemyType = 3;
 			switch (enemyType)
 			{
 				case 0:

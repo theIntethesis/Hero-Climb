@@ -1,11 +1,11 @@
 [gd_scene load_steps=30 format=3 uid="uid://j5pyhb5yaxvl"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Skeleton.cs" id="1_dt3i0"]
-[ext_resource type="Texture2D" uid="uid://c7uciem0y7i0w" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
-[ext_resource type="Texture2D" uid="uid://c4vv332il05cb" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
-[ext_resource type="Texture2D" uid="uid://brg305huk7srl" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
-[ext_resource type="Texture2D" uid="uid://i6vbecargdvx" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
-[ext_resource type="Texture2D" uid="uid://bvt7b4w5u3luw" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
+[ext_resource type="Texture2D" uid="uid://jmcyw6fk62vh" path="res://[TL5] Jason/assets/skeleton/skeleton4_atack.png" id="2_k8gef"]
+[ext_resource type="Texture2D" uid="uid://67ogh868viuo" path="res://[TL5] Jason/assets/skeleton/skeleton4_hurt.png" id="3_6im80"]
+[ext_resource type="Texture2D" uid="uid://tey7m48dv8o3" path="res://[TL5] Jason/assets/skeleton/skeleton4_dead.png" id="4_vtyi4"]
+[ext_resource type="Texture2D" uid="uid://dwrrvj86c1ypo" path="res://[TL5] Jason/assets/skeleton/skeleton4_walk.png" id="5_y4qnp"]
+[ext_resource type="Texture2D" uid="uid://de8aakiv2el71" path="res://[TL5] Jason/assets/skeleton/skeleton4_idle.png" id="6_ieanq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 26)
@@ -178,8 +178,9 @@ animations = [{
 "speed": 6.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ns2qv"]
-radius = 105.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bremx"]
+radius = 85.0
+height = 440.0
 
 [node name="Skeleton" type="CharacterBody2D"]
 scale = Vector2(-1, 1)
@@ -210,10 +211,15 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-shape = SubResource("CircleShape2D_ns2qv")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bremx")
+
+[node name="Cooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="Hitbox" to="." method="OnArea2DEntered"]
 [connection signal="body_entered" from="Hitbox" to="." method="OnArea2DBodyEntered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
 [connection signal="body_entered" from="Detector" to="." method="OnDetectorBodyEntered"]
 [connection signal="body_exited" from="Detector" to="." method="OnDetectorBodyExited"]
+[connection signal="timeout" from="Cooldown" to="." method="OnCooldownTimeout"]
