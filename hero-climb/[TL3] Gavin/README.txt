@@ -25,21 +25,21 @@ Setup
 Each SoundController is designed to operate as a child of whatever thing you want to give sound,
 with this sound interface coming preinstalled with a complete soundtrack and sound suite already. 
 To integrate sound modeules, for example, if your scene tree resembles:
-* Node
-    * Player
-    * World
-    * EnemyController
-    * HUD
+    * Node
+        * Player
+        * World
+        * EnemyController
+        * HUD
 Instantiate each appropriate SoundController scene, would resemble:
-* Node
-    * Player
-        * PlayerSoundController
-    * World
-        * WorldSoundController
-    * EnemyController
-        * EnemySoundController
-    * HUD
-        * HUDSoundController
+    * Node
+        * Player
+            * PlayerSoundController
+        * World
+            * WorldSoundController
+        * EnemyController
+            * EnemySoundController
+        * HUD
+            * HUDSoundController
 You don't need to use every provided controller, these are just defined examples.
 
 
@@ -49,13 +49,15 @@ Usage
 Suppose some script called PlayerController which is attached to Player as above. To connect
 to PlayerSoundController (or your custom SoundController), in PlayerController:
 
-public partial class PlayerController : Node
-{
-    static HUDSoundController SoundPlayer;
+    public partial class PlayerController : Node
+    {
+        static HUDSoundController SoundPlayer;
     
-	public override void _Ready()
-	{
-		SoundPlayer = GetNode<HUDSoundController>("HUDSoundController");	// or name of associated SoundPlayer
+	    public override void _Ready()
+	    {
+		    SoundPlayer = GetNode<HUDSoundController>("HUDSoundController");	// or name of associated SoundPlayer
+        }
+    }
 
 Now, the sound is accessible within your script. The base functionality of a SoundController is:
     * new() -> default constructor
@@ -98,16 +100,16 @@ Create a new GoDot C# script and attach to an empty Node2D. At the top, extend S
 Ex. public partial class PlayerSoundController : SoundController. Now, your node has the full functionality of the
 base class already. Now, for each sound you want to add, create a new AudioStreamPlayer and add as a child to your Node2D.
 For example:
-* Node2D
-    * AudioStreamPlayer
-    * AudioStreamPlayer
-    * AudioStreamPlayer
+    * Node2D (extends SoundController)
+        * AudioStreamPlayer
+        * AudioStreamPlayer
+        * AudioStreamPlayer
 Now, rename each AudioStreamPlayer. SoundController works by playing sounds given the name of the AudioStreamPlayer to reduce
 ambiguity. 
-* Node2D
-    * Jump
-    * Attack
-    * Walk
+    * Node2D
+        * Jump
+        * Attack
+        * Walk
 And you're done! There are a couple different cases I've thought of which require an extension of a SoundController. For 
 Hero Climb, there are several options for Heroes, which repurpose many of the same sounds including Walking, Jump, and Damaged.
 For my teammate's PlayerController, I extend SoundController's Play(string) to account for the Hero's current class,
