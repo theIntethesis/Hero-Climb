@@ -3,28 +3,28 @@ using System.IO;
 using Godot;
 
 // Interface
-public partial class MenuElement : Control
+public abstract partial class MenuElement : Control
 {
         
     [Export]
-    bool _IsBackground = false;
+    protected bool _IsBackground = false;
     
     [Export]
-    bool _IsPoppable = true;
+    protected bool _IsPoppable = true;
 
     [Export]
     Node InitialParent = null;
 
 
-    private MenuComposite _Parent = null;
+    private MenuCompositeBase _Parent = null;
 
-    public MenuComposite Parent() { return _Parent; }
+    public MenuCompositeBase Parent() { return _Parent; }
     public bool Poppable() { return _IsPoppable; }
     public bool IsBackground() { return _IsBackground; }
 
 
 
-    public virtual void OnPush(MenuComposite parent) 
+    public virtual void OnPush(MenuCompositeBase parent) 
     { 
         _Parent = parent;
     }
@@ -49,7 +49,7 @@ public partial class MenuElement : Control
 
         base._Ready();
 
-        _Parent = InitialParent as MenuComposite;
+        _Parent = InitialParent as MenuCompositeBase;
         GD.Print("Setting Parent as Initial");
     }
 

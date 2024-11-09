@@ -12,9 +12,11 @@ shader_parameter/tint = Color(1, 1, 1, 0)
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_os2xj")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
@@ -25,6 +27,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_fs6n8")
+_IsBackground = true
 InitialParent = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
@@ -37,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.477959, 0.256812, 0.214795, 1)
 
-[node name="MainPause" type="Control" parent="."]
+[node name="MainPause" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -47,6 +50,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_3oum4")
+InitialParent = NodePath("..")
 
 [node name="GridContainer" type="GridContainer" parent="MainPause"]
 layout_mode = 1

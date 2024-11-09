@@ -2,8 +2,6 @@ using Godot;
 
 public partial class CreditsMenu : MenuLeaf
 {
-    public const string NAME = "CreditsMenu";
-
     public CreditsMenu() : base()
     {
 

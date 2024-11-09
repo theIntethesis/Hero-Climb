@@ -2,11 +2,9 @@ using Godot;
 
 public partial class QuitConfirm : MenuLeaf
 {
-    public const string NAME = "QuitConfirm";
 
     public override void _Ready()
     {
-        Name = NAME;
         GetNode<Button>("GridContainer/Back").Pressed += OnBack;
         GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {

@@ -12,7 +12,7 @@ public partial class DeathScreen : MenuLeaf
 
         GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
-            Parent().Push(new CharacterCreator());
+            Parent().Push(MenuFactory.CharacterCreator());
         };
 
         GetNode<Button>("GridContainer/Quit").Pressed += () => 
@@ -20,12 +20,7 @@ public partial class DeathScreen : MenuLeaf
             GameHandler.Instance().StopGame();
             GameHandler.Instance().LoadMainMenu();
         };
-    }
 
-    public override void OnPush(MenuComposite parent)
-    {
-        base.OnPush(parent);
-
-        GetNode<Label>("Label").Text = $"Score: {PlayerGlobal.Score}";
+        GetNode<Label>("GridContainer/Score").Text = $"Score: {PlayerGlobal.Score}";
     }
 }

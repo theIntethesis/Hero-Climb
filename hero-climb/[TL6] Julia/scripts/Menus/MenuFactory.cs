@@ -35,15 +35,15 @@ public static class MenuFactory
     {
         return (CreditsMenu)MenuScenes[ElementName.CreditsMenu].Instantiate();
     }
-    public static MenuComposite DeathScreen()
+    public static MenuCompositeBase DeathScreen()
     {
         return (MenuStack)MenuScenes[ElementName.DeathScreen].Instantiate();
     }
-    public static MenuComposite MainMenu()
+    public static MenuCompositeBase MainMenu()
     {
         return (MenuStack)MenuScenes[ElementName.MainMenu].Instantiate();
     }
-    public static MenuComposite PauseMenu()
+    public static MenuCompositeBase PauseMenu()
     {
         return (MenuStack)MenuScenes[ElementName.PauseMenu].Instantiate();
     }

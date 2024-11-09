@@ -42,6 +42,12 @@ public partial class PlayerCamera : Camera2D
 		Stack = HUDFactory.PlayerCameraStack(this);
 		Interface.AddChild(Stack);
 
+        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.OnPlayerHealthChange));
+        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.HUD.OnPlayerHealthChange));
+		PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(Stack.OnPlayerDeath));
+        PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(Stack.HUD.OnKaChing));
+        PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(Stack.HUD.OpenShop));
+        PlayerGlobal.Player.Connect(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(Stack.HUD.OnPlayerMaxHealthChange));
 	}
 
 	public override void _Process(double delta)

@@ -3,11 +3,8 @@ using Godot;
 
 public partial class GameShop : MenuComposite
 {
-    public const string NAME = "GameShop";
-
     public GameShop() : base()
     {
-        Name = NAME;
     }
 
     public override void Push(MenuElement node)

@@ -22,39 +22,16 @@ public partial class GameHandler : Node
 
 		ActiveGame = InitialGameScene.Instantiate();
 
-		switch (classType)
-		{
-			case Controller.ClassType.Fighter:
-				Controller Player1 = (Fighter)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterController.tscn").Instantiate();
-				ActiveGame.AddChild(Player1);
-				Player1.Position = new Vector2(0, -16);
-				ActiveGame.MoveChild(Player1, 2);
-				PlayerGlobal.SetPlayer(Player1);
-				break;
-			case Controller.ClassType.Rogue:
-				Controller Player2 = (Rogue)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueController.tscn").Instantiate();
-				ActiveGame.AddChild(Player2);
-				Player2.Position = new Vector2(0, -16);
-				ActiveGame.MoveChild(Player2, 2);
-				PlayerGlobal.SetPlayer(Player2);
-				break;
-			case Controller.ClassType.Wizard:
-				Controller Player3 = (Wizard)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardController.tscn").Instantiate();
-				ActiveGame.AddChild(Player3);
-				Player3.Position = new Vector2(0, -16);
-				ActiveGame.MoveChild(Player3, 2);
-				PlayerGlobal.SetPlayer(Player3);
-				break;
-			default:
-				break;
-		}
+		Controller Player = PlayerGlobal.MakeCharacter(classType);
+
+		ActiveGame.AddChild(Player);
+		ActiveGame.MoveChild(Player, 2);
+		
 		ShopElementFactory.Reset((int)classType);
 		PlayerGlobal.Money = 0;
 		PlayerGlobal.Score = 0;
 		
 		GetTree().Root.AddChild(ActiveGame);
-
-		//PlayerGlobal.SetPlayer(GetTree().Root.GetNode<Controller>("LevelController/Player"));
 
 		Input.EmulateMouseFromTouch = false;
 	}

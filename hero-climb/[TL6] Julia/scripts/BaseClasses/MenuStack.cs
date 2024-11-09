@@ -2,7 +2,7 @@ using System.Linq;
 using Godot;
 
 /* Subclass */
-public partial class MenuStack : MenuComposite
+public partial class MenuStack : MenuCompositeBase
 {  
     public override void Push(MenuElement node)
     {
@@ -23,7 +23,7 @@ public partial class MenuStack : MenuComposite
     
     public override MenuElement Pop()
     {
-        if (GetChildCount() == 0)
+        if (GetChildren().Any() == false)
         {
             Parent().Pop();
         }
@@ -44,16 +44,20 @@ public partial class MenuStack : MenuComposite
                 }     
             }  
 
-            
-            if (GetChildren().Last() is MenuElement element && element.IsBackground())
+            while (GetChildren().Any() == true && GetChildren().Last() is MenuElement element && element.IsBackground())
             {
-                Pop();
+                element.QueueFree();
+                RemoveChild(element);
             }
             
-
+            if (GetChildren().Any() == false)
+            {
+                Parent().Pop();
+            }
+            
             return Child;
         }
-        
+    
         throw new System.Exception("MenuStack must only contain MenuElements");
     }
 
@@ -68,5 +72,10 @@ public partial class MenuStack : MenuComposite
             GetViewport().SetInputAsHandled();
             Pop();
         }        
+    }
+
+    public override Node GetContainer()
+    {
+        return this;
     }
 }

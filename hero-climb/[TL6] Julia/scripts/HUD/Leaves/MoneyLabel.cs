@@ -6,8 +6,8 @@ public partial class MoneyLabel : MenuLeaf
     {
     }
 
-    public void SetScore(int score)
+    public void SetMoney(int money)
     {
-        GetNode<Label>("Label").Text = score.ToString();
+        GetNode<Label>("Label").Text = money.ToString();
     }
 }

@@ -100,6 +100,7 @@ public partial class HeartGrid : MenuComposite
 	public HeartGrid(): base()
 	{
 		HeadIdx = 0;
+		_IsPoppable = false;
 	}
 
     public override void _Ready()

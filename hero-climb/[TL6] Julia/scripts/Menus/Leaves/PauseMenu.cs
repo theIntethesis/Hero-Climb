@@ -16,11 +16,11 @@ public partial class PauseMenu : MenuLeaf
         };
         GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
-            Parent().Push(new CharacterCreator());
+            Parent().Push(MenuFactory.SettingsMenu());
         };
         GetNode<Button>("GridContainer/Settings").Pressed += () => 
         {
-            Parent().Push(new SettingsMenu());
+            Parent().Push(MenuFactory.SettingsMenu());
         };            
         GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
@@ -31,4 +31,5 @@ public partial class PauseMenu : MenuLeaf
         
         base._Ready();
     }
+
 }

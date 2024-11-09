@@ -1,57 +1,38 @@
 using System.Linq;
 using Godot;
 
-// Composite 
-/* Superclass */
-public partial class MenuComposite : MenuElement
+public abstract partial class MenuCompositeBase : MenuElement
 {
+    public abstract Node GetContainer();
+
     public virtual void Push(MenuElement node) 
     {
-        if (node is Node cast)
-        {
-            AddChild(cast);
-            node.OnPush(this);
-        }
+        GetContainer().AddChild(node);
+        node.OnPush(this);
+
     }
 
     public virtual MenuElement Pop()
     {
-        MenuElement element = (MenuElement)GetChildren().Last();
-        RemoveChild(GetChildren().Last());
-
-        if (element is Node cast)
-        {   
+        if (GetContainer().GetChildren().Last() is MenuElement element)
+        {
             element.OnPop();
+            GetContainer().RemoveChild(element);
+
+            return element;
         }
-        return element;
-    }
 
-    public MenuComposite() : base()
-    {        
-        SetAnchorsPreset(LayoutPreset.FullRect); 
-    }
-
-    public virtual MenuElement this[int index]
-    {
-        get => (MenuElement)GetChildren()[index];
+        return null;
     }
 
     public virtual MenuElement Child(string name)
     {
-        foreach (MenuElement Child in GetChildren())
-        {
-            if (Child.Name == name)
-            {
-                return Child;
-            }
-        }
-        
-        return null;
+        return Child<MenuElement>(name);
     }
 
     public virtual T Child<T>(string name) where T : MenuElement
     {
-        foreach (MenuElement Child in GetChildren())
+        foreach (MenuElement Child in GetContainer().GetChildren())
         {
             if (Child.Name == name)
             {
@@ -62,26 +43,58 @@ public partial class MenuComposite : MenuElement
         return null;
     }
 
+    public virtual MenuElement Remove(string name)
+    {
+        MenuElement element = Child(name);
+
+        if (element == null) return null;
+
+        GetContainer().RemoveChild(element);
+        element.OnPop();
+
+        return element;
+    }
+
+    public virtual MenuElement SilentRemove(string name)
+    {
+        MenuElement element = Child(name);
+
+        if (element == null) return null;
+
+        GetContainer().RemoveChild(element);
+
+        return element;
+    }
+
+
     public virtual void Clear()
     {
         foreach (MenuElement Child in GetChildren())
         {
-            Child.QueueFree();
+            RemoveChild(Child);
         }
     }
 
-    public virtual MenuElement Remove(string name)
+    public virtual MenuElement this[int index]
     {
-        foreach (MenuElement Child in GetChildren())
-        {
-            if (Child.Name == name)
-            {
-                Child.QueueFree();
-                return Child;
-            }
-        }
+        get => (MenuElement)GetChildren()[index];
+    }
+}
 
-       return null;
+
+// Composite 
+/* Superclass */
+public partial class MenuComposite : MenuCompositeBase
+{
+
+    public MenuComposite() : base()
+    {        
+        SetAnchorsPreset(LayoutPreset.FullRect); 
+    }
+
+    public override Node GetContainer()
+    {
+        return this;
     }
 }
 

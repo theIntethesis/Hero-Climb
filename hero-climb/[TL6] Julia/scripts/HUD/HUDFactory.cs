@@ -20,31 +20,54 @@ public static class HUDFactory
 
     public static MoneyLabel MoneyLabel()
     {
-        return (MoneyLabel)MenuScenes[ElementName.MoneyLabel].Instantiate();
+        MoneyLabel label = (MoneyLabel)MenuScenes[ElementName.MoneyLabel].Instantiate();
+
+        return label;
     }
 
     public static HeartGrid HeartGrid()
     {
-        return new HeartGrid();
+        HeartGrid grid = new HeartGrid();
+        grid.Name = "HeartGrid";
+
+        return grid;
     }  
 
     public static PlayerCameraStack PlayerCameraStack(PlayerCamera parent)
     {
-        return new PlayerCameraStack(parent);
+        PlayerCameraStack stack = new PlayerCameraStack(parent);
+        stack.Name = "PlayerCameraStack";
+        return stack;
     }  
 
-    public static CharacterHUD CharacterHUD(int maxhealth)
+    public static CharacterHUD CharacterHUD(int maxhealth, int initialMoney)
     {
-        return new CharacterHUD(maxhealth);
+        CharacterHUD hud = new CharacterHUD(maxhealth, initialMoney);
+        hud.Name = "CharacterHUD";
+
+        return hud;
     }
 
     public static Heart Heart()
     {
-        return (Heart)MenuScenes[ElementName.Heart].Instantiate();
+        Heart heart = (Heart)MenuScenes[ElementName.Heart].Instantiate();
+
+        return heart;
     }
 
     public static GameShop GameShop()
     {
-        return (GameShop)MenuScenes[ElementName.GameShop].Instantiate();
+        GameShop shop = (GameShop)MenuScenes[ElementName.GameShop].Instantiate();
+        shop.Name = "GameShop";
+        return shop;
     }
+
+    public static CharacterInfo CharacterInfo()
+    {
+        CharacterInfo info = new CharacterInfo();
+        info.Scale = new Vector2(3.0f, 3.0f);
+        info.Name = "CharacterInfo";
+        return info;
+    }
+
 }
