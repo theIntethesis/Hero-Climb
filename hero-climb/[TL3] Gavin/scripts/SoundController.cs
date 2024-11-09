@@ -47,8 +47,8 @@ public partial class SoundController : Node2D
 	}
 	
 	// Change the volume by delta
-	public void ChangeVolume(int delta) {
-		SetVolume(volume + delta);
+	public bool ChangeVolume(int delta) {
+		return SetVolume(volume + delta);
 	}
 	
 	// Return the linear volume
