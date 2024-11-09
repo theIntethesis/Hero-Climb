@@ -184,8 +184,8 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void Die()
 	{
 		sprites.Play("die");
-		var Hitbox = GetNode("Hitbox");
-		(Hitbox.GetNode("CollisionShape2D") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		CollisionShape2D Hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
+		Hitbox.QueueFree();
 		GD.Print("Death animation playing");
 		IsDead = true;
 	}
