@@ -69,7 +69,7 @@ public abstract partial class MenuCompositeBase : MenuElement
 
     public virtual void Clear()
     {
-        foreach (MenuElement Child in GetChildren())
+        foreach (MenuElement Child in GetContainer().GetChildren())
         {
             RemoveChild(Child);
         }
@@ -77,8 +77,9 @@ public abstract partial class MenuCompositeBase : MenuElement
 
     public virtual MenuElement this[int index]
     {
-        get => (MenuElement)GetChildren()[index];
+        get => (MenuElement)GetContainer().GetChildren()[index];
     }
+
 }
 
 

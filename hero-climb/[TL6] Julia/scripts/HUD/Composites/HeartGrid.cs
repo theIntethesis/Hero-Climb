@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 
-public partial class HeartGrid : MenuComposite 
+public partial class HeartGrid : MenuCompositeBase
 {
 	
 	GridContainer Hearts;
@@ -115,28 +115,15 @@ public partial class HeartGrid : MenuComposite
 		base._Ready();
     }
 
-    public override void Push(MenuElement node)
-    {
-        if (node is Heart heart)
-		{
-			Hearts.AddChild(heart);
-			node.OnPush(this);
-		}
-    }
-
-    public override MenuElement Pop()
-    {
-        MenuElement element = (MenuElement)Hearts.GetChildren().Last();
-
-		Hearts.GetChildren().Last().QueueFree();
-		element.OnPop();
-
-		return element;
-    }
-	
 
 	public override Heart this[int index]
     {
         get => (Heart)Hearts.GetChildren()[index];
     }
+
+    public override Node GetContainer()
+    {
+        return Hearts;
+    }
 }
+

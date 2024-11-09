@@ -18,6 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_os2xj")
+metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
