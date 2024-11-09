@@ -8,19 +8,25 @@ public partial class PlayerGlobal : Node
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
 	private static int _Money = 0;
+	public static int Score = 0;
 	public static int Money
 	{
-		set { _Money = value; Player.EmitSignal(Controller.SignalName.KaChing); }
+		set { _Money = value; GetSetScore(value); Player.EmitSignal(Controller.SignalName.KaChing); }
 		get { return _Money; }
 	}
 	public static bool InShopArea = false;
 	public static Controller Player = null;
-    private static void CheckPlayerSet()
+	private static void CheckPlayerSet()
 	{
 		if (Player == null)
 		{
 			throw new NullReferenceException("Player not set to a node!");
 		}
+	}
+	public static int GetSetScore(int amount = 0)
+	{
+		GD.Print($"Score: {Score += amount}");
+		return Score;
 	}
 	public static int AffectPlayerHealth(int amount = 0)
 	{

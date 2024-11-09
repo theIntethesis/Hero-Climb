@@ -7,13 +7,11 @@ public partial class Pipe : Area2D
 	{
 		if (body.Name == "Player" && (body as Controller).Class == Controller.ClassType.Rogue)
 			PlayerGlobal.pipes++;
-		//GD.Print($"Pipe: {Global.pipes}");
 	}
 	public void OnBodyExited(Node2D body)
 	{
 		if (body.Name == "Player" && (body as Controller).Class == Controller.ClassType.Rogue)
 			PlayerGlobal.pipes--;
-		//GD.Print($"Pipe: {Global.pipes}");
 	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

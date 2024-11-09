@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://x4x72p7ro81d"]
+
+[ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="1_qa6bh"]
+[ext_resource type="Script" path="res://[TL1] Ferris/scripts/Wizard.cs" id="2_6qn05"]
+
+[node name="Player" instance=ExtResource("1_qa6bh")]
+script = ExtResource("2_6qn05")

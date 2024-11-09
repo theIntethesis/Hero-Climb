@@ -7,8 +7,9 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	[Export] public int Damage = 20;
 	public float Gravity = 100.0f;
 	public float Speed = 50.0f;
-	public int Health = 100;
-	public Vector2 direction = new Vector2(1, 0);  // Initial direction: right
+	private int MaxHealth = 100;
+	public int Health;
+	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes
 	private CharacterBody2D player;
@@ -29,7 +30,8 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	#region SETUP
 	public override void _Ready()
 	{
-		GD.Print("BaseEnemy ready.");
+		// GD.Print("BaseEnemy ready.");
+		Health = MaxHealth;
 
 		player = (CharacterBody2D)GetParent().GetParent().GetNode("Player");
 		// Get the sprite node
@@ -41,11 +43,13 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		turnTimer.WaitTime = 1.0f; //  One second buffer
 		turnTimer.OneShot = true;
 		AddChild(turnTimer);
+
+		//GD.Print($"Enemy Health:\t{MaxHealth}\nEnemy Damage:\t{Damage}");
 	}
 
 	public virtual void SetupEnemy()
 	{
-		GD.Print("BaseEnemy setup.");
+		// GD.Print("BaseEnemy setup.");
 	}
 	#endregion
 
@@ -132,11 +136,13 @@ public abstract partial class BaseEnemy : CharacterBody2D
 			var attack = (Attack)area;
 			sprites.Play("damage");
 			Health = Health - attack.Damage;
-			GD.Print("Health: " + Health);
+			// GD.Print("Health: " + Health);
 		}
-		if (Health <= 0){
+		if (Health <= 0)
+		{
+			(GetNode("Hitbox/CollisionShape2D") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 			Die();
-			GD.Print("Dying now...");
+			// GD.Print("Dying now...");
 		}
 	}
 
@@ -187,7 +193,14 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		CollisionShape2D Hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
 		Hitbox.QueueFree();
 		GD.Print("Death animation playing");
+		PlayerGlobal.GetSetScore(MaxHealth);
+		// GD.Print("Death animation playing");
 		IsDead = true;
+	}
+
+	public bool SetMaxHealth(int Max)
+	{
+		try { MaxHealth = Max; return true; } catch(Exception) { return false; }
 	}
 	#endregion
 }	

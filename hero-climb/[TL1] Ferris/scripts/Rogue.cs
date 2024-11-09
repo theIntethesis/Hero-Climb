@@ -7,8 +7,10 @@ using Godot;
 
 public partial class Rogue : Controller
 {
-	public Rogue()
+	protected override void SetupClassScript()
 	{
+		GD.Print("Rogue Class Selected");
+		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
 		Class = ClassType.Rogue;
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
@@ -43,9 +45,5 @@ public partial class Rogue : Controller
 				break;
 		}
 		return Vec;
-	}
-	public override void _Ready()
-	{
-
 	}
 }

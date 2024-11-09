@@ -81,12 +81,12 @@ public partial class Controller : CharacterBody2D
 		if (Input.IsActionPressed("move_up") && PlayerGlobal.isClimbing)
 		{
 			velocity += new Vector2(0, -ClimbSpeed * (float)delta);
-			GD.Print(velocity);
+			//GD.Print(velocity);
 		}
 		else if (Input.IsActionPressed("move_down") && PlayerGlobal.isClimbing)
 		{
 			velocity += new Vector2(0, ClimbSpeed * (float)delta);
-			GD.Print(velocity);
+			//GD.Print(velocity);
 		}
 		else if (PlayerGlobal.isClimbing && !Input.IsActionPressed("move_down") && !Input.IsActionPressed("move_up") && !Input.IsActionPressed("jump"))
 		{
@@ -224,12 +224,12 @@ public partial class Controller : CharacterBody2D
 	}
 	protected void _on_sprites_animation_finished()
 	{
-        if (PlayerGlobal.isAttacking)
+		if (PlayerGlobal.isAttacking)
 		{
 			attackCooldown = false;
 			PlayerGlobal.isAttacking = false;
 
-            GetNode("Attack")?.QueueFree();
+			GetNode("Attack")?.QueueFree();
 		}
 		if(Health <= 0)
 		{
@@ -252,10 +252,10 @@ public partial class Controller : CharacterBody2D
 		PlayerGlobal.isAttacking = true;
 		sprites.Offset = getSpriteOffset("attack");
 		sprites.Play("attack");
-        Attack = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/attack.tscn").Instantiate() as Attack;
-        Attack.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
-        AddChild(Attack);
-        GD.Print("Attacking");
+		Attack = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/attack.tscn").Instantiate() as Attack;
+		Attack.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
+		AddChild(Attack);
+		//GD.Print("Attacking");
 	}
 	protected virtual Vector2 Ability()
 	{
@@ -272,21 +272,15 @@ public partial class Controller : CharacterBody2D
 		AddChild(iFrames);
 		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
 	}
+	protected virtual void SetupClassScript()
+	{
+		GD.PrintErr("Type Not Set");
+		throw new TypeUnloadedException();
+	}
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");
-		switch (Class)
-		{
-			case ClassType.Fighter:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Fighter.cs"));
-				break;
-			case ClassType.Rogue:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
-				break;
-			case ClassType.Wizard:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
-				break;
-		}
+		SetupClassScript();
 	}
 	public override void _Process(double delta)
 	{

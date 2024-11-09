@@ -26,6 +26,13 @@ public partial class DeathScreen : MenuStack
                 GameHandler.Instance().LoadMainMenu();
             };
         }
+
+        public override void OnPush(IMenuComposite parent)
+        {
+            base.OnPush(parent);
+
+            TreeNode.GetNode<Label>("Label").Text = $"Score: {PlayerGlobal.Score}";
+        }
     }
 
     public DeathScreen() : base()
