@@ -61,6 +61,11 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+text = "You Died!"
+horizontal_alignment = 1
+
 [node name="Score" type="Label" parent="Control/GridContainer"]
 layout_mode = 2
 text = "Score: TEMP"
