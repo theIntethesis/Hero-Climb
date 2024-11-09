@@ -22,7 +22,6 @@ public partial class EnemyController : Node2D
 		foreach (var spawnPoint in spawns)
 		{
 			enemyType = rand.Next(4);
-			enemyType = 3;
 			switch (enemyType)
 			{
 				case 0:
