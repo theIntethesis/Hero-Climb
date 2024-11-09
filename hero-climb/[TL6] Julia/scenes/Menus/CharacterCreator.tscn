@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf1mwj455rvja"]
+[gd_scene load_steps=5 format=3 uid="uid://cf1mwj455rvja"]
 
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CharacterCreator.cs" id="1_ixjar"]
 [ext_resource type="PackedScene" uid="uid://7muxnjdf3dsv" path="res://[TL1] Ferris/scenes/RogueSprite.tscn" id="2_crrn4"]
 [ext_resource type="PackedScene" uid="uid://ddreyoyl54apb" path="res://[TL1] Ferris/scenes/WizardSprite.tscn" id="2_nnumt"]
 [ext_resource type="PackedScene" uid="uid://dp6omjfw6gx1l" path="res://[TL1] Ferris/scenes/FighterSprite.tscn" id="3_kxsia"]
 
-[node name="CharacterCreator" type="Control"]
+[node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ixjar")
 
 [node name="VFlowContainer" type="VFlowContainer" parent="."]
 layout_mode = 1

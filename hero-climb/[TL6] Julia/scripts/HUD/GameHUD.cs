@@ -11,7 +11,7 @@ public partial class GameHUD : MenuComposite
         public HUDLeaf(int maxhealth) : base()
         {
             Name = "HUDLeaf";
-            TreeNode = new GridContainer();
+            //  TreeNode = new GridContainer();
 
             Hearts = new HeartGrid(maxhealth);
             Score = new ScoreLabel();
@@ -21,9 +21,9 @@ public partial class GameHUD : MenuComposite
 
         public override void _Ready()
         {
-            AddChild(TreeNode);
-            TreeNode.AddChild(Hearts);
-            TreeNode.AddChild(Score);
+            // AddChild(TreeNode);
+            // TreeNode.AddChild(Hearts);
+            // TreeNode.AddChild(Score);
         }
     }
     
@@ -55,7 +55,7 @@ public partial class GameHUD : MenuComposite
         }
     }
 
-    override public bool Poppable() {  return false; }
+    // override public bool Poppable() {  return false; }
 
     public override void OnShow()
     {

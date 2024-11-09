@@ -11,21 +11,21 @@ public partial class GameShop : MenuComposite
     {
         Name = NAME;
         ClassType = classType;
-        SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
+        // SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/Shop.tscn");
     }
 
-    public override void Push(IMenuElement node)
+    public override void Push(MenuElement node)
     {
         if (node is Node cast)
         {
-            TreeNode.GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
+            GetNode<GridContainer>("Control/GridContainer").AddChild(cast);
             node.OnPush(this);
         }
     }
 
     public override MenuElement Pop()
     {
-        MenuElement last = (MenuElement)TreeNode.GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
+        MenuElement last = (MenuElement)GetNode<GridContainer>("Control/GridContainer").GetChildren().Last();
         last.QueueFree();
         last.OnPop();
 
@@ -34,7 +34,7 @@ public partial class GameShop : MenuComposite
 
     public override void _Ready()
     {
-        TreeNode.GetNode<Button>("Control/Close").Pressed += () => 
+        GetNode<Button>("Control/Close").Pressed += () => 
         {
             // GD.Print("here");
             QueueFree();

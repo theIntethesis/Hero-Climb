@@ -38,7 +38,7 @@ public static partial class ShopElementFactory
 
         public override void _Ready()
         {
-            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+            GetNode<Button>("Button").Pressed += Buy;
             base._Ready();
         }
 
@@ -77,7 +77,7 @@ public static partial class ShopElementFactory
 
         public override void _Ready()
         {
-            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+            GetNode<Button>("Button").Pressed += Buy;
             base._Ready();
         }
 
@@ -119,7 +119,7 @@ public static partial class ShopElementFactory
         public override void _Ready()
         {
             base._Ready();
-            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+            GetNode<Button>("Button").Pressed += Buy;
         }
 
         ~DamageIncrease()
@@ -166,7 +166,7 @@ public static partial class ShopElementFactory
         public override void _Ready()
         {
             base._Ready();
-            TreeNode.GetNode<Button>("Button").Pressed += Buy;
+            GetNode<Button>("Button").Pressed += Buy;
         }
 
         ~SpeedIncrease()

@@ -78,7 +78,7 @@ public partial class PlayerCameraStack : MenuStack
 
     public void OnGameWin()
     {
-        Push(new WinScreen());
+        // Push(new WinScreen());
     }
 
 }

@@ -1,7 +1,40 @@
-[gd_scene format=3 uid="uid://du73yk33och4t"]
+[gd_scene load_steps=4 format=3 uid="uid://du73yk33och4t"]
 
-[node name="HomeMenu" type="Control"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/MainMenu.cs" id="1_0hfcr"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuLeaf.cs" id="1_ufg12"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuStack.cs" id="1_vi38q"]
+
+[node name="MenuStack" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vi38q")
+
+[node name="MenuLeaf" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ufg12")
+_IsBackground = true
+InitialParent = NodePath("..")
+
+[node name="ColorRect" type="ColorRect" parent="MenuLeaf"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -9,8 +42,11 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0hfcr")
+_IsPoppable = false
+InitialParent = NodePath("..")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -18,24 +54,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -48.0
-offset_top = -50.5
+offset_top = -68.0
 offset_right = 48.0
-offset_bottom = 50.5
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Start" type="Button" parent="GridContainer"]
+[node name="Start" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2
 text = "Start Game"
 
-[node name="Settings" type="Button" parent="GridContainer"]
+[node name="Settings" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="Credits" type="Button" parent="GridContainer"]
+[node name="Credits" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2
 text = "Credits"
 
-[node name="Quit" type="Button" parent="GridContainer"]
+[node name="Quit" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2
 text = "Quit Game"

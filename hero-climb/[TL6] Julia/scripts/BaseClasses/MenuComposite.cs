@@ -1,22 +1,11 @@
 using System.Linq;
 using Godot;
 
-public interface IMenuComposite : IMenuElement
-{
-    public abstract void Push(IMenuElement node);
-
-    public abstract IMenuElement Pop();
-    public abstract IMenuElement Child(string name);
-    public abstract IMenuElement Remove(string name);
-
-    public abstract void Clear();
-}
-
 // Composite 
 /* Superclass */
-public partial class MenuComposite : MenuElement, IMenuComposite
+public partial class MenuComposite : MenuElement
 {
-    public virtual void Push(IMenuElement node) 
+    public virtual void Push(MenuElement node) 
     {
         if (node is Node cast)
         {
@@ -25,9 +14,9 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         }
     }
 
-    public virtual IMenuElement Pop()
+    public virtual MenuElement Pop()
     {
-        IMenuElement element = (IMenuElement)GetChildren().Last();
+        MenuElement element = (MenuElement)GetChildren().Last();
         RemoveChild(GetChildren().Last());
 
         if (element is Node cast)
@@ -47,7 +36,7 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         get => (MenuElement)GetChildren()[index];
     }
 
-    public virtual IMenuElement Child(string name)
+    public virtual MenuElement Child(string name)
     {
         foreach (MenuElement Child in GetChildren())
         {
@@ -81,7 +70,7 @@ public partial class MenuComposite : MenuElement, IMenuComposite
         }
     }
 
-    public virtual IMenuElement Remove(string name)
+    public virtual MenuElement Remove(string name)
     {
         foreach (MenuElement Child in GetChildren())
         {

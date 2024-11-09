@@ -4,7 +4,7 @@ using Godot;
 /* Subclass */
 public partial class MenuStack : MenuComposite
 {  
-    public override void Push(IMenuElement node)
+    public override void Push(MenuElement node)
     {
         if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
         {
@@ -23,6 +23,11 @@ public partial class MenuStack : MenuComposite
     
     public override MenuElement Pop()
     {
+        if (GetChildCount() == 0)
+        {
+            Parent().Pop();
+        }
+        
         if (GetChildren().Last() is MenuElement Child)
         {
             Child.OnPop();
@@ -39,10 +44,12 @@ public partial class MenuStack : MenuComposite
                 }     
             }  
 
-            if (GetChildren().Last() == TreeNode)
+            
+            if (GetChildren().Last() is MenuElement element && element.IsBackground())
             {
-                Parent().Pop();
+                Pop();
             }
+            
 
             return Child;
         }

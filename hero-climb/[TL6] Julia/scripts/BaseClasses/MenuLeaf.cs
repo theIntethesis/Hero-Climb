@@ -4,8 +4,8 @@ using Godot;
 // Leaf - Has Foreground and Background
 public partial class MenuLeaf : MenuElement
 {
-    protected MenuLeaf() : base()
+    public override void _Ready()
     {
-        SetAnchorsPreset(LayoutPreset.FullRect);
+        base._Ready();
     }
 }

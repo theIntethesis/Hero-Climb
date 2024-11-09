@@ -154,7 +154,7 @@ public partial class HeartGrid : MenuComposite
 		HeadIdx = 0;
 	}
 
-    public override void Push(IMenuElement node)
+    public override void Push(MenuElement node)
     {
         if (node is Heart heart)
 		{

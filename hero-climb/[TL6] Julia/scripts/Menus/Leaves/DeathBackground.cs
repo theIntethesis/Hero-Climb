@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DeathBackground : Control
+public partial class DeathBackground : MenuLeaf
 {
 	public ShaderMaterial material;
 	public Color FinalTint;
@@ -18,6 +18,8 @@ public partial class DeathBackground : Control
 
 		material.SetShaderParameter("lod", 0.0f);
 		material.SetShaderParameter("tint", new Color(0, 0, 0, 0));
+        base._Ready();
+
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

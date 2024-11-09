@@ -6,12 +6,12 @@ public partial class ScoreLabel : MenuLeaf
     public ScoreLabel(): base()
     {
         Name = NAME;
-        SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/score.tscn");
-        CustomMinimumSize = TreeNode.Size;
+        // SetTreeScene("res://[TL6] Julia/scenes/HUD Elements/score.tscn");
+        // CustomMinimumSize = TreeNode.Size;
     }
 
     public void SetScore(int score)
     {
-        TreeNode.GetNode<Label>("Label").Text = score.ToString();
+        GetNode<Label>("Label").Text = score.ToString();
     }
 }

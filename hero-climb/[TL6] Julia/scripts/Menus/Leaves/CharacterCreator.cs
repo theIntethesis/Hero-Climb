@@ -16,14 +16,31 @@ public partial class CharacterCreator : MenuLeaf
 
 	static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
-	public override void _Ready() 
-	{
-		Wizard = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-		Fighter = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-		Rogue = TreeNode.GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
-		WizardButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
-		FighterButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
-		RogueButton = TreeNode.GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
+
+    public override void _Ready() 
+    {   
+        GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
+        {
+            Parent().Pop();
+        };
+
+        GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
+        {
+            MostRecentClass = CurrentType;
+            if (Parent() is Node parent) 
+            {
+                parent.QueueFree();
+            }
+
+            GameHandler.Instance().StartGame(CurrentType);
+        };
+
+        Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
+        Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
+        Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+        WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
+        FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
+        RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
 		Rogue.Visible = false;
 		Fighter.Visible = false;
@@ -82,26 +99,8 @@ public partial class CharacterCreator : MenuLeaf
 		CurrentType = Controller.ClassType.Rogue;
 	}
 
-	public CharacterCreator() : base()
-	{
-		Name = NAME;
-		SetTreeScene("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn");
-	   
-		TreeNode.GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
-		{
-			Parent().Pop();
-		};
-
-		TreeNode.GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
-		{
-			MostRecentClass = CurrentType;
-			if (Parent() is Node parent) 
-			{
-				parent.QueueFree();
-			}
-
-			GameHandler.Instance().StartGame(CurrentType);
-		};
+    public CharacterCreator() : base()
+    {
 
 	}
 }

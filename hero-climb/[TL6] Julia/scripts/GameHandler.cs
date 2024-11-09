@@ -77,9 +77,15 @@ public partial class GameHandler : Node
 		_Instance = this;
 	}
 
-	public void LoadMainMenu()
-	{
-		MenuComposite mainMenu = new MainMenu();
-		GetTree().Root.CallDeferred("add_child", mainMenu);
-	}
+
+    public void LoadMainMenu()
+    {
+        MenuElement mainMenu = MenuFactory.MainMenu();
+		
+        if (mainMenu is Node node)
+        {
+            GetTree().Root.CallDeferred("add_child", node);
+        }   
+        
+    }
 }

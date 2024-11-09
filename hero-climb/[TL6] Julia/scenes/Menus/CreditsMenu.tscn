@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://0kr41vnsgn1d"]
+[gd_scene load_steps=3 format=3 uid="uid://0kr41vnsgn1d"]
 
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CreditsMenu.cs" id="1_0v26l"]
 [ext_resource type="Texture2D" uid="uid://bxr0lavqcye1l" path="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png" id="1_v8jbm"]
 
 [node name="Control" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0v26l")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
