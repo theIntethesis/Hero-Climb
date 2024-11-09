@@ -36,7 +36,7 @@ public partial class GameShop : MenuComposite
     {
         TreeNode.GetNode<Button>("Control/Close").Pressed += () => 
         {
-            GD.Print("here");
+            // GD.Print("here");
             QueueFree();
         };
 

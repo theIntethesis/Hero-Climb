@@ -53,11 +53,11 @@ public partial class PlayerCamera : Camera2D
 
 			float theta = ShakeFrame * MathF.PI / 180.0f;
 
-			GD.Print(theta);
+			// GD.Print(theta);
 
 			Vector2 vec = new Vector2(0, MathF.Sin(theta * PeriodMultiplier) * Amplitude / CurrentDuration);
 		   
-			GD.Print(vec);
+			// GD.Print(vec);
 			Offset = vec;
 
 			

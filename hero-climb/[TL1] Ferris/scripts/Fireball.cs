@@ -16,7 +16,7 @@ public partial class Fireball : Attack
 	
 	public void DeleteOnCollision(Node2D body)
 	{
-		GD.Print($"Fireball collided with {body.Name}");
+		//GD.Print($"Fireball collided with {body.Name}");
 		if (!body.IsAncestorOf(this) && body.Name != "Player")
 		{
 			foreach(Line2D line in lines) {line.QueueFree(); }

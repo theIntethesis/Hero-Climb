@@ -127,9 +127,9 @@ public abstract partial class BaseEnemy : CharacterBody2D
 			// GD.Print("Health: " + Health);
 		}
 		if (Health <= 0)
-        {
-            (GetNode("Hitbox/CollisionShape2D") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-            Die();
+		{
+			(GetNode("Hitbox/CollisionShape2D") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+			Die();
 			// GD.Print("Dying now...");
 		}
 	}

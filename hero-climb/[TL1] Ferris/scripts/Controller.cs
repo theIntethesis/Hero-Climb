@@ -272,21 +272,15 @@ public partial class Controller : CharacterBody2D
 		AddChild(iFrames);
 		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
 	}
+	protected virtual void SetupClassScript()
+	{
+		GD.PrintErr("Type Not Set");
+		throw new TypeUnloadedException();
+	}
 	public override void _Ready()
 	{
 		SoundController = GetNode("PlayerSoundController");
-		switch (Class)
-		{
-			case ClassType.Fighter:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Fighter.cs"));
-				break;
-			case ClassType.Rogue:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
-				break;
-			case ClassType.Wizard:
-				SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
-				break;
-		}
+		SetupClassScript();
 	}
 	public override void _Process(double delta)
 	{

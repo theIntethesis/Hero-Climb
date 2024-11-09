@@ -11,18 +11,20 @@ public partial class Wizard : Controller
 	private bool fireballsummon = false;
 	private Timer FireballSummon = new();
 
-	public Wizard()
+	protected override void SetupClassScript()
 	{
+		GD.Print("Wizard Class Selected");
+		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = Vector2.Zero;
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
 
-        FireballSummon.OneShot = true;
-        FireballSummon.WaitTime = .5;
-        AddChild(FireballSummon);
-        FireballSummon.Connect(Timer.SignalName.Timeout, Callable.From(SummonFireball));
-    }
+		FireballSummon.OneShot = true;
+		FireballSummon.WaitTime = .5;
+		AddChild(FireballSummon);
+		FireballSummon.Connect(Timer.SignalName.Timeout, Callable.From(SummonFireball));
+	}
 	protected override Vector2 Ability()
 	{
 		// play arcane words sound
@@ -71,17 +73,13 @@ public partial class Wizard : Controller
 				Vec = sprites.FlipH ? new Vector2(-10, -10) : new Vector2(10, -10);
 				break;
 			case "attack":
-				Vec = Vector2.Zero;
+				Vec = new Vector2(0, 2);
 				break;
 			default:
 				Vec = Vector2.Zero;
 				break;
 		}
 		return Vec;
-	}
-	public override void _Ready()
-	{
-
 	}
 	public override void _Process(double delta)
 	{
