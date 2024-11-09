@@ -4,48 +4,6 @@ using System.Linq;
 
 public partial class HeartGrid : MenuComposite 
 {
-	public partial class Heart : MenuElement
-	{
-		public const int MAX_HEART_HEALTH = 20;
-
-		private int health;
-
-		public int Health
-		{
-			get { return health; }
-			set { health = value; MatchState(); }
-		}
-		
-		private AnimatedSprite2D Sprite;
-
-		private void MatchState()
-		{
-			if (health > 10) 
-			{
-				Sprite.Play("full");
-			}
-			else if (health > 0) 
-			{
-				Sprite.Play("half");
-			}
-			else 
-			{
-				Sprite.Play("empty");
-			}
-		}
-
-		public Heart() : base()
-		{
-			Name = "Heart";
-			Sprite = ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD Elements/heart.tscn").Instantiate<AnimatedSprite2D>();
-			AddChild(Sprite);
-			MatchState();
-			CustomMinimumSize = new Vector2(16, 16);
-		}
-	}
-
-
-	public const string NAME = "HeartGrid";
 	
 	GridContainer Hearts;
 
@@ -82,7 +40,7 @@ public partial class HeartGrid : MenuComposite
 
 		for (int i = 0; i < increase / 20; i++)
 		{
-			Push(new Heart());
+			Push(HUDFactory.Heart());
 		}
 
 		CustomMinimumSize = new Vector2(Hearts.Columns * 16, MathF.Ceiling((float)Hearts.GetChildCount() / (float)5) * 16);
@@ -136,23 +94,25 @@ public partial class HeartGrid : MenuComposite
 		}
 	}
 
-	public HeartGrid(int maxhealth): base()
+	int ConstructorParamMaxHealth;
+
+
+	public HeartGrid(): base()
 	{
-		Name = NAME;
-		Hearts = new GridContainer()
-		{
-			Columns = 5,
-			Name = "Container",
-		};
-
-		CustomMinimumSize = new Vector2(Hearts.Columns * 16, 16);
-
-		AddChild(Hearts);
-
-		IncreaseMaxHealth(maxhealth);
-
 		HeadIdx = 0;
 	}
+
+    public override void _Ready()
+    {
+		Hearts = new GridContainer()
+		{
+			Columns = 5
+		};
+		AddChild(Hearts);
+		IncreaseMaxHealth(ConstructorParamMaxHealth);
+
+		base._Ready();
+    }
 
     public override void Push(MenuElement node)
     {

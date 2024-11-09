@@ -18,21 +18,20 @@ public static class MenuFactory
 
     static Dictionary<ElementName, PackedScene> MenuScenes = new Dictionary<ElementName, PackedScene>
     {
-        {ElementName.CharacterCreator, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/CharacterCreator.tscn")},
-        {ElementName.CreditsMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/CreditsMenu.tscn")},
-        {ElementName.DeathScreen, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/DeathScreen.tscn")},
-        {ElementName.MainMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/MainMenu.tscn")},
-        {ElementName.PauseMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/PauseMenu.tscn")},
-        {ElementName.QuitConfirm, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/QuitConfirm.tscn")},
-        {ElementName.SettingsMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/SettingsMenu.tscn")}
+        {ElementName.CharacterCreator, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Leaves/CharacterCreator.tscn")},
+        {ElementName.CreditsMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Leaves/CreditsMenu.tscn")},
+        {ElementName.DeathScreen, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Composites/DeathScreen.tscn")},
+        {ElementName.MainMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Composites/MainMenu.tscn")},
+        {ElementName.PauseMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Composites/PauseMenu.tscn")},
+        {ElementName.QuitConfirm, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Leaves/QuitConfirm.tscn")},
+        {ElementName.SettingsMenu, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/Menus/Leaves/SettingsMenu.tscn")}
     };
 
-
-    public static MenuElement CharacterCreator()
+    public static MenuLeaf CharacterCreator()
     {
         return (CharacterCreator)MenuScenes[ElementName.CharacterCreator].Instantiate();
     }
-    public static MenuElement CreditsMenu()
+    public static MenuLeaf CreditsMenu()
     {
         return (CreditsMenu)MenuScenes[ElementName.CreditsMenu].Instantiate();
     }
@@ -44,15 +43,15 @@ public static class MenuFactory
     {
         return (MenuStack)MenuScenes[ElementName.MainMenu].Instantiate();
     }
-    public static MenuElement PauseMenu()
+    public static MenuComposite PauseMenu()
     {
         return (MenuStack)MenuScenes[ElementName.PauseMenu].Instantiate();
     }
-    public static MenuElement QuitConfirm()
+    public static MenuLeaf QuitConfirm()
     {
         return (QuitConfirm)MenuScenes[ElementName.QuitConfirm].Instantiate();
     }
-    public static MenuElement SettingsMenu()
+    public static MenuLeaf SettingsMenu()
     {
         return (SettingsMenu)MenuScenes[ElementName.SettingsMenu].Instantiate();
     }

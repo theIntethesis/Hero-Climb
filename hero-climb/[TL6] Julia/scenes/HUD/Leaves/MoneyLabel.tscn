@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c86yo5shf340q"]
+[gd_scene load_steps=3 format=3 uid="uid://c86yo5shf340q"]
 
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/MoneyLabel.cs" id="1_6bmth"]
 [ext_resource type="Texture2D" uid="uid://ewnxi0c4vo6i" path="res://[TL6] Julia/assets/mariocoin.png" id="1_a5a54"]
 
 [node name="Control" type="GridContainer"]
 offset_right = 63.0
 offset_bottom = 23.0
 columns = 2
+script = ExtResource("1_6bmth")
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(16, 16)

@@ -2,39 +2,32 @@ using Godot;
 
 public partial class PlayerCameraStack : MenuStack
 {
-    public const string NAME = "PlayerCameraStack";
-
-    public GameHUD HUD;
+    public CharacterHUD HUD;
 
     PlayerCamera ParentCam;
 
-
     public PlayerCameraStack(PlayerCamera parent) : base()
     {
-        Name = NAME;
+        Name = "PlayerCameraStack";
         ParentCam = parent;
     }
 
     public override void _Ready()
     {
-        HUD = new GameHUD(PlayerGlobal.GetSetPlayerMaxHealth());
+        HUD = HUDFactory.CharacterHUD(PlayerGlobal.GetSetPlayerMaxHealth());
         Push(HUD);
 
-        HUD.leaf.Hearts.Increment(PlayerGlobal.AffectPlayerHealth());
-        HUD.leaf.Score.SetScore(PlayerGlobal.Money);
 
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerHealthChange, Callable.From<int>(PlayerHealthChangeEventHandler));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerDeath, Callable.From(OnPlayerDeath));
         PlayerGlobal.Player.Connect(Controller.SignalName.KaChing, Callable.From(OnKaChing));
         PlayerGlobal.Player.Connect(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(OpenShop));
         PlayerGlobal.Player.Connect(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(PlayerMaxHealthChangeEventHandler));
-
     }
-
 
     public void OnKaChing()
     {
-        HUD.leaf.Score.SetScore(PlayerGlobal.Money);
+        HUD.moneyLabel.SetScore(PlayerGlobal.Money);
     }
 
     public void OpenShop()
@@ -63,22 +56,16 @@ public partial class PlayerCameraStack : MenuStack
             ParentCam.ShakeCamera();
         }
 
-        HUD.leaf.Hearts.SetHealth(change);
+        HUD.heartGrid.SetHealth(change);
     }
 
     public void PlayerMaxHealthChangeEventHandler(int change)
     {
-        HUD.leaf.Hearts.IncreaseMaxHealth(change);
+        HUD.heartGrid.IncreaseMaxHealth(change);
     }
 
     public void OnPlayerDeath() 
     {        
         Push(new DeathScreen());
     }
-
-    public void OnGameWin()
-    {
-        // Push(new WinScreen());
-    }
-
 }

@@ -39,7 +39,7 @@ public partial class PlayerCamera : Camera2D
 		Interface = GetNode<CanvasLayer>("Interface");
 
 		// Use the Character Global class instead!
-		Stack = new PlayerCameraStack(this);
+		Stack = HUDFactory.PlayerCameraStack(this);
 		Interface.AddChild(Stack);
 
 	}
