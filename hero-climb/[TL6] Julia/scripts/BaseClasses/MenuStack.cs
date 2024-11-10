@@ -14,13 +14,7 @@ public partial class MenuStack : MenuCompositeBase
             Last.OnHide();
         }
 
-        if (node is Node cast)
-        {
-            AddChild(cast);
-            cast.Owner = this;
-        }
-        
-        node.OnPush(this);
+        base.Push(node);
     }
     
     public override MenuElement Pop()
@@ -30,37 +24,32 @@ public partial class MenuStack : MenuCompositeBase
             Parent().Pop();
         }
         
-        if (GetChildren().Last() is MenuElement Child)
+        MenuElement element = base.Pop();
+
+        if (element == null)
         {
-            Child.OnPop();
-
-            if (Child.Poppable()) 
-            {
-                RemoveChild(Child);
-                Child.QueueFree();
-
-                if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
-                {  
-                    Last.Show();
-                    Last.OnShow();
-                }     
-            }  
-
-            while (GetChildren().Any() == true && GetChildren().Last() is MenuElement element && element.IsBackground())
-            {
-                element.QueueFree();
-                RemoveChild(element);
-            }
-            
-            if (GetChildren().Any() == false)
-            {
-                Parent().Pop();
-            }
-            
-            return Child;
+            return null;
         }
-    
-        throw new System.Exception("MenuStack must only contain MenuElements");
+
+        if (GetChildCount() > 0 && GetChildren().Last() is MenuElement Last) 
+        {  
+            Last.Show();
+            Last.OnShow();
+        }     
+
+
+        while (GetChildren().Any() == true && GetChildren().Last() is MenuElement background && background.IsBackground())
+        {
+            background.QueueFree();
+            RemoveChild(background);
+        }
+        
+        if (GetChildren().Any() == false)
+        {
+            Parent().Pop();
+        }
+
+        return element;
     }
 
     public MenuStack() : base()
