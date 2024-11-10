@@ -9,7 +9,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public float Speed = 50.0f;
 	protected int MaxHealth = 100;
 	public int Health;
-	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
+	public Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes
 	private CharacterBody2D player;
