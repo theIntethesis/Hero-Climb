@@ -1,60 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://ih7xpcoscwf"]
+[gd_scene load_steps=3 format=3 uid="uid://cm0jdwhok4cw2"]
 
-[ext_resource type="Texture2D" uid="uid://blhejpyhkvxlq" path="res://[TL2] Taran/assets/Heart Pickup.png" id="2_6wkeu"]
+[ext_resource type="Script" path="res://[TL2] Taran/scripts/HealthPickup.cs" id="1_byxej"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jkpyk"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucuii"]
+radius = 12.6491
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pwox8"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(16, 0, 16, 16)
+[node name="HealthPickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_byxej")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bf5s4"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(32, 0, 16, 16)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ucuii")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_earc3"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(0, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_runmm"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(16, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_13n1n"]
-atlas = ExtResource("2_6wkeu")
-region = Rect2(32, 16, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u7rct"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jkpyk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pwox8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bf5s4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_earc3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_runmm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_13n1n")
-}],
-"loop": true,
-"name": &"HealthPickup",
-"speed": 10.0
-}]
-
-[node name="HealthPickupSprite" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_u7rct")
-animation = &"HealthPickup"
-autoplay = "HealthPickup"
-frame = 5
-frame_progress = 0.835209
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

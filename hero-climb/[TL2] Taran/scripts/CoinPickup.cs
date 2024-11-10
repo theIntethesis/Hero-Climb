@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 public partial class CoinPickup : Pickup
 {
 	public CoinPickup(){
-		sprites = GD.Load<PackedScene>("res://[TL2] Taran/scenes/coin_pickup.tscn").Instantiate() as AnimatedSprite2D;
+		sprites = GD.Load<PackedScene>("res://[TL2] Taran/scenes/coin_pickup_sprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
 		switch (GD.Randi()%3){
@@ -25,6 +25,7 @@ public partial class CoinPickup : Pickup
 				pickup_value = 10;
 				break;
 		}
+		sprites.Play();
 	}
 	
 	public override void PickupEffect(){
