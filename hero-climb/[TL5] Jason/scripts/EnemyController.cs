@@ -9,20 +9,12 @@ public partial class EnemyController : Node2D
 	public PackedScene SkeletonScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/skeleton.tscn");
 	public PackedScene SlimeScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/slime.tscn");
 	public PackedScene GoblinScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/goblin.tscn");
-
-	public override void _Ready()
-	{
-
-	}
-
-
+	public PackedScene ArrowScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/arrow.tscn");
 
 	private void SpawnEnemies(int health = 100, int damage = 25)
 	{
 
 		var rand = new Random();
-		
-
 
 		// GD.Print("Spawning enemies...");
 
