@@ -20,6 +20,7 @@ public partial class PlayerGlobal : Node
 	{
 		Player.Connect(signalName, callable);
 	}
+	public static int GetPipes() { return pipes; }
 	private static void CheckPlayerSet()
 	{
 		if (Player == null)

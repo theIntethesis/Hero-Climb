@@ -2,7 +2,9 @@ extends GutTest
 
 var scene = load("res://[TL1] Ferris/tests/testScenes/test_scene3.tscn")
 var zombieScene = load("res://[TL5] Jason/scenes/EnemyController.tscn")
-var player = load("res://[TL1] Ferris/scenes/PlayerController.tscn")
+var Wizard = load("res://[TL1] Ferris/scenes/WizardController.tscn")
+var Fighter = load("res://[TL1] Ferris/scenes/FighterController.tscn")
+var Rogue = load("res://[TL1] Ferris/scenes/RogueController.tscn")
 
 var _level = null
 var _player = null
@@ -17,16 +19,14 @@ func after_each():
 	_sender.clear()
 
 func test_lava_and_player():
-	var pC = player.instantiate()
-	pC.Class = 2
+	var pC = Wizard.instantiate()
 	_player = add_child_autofree(pC)
 	watch_signals(_player)
 	add_child_autofree(load("res://[TL2] Taran/scenes/rising_lava.tscn").instantiate())
 	assert_true(await wait_for_signal(_player.PlayerDeath, 5))
 
 func test_player_and_zombie():
-	var pC = player.instantiate()
-	pC.Class = 2
+	var pC = Wizard.instantiate()
 	_player = add_child_autofree(pC)
 	watch_signals(_player)
 	var zC = zombieScene.instantiate()
@@ -40,8 +40,7 @@ func test_player_and_zombie():
 	assert_signal_emit_count(_player, "PlayerHealthChange", 1)
 
 func test_fireball_and_zombie():
-	var pC = player.instantiate()
-	pC.Class = 2
+	var pC = Wizard.instantiate()
 	_player = add_child_autofree(pC)
 	var zC = zombieScene.instantiate()
 	zC.spawns = [Vector2(70, -20)]
@@ -57,7 +56,7 @@ func test_fireball_and_zombie():
 	assert_lt(enemy[0].Health, 100)
 
 func test_attack_and_zombie():
-	var pC = player.instantiate()
+	var pC = Wizard.instantiate()
 	pC.Class = 2
 	_player = add_child_autofree(pC)
 	var zC = zombieScene.instantiate()
@@ -73,8 +72,7 @@ func test_attack_and_zombie():
 	assert_lt(enemy[0].Health, 100)
 
 func test_fighter_and_box():
-	var pC = player.instantiate()
-	pC.Class = 0
+	var pC = Fighter.instantiate()
 	var b = load("res://[TL1] Ferris/scenes/Wooden Box.tscn")
 	var bC = b.instantiate()
 	bC.position = Vector2(40, -8)
@@ -86,8 +84,7 @@ func test_fighter_and_box():
 	assert_true(await wait_for_signal(box.BoxBroken, 5))
 
 func test_fireball_and_box():
-	var pC = player.instantiate()
-	pC.Class = 2
+	var pC = Wizard.instantiate()
 	var b = load("res://[TL1] Ferris/scenes/Wooden Box.tscn")
 	var bC = b.instantiate()
 	bC.position = Vector2(40, -8)
@@ -98,3 +95,27 @@ func test_fireball_and_box():
 	_sender.action_down("ability")\
 		.action_up("ability")
 	assert_false(await wait_for_signal(box.BoxBroken, 5))
+
+func test_rogue_and_pipe():
+	var pC = Rogue.instantiate()
+	var pipe = load("res://[TL1] Ferris/scenes/Tiles/PipeTop.tscn")
+	var pipeN = pipe.instantiate()
+	pipeN.position = Vector2(40, -8)
+	var p = add_child_autofree(pipeN)
+	watch_signals(p)
+	_sender.action_down("move_right")
+	assert_true(await wait_for_signal(p.body_entered, 2))
+	var pipeNumber = %PlayerGlobal.GetPipes()
+	assert_gt(pipeNumber, 0)
+
+func test_other_and_pipe():
+	var pC = Fighter.instantiate()
+	var pipe = load("res://[TL1] Ferris/scenes/Tiles/PipeTop.tscn")
+	var pipeN = pipe.instantiate()
+	pipeN.position = Vector2(40, -8)
+	var p = add_child_autofree(pipeN)
+	watch_signals(p)
+	_sender.action_down("move_right")
+	assert_true(await wait_for_signal(p.body_entered, 2))
+	var pipeNumber = %PlayerGlobal.GetPipes()
+	assert_eq(pipeNumber, 0)

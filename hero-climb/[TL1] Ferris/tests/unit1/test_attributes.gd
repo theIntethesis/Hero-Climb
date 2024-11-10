@@ -1,6 +1,7 @@
 extends GutTest
 
 var scene = load("res://[TL1] Ferris/tests/testScenes/test_scene1.tscn")
+var playerScene = load("res://[TL1] Ferris/scenes/WizardSprite.tscn")
 
 var _level = null
 var _player = null
@@ -12,7 +13,8 @@ func cleanup():
 
 func before_each():
 	_level = add_child_autofree(scene.instantiate())
-	_player = _level.get_node("Player")
+	_player = add_child_autofree(playerScene.instantiate())
+	PlayerGlobal.SetPlayer(_player)
 	await(wait_seconds(.25))
 
 func after_each():
@@ -21,7 +23,7 @@ func after_each():
 
 func test_health():
 	watch_signals(_player)
-	_player.Health = _player.MaxHealth/4
+	_player.Health = PlayerGlobal.GetSetPlayerMaxHealth(25)
 	await remove_health()
 	assert_between(_player.Health, -9, 0, "Player health within acceptable bounds")
 

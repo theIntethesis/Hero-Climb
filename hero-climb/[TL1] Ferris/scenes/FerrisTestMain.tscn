@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpsqusybt8d0j"]
+[gd_scene load_steps=6 format=3 uid="uid://dpsqusybt8d0j"]
 
 [ext_resource type="PackedScene" uid="uid://dj21r2mnym4qs" path="res://[TL1] Ferris/scenes/floor.tscn" id="1_3rf27"]
 [ext_resource type="PackedScene" uid="uid://bsi1dtjueodhh" path="res://[TL1] Ferris/scenes/PlayerController.tscn" id="2_uw4pv"]
-[ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_4ooue"]
 [ext_resource type="PackedScene" uid="uid://nahvss2rb0ky" path="res://[TL1] Ferris/scenes/tower_tileset.tscn" id="3_v8vpi"]
 [ext_resource type="PackedScene" uid="uid://ckmahlg5ea5bj" path="res://[TL5] Jason/scenes/zombie.tscn" id="4_vm04u"]
 [ext_resource type="PackedScene" uid="uid://b02t6gf5ac7hv" path="res://[TL1] Ferris/scenes/Wooden Box.tscn" id="6_su521"]
@@ -14,9 +13,6 @@
 [node name="Player" parent="." instance=ExtResource("2_uw4pv")]
 unique_name_in_owner = true
 position = Vector2(-27, -81)
-Class = 0
-
-[node name="PlayerCamera" parent="Player" instance=ExtResource("3_4ooue")]
 
 [node name="TowerTileset" parent="." instance=ExtResource("3_v8vpi")]
 
