@@ -12,13 +12,16 @@ public partial class SpeedIncrease : ShopElement
 
     static int SpdIncrease;
 
-    public override void Buy()
+    public override int Buy(int Money)
     {
-        if (CanBuy())
+        int Output = base.Buy(Money);
+
+        if (Output < Money)
         {
-            base.Buy();
             PlayerGlobal.AffectBaseMovement(SpdIncrease);
         }
+
+        return Output;
     }
 
     public static void Reset(int selector)
@@ -38,10 +41,10 @@ public partial class SpeedIncrease : ShopElement
     public override void _Ready()
     {
         base._Ready();
-        GetNode<Button>("Button").Pressed += Buy;
+        GetNode<Button>("Button").Pressed += ButtonPressed;
     }
 
-    ~SpeedIncrease()
+    public override void _ExitTree()
     {
         Price = CurrentPrice;
     }

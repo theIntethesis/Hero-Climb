@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-public static class HUDFactory
+public partial class HUDFactory : GodotObject
 {
     enum ElementName
     {
@@ -70,4 +70,5 @@ public static class HUDFactory
         return info;
     }
 
+    private HUDFactory() { }
 }

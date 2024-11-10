@@ -10,13 +10,16 @@ public partial class DamageIncrease : ShopElement
 
     static int DmgIncrease = 50;
 
-    public override void Buy()
+    public override int Buy(int Money)
     {
-        if (CanBuy())
+        int Output = base.Buy(Money);
+
+        if (Output < Money)
         {
-            Buy();
             PlayerGlobal.AffectBaseDamage(DmgIncrease);
         }
+
+        return Output;
     }
 
     public static void Reset(int selector)
@@ -32,7 +35,7 @@ public partial class DamageIncrease : ShopElement
     public override void _Ready()
     {
         base._Ready();
-        GetNode<Button>("Button").Pressed += Buy;
+        GetNode<Button>("Button").Pressed += ButtonPressed;
     }
 
     ~DamageIncrease()

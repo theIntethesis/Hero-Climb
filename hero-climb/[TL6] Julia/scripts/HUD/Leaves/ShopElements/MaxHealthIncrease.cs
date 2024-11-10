@@ -10,13 +10,16 @@ public partial class MaxHealthIncrease : ShopElement
 
     static int HealthIncrease = 20;
 
-    public override void Buy()
+    public override int Buy(int Money)
     {
-        if (CanBuy())
+        int Output = base.Buy(Money);
+
+        if (Output < Money)
         {
-            base.Buy();
             PlayerGlobal.GetSetPlayerMaxHealth(HealthIncrease);
         }
+
+        return Output;
     }
 
     public static void Reset(int selector)
@@ -32,11 +35,11 @@ public partial class MaxHealthIncrease : ShopElement
 
     public override void _Ready()
     {
-        GetNode<Button>("Button").Pressed += Buy;
+        GetNode<Button>("Button").Pressed += ButtonPressed;
         base._Ready();
     }
 
-    ~MaxHealthIncrease()
+    public override void _ExitTree()
     {
         Price = CurrentPrice;
     }

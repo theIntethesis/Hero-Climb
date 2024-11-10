@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using Godot;
 
-public static partial class ShopElementFactory
+public partial class ShopElementFactory : GodotObject
 {
     public const int NumResetOptions = 3;
 
@@ -24,4 +24,6 @@ public static partial class ShopElementFactory
 
         return elements;
     }
+
+    private ShopElementFactory() { }
 }

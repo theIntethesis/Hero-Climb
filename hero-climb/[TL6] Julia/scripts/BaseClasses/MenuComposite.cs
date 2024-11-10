@@ -1,3 +1,5 @@
+// Julia Abdel-Monem
+
 using System.Linq;
 using Godot;
 
@@ -69,16 +71,17 @@ public abstract partial class MenuCompositeBase : MenuElement
 
     public virtual void Clear()
     {
-        foreach (MenuElement Child in GetChildren())
+        foreach (MenuElement Child in GetContainer().GetChildren())
         {
-            RemoveChild(Child);
+            GetContainer().RemoveChild(Child);
         }
     }
 
     public virtual MenuElement this[int index]
     {
-        get => (MenuElement)GetChildren()[index];
+        get => (MenuElement)GetContainer().GetChildren()[index];
     }
+
 }
 
 

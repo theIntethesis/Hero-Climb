@@ -1,3 +1,4 @@
+// Julia Abdel-Monem
 
 using System.IO;
 using Godot;
@@ -53,7 +54,6 @@ public abstract partial class MenuElement : Control
         base._Ready();
 
         _Parent = InitialParent as MenuCompositeBase;
-        GD.Print("Setting Parent as Initial");
     }
 
 }

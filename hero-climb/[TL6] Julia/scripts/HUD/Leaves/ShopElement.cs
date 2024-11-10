@@ -4,17 +4,20 @@ public abstract partial class ShopElement : MenuLeaf
 {
     protected int CurrentPrice;
     protected readonly int CurrentIncrease;
-
-    public bool CanBuy()
-    {
-        return PlayerGlobal.Money >= CurrentPrice;
-    }
     
-    public virtual void Buy()
+    public virtual int Buy(int Money)
     {
-        PlayerGlobal.Money -= CurrentPrice;
-        CurrentPrice += CurrentIncrease;
-        GetNode<Label>("Label").Text = CurrentPrice.ToString();
+        if (Money >= CurrentPrice)
+        {
+            int OutMoney = Money - CurrentPrice;
+            
+            CurrentPrice += CurrentIncrease;
+            GetNode<Label>("Label").Text = CurrentPrice.ToString();
+
+            return OutMoney;
+        }
+
+        return Money;
     }
 
     public ShopElement(int currentPrice, int currentIncrease)
@@ -34,4 +37,14 @@ public abstract partial class ShopElement : MenuLeaf
         GetNode<Label>("Label").Text = CurrentPrice.ToString();
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+    }
+
+
+    public void ButtonPressed()
+    {
+        PlayerGlobal.Money = Buy(PlayerGlobal.Money);
+    }
 }
