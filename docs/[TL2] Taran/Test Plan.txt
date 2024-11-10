@@ -1,0 +1,28 @@
+Test Plan
+
+Generation tests:
+	Test Level layout is valid
+		Ensure level layout always contains character signifying a forward path
+	Test collectables are passed from floor
+		Tests that the function is called which passes the locations for generating collectables
+	Test enemies are passed from floor
+		Tests that the function is called which passes the locations for generating enemies
+	Test collectable instantiation
+		Ensure collectables are spawned correctly
+	
+
+Collision Tests:
+	Test Player Collides with floor
+		Ensure the player can collide with the environment
+	Test player coin collection
+		Ensure the player can pickup coins
+	Test player heal pickup collection
+		Ensure the player can pickup health pickups
+	Test shop detects player
+		Ensure the shop detects the presence adn absence of the player
+	Test fighter can breakm boxes
+		Ensure that the fighters shield bash correctly breaks boxes
+	Test attacks do not break boxes
+		Ensure that player attacks other than shield bash do not break boxes
+	Test player attacks cannot pick up collectables
+		This was a known issue, so it made sense to test for it specifically to ensure the issue was resolved
