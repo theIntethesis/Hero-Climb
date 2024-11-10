@@ -15,9 +15,10 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private CharacterBody2D player;
 	private bool IsDetectingPlayer = false;
 	private Vector2 playerPosition;
-	private bool IsDead = false;
+	public bool IsDead = false;
 	private bool IsIdle = false;
 	public bool IsLunging = false;
+	public bool HasAttacked = false;
 
 	#endregion
 	
@@ -148,6 +149,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	private void OnDetectorBodyEntered(Node2D body)
 	{
+		GD.Print(body);
 		if (body is Controller){
 			IsDetectingPlayer = true;
 			EmitSignal(SignalName.Detected);
@@ -168,6 +170,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	public virtual void EnemyAttack()
 	{
+		HasAttacked = true;
 		sprites.Play("attack");
 		EmitSignal(SignalName.AttackPlayer);
 	}

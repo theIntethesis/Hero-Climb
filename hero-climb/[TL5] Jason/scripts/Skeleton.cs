@@ -16,7 +16,7 @@ public partial class Skeleton : BaseEnemy
 
 	public override void _Ready()
 	{
-        Cooldown = GetNode<Timer>("Cooldown");
+		Cooldown = GetNode<Timer>("Cooldown");
 
 		GD.Print("Skeleton ready.");
 		base._Ready();
