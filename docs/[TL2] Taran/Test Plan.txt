@@ -9,7 +9,10 @@ Generation tests:
 		Tests that the function is called which passes the locations for generating enemies
 	Test collectable instantiation
 		Ensure collectables are spawned correctly
-	
+	Test that room finds collectable locations
+		Ensure function to find collectable locations in a room correctly returns locations of collectables
+	Test that room finds enemy locations
+		Ensure function to find enemy locations in a room correctly returns locations of enemies
 
 Collision Tests:
 	Test Player Collides with floor
@@ -25,4 +28,17 @@ Collision Tests:
 	Test attacks do not break boxes
 		Ensure that player attacks other than shield bash do not break boxes
 	Test player attacks cannot pick up collectables
+		Verify that collectables do not detect player attacks
 		This was a known issue, so it made sense to test for it specifically to ensure the issue was resolved
+	Test pipes do not detect enemy
+		Verify enemies are not detected by pipes
+	Test enemies cannot pick up coins
+		Verify coins do not detect enemies
+	Test detect player ascends floor
+		Ensure that the area which detects when the player ascends a floor appropriately detects the player
+
+Value tests:
+	Test coins increase player money
+		Ensure that the variable that tracks the player's money is updated when they pick up a coin
+	Test health pickups restore player health
+		Ensure that the player's current health is increased if damaged on picking up a health pickup
