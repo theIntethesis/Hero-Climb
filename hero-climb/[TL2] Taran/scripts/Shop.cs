@@ -1,8 +1,7 @@
 using Godot;
 using System;
 
-// Copyright infringment: Charon from Hades in the shop
-// I made his hat and cloak red, and I made the purple smoke green, so it's transformative (kinda).
+
 
 public partial class Shop : Node2D
 {
@@ -18,3 +17,7 @@ public partial class Shop : Node2D
 		PlayerGlobal.InShopArea = false;
 	}
 }
+
+
+// Copyright infringment: Charon from Hades in the shop
+// I made his hat and cloak red, and I made the purple smoke green, so it's transformative (kinda).

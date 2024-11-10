@@ -26,7 +26,6 @@ public partial class Pickup : Area2D
 			GD.Print($"Player Name {area.Name}");
 			PickupEffect();
 		}
-		
 	}
 	
 	public virtual void PickupEffect(){
