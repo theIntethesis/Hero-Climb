@@ -43,9 +43,4 @@ public partial class MaxHealthIncrease : ShopElement
     {
         Price = CurrentPrice;
     }
-
-    public void ButtonPressed()
-    {
-        PlayerGlobal.Money = Buy(PlayerGlobal.Money);
-    }
 }

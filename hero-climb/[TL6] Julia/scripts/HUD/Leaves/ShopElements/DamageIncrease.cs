@@ -42,9 +42,4 @@ public partial class DamageIncrease : ShopElement
     {
         Price = CurrentPrice;
     }
-
-    public void ButtonPressed()
-    {
-        PlayerGlobal.Money = Buy(PlayerGlobal.Money);
-    }
 }

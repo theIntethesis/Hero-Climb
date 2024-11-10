@@ -41,11 +41,4 @@ public partial class FullHeal : ShopElement
     {
         Price = CurrentPrice;
     }
-
-    public void ButtonPressed()
-    {
-        Buy(PlayerGlobal.Money);
-    }
-
-
 }

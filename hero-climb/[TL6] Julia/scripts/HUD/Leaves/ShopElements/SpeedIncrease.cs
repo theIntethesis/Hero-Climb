@@ -48,10 +48,4 @@ public partial class SpeedIncrease : ShopElement
     {
         Price = CurrentPrice;
     }
-
-
-    public void ButtonPressed()
-    {
-        Buy(PlayerGlobal.Money);
-    }
 }

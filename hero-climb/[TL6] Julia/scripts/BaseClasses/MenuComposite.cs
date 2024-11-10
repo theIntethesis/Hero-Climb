@@ -1,3 +1,5 @@
+// Julia Abdel-Monem
+
 using System.Linq;
 using Godot;
 
@@ -71,7 +73,7 @@ public abstract partial class MenuCompositeBase : MenuElement
     {
         foreach (MenuElement Child in GetContainer().GetChildren())
         {
-            RemoveChild(Child);
+            GetContainer().RemoveChild(Child);
         }
     }
 
