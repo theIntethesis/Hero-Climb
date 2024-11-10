@@ -1,0 +1,25 @@
+TTK Asset Store Page
+
+Slime
+
+Author: Jason Culbertson
+Price: $43
+Version 1.0
+
+Description:
+This asset allows you to add a Slime into your game.
+This slime is scary, so beware. It is dangerous and has the ability split!
+
+The Slime asset includes the following:
+Slime Animated Sprites
+Slime Hitbox
+Slime Player Detector
+Slime Script (c#)
+Base Enemy Script (c#)
+
+Features:
+Slime splitting
+Attacking
+Player Detection
+
+Requirements: Godot 4.3.stable.mono (Godot 4.3 with C#) or later
