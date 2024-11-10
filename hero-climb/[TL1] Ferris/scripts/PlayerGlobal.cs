@@ -15,7 +15,11 @@ public partial class PlayerGlobal : Node
 		get { return _Money; }
 	}
 	public static bool InShopArea = false;
-	public static Controller Player = null;
+	private static Controller Player = null;
+	public static void ConnectPlayerSignal(StringName signalName, Callable callable)
+	{
+		Player.Connect(signalName, callable);
+	}
 	private static void CheckPlayerSet()
 	{
 		if (Player == null)
@@ -37,6 +41,10 @@ public partial class PlayerGlobal : Node
 	{
 		return AffectPlayerHealth(Player.MaxHealth);
 	}
+	public static Controller.ClassType GetClassType()
+	{
+		return Player.Class;
+	}
 	public static int GetSetPlayerMaxHealth(int amount = 0)
 	{
 		CheckPlayerSet();
@@ -54,7 +62,7 @@ public partial class PlayerGlobal : Node
 		Player.EmitSignal(Controller.SignalName.KaChing);
 		return Money += amount;
 	}
-	public static int AffectBaseDamage(int amount)
+	public static int AffectBaseDamage(int amount = 0)
 	{
 		CheckPlayerSet();
 		return Player.Damage += amount;
@@ -73,5 +81,34 @@ public partial class PlayerGlobal : Node
 	{
 		if (pipes == 0) isClimbing = false;
 		else isClimbing = true;
+	}
+
+	public static Controller MakeCharacter(Controller.ClassType classType)
+	{
+		if (Player != null)
+		{
+			Player.QueueFree();
+			Player = null;
+		}
+		
+		switch (classType)
+		{
+			case Controller.ClassType.Fighter:
+				Player = (Fighter)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			case Controller.ClassType.Rogue:
+				Player = (Rogue)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			case Controller.ClassType.Wizard:
+				Player = (Wizard)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			default:
+				break;
+		}
+
+		return Player;
 	}
 }

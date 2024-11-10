@@ -7,7 +7,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	[Export] public int Damage = 20;
 	public float Gravity = 100.0f;
 	public float Speed = 50.0f;
-	private int MaxHealth = 100;
+	protected int MaxHealth = 100;
 	public int Health;
 	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
