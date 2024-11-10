@@ -1,0 +1,176 @@
+[gd_scene load_steps=3 format=3 uid="uid://0kr41vnsgn1d"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CreditsMenu.cs" id="1_0v26l"]
+[ext_resource type="Texture2D" uid="uid://bxr0lavqcye1l" path="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png" id="1_v8jbm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0v26l")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer2" type="GridContainer" parent="GridContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Title3" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Main Character Design: "
+horizontal_alignment = 2
+
+[node name="Name3" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Ferris Hammes-Buehler"
+
+[node name="Title4" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Level Design:"
+horizontal_alignment = 2
+
+[node name="Name4" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Taran Haug"
+
+[node name="Title5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Sound Design:"
+horizontal_alignment = 2
+
+[node name="Name5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Gavin Haynes"
+
+[node name="Title2" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "Enemies: "
+horizontal_alignment = 2
+
+[node name="Name2" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Jason Culbertson"
+
+[node name="Title" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+layout_mode = 2
+text = "UI/UX: "
+horizontal_alignment = 2
+
+[node name="Name" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/GridContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Julia Abdel-Monem"
+
+[node name="Label4" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+text = "Open Source Licenses"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Control2" type="Control" parent="GridContainer/ScrollContainer/GridContainer2"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="GridContainer/ScrollContainer/GridContainer2/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/ScrollContainer/GridContainer2/Control2/Control2"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_v8jbm")
+
+[node name="Label6" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+text = "Hero Climb v0.3.0
+Copyright (c) 2024. All Rights Reserved."
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Button" type="Button" parent="GridContainer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -22.5
+offset_top = -31.0
+offset_right = 22.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"

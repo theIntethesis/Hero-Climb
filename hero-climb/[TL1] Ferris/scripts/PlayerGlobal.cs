@@ -83,4 +83,33 @@ public partial class PlayerGlobal : Node
 		if (pipes == 0) isClimbing = false;
 		else isClimbing = true;
 	}
+
+	public static Controller MakeCharacter(Controller.ClassType classType)
+	{
+		if (Player != null)
+		{
+			Player.QueueFree();
+			Player = null;
+		}
+		
+		switch (classType)
+		{
+			case Controller.ClassType.Fighter:
+				Player = (Fighter)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			case Controller.ClassType.Rogue:
+				Player = (Rogue)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			case Controller.ClassType.Wizard:
+				Player = (Wizard)GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardController.tscn").Instantiate();
+				Player.Position = new Vector2(0, -16);
+				break;
+			default:
+				break;
+		}
+
+		return Player;
+	}
 }

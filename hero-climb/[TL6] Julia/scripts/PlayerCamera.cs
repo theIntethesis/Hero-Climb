@@ -39,9 +39,19 @@ public partial class PlayerCamera : Camera2D
 		Interface = GetNode<CanvasLayer>("Interface");
 
 		// Use the Character Global class instead!
-		Stack = new PlayerCameraStack(this);
+		Stack = HUDFactory.PlayerCameraStack(this);
 		Interface.AddChild(Stack);
 
+
+        PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.OnPlayerHealthChange));
+        PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.HUD.OnPlayerHealthChange));
+		PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerDeath, Callable.From(Stack.OnPlayerDeath));
+        PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.KaChing, Callable.From(Stack.HUD.OnKaChing));
+        PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(Stack.HUD.OpenShop));
+        PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(Stack.HUD.OnPlayerMaxHealthChange));
+
+		PlayerGlobal.Money = 1000;
+		Stack.HUD.OpenShop();
 	}
 
 	public override void _Process(double delta)

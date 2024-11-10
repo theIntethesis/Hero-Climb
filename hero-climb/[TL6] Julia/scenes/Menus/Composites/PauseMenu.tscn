@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8l7kxydqmc6r"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuStack.cs" id="1_os2xj"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/PauseMenu.cs" id="2_3oum4"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuLeaf.cs" id="2_fs6n8"]
+[ext_resource type="Shader" path="res://[TL6] Julia/shaders/GaussianBlur.gdshader" id="3_mdatg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ect52"]
+shader = ExtResource("3_mdatg")
+shader_parameter/lod = 1.5
+shader_parameter/tint = Color(1, 1, 1, 0)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_os2xj")
+metadata/_edit_group_ = true
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_fs6n8")
+_IsBackground = true
+InitialParent = NodePath("..")
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_ect52")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.477959, 0.256812, 0.214795, 1)
+
+[node name="MainPause" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3oum4")
+InitialParent = NodePath("..")
+
+[node name="GridContainer" type="GridContainer" parent="MainPause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -50.5
+offset_right = 48.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="MainPause/GridContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Restart" type="Button" parent="MainPause/GridContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Settings" type="Button" parent="MainPause/GridContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MainPause/GridContainer"]
+layout_mode = 2
+text = "Quit to Menu"

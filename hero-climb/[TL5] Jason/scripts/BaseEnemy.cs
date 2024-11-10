@@ -9,7 +9,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public float Speed = 50.0f;
 	protected int MaxHealth = 100;
 	public int Health;
-	private Vector2 direction = new Vector2(1, 0);  // Initial direction: right
+	public Vector2 direction = new Vector2(1, 0);  // Initial direction: right
 	private AnimatedSprite2D sprites;  // Reference to the sprite node
 	private Timer turnTimer;  // Timer for handling cooldown between direction changes
 	private CharacterBody2D player;
@@ -17,6 +17,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private Vector2 playerPosition;
 	private bool IsDead = false;
 	private bool IsIdle = false;
+	public bool IsLunging = false;
 
 	#endregion
 	
@@ -24,6 +25,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	[Signal] public delegate void AttackPlayerEventHandler();
 	[Signal] public delegate void TakeDamageEventHandler();
 	[Signal] public delegate void DetectingEventHandler();
+	[Signal] public delegate void DetectedEventHandler();
 
 	#region SETUP
 	public override void _Ready()
@@ -51,7 +53,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	}
 	#endregion
 
-	public override void _Process(double delta)
+	public virtual void _Process(double delta)
 	{
 	}
 
@@ -67,13 +69,17 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 		if (IsDetectingPlayer && !IsDead && !IsIdle){
 			if (GlobalPosition.X - player.GlobalPosition.X < 0){
-				EmitSignal(SignalName.Detecting);
+				if (Math.Floor(GlobalPosition.Y) == Math.Floor(player.GlobalPosition.Y)){
+					EmitSignal(SignalName.Detecting);
+				}
 				direction = new Vector2(1,0);
 			} else {
-				EmitSignal(SignalName.Detecting);
+				if (Math.Floor(GlobalPosition.Y) == Math.Floor(player.GlobalPosition.Y)){
+					EmitSignal(SignalName.Detecting);
+				}
 				direction = new Vector2(-1,0);
 			}
-			sprites.FlipH = direction.X > 0 ? true : false;
+			sprites.FlipH = direction.X > 0 ? false : true;
 		}
 
 		Vector2 velocity = Velocity;
@@ -85,7 +91,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		}
 
 		// Move the enemy back and forth
-			velocity.X = direction.X * Speed;
+		velocity.X = direction.X * Speed;
 
 		// Change direction on wall/ledge collision
 		if (IsOnWall() || !IsOnFloor())
@@ -97,6 +103,12 @@ public abstract partial class BaseEnemy : CharacterBody2D
 				FlipSprite();  // Flip the sprite
 				turnTimer.Start();  // Start the buffer timer
 			}
+		}
+
+		if (IsLunging)
+		{
+			velocity.Y -= 100;
+			IsLunging = false;
 		}
 
 		// Move the enemy
@@ -113,7 +125,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void OnArea2DBodyEntered(Node2D body)
 	{
 		if (body is Controller && !IsDead){
-			EnemyAttack();
+				EnemyAttack();
 		}
 	}
 
@@ -138,6 +150,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		if (body is Controller){
 			IsDetectingPlayer = true;
+			EmitSignal(SignalName.Detected);
 		}
 	}
 
@@ -177,6 +190,9 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	private void Die()
 	{
 		sprites.Play("die");
+		CollisionShape2D Hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
+		Hitbox.QueueFree();
+		GD.Print("Death animation playing");
 		PlayerGlobal.GetSetScore(MaxHealth);
 		// GD.Print("Death animation playing");
 		IsDead = true;

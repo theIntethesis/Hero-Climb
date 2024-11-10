@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://5xibd377yp6u"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuStack.cs" id="1_soyv3"]
+[ext_resource type="Shader" path="res://[TL6] Julia/shaders/GaussianBlur.gdshader" id="2_cpk1q"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/DeathScreen.cs" id="2_okjo3"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/DeathBackground.cs" id="2_w122x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nkedw"]
+shader = ExtResource("2_cpk1q")
+shader_parameter/lod = 3.0
+shader_parameter/tint = Color(0.623529, 0, 0.188235, 0.431373)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_soyv3")
+
+[node name="Control2" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_w122x")
+InitialParent = NodePath("..")
+
+[node name="ColorRect" type="ColorRect" parent="Control2"]
+process_mode = 3
+material = SubResource("ShaderMaterial_nkedw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_okjo3")
+_IsPoppable = false
+InitialParent = NodePath("..")
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.5
+offset_top = -50.5
+offset_right = 86.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+text = "You Died!"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Control/GridContainer"]
+layout_mode = 2
+text = "Score: TEMP"
+horizontal_alignment = 1
+
+[node name="Restart" type="Button" parent="Control/GridContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="Control/GridContainer"]
+layout_mode = 2
+text = "Return to Main Menu"
