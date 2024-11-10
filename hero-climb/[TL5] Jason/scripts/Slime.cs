@@ -5,7 +5,7 @@ public partial class Slime : BaseEnemy
 {	
 	public PackedScene SlimeScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/slime.tscn");
 	[Export] int SplitsRemaining = 2;
-
+	private bool HasSlimed = false;
 
 	public Slime()
 	{
@@ -38,21 +38,32 @@ public partial class Slime : BaseEnemy
 		GD.Print("took damage");
 	}
 
-	private void SpawnSlime()
+	public void SpawnSlime()
 	{
 
 		if (SplitsRemaining <= 0)
 		{
 			return;
 		}
-
+		
 		Slime enemy2 = (Slime)SlimeScene.Instantiate();
-		enemy2.GlobalPosition = this.GlobalPosition + new Vector2(0,-20);
-		AddSibling(enemy2);
-		enemy2.SetupEnemy();
+		enemy2.GlobalPosition = this.GlobalPosition + new Vector2(-20,-5);
 		enemy2.Scale = new Vector2(enemy2.Scale.X/2,enemy2.Scale.Y/2);
 		enemy2.SplitsRemaining = SplitsRemaining - 1;
-		enemy2.Velocity = new Vector2(0,0);
+		enemy2.SetMaxHealth(MaxHealth / 2);
+		AddSibling(enemy2);
+		enemy2.SetupEnemy();
+		GD.Print("Split 1");
+
+		Slime enemy3 = (Slime)SlimeScene.Instantiate();
+		enemy3.GlobalPosition = this.GlobalPosition + new Vector2(20, -5);
+		enemy3.SetMaxHealth(MaxHealth / 2);
+		enemy3.Scale = new Vector2(enemy3.Scale.X / 2, enemy3.Scale.Y / 2);
+		enemy3.SplitsRemaining = SplitsRemaining - 1;
+		AddSibling(enemy3);
+		enemy3.SetupEnemy();
+
+		HasSlimed = true;
 		GD.Print("Splitting!");
 	}
 }

@@ -9,8 +9,10 @@ public partial class Fighter : Controller
 {
 	private float BashSpeed = 400;
 	Timer bashTimer = new();
-	public Fighter()
+	public Fighter() { }
+	protected override void SetupClassScript()
 	{
+		GD.Print("Fighter Class Selected");
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
@@ -26,32 +28,28 @@ public partial class Fighter : Controller
 		switch (clause)
 		{
 			case "move_left":
-				Vec = Vector2.Zero;
+				Vec = new Vector2(0, -13);
 				break;
 			case "move_right":
-				Vec = Vector2.Zero;
+				Vec = new Vector2(0, -13);
 				break;
 			case "idle":
 				Vec = new Vector2(0, -13);
 				break;
 			case "death":
-                Vec = new Vector2(-4, -13);
-                break;
+				Vec = new Vector2(-4, -13);
+				break;
 			case "attack":
 				Vec = new Vector2(-4, -13);
-                break;
+				break;
 			case "jump":
-				Vec = Vector2.Zero;
+				Vec = new Vector2(0, -13);
 				break;
 			default:
 				Vec = Vector2.Zero;
 				break;
 		}
 		return Vec;
-	}
-	public override void _Ready()
-	{
-
 	}
 	protected override Vector2 Ability()
 	{
@@ -71,12 +69,5 @@ public partial class Fighter : Controller
 	private void removeShieldBash()
 	{
 		GetNode("Shield Bash").Free();
-		/*var bash = FindChildren("Shield Bash");
-		GD.Print(bash);
-		foreach (var node in bash) node.QueueFree();*/
-	}
-	protected override void OnAnimationEnd()
-	{
-		GD.Print("In Animation End");
 	}
 }

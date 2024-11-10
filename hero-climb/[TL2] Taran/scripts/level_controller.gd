@@ -1,7 +1,10 @@
 extends Node2D
 class_name level_controller
 
+var enemy_health = 100
+var enemy_damage = 25
 var current_level = 1
+var levels_climbed = 0
 var enemy_array = PackedVector2Array()
 func _ready() -> void:
 	var i = 0
@@ -18,10 +21,13 @@ func add_new_level():
 		new_level.add_shop()
 	new_level.build_level()
 	current_level += 1
+	if current_level % 3 == 0:
+		enemy_health += 75
+		enemy_damage += 25
 	
 	%EnemyController.spawns = enemy_array
 	print(%EnemyController.spawns.size())
-	%EnemyController.SpawnEnemies()
+	%EnemyController.SpawnEnemies(enemy_health, enemy_damage)
 	enemy_array.clear()
 
 func add_collectable(point : Vector2):
@@ -34,5 +40,7 @@ func add_enemy(point : Vector2):
 func floor_climbed(area : Area2D):
 	print("Current floor: "+str(current_level))
 	call_deferred("add_new_level")
+	PlayerGlobal.GetSetScore(100 * levels_climbed)
+	levels_climbed += 1
 	%RisingLava.Speed += 1
 	$FloorMarker.global_position.y -= 192

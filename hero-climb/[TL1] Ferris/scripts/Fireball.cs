@@ -16,7 +16,7 @@ public partial class Fireball : Attack
 	
 	public void DeleteOnCollision(Node2D body)
 	{
-		GD.Print($"Fireball collided with {body.Name}");
+		//GD.Print($"Fireball collided with {body.Name}");
 		if (!body.IsAncestorOf(this) && body.Name != "Player")
 		{
 			foreach(Line2D line in lines) {line.QueueFree(); }
@@ -53,20 +53,13 @@ public partial class Fireball : Attack
 	{
 		try
 		{
-			var Player = GetParent().FindChild("Player") as Controller;
-			Damage = Player.Damage;
+			Damage = PlayerGlobal.AffectBaseDamage();
 		}
 		catch (NullReferenceException) {
 			Damage = 50;
 		}
 		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
-	}/*
-	public Fireball()
-	{
-		var Player = GetParent().FindChild("Player") as Controller;
-		Damage = Player.Damage;
-		target.Position = Position + (GetViewport().GetMousePosition() - GetViewportRect().Size / 2);
-	}*/
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
