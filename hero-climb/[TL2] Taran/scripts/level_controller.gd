@@ -25,7 +25,7 @@ func add_new_level():
 	enemy_array.clear()
 
 func add_collectable(point : Vector2):
-	%CollectableManager.instantiate_collectable(point, 'r')
+	%PickupCreator.InstantiateCollectable(point, 'r')
 
 func add_enemy(point : Vector2):
 	if randi_range(0,2) == 0:

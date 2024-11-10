@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dnr44osrux1n"]
+[gd_scene load_steps=11 format=4 uid="uid://dnr44osrux1n"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_572et"]
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/level_controller.gd" id="1_lbon1"]
@@ -8,9 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="5_0hnyn"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="5_ga4ha"]
 [ext_resource type="PackedScene" uid="uid://ber4ey458cpbt" path="res://[TL5] Jason/scenes/EnemyController.tscn" id="7_wlqnk"]
+[ext_resource type="PackedScene" uid="uid://difgchgvgxj6d" path="res://[TL2] Taran/scenes/pickup_item.tscn" id="9_uluci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q5b5j"]
-size = Vector2(1960, 20)
+size = Vector2(2179, 20)
 
 [node name="LevelController" type="Node2D"]
 script = ExtResource("1_lbon1")
@@ -26,6 +27,10 @@ tile_set = ExtResource("2_oppe0")
 
 [node name="CollectableManager" parent="." instance=ExtResource("4_ahupv")]
 unique_name_in_owner = true
+
+[node name="PickupCreator" parent="." instance=ExtResource("9_uluci")]
+unique_name_in_owner = true
+position = Vector2(0, 75)
 
 [node name="Player" parent="." instance=ExtResource("4_nvts4")]
 position = Vector2(0, -16)
@@ -48,7 +53,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorMarker"]
-position = Vector2(724, -184)
+position = Vector2(707.5, -184)
 shape = SubResource("RectangleShape2D_q5b5j")
 
 [connection signal="area_entered" from="FloorMarker" to="." method="floor_climbed"]
