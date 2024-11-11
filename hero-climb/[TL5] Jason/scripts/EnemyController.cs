@@ -31,6 +31,7 @@ public partial class EnemyController : Node2D
 					enemy0.SetMaxHealth(health);
 					AddChild(enemy0);
 					enemy0.SetupEnemy();  // Custom setup method for enemies
+					enemy0.SetScale();
 					break;
 				case 1:
 					BaseEnemy enemy1 = (Skeleton)SkeletonScene.Instantiate();

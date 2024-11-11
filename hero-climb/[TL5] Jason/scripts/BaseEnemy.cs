@@ -50,12 +50,14 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	public virtual void SetupEnemy()
 	{
-		// GD.Print("BaseEnemy setup.");
+		GD.Print("BaseEnemy setup.");
 	}
 	#endregion
 
-	public virtual void _Process(double delta)
+	public virtual void SetScale()
+	//public void SetScale()
 	{
+		Scale = new Vector2(5,5);
 	}
 
 
