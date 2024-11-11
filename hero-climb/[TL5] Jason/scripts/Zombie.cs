@@ -12,6 +12,12 @@ public partial class Zombie : BaseEnemy
 
 	}
 
+	public override void SetScale()
+	//public new void SetScale()
+	{
+		base.Scale = new Vector2(1,1);
+	}
+
 	public override void EnemyAttack()
 	{
 		base.EnemyAttack();

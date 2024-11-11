@@ -1,0 +1,52 @@
+Description:
+	This scene builds a floor (or level) by instantiating a set of 4 rooms (or level pieces) as children.
+	Each room is chosen randomly from the designated folder. Rooms are not included in the prefab.
+	This scene can pass locations for enemies or collectables to its parent
+	Instructions for building rooms for this prefab are found below.
+
+
+Instructions:
+	Building Rooms:
+		In most respects, rooms may be constructed however you like. However, there are some guidelines that must be followed to ensure compatability.
+		
+		This prefab supports 4 kinds of rooms. Y rooms, C rooms, N rooms, and Shop rooms.
+		In the original context it was made for, Y rooms contain a path upwards, C rooms contain a path unlocked by certain abiliies, and N rooms contain no path upward.
+		Shop room are shops, that is self explanatory.
+		
+		The naming convention for rooms, which must be followed for the prefab to work correctly is as follows:
+			L, C, or R, short for Left Right and Center. This determines where the room can be placed in a level.
+			Y, C, N, the type of the room, as explained previously.
+			A number, to distinguish each room of the same location and type.
+		So a left room with no path upward might be named LN1.tscn.
+		
+		Shop rooms do not support numbering, and are instead simply labeled by their location followed by Shop.
+		The right Shop room would be called LShop.tscn.
+		
+		All rooms should be of the same width, which can be configured in an exported variable in the scene
+		If you wish to include enemy or collectable locations in a room, they should be added as Marker2Ds, as children of a node named "EnemyLocations" or "CollectableLocations"
+
+	Using the Scene:
+		There are 2 important functions for using this prefab
+		
+		build_level:
+			This randomly selects rooms and adds them into the level. It must be called or a level will not be generated.
+			Be warned calling this functions multiple times on the same level may cause issues.
+			This function takes no arguments.
+		
+		add_shop:
+			This configures the scene to include a shop when the level is built.
+			This function must be called BEFORE build_level or it will have no effect.
+			This function takes no arguments.
+		
+		Additionally, there are 3 other functions useful for more advanced funcitonality:
+		
+		get_collectables:
+			This function is automatically called when a level is built, and it's only function is to attempt to call a "add_collectable" function on this scenes parent.
+			If you wish to implement an add_collectable function, it must take a Vector2 as it's argument.
+		
+		get_enemies:
+			Identical to get_collectables, however it calls an "add_enemy" function instead.
+		
+		delete_floor:
+			This function simply deletes the scene and all it's children. It is called when an area2D in the prefab is entered child.
+			To make good use of this function, you will likely need to configure that area2D yourself to suite your needs.
