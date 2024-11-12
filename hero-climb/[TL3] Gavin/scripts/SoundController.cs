@@ -64,7 +64,7 @@ public partial class SoundController : Node
 		foreach (AudioStreamPlayer othersound in GetChildren()) {
 			if (sound == othersound.Name)
 			{
-				// sound.Stop();
+				othersound.Stop();
 				return true;
 			}
 		} 

@@ -16,6 +16,7 @@ public partial class Rogue : Controller
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
+		base.SetupClassScript();
 	}
 	protected override Vector2 getSpriteOffset(string clause)
 	{

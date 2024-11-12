@@ -21,7 +21,8 @@ public partial class Fighter : Controller
 		bashTimer.OneShot = true;
 		bashTimer.Connect(Timer.SignalName.Timeout, Callable.From(removeShieldBash));
 		AddChild(bashTimer);
-	}
+        base.SetupClassScript();
+    }
 	protected override Vector2 getSpriteOffset(string clause)
 	{
 		Vector2 Vec = Vector2.Zero;

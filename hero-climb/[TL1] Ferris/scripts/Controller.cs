@@ -16,10 +16,10 @@ public partial class Controller : CharacterBody2D
 	public float ClimbSpeed = 100f;
 	public enum ClassType
 	{
-		Fighter, Rogue, Wizard
+		Fighter = 1, Rogue = 2, Wizard = 3
 	}
 	[Export]
-	public ClassType Class = ClassType.Wizard;
+	public ClassType Class = 0;
 	[Export]
 	public int Damage = 50;
 
@@ -48,7 +48,7 @@ public partial class Controller : CharacterBody2D
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
-	protected Node SoundController;
+	protected PlayerSound SoundController;
 	protected Timer iFrames = new();
 	#region Get / Set Methods
 	public int getHealth() { return Health; }
@@ -96,6 +96,7 @@ public partial class Controller : CharacterBody2D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
 		{
+			SoundController.play("Jump");
 			velocity.Y += JumpVelocity;
 		}
 
@@ -109,7 +110,18 @@ public partial class Controller : CharacterBody2D
 				velocity.X = Velocity.X;
 		}
 		else
-			velocity.X = horizonalMovement().X;
+		{
+			var walkingSpeed = horizonalMovement().X;
+			if (Math.Abs(walkingSpeed) > 0)
+			{
+				SoundController.play("Walking");
+			}
+			else
+			{
+				SoundController.Stop("Walking");
+			}
+			velocity.X = walkingSpeed;
+		}
 
 		if (Input.IsActionJustPressed("ability") && !IsMovementLocked)
 		{
@@ -160,6 +172,7 @@ public partial class Controller : CharacterBody2D
 	private void startIFrames()
 	{
 		//sprites.Play("Hurt");
+		SoundController.play("Damaged");
 		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 		iFrames.Start();
 	}
@@ -247,6 +260,7 @@ public partial class Controller : CharacterBody2D
 	}
 	protected virtual void Attack()
 	{
+		SoundController.play("Attack");
 		Area2D Attack;
 		attackCooldown = true;
 		PlayerGlobal.isAttacking = true;
@@ -255,7 +269,6 @@ public partial class Controller : CharacterBody2D
 		Attack = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/attack.tscn").Instantiate() as Attack;
 		Attack.Position = sprites.FlipH ? new Vector2(-20, 0) : new Vector2(20, 0);
 		AddChild(Attack);
-		//GD.Print("Attacking");
 	}
 	protected virtual Vector2 Ability()
 	{
@@ -274,12 +287,17 @@ public partial class Controller : CharacterBody2D
 	}
 	protected virtual void SetupClassScript()
 	{
-		GD.PrintErr("Type Not Set");
-		throw new TypeUnloadedException();
+		if (Class != 0)
+			SoundController.setHero(Class);
+		else
+		{
+			GD.PrintErr("Type Not Set");
+			throw new TypeUnloadedException();
+		}
 	}
 	public override void _Ready()
 	{
-		SoundController = GetNode("PlayerSoundController");
+		SoundController = GetNode("PlayerSoundController") as PlayerSound;
 		SetupClassScript();
 	}
 	public override void _Process(double delta)

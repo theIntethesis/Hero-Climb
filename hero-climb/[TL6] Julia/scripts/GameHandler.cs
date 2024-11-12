@@ -55,14 +55,14 @@ public partial class GameHandler : Node
 	}
 
 
-    public void LoadMainMenu()
-    {
-        MenuElement mainMenu = MenuFactory.MainMenu();
+	public void LoadMainMenu()
+	{
+		MenuElement mainMenu = MenuFactory.MainMenu();
 		
-        if (mainMenu is Node node)
-        {
-            GetTree().Root.CallDeferred("add_child", node);
-        }   
-        
-    }
+		if (mainMenu is Node node)
+		{
+			GetTree().Root.CallDeferred("add_child", node);
+		}   
+		
+	}
 }

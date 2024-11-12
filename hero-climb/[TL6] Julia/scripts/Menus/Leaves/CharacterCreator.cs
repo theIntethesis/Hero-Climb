@@ -17,30 +17,30 @@ public partial class CharacterCreator : MenuLeaf
 	static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
 
 
-    public override void _Ready() 
-    {   
-        GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
-        {
-            Parent().Pop();
-        };
+	public override void _Ready() 
+	{   
+		GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
+		{
+			Parent().Pop();
+		};
 
-        GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
-        {
-            MostRecentClass = CurrentType;
-            if (Parent() is Node parent) 
-            {
-                parent.QueueFree();
-            }
+		GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
+		{
+			MostRecentClass = CurrentType;
+			if (Parent() is Node parent) 
+			{
+				parent.QueueFree();
+			}
 
-            GameHandler.Instance().StartGame(CurrentType);
-        };
+			GameHandler.Instance().StartGame(CurrentType);
+		};
 
-        Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-        Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-        Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
-        WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
-        FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
-        RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
+		Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
+		Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
+		Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+		WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
+		FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
+		RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");
 
 		Rogue.Visible = false;
 		Fighter.Visible = false;
@@ -99,8 +99,8 @@ public partial class CharacterCreator : MenuLeaf
 		CurrentType = Controller.ClassType.Rogue;
 	}
 
-    public CharacterCreator() : base()
-    {
+	public CharacterCreator() : base()
+	{
 
 	}
 }

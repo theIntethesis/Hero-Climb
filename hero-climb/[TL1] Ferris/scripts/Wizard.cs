@@ -24,10 +24,10 @@ public partial class Wizard : Controller
 		FireballSummon.WaitTime = .5;
 		AddChild(FireballSummon);
 		FireballSummon.Connect(Timer.SignalName.Timeout, Callable.From(SummonFireball));
-	}
+        base.SetupClassScript();
+    }
 	protected override Vector2 Ability()
 	{
-		// play arcane words sound
 		attackCooldown = true;
 		PlayerGlobal.isAttacking = true;
 		sprites.Play("fireball");
@@ -39,9 +39,9 @@ public partial class Wizard : Controller
 	}
 
 	protected void SummonFireball()
-	{
-		// Play fireball sound.
-		EmitSignal(SignalName.Attacking);
+    {
+        SoundController.play("WizardAttack");
+        EmitSignal(SignalName.Attacking);
 		var fireball = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/fireball.tscn").Instantiate() as Fireball;
 		fireball.Position = Position;
 		//fireball.Position = sprite.FlipH ? new Vector2(-16, -8) + Position : new Vector2(16, -8) + Position;

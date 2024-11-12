@@ -2,44 +2,44 @@ using Godot;
 
 public partial class DamageIncrease : ShopElement
 {
-    static readonly int[] ClassBasePrice = {5, 5, 5};
-    static readonly int[] ClassPriceIncrease = {10, 5, 15};
+	static readonly int[] ClassBasePrice = {5, 5, 5};
+	static readonly int[] ClassPriceIncrease = {10, 5, 15};
 
-    static int Price;
-    static int Increase;
+	static int Price;
+	static int Increase;
 
-    static int DmgIncrease = 50;
+	static int DmgIncrease = 50;
 
-    public override int Buy(int Money)
-    {
-        int Output = base.Buy(Money);
+	public override int Buy(int Money)
+	{
+		int Output = base.Buy(Money);
 
-        if (Output < Money)
-        {
-            PlayerGlobal.AffectBaseDamage(DmgIncrease);
-        }
+		if (Output < Money)
+		{
+			PlayerGlobal.AffectBaseDamage(DmgIncrease);
+		}
 
-        return Output;
-    }
+		return Output;
+	}
 
-    public static void Reset(int selector)
-    {
-        Price = ClassBasePrice[(int)selector];
-        Increase = ClassPriceIncrease[(int)selector];
-    }
+	public static void Reset(int selector)
+	{
+		Price = ClassBasePrice[(int)selector - 1];
+		Increase = ClassPriceIncrease[(int)selector - 1];
+	}
 
-    public DamageIncrease() : base(Price, Increase)
-    {
-    }
+	public DamageIncrease() : base(Price, Increase)
+	{
+	}
 
-    public override void _Ready()
-    {
-        base._Ready();
-        GetNode<Button>("Button").Pressed += ButtonPressed;
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		GetNode<Button>("Button").Pressed += ButtonPressed;
+	}
 
-    ~DamageIncrease()
-    {
-        Price = CurrentPrice;
-    }
+	~DamageIncrease()
+	{
+		Price = CurrentPrice;
+	}
 }

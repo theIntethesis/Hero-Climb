@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://2ccfs0wftglh"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/Slime.cs" id="1_yuxhf"]
-[ext_resource type="Texture2D" uid="uid://tf1ygd1a2sg7" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
+[ext_resource type="Texture2D" uid="uid://dp51lv60kt4q4" path="res://[TL5] Jason/assets/Slime/slime-Sheet.png" id="2_2g7s0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoygl"]
 size = Vector2(25.5, 15)
