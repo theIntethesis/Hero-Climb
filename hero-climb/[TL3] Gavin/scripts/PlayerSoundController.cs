@@ -1,20 +1,20 @@
 // PlayerSound.cs
 // Gavin Haynes
+// CS383 Software Engineering
 // October 29, 2024
-// CS383
-// Interface for the PlayerSoundController, which extends SoundController.cs
+// The interface for playing the Player's sounds.
 
 using Godot;
 using System;
 
-public partial class PlayerSound : SoundController
+public partial class PlayerSoundController : SoundController
 {
 	public static Controller.ClassType _hero = Controller.ClassType.Fighter;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		setVolume(80);
+		SetVolume(80);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,7 +36,8 @@ public partial class PlayerSound : SoundController
 		return _hero;
 	}
 
-	public override bool play(string sound)
+	// Prefix a sound's name with the name of the current Hero Class
+	public override bool Play(string sound)
 	{
 		if (sound == "Attack") 
 			sound = _hero.ToString() + "Attack";
