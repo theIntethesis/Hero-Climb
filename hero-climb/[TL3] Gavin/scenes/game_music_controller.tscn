@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cq2380k7j404h"]
 
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/old_sound/game_music_controller.gd" id="1_wgw0v"]
+[ext_resource type="Script" path="res://[TL3] Gavin/scripts/GameSoundController.cs" id="1_stus1"]
 [ext_resource type="AudioStream" uid="uid://v0sbclculyy" path="res://[TL3] Gavin/assets/GameMusic/Flutey (World Map) - Castle Crashers.mp3" id="2_ghmjd"]
 [ext_resource type="AudioStream" uid="uid://d3ykhxs4vhbun" path="res://[TL3] Gavin/assets/GameMusic/Flooded Castle - Castle Crashers.mp3" id="3_ykkbm"]
 [ext_resource type="AudioStream" uid="uid://dt03hrwvrlksn" path="res://[TL3] Gavin/assets/GameMusic/Child of the Corn - Castle Crashers.mp3" id="4_40m0p"]
@@ -16,8 +16,8 @@ stream_1 = ExtResource("4_40m0p")
 stream_2 = ExtResource("5_m7ucn")
 stream_3 = ExtResource("6_1ppwy")
 
-[node name="GameMusicPlayer" type="Node2D"]
-script = ExtResource("1_wgw0v")
+[node name="GameSoundController" type="Node2D"]
+script = ExtResource("1_stus1")
 
 [node name="Main" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ghmjd")
