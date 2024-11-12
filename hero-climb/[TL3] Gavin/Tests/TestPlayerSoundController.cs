@@ -20,7 +20,7 @@ public static class TestPlayerSoundController
     [CSTestFunction]
     public static Result GetInitialHero()
     {
-        return Player.GetHero() == "Rogue"
+        return Player.GetHero().ToString() == "Rogue"
             ? new Result(true, "")
             : new Result(false, "Expected initial Hero class: Rogue");
     }
@@ -28,7 +28,7 @@ public static class TestPlayerSoundController
     [CSTestFunction]
     public static Result SetHero1()
     {
-        return Player.SetHero("Rogue")
+        return Player.SetHero(Controller.ClassType.Rogue)
             ? new Result(true, "Set Hero successfully")
             : new Result(false, "Expected initial hero class: Rogue");
     }
@@ -36,7 +36,7 @@ public static class TestPlayerSoundController
     [CSTestFunction]
     public static Result SetHero2()
     {
-        return Player.SetHero("Wizard")
+        return Player.SetHero(Controller.ClassType.Wizard)
             ? new Result(true, "Set Hero successfully")
             : new Result(false, "Expected initial hero class: Wizard");
     }
@@ -44,7 +44,7 @@ public static class TestPlayerSoundController
     [CSTestFunction]
     public static Result SetHero3()
     {
-        return Player.SetHero("Fighter")
+        return Player.SetHero(Controller.ClassType.Fighter)
             ? new Result(true, "Set Hero successfully")
             : new Result(false, "Expected initial hero class: Fighter");
     }
@@ -52,7 +52,7 @@ public static class TestPlayerSoundController
     [CSTestFunction]
     public static Result SetHero4()
     {
-        return Player.SetHero("ShadowCreature")
+        return Player.SetHero(0)
             ? new Result(false, "Shouldn't be able to set Hero to ShadowCreature")
             : new Result(true, "Invalid Hero: ShadowCreature");
     }

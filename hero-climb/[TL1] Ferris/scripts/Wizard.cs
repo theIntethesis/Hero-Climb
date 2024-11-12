@@ -40,7 +40,7 @@ public partial class Wizard : Controller
 
 	protected void SummonFireball()
     {
-        SoundController.play("WizardAttack");
+        SoundController.Play("WizardAttack");
         EmitSignal(SignalName.Attacking);
 		var fireball = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/fireball.tscn").Instantiate() as Fireball;
 		fireball.Position = Position;

@@ -48,7 +48,7 @@ public partial class Controller : CharacterBody2D
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
-	protected PlayerSound SoundController;
+	protected PlayerSoundController SoundController;
 	protected Timer iFrames = new();
 	#region Get / Set Methods
 	public int getHealth() { return Health; }
@@ -96,7 +96,7 @@ public partial class Controller : CharacterBody2D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && (IsOnFloor() || PlayerGlobal.isClimbing) && !IsMovementLocked)
 		{
-			SoundController.play("Jump");
+			SoundController.Play("Jump");
 			velocity.Y += JumpVelocity;
 		}
 
@@ -114,7 +114,7 @@ public partial class Controller : CharacterBody2D
 			var walkingSpeed = horizonalMovement().X;
 			if (Math.Abs(walkingSpeed) > 0)
 			{
-				SoundController.play("Walking");
+				SoundController.Play("Walking");
 			}
 			else
 			{
@@ -172,7 +172,7 @@ public partial class Controller : CharacterBody2D
 	private void startIFrames()
 	{
 		//sprites.Play("Hurt");
-		SoundController.play("Damaged");
+		SoundController.Play("Damaged");
 		(FindChild("HitboxShape") as CollisionShape2D).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 		iFrames.Start();
 	}
@@ -260,7 +260,7 @@ public partial class Controller : CharacterBody2D
 	}
 	protected virtual void Attack()
 	{
-		SoundController.play("Attack");
+		SoundController.Play("Attack");
 		Area2D Attack;
 		attackCooldown = true;
 		PlayerGlobal.isAttacking = true;
@@ -288,7 +288,7 @@ public partial class Controller : CharacterBody2D
 	protected virtual void SetupClassScript()
 	{
 		if (Class != 0)
-			SoundController.setHero(Class);
+			SoundController.SetHero(Class);
 		else
 		{
 			GD.PrintErr("Type Not Set");
@@ -297,7 +297,7 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Ready()
 	{
-		SoundController = GetNode("PlayerSoundController") as PlayerSound;
+		SoundController = GetNode("PlayerSoundController") as PlayerSoundController;
 		SetupClassScript();
 	}
 	public override void _Process(double delta)

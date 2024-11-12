@@ -23,7 +23,7 @@ public partial class PlayerSoundController : SoundController
 	}
 
 	// Set the hero class. Options are "Rogue", "Wizard", and "Fighter"
-	public bool setHero(Controller.ClassType choice)
+	public bool SetHero(Controller.ClassType choice)
 	{
 		if(choice is not (Controller.ClassType.Fighter or Controller.ClassType.Rogue or Controller.ClassType.Wizard))
 			return false;
@@ -31,7 +31,7 @@ public partial class PlayerSoundController : SoundController
 		return true;
 	}
 
-	public Controller.ClassType getHero()
+	public Controller.ClassType GetHero()
 	{
 		return _hero;
 	}
@@ -42,6 +42,6 @@ public partial class PlayerSoundController : SoundController
 		if (sound == "Attack") 
 			sound = _hero.ToString() + "Attack";
 		GD.Print(sound);
-		return base.play(sound);
+		return base.Play(sound);
 	}
 }
