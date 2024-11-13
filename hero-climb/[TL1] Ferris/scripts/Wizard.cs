@@ -13,7 +13,6 @@ public partial class Wizard : Controller
 
 	protected override void SetupClassScript()
 	{
-		GD.Print("Wizard Class Selected");
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);

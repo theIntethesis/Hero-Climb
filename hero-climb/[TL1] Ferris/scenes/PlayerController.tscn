@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsi1dtjueodhh"]
 
-[ext_resource type="PackedScene" uid="uid://bo230qklt4eud" path="res://[TL3] Gavin/scenes/player_sound_controller.tscn" id="2_q8fjq"]
+[ext_resource type="PackedScene" path="res://[TL3] Gavin/scenes/PlayerSoundController.tscn" id="2_u7t7c"]
 [ext_resource type="PackedScene" uid="uid://d31op03sdre58" path="res://[TL6] Julia/scenes/PlayerCamera.tscn" id="3_2n4bx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbf2q"]
@@ -21,9 +21,9 @@ collision_mask = 4
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_uhtvn")
 
-[node name="PlayerSoundController" parent="." instance=ExtResource("2_q8fjq")]
-
 [node name="PlayerCamera" parent="." instance=ExtResource("3_2n4bx")]
+
+[node name="PlayerSoundController" parent="." instance=ExtResource("2_u7t7c")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="CollideWithEnemy"]
 [connection signal="body_entered" from="Hitbox" to="." method="CollideWithEnemy"]

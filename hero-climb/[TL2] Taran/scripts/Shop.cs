@@ -9,11 +9,11 @@ public partial class Shop : Node2D
 
 	}
 	public void ShopEntered(Area2D area){
-		GD.Print("Shop Entered");
+		// GD.Print("Shop Entered");
 		PlayerGlobal.InShopArea = true;
 	}
 	public void ShopExited(Area2D area){
-		GD.Print("Shop Exited");
+		// GD.Print("Shop Exited");
 		PlayerGlobal.InShopArea = false;
 	}
 }

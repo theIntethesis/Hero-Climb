@@ -16,7 +16,7 @@ public partial class Pickup : Area2D
 	
 	public void InstantiateCollectable(Vector2 point, char type){
 		Pickup collectable;
-		GD.Print("Called");
+		// GD.Print("Called");
 		switch (type){
 			case 'c':
 				collectable = (CoinPickup) CoinScene.Instantiate();
@@ -59,6 +59,6 @@ public partial class Pickup : Area2D
 	}
 	
 	public virtual void PickupEffect(){
-		GD.Print(pickup_value);
+		// GD.Print(pickup_value);
 	}
 }

@@ -24,8 +24,21 @@ public partial class SoundController : Node2D
 		{
 			if (child.Name == sound)
 			{
-				child.Play();
+				if (!child.Playing)
+					child.Play();
 				return true;
+			}
+		}
+		return false;
+	}
+
+	public bool isPlaying(string soundName)
+	{
+		foreach (AudioStreamPlayer child in GetChildren())
+		{
+			if(child.Name == soundName)
+			{
+				return child.Playing;
 			}
 		}
 		return false;

@@ -12,7 +12,6 @@ public partial class Fighter : Controller
 	public Fighter() { }
 	protected override void SetupClassScript()
 	{
-		GD.Print("Fighter Class Selected");
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);

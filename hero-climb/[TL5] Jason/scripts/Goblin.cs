@@ -13,7 +13,7 @@ public partial class Goblin : BaseEnemy
 		base.Damage = 25;
 		base.Health = 100;
 		base.Speed = 75;
-		GD.Print("Goblin setup complete.");
+		//GD.Print("Goblin setup complete.");
 
 	}
 
@@ -21,12 +21,12 @@ public partial class Goblin : BaseEnemy
 	{
 		base.IsLunging = true;
 		base.EnemyAttack();
-		GD.Print("Goblin attacks!");
+		//GD.Print("Goblin attacks!");
 	}
 
 	public override void _Ready()
 	{
-		GD.Print("Goblin ready.");
+		//GD.Print("Goblin ready.");
 		base._Ready();
 	}
 }

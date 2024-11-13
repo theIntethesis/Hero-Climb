@@ -41,7 +41,7 @@ public partial class PlayerSoundController : SoundController
 	{
 		if (sound == "Attack") 
 			sound = _hero.ToString() + "Attack";
-		GD.Print(sound);
+		// GD.Print(sound);
 		return base.Play(sound);
 	}
 }

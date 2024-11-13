@@ -18,7 +18,7 @@ public partial class Skeleton : BaseEnemy
 	{
 		Cooldown = GetNode<Timer>("Cooldown");
 
-		GD.Print("Skeleton ready.");
+		//GD.Print("Skeleton ready.");
 		base._Ready();
 	}
 
@@ -27,7 +27,7 @@ public partial class Skeleton : BaseEnemy
 		base.Damage = 25;
 		base.Health = 100;
 		base.Speed = 50;
-		GD.Print("Skeleton setup complete.");
+		//GD.Print("Skeleton setup complete.");
 
 	}
 
@@ -45,7 +45,7 @@ public partial class Skeleton : BaseEnemy
 		arrow.GlobalPosition = this.GlobalPosition;
 
 		AddSibling(arrow);
-		GD.Print("Skeleton attacks!");
+		//GD.Print("Skeleton attacks!");
 		base.EnemyAttack();
 	}
 

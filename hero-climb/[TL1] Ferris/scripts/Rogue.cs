@@ -9,7 +9,6 @@ public partial class Rogue : Controller
 {
 	protected override void SetupClassScript()
 	{
-		GD.Print("Rogue Class Selected");
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
 		Class = ClassType.Rogue;
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;

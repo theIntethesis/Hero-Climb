@@ -112,14 +112,6 @@ public partial class Controller : CharacterBody2D
 		else
 		{
 			var walkingSpeed = horizonalMovement().X;
-			if (Math.Abs(walkingSpeed) > 0)
-			{
-				SoundController.Play("Walking");
-			}
-			else
-			{
-				SoundController.Stop("Walking");
-			}
 			velocity.X = walkingSpeed;
 		}
 
@@ -202,10 +194,16 @@ public partial class Controller : CharacterBody2D
 		var inputStr = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
 		if (inputStr != 0)
 		{
+			SoundController.Play("Walking");
+			if (!IsOnFloor())
+			{
+				SoundController.Stop("Walking");
+			}
 			velocity.X = inputStr * Speed;
 		}
 		else
 		{
+			SoundController.Stop("Walking");
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 		}
 
@@ -302,6 +300,11 @@ public partial class Controller : CharacterBody2D
 	}
 	public override void _Process(double delta)
 	{
-
+		if ((Input.IsActionPressed("move_left") || Input.IsActionPressed("move_right")) && IsOnFloor())
+		{
+		}
+		else
+		{
+		}
 	}
 }

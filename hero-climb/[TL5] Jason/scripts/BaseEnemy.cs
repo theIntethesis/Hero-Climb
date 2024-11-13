@@ -50,7 +50,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	public virtual void SetupEnemy()
 	{
-		GD.Print("BaseEnemy setup.");
+		//GD.Print("BaseEnemy setup.");
 	}
 	#endregion
 
@@ -151,7 +151,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 
 	private void OnDetectorBodyEntered(Node2D body)
 	{
-		GD.Print(body);
+		// GD.Print(body);
 		if (body is Controller){
 			IsDetectingPlayer = true;
 			EmitSignal(SignalName.Detected);
@@ -197,7 +197,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		sprites.Play("die");
 		CollisionShape2D Hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
 		Hitbox.QueueFree();
-		GD.Print("Death animation playing");
+		// GD.Print("Death animation playing");
 		PlayerGlobal.GetSetScore(MaxHealth);
 		// GD.Print("Death animation playing");
 		IsDead = true;

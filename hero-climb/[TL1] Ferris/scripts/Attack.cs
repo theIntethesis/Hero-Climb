@@ -8,7 +8,6 @@ public partial class Attack : Area2D
 	public override void _Ready()
 	{
 		Damage = (GetParent() as Controller).Damage;
-		//GD.Print($"Attack Ready; Damage: {Damage}");
 	}
 	public override void _Process(double delta)
 	{
