@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b4c80tjjaya6c"]
 
-[ext_resource type="Script" path="res://[TL3] Gavin/scripts/PlayerSound.cs" id="1_eboj7"]
+[ext_resource type="Script" path="res://[TL3] Gavin/scripts/PlayerSoundController.cs" id="1_eboj7"]
 [ext_resource type="AudioStream" uid="uid://bp4kn8xc3xyhs" path="res://[TL3] Gavin/assets/PlayerSounds/WizardAttack.mp3" id="2_ln73a"]
 [ext_resource type="AudioStream" uid="uid://0wv0vbtvrwdq" path="res://[TL3] Gavin/assets/PlayerSounds/FighterAttack.mp3" id="3_1nj3d"]
 [ext_resource type="AudioStream" uid="uid://6132vo2uh1xr" path="res://[TL3] Gavin/assets/PlayerSounds/PlayerJump.mp3" id="3_x8owk"]

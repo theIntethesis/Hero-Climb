@@ -6,6 +6,7 @@ public partial class Arrow : CharacterBody2D
 
 	public Vector2 direction = new Vector2(1,0);
 	public int Speed = 500;
+	public int Damage = 25;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -20,7 +21,6 @@ public partial class Arrow : CharacterBody2D
 	
 		MoveAndSlide();
 	}
-
 	public void Area2DBodyHasEntered(Node2D body)
 	{
 		if (body is TileMapLayer)

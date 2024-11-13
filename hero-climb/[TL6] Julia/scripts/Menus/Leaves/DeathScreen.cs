@@ -21,6 +21,6 @@ public partial class DeathScreen : MenuLeaf
             GameHandler.Instance().LoadMainMenu();
         };
 
-        GetNode<Label>("GridContainer/Score").Text = $"Score: {PlayerGlobal.Score}";
+        GetNode<Label>("GridContainer/Score").Text = $"Score: {PlayerGlobal.GetSetScore()}";
     }
 }

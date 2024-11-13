@@ -43,6 +43,7 @@ public partial class Skeleton : BaseEnemy
 		Arrow arrow = (Arrow)ArrowScene.Instantiate();
 		arrow.direction.X = base.direction.X;
 		arrow.GlobalPosition = this.GlobalPosition;
+		arrow.Damage = Damage;
 
 		AddSibling(arrow);
 		//GD.Print("Skeleton attacks!");

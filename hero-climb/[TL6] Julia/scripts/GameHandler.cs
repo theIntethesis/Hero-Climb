@@ -29,7 +29,7 @@ public partial class GameHandler : Node
 		
 		ShopElementFactory.Reset((int)classType);
 		PlayerGlobal.Money = 0;
-		PlayerGlobal.Score = 0;
+		PlayerGlobal.GetSetScore(-1);
 		
 		GetTree().Root.AddChild(ActiveGame);
 

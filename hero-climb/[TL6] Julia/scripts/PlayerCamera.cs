@@ -50,8 +50,8 @@ public partial class PlayerCamera : Camera2D
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(Stack.HUD.OpenShop));
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(Stack.HUD.OnPlayerMaxHealthChange));
 
-		PlayerGlobal.Money = 1000;
-		Stack.HUD.OpenShop();
+		// PlayerGlobal.Money = 1000;
+		// Stack.HUD.OpenShop();
 	}
 
 	public override void _Process(double delta)

@@ -136,24 +136,22 @@ public partial class Controller : CharacterBody2D
 	private void CollideWithEnemy(Node2D b)
 	{
 		if (b.Name == "Player" || b is Attack) return;
-		if(b is CharacterBody2D)
+		if(b is BaseEnemy)
 		{
-			var body = b as CharacterBody2D;
+			var body = b as BaseEnemy;
 			uint layer3 = body.CollisionLayer & 0b_0100;
 			if (layer3 > 0)
 			{
-				var enemy = body as BaseEnemy;
-				affectHealth(-enemy.Damage);
+				affectHealth(-body.Damage);
 			}
 		}
-		else if (b.GetParent() is CharacterBody2D)
+		else if (b is Arrow)
 		{
-			var body = b.GetParent() as CharacterBody2D;
+			var body = b as Arrow;
 			uint layer3 = body.CollisionLayer & 0b_0100;
 			if (layer3 > 0)
 			{
-				var enemy = body as BaseEnemy;
-				affectHealth(-enemy.Damage);
+				affectHealth(-body.Damage);
 			}
 		}
 		else if (b.Name == "RisingLava")

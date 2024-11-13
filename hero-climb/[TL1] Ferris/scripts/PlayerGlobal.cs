@@ -8,10 +8,10 @@ public partial class PlayerGlobal : Node
 	public static bool isClimbing = false;
 	public static bool isAttacking = false;
 	private static int _Money = 0;
-	public static int Score = 0;
+	private static int Score = 0;
 	public static int Money
 	{
-		set { _Money = value; GetSetScore(value); Player.EmitSignal(Controller.SignalName.KaChing); }
+		set { int newM = _Money - value; _Money = value; GetSetScore(newM); Player.EmitSignal(Controller.SignalName.KaChing); }
 		get { return _Money; }
 	}
 	public static bool InShopArea = false;
@@ -30,6 +30,11 @@ public partial class PlayerGlobal : Node
 	}
 	public static int GetSetScore(int amount = 0)
 	{
+		if(amount < 0)
+		{
+			Score = 0;
+			amount = 0;
+		}
 		GD.Print($"Score: {Score += amount}");
 		return Score;
 	}
