@@ -25,6 +25,7 @@ PGlobal="*res://[TL1] Ferris/scripts/PlayerGlobal.cs"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -34,7 +35,7 @@ project/assembly_name="Hero-Climb"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDMUT/plugin.cfg", "res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [input]
 

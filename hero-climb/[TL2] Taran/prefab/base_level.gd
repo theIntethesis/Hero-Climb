@@ -1,5 +1,7 @@
+# base_level.gd
+# This is my Oral Exam prefab
 extends Node2D
-
+class_name Level
 
 # Matrix representing how many of each piece type exist.
 # Must be manually updated.
@@ -7,8 +9,8 @@ const PIECE_COUNTS = {"LY":2, "LC":3, "LN":2,
 					  "CY":2, "CC":3, "CN":2,
 					  "RY":2, "RC":3, "RN":2,}
 
-const PIECE_FOLDER = "res://[TL2] Taran/scenes/tower pieces/"
-# Naming convention for level pieces: PIECE_FOLDER/[][][]
+@export var piece_folder = "res://"
+# Naming convention for level pieces: piece_folder/[][][].tscn
 
 # Layout map is used to determine what piece is drawn based on placement in level
 # L is left, C is center, R is right
@@ -52,12 +54,12 @@ func build_level():
 		var level_piece
 		if level_layout[level_place]=="S":
 			# Loads a shop if designated by the level layout
-			level_piece = load(PIECE_FOLDER 	#Directory containing level pieces
+			level_piece = load(piece_folder 	#Directory containing level pieces
 				+LAYOUT_MAP[level_place]
 				+"Shop.tscn").instantiate()
 		else:
 			# Loads a level piece matching the level layout
-			level_piece = load(PIECE_FOLDER 	#Directory containing level pieces
+			level_piece = load(piece_folder 	#Directory containing level pieces
 				+LAYOUT_MAP[level_place]+level_layout[level_place] 	#Character in the level map
 				+str(randi_range(1,PIECE_COUNTS[LAYOUT_MAP[level_place]+level_layout[level_place]])) 	#Number associated with level piece
 				+".tscn").instantiate()
