@@ -42,5 +42,5 @@ func floor_climbed(area : Area2D):
 	call_deferred("add_new_level")
 	PlayerGlobal.GetSetScore(100 * levels_climbed)
 	levels_climbed += 1
-	%RisingLava.Speed += 1
+	%RisingLava.Speed += 1.2
 	$FloorMarker.global_position.y -= 192

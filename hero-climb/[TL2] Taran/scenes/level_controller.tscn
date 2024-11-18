@@ -31,8 +31,8 @@ unique_name_in_owner = true
 
 [node name="RisingLava" parent="." instance=ExtResource("5_ga4ha")]
 unique_name_in_owner = true
-position = Vector2(695, 462)
-Speed = 4.0
+position = Vector2(695, 104)
+Speed = 1.5
 
 [node name="FloorMarker" type="Area2D" parent="."]
 unique_name_in_owner = true
