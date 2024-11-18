@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://dnr44osrux1n"]
+[gd_scene load_steps=9 format=4 uid="uid://dnr44osrux1n"]
 
 [ext_resource type="TileSet" uid="uid://bc7i30yvha53o" path="res://[TL2] Taran/assets/tower_tileset.tres" id="1_572et"]
 [ext_resource type="Script" path="res://[TL2] Taran/scripts/level_controller.gd" id="1_lbon1"]
 [ext_resource type="TileSet" uid="uid://b6a61awdl3lo6" path="res://[TL2] Taran/assets/tower_background_tileset.tres" id="2_oppe0"]
 [ext_resource type="PackedScene" uid="uid://dq1vs08q8ek4m" path="res://[TL2] Taran/scenes/rising_lava.tscn" id="5_ga4ha"]
+[ext_resource type="PackedScene" uid="uid://7bormshv2j2j" path="res://[TL5] Jason/scenes/DemoController.tscn" id="7_q3c60"]
 [ext_resource type="PackedScene" uid="uid://ber4ey458cpbt" path="res://[TL5] Jason/scenes/EnemyController.tscn" id="7_wlqnk"]
 [ext_resource type="PackedScene" uid="uid://difgchgvgxj6d" path="res://[TL2] Taran/scenes/pickup_item.tscn" id="9_uluci"]
 
@@ -42,5 +43,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FloorMarker"]
 position = Vector2(707.5, -184)
 shape = SubResource("RectangleShape2D_q5b5j")
+
+[node name="DemoController" parent="." instance=ExtResource("7_q3c60")]
 
 [connection signal="area_entered" from="FloorMarker" to="." method="floor_climbed"]

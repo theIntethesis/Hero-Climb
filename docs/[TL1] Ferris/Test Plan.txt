@@ -15,31 +15,49 @@ Test Collision
  > Test Fireball and Zombie
    > Makes sure the enemy detects the subclass of Attack "Fireball" and picks up the instance's Damage field.
    > Asserts: 2
+   > Ferris, Jason
  > Test Attack and Zombie
    > Makes sure the enemy detects the players Attack and picks up the instance's Damage field.
    > Asserts: 2
+   > Ferris, Jason
  > Test Fighter and Box
    > Makes sure the Fighter's shield bash actually breaks the boxes.
    > Asserts: 1
+   > Ferris, Taran
  > Test Fireball and Box
    > Because it was an issue earlier, makes sure the Fireball / Attack DOESN'T break the boxes.
    > Asserts: 1
+   > Ferris, Taran
 
 Test Movement
  > Test Jump
    > Makes sure that when the user presses jump, the player actually jumps.
-   > Add a test to ensure that the player only jumps when grounded
-   > Asserts: Will be 2
+   > Ensure that the player only jumps when grounded
+   > Asserts: 2
+   > Ferris
  > Test Free Falling
    > Makes sure that the maximum downward velocity is the force of gravity.
    > Asserts: 1
+   > Ferris
 
 
 Tests to add
- > Make sure pipe detects collision
+ > Make sure pipe detects Player collision and not Enemy Collision
    > Asserts: 1
+   > Ferris, Taran, Jason
  > Make sure rogue can climb pipes
    > Asserts: 1
+   > Ferris, Taran
  > Make sure other classes can't climb pipes
    > Asserts: 2
- > 
+   > Ferris, Taran
+ > Make sure player collects coins.
+   > Asserts: 2
+   > Ferris, Taran
+ > Attack / Fireball doesn't pick up coins
+   > Asserts: 2
+   > Ferris, Taran
+ > Player collides with terrain correctly.
+   > Ferris, Taran (DONE)
+ > Shop detects player
+   > Ferris, Taran

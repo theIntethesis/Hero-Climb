@@ -5,7 +5,7 @@ public partial class Arrow : CharacterBody2D
 {
 
 	public Vector2 direction = new Vector2(1,0);
-	public int Speed = 500;
+	public int Speed = 200;
 	public int Damage = 25;
 
 	public override void _PhysicsProcess(double delta)
