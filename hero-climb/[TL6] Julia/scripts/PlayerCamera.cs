@@ -23,9 +23,6 @@ public partial class PlayerCamera : Camera2D
 	[Export] 
 	float ShakyTime = 1;
 
-	// Decreasing this will make the shaky cam decrement quicker
-	float MinAmplitude = 0.1f;
-
 
 	Vector2 DefaultOffset;
 
@@ -33,7 +30,7 @@ public partial class PlayerCamera : Camera2D
 	{
 		DefaultOffset = Offset;
 
-		if (ShakyTime < 0f || MinAmplitude < 0f || Amplitude <= 0f || MinAmplitude > Amplitude)
+		if (ShakyTime < 0f || Amplitude <= 0f)
 		{
 			throw new Exception("PlayerCamera is incorrectly configured");
 		}
@@ -67,8 +64,8 @@ public partial class PlayerCamera : Camera2D
 			float Theta = ShakeFrame * MathF.PI / 180.0f;
 
 			// Trust me. I swear
-			// https://www.desmos.com/calculator/wg85lj33tr - Because there isn't a better way to document how this works. It just... Does
-			float CurrentAmplitude = Amplitude / Mathf.Pow(Amplitude / MinAmplitude, Theta / ShakyTime);
+			// https://www.desmos.com/calculator/now6fy6fvr - Because there isn't a better way to document how this works. It just... Does
+			float CurrentAmplitude = (Amplitude + 1) / Mathf.Pow(Amplitude + 1, Theta / ShakyTime) - 1;
 
 			Vector2 vec = new Vector2(0, CurrentAmplitude * MathF.Sin(Theta * PeriodMultiplier));
 
