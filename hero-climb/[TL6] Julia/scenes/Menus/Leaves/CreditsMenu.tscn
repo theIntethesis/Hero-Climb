@@ -151,7 +151,7 @@ texture = ExtResource("1_v8jbm")
 
 [node name="Label6" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
-text = "Hero Climb v0.3.0
+text = "Hero Climb v1.0.0
 Copyright (c) 2024. All Rights Reserved."
 horizontal_alignment = 1
 
