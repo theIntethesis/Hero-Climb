@@ -180,6 +180,7 @@ func _physics_process(_delta):
 			current_frame = 0
 			if current_level < 6:
 				current_level = current_level + 1
+				player.position.y -= 200
 			else:
 				current_level = 2
 
@@ -224,5 +225,4 @@ func get_sequence_length() -> int:
 	return sequence[-1].frame + 1
 
 func _on_demo_detector_inactivity_detected() -> void:
-	player.position.y -= 200
 	is_demo_mode = true
