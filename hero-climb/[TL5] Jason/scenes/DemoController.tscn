@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://7bormshv2j2j"]
+[gd_scene load_steps=3 format=3 uid="uid://7bormshv2j2j"]
 
 [ext_resource type="Script" path="res://[TL5] Jason/scripts/demo_controller.gd" id="1_hfoue"]
+[ext_resource type="Script" path="res://[TL5] Jason/scripts/demodetector.gd" id="2_s57cb"]
 
 [node name="DemoController" type="Node2D"]
 script = ExtResource("1_hfoue")
+
+[node name="DemoDetector" type="Node" parent="."]
+script = ExtResource("2_s57cb")
+
+[connection signal="inactivity_detected" from="DemoDetector" to="." method="_on_demo_detector_inactivity_detected"]

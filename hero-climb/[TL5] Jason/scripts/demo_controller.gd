@@ -159,15 +159,16 @@ var current_level := 1
 var player
 
 func _ready() -> void:
-	if owner.get_parent().find_child("Player"):
-		player = owner.get_parent().find_child("Player")
-	else:
-		player = %Player
+	player = owner.get_node("Player")
+	
 
 func _unhandled_input(event):
 	if event.is_pressed() and event.keycode == demo_key:
 		toggle_demo_mode()
-
+func _input(event):
+	if event is InputEventMouseButton:
+		print("demo deactivated")
+		is_demo_mode = false
 
 func _physics_process(_delta):
 	if is_demo_mode:
@@ -221,3 +222,7 @@ func get_sequence_length() -> int:
 		return 0
 	# Find the frame number of the last input
 	return sequence[-1].frame + 1
+
+func _on_demo_detector_inactivity_detected() -> void:
+	player.position.y -= 200
+	is_demo_mode = true
