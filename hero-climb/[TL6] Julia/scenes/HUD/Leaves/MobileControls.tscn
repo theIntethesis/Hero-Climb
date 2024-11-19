@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://0bdwm75lg5b8"]
+[gd_scene load_steps=9 format=3 uid="uid://0bdwm75lg5b8"]
 
 [ext_resource type="Texture2D" uid="uid://bn1wlu8iufplv" path="res://[TL6] Julia/assets/button_unpressed.png" id="1_7hwgo"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/MobileControls.cs" id="1_a77xc"]
 [ext_resource type="Texture2D" uid="uid://ce67uortob6be" path="res://[TL6] Julia/assets/button_pressed.png" id="2_f1xns"]
 [ext_resource type="Texture2D" uid="uid://c4dudwchsgw4o" path="res://[TL6] Julia/assets/attack_unpressed.png" id="3_g3bmh"]
 [ext_resource type="Texture2D" uid="uid://bdue1j7r83l84" path="res://[TL6] Julia/assets/menu_unpressed.png" id="3_ipc0l"]
@@ -17,12 +18,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_a77xc")
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
 position = Vector2(575, 300)
 shape = SubResource("RectangleShape2D_62s1i")
 shape_centered = false
-action = "ability"
+action = "interact"
 
 [node name="Bottom Right Corner" type="Control" parent="."]
 layout_mode = 1
@@ -161,9 +163,3 @@ position = Vector2(-128, -128)
 texture_normal = ExtResource("3_ipc0l")
 texture_pressed = ExtResource("4_1t18e")
 action = "open_menu"
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(575, 300)
-shape = SubResource("RectangleShape2D_62s1i")
-shape_centered = false
-action = "interact"

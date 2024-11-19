@@ -15,16 +15,16 @@ public partial class PlayerCamera : Camera2D
 	[ExportGroup("Camera Shake")]
 	
 	[Export]
-	float Amplitude = 1.0f;
+	float Amplitude = 10f;
 	
 	[Export]
-	float PeriodMultiplier = 40.0f;
+	float PeriodMultiplier = 50.0f;
 
-	[Export]
-	float Duration = 1.0f;
+	[Export] 
+	float ShakyTime = 1;
 
-
-	float CurrentDuration;
+	// Decreasing this will make the shaky cam decrement quicker
+	float MinAmplitude = 0.1f;
 
 
 	Vector2 DefaultOffset;
@@ -32,6 +32,11 @@ public partial class PlayerCamera : Camera2D
 	public PlayerCamera()
 	{
 		DefaultOffset = Offset;
+
+		if (ShakyTime < 0f || MinAmplitude < 0f || Amplitude <= 0f || MinAmplitude > Amplitude)
+		{
+			throw new Exception("PlayerCamera is incorrectly configured");
+		}
 	}
 
 	public override void _Ready()
@@ -59,19 +64,18 @@ public partial class PlayerCamera : Camera2D
 		if (Shaking)
 		{
 			ShakeFrame += 1;
-			CurrentDuration += (float)delta;
+			float Theta = ShakeFrame * MathF.PI / 180.0f;
 
-			float theta = ShakeFrame * MathF.PI / 180.0f;
+			// Trust me. I swear
+			// https://www.desmos.com/calculator/wg85lj33tr - Because there isn't a better way to document how this works. It just... Does
+			float CurrentAmplitude = Amplitude / Mathf.Pow(Amplitude / MinAmplitude, Theta / ShakyTime);
 
-			// GD.Print(theta);
+			Vector2 vec = new Vector2(0, CurrentAmplitude * MathF.Sin(Theta * PeriodMultiplier));
 
-			Vector2 vec = new Vector2(0, MathF.Sin(theta * PeriodMultiplier) * Amplitude / CurrentDuration);
-		   
-			// GD.Print(vec);
 			Offset = vec;
 
 			
-			if (CurrentDuration >= Duration && (Offset.Y < 0.2 || Offset.Y > -0.2))
+			if (Theta >= ShakyTime)
 			{
 				Shaking = false;
 			}
@@ -80,6 +84,13 @@ public partial class PlayerCamera : Camera2D
 		{
 			Offset = new Vector2(0.0f, 0.0f);
 		}
+
+		
+		if (Input.IsActionJustPressed("interact"))
+		{
+			ShakeCamera();
+		}
+		
 	}
 
 	public void ShakeCamera()
@@ -87,7 +98,7 @@ public partial class PlayerCamera : Camera2D
 		if (!Shaking)
 		{
 			Shaking = true;
-			CurrentDuration = 0.0f;
+			ShakeFrame = 0;
 		}
 
 		Input.VibrateHandheld(500);

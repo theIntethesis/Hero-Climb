@@ -16,7 +16,7 @@ public partial class PauseMenu : MenuLeaf
         };
         GetNode<Button>("GridContainer/Restart").Pressed += () => 
         {
-            Parent().Push(MenuFactory.SettingsMenu());
+            Parent().Push(MenuFactory.CharacterCreator());
         };
         GetNode<Button>("GridContainer/Settings").Pressed += () => 
         {

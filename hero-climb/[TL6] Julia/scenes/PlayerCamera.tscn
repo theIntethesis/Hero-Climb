@@ -4,6 +4,8 @@
 
 [node name="PlayerCamera" type="Camera2D"]
 zoom = Vector2(3, 3)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 script = ExtResource("1_touaq")
 
 [node name="Interface" type="CanvasLayer" parent="."]

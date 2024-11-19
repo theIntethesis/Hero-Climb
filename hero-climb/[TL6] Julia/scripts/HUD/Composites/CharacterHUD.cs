@@ -26,6 +26,8 @@ public partial class CharacterHUD : MenuComposite
         characterInfo = HUDFactory.CharacterInfo();
         AddChild(characterInfo);
 
+        AddChild(HUDFactory.MobileControls());
+
         Name = "CharacterHUD";
 
         const float margin = 0.02f;

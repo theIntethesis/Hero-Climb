@@ -8,7 +8,8 @@ public partial class HUDFactory : GodotObject
     {
         MoneyLabel,
         Heart,
-        GameShop
+        GameShop,
+        MobileControls
     }
 
     static Dictionary<ElementName, PackedScene> MenuScenes = new Dictionary<ElementName, PackedScene>
@@ -16,6 +17,7 @@ public partial class HUDFactory : GodotObject
         {ElementName.MoneyLabel, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MoneyLabel.tscn")},
         {ElementName.Heart, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/Heart.tscn")},
         {ElementName.GameShop, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/Shop.tscn")},
+        {ElementName.MobileControls, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MobileControls.tscn")}
     };
 
     public static MoneyLabel MoneyLabel()
@@ -68,6 +70,11 @@ public partial class HUDFactory : GodotObject
         info.Scale = new Vector2(3.0f, 3.0f);
         info.Name = "CharacterInfo";
         return info;
+    }
+
+    public static MobileControls MobileControls()
+    {
+        return (MobileControls)MenuScenes[ElementName.MobileControls].Instantiate();
     }
 
     private HUDFactory() { }
