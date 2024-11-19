@@ -163,7 +163,7 @@ func _ready() -> void:
 	
 
 func _unhandled_input(event):
-	if event.is_pressed() and event.keycode == demo_key:
+	if event is InputEventKey and event.is_pressed() and event.keycode == demo_key:
 		toggle_demo_mode()
 func _input(event):
 	if event is InputEventMouseButton:
