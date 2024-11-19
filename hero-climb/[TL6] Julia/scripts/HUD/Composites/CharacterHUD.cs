@@ -26,7 +26,11 @@ public partial class CharacterHUD : MenuComposite
         characterInfo = HUDFactory.CharacterInfo();
         AddChild(characterInfo);
 
-        AddChild(HUDFactory.MobileControls());
+        if (OS.GetName() == "Android")
+        {
+            AddChild(HUDFactory.MobileControls());
+        }
+        
 
         Name = "CharacterHUD";
 
