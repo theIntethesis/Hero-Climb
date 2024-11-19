@@ -38,7 +38,7 @@ public partial class DamageIncrease : ShopElement
 		GetNode<Button>("Button").Pressed += ButtonPressed;
 	}
 
-	~DamageIncrease()
+	public override void _ExitTree()
 	{
 		Price = CurrentPrice;
 	}

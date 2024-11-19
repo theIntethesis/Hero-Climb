@@ -22,7 +22,6 @@ Coins can be spent at the shop
 ## Shop
 Tap or Press F while hovering over the shop to open the menu. From there, you can purchase a max health increase, a full healing, a damage increase, and a speed increase. Each time you buy one the price increases.
 
-
 ## Main level
 The tower is procedurally generated based off of many different pieces.
 
@@ -38,22 +37,32 @@ The tower is procedurally generated based off of many different pieces.
 - Strong melee attack
 - Dash that can break wooden crates
 
+# Enemies
+
+## Goblin
+- Lunge Attack
+- Moves Quickly
+
+## Skeleton
+- Ranged Attack
+
+## Slime
+- Slow Movement
+- Splits on death
+
 # Controls
 - W to climb (for the rogue)
 - A to move left
 - S to move down (through platforms)
 - D to move right
 - SPACE to jump
-- left click anywhere on screen to melee attack 
+- left click to attack
 - right click to use the special ability 
+- F to interact
 
 On screen controls display instead on mobile, and (in the future) can be manually displayed in settings
 
 On mobile the top left button only appears with the rogue and fighter, and is the ability button. To use the wizards ability tap anywhere close to the center of the screen. The right button on the left side is the melee attack, and the left button is the jump button.
-
-
-# Settings
-[TO BE COMPLETED]
 
 # Credits
 - Julia Abdel-Monem (UI/UX)
