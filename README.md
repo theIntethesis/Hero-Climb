@@ -1,18 +1,16 @@
 # Hero Climb
-
-# Game
  - 2d platformer
- - 3-4 classes of player character
+ - 3 playable classes
    - Fighter
    - Rogue
    - Wizard
  - Goal: Ascend a tower, using class abilities to ascend faster
  - Lava rises behind you
  - Enemies patrol
- - Collect coins
-   - Shop NPC, spend coins for benefits on the current climb.
-
-Here Ferris is making a change :)
+  - Skeleton
+  - Slime
+  - Goblin
+ - Collect coins and purchase upgrades!
 
 # Minimum Requirements
 - Windows 10, Linux, or Android
