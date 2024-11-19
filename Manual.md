@@ -62,8 +62,6 @@ The tower is procedurally generated based off of many different pieces.
 
 On screen controls display instead on mobile, and (in the future) can be manually displayed in settings
 
-On mobile the top left button only appears with the rogue and fighter, and is the ability button. To use the wizards ability tap anywhere close to the center of the screen. The right button on the left side is the melee attack, and the left button is the jump button.
-
 # Credits
 - Julia Abdel-Monem (UI/UX)
 - Jason Culbertson (Enemies)
