@@ -29,11 +29,6 @@ var r_end = r_interval+120
 # Define input sequences for different levels
 var level_sequences = {
 	1: [
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
 		DemoInput.new(0+r_end, "jump", true),   
 		DemoInput.new(60+r_end, "jump", false),  
 		DemoInput.new(70+r_end, "jump", true),    
@@ -42,11 +37,6 @@ var level_sequences = {
 		DemoInput.new(200+r_end, "jump", false),  
 	],
 	2: [
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
 		DemoInput.new(0+r_end, "move_right", true),
 		DemoInput.new(120+r_end, "move_right", false),
 		DemoInput.new(140+r_end, "jump", true),
@@ -62,11 +52,6 @@ var level_sequences = {
 		
 	],
 	3: [
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
 		DemoInput.new(0+r_end, "move_left", true),
 		DemoInput.new(30+r_end, "move_left", false),
 
@@ -87,12 +72,6 @@ var level_sequences = {
 
 	],
 	4: [
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
-
 		DemoInput.new(0+r_end, "move_left", true),
 		DemoInput.new(90+r_end, "move_left", false),
 		DemoInput.new(90+r_end, "jump", true),
@@ -114,11 +93,6 @@ var level_sequences = {
 
 	],
 	5: [
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
 		DemoInput.new(0+r_end, "jump", true),
 		DemoInput.new(60+r_end, "jump", false),
 		DemoInput.new(60+r_end, "move_right", true),
@@ -133,11 +107,6 @@ var level_sequences = {
 		DemoInput.new(290+r_end, "jump", false), 
 	],
 	6:[
-		DemoInput.new(r_start, "move_left", true), # Reseters
-		DemoInput.new(r_start + r_interval, "move_left", false),
-		DemoInput.new(r_start + r_interval, "move_right", true),
-		DemoInput.new(r_end, "move_right", false),
-
 		DemoInput.new(0+r_end, "move_right", true),
 		DemoInput.new(70+r_end, "jump", true),
 		DemoInput.new(70+r_end, "jump", false),
@@ -167,7 +136,6 @@ func _unhandled_input(event):
 		toggle_demo_mode()
 func _input(event):
 	if event is InputEventMouseButton:
-		print("demo deactivated")
 		is_demo_mode = false
 
 func _physics_process(_delta):
