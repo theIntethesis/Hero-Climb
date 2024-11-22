@@ -6,8 +6,6 @@ public class MonsterParamDictionary : Dictionary<EnemyController.MonsterTypes, M
 
 public abstract class GameDifficulty
 {
-    
-
     public readonly LevelParams levelParams;
     public readonly PlayerParamDictionary playerParams;
     public readonly ShopElementParamDictionary shopElementParams;

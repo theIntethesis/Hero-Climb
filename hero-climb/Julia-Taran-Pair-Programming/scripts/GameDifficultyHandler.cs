@@ -1,14 +1,7 @@
 public partial class GameDifficultyHandler
 {
-    public enum DifficultyEnum
-    {
-        BC_Mode,
-        Normal,
-        Hard,
-        Impossible
-    }
 
-    const DifficultyEnum DefaultDifficulty = DifficultyEnum.Normal;
+    const DifficultyClasses.ClassNames DefaultDifficulty = DifficultyClasses.ClassNames.Normal;
 
     private GameDifficultyHandler()
     {
@@ -35,20 +28,20 @@ public partial class GameDifficultyHandler
         return _CurrentDifficulty;
     }
 
-    public void SetCurrentDifficulty(DifficultyEnum val)
+    public void SetCurrentDifficulty(DifficultyClasses.ClassNames val)
     {
         switch (val)
         {
-            case DifficultyEnum.BC_Mode:
+            case DifficultyClasses.ClassNames.BC_Mode:
                 _CurrentDifficulty = new DifficultyClasses.BCMode();
                 break;
-            case DifficultyEnum.Normal:
+            case DifficultyClasses.ClassNames.Normal:
                 _CurrentDifficulty = new DifficultyClasses.Normal();
                 break;
-            case DifficultyEnum.Hard:
+            case DifficultyClasses.ClassNames.Hard:
                 _CurrentDifficulty = new DifficultyClasses.Hard();
                 break;
-            case DifficultyEnum.Impossible:
+            case DifficultyClasses.ClassNames.Impossible:
                 _CurrentDifficulty = new DifficultyClasses.Impossible();
                 break;
         }
