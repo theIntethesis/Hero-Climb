@@ -9,8 +9,6 @@ public partial class PlayerCameraStack : MenuStack
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
         ParentCam = parent;
-
-
     }
 
     public override void _Ready()

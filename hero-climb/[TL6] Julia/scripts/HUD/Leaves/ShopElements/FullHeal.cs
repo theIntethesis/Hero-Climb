@@ -5,14 +5,15 @@ public partial class FullHeal : ShopElement
 	static int Price;
 	static int Increase;
 
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.HealToFull();
+    }
+
+
 	public override int Buy(int Money)
 	{
 		int Output = base.Buy(Money);
-
-		if (Output < Money)
-		{
-			PlayerGlobal.HealToFull();
-		}
 
 		return Output;
 	}

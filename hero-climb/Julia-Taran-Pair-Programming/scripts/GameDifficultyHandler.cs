@@ -1,13 +1,13 @@
 public partial class GameDifficultyHandler : GameDifficultyInterface
 {
-    private GameDifficultyHandler()
-    {
-        SetCurrentDifficulty(new GameDifficultyStates.Normal());
-    }
-
     private GameDifficulty _CurrentDifficulty = null;
 
     private static GameDifficultyHandler _Instance = null;
+
+    private GameDifficultyHandler()
+    {
+        SetCurrentDifficulty(new GameDifficultyStates.BCMode());
+    }
 
     public static GameDifficultyHandler Instance() 
     {

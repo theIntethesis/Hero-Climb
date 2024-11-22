@@ -7,14 +7,14 @@ public partial class MaxHealthIncrease : ShopElement
 
 	static int HealthIncrease = 20;
 
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.GetSetPlayerMaxHealth(HealthIncrease);
+    }
+
 	public override int Buy(int Money)
 	{
 		int Output = base.Buy(Money);
-
-		if (Output < Money)
-		{
-			PlayerGlobal.GetSetPlayerMaxHealth(HealthIncrease);
-		}
 
 		return Output;
 	}

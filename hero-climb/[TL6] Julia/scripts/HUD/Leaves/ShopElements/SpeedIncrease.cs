@@ -9,14 +9,14 @@ public partial class SpeedIncrease : ShopElement
 
     static int SpdIncrease;
 
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.AffectBaseMovement(SpdIncrease);
+    }
+
     public override int Buy(int Money)
     {
         int Output = base.Buy(Money);
-
-        if (Output < Money)
-        {
-            PlayerGlobal.AffectBaseMovement(SpdIncrease);
-        }
 
         return Output;
     }

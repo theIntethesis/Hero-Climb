@@ -291,8 +291,9 @@ public partial class Controller : CharacterBody2D
 			throw new TypeUnloadedException();
 		}
 
-		MaxHealth = GameDifficultyHandler.Instance().CurrentDifficulty().playerParams[Class].BaseMaxHealth;
-		Damage =  GameDifficultyHandler.Instance().CurrentDifficulty().playerParams[Class].DamageModifier;
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
 
 	}
 	public override void _Ready()

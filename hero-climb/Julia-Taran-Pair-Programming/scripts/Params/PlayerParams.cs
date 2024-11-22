@@ -11,7 +11,7 @@ public partial class PlayerParams
 	public readonly int BaseDamage;
 	public readonly float BaseSpeed;
 
-	public PlayerParams(int baseMaxHealth = 100, int baseDamage = 50, float BaseSpeed = 100.0f)
+	public PlayerParams(int baseMaxHealth = 100, int baseDamage = 50, float baseSpeed = 100.0f)
 	{
 		BaseMaxHealth = baseMaxHealth;
 		BaseDamage = baseDamage;

@@ -7,14 +7,14 @@ public partial class DamageIncrease : ShopElement
 
 	static int DmgIncrease = 50;
 
-	public override int Buy(int Money)
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.AffectBaseDamage(DmgIncrease);
+    }
+
+    public override int Buy(int Money)
 	{
 		int Output = base.Buy(Money);
-
-		if (Output < Money)
-		{
-			PlayerGlobal.AffectBaseDamage(DmgIncrease);
-		}
 
 		return Output;
 	}
