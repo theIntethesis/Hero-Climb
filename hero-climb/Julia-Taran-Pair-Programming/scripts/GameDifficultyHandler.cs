@@ -1,8 +1,3 @@
-using System.Collections.Generic;
-using Godot;
-
-public class GameDifficultyDictionary : Dictionary<GameDifficultyHandler.DifficultyEnum, GameDifficulty> {}
-
 public partial class GameDifficultyHandler
 {
     public enum DifficultyEnum
@@ -13,156 +8,14 @@ public partial class GameDifficultyHandler
         Impossible
     }
 
-    static GameDifficultyDictionary GameDifficulties = new GameDifficultyDictionary
-    {
-        {DifficultyEnum.BC_Mode, new GameDifficulty(
-            LP:new LevelParams(), 
-            new ShopElementParamDictionary()
-            {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-            }, 
-            new PlayerParamDictionary()
-            {
-                {Controller.ClassType.Fighter, new PlayerParams()},
-                {Controller.ClassType.Wizard, new PlayerParams()},
-                {Controller.ClassType.Rogue, new PlayerParams()},
-            },
-            new MonsterParamDictionary()
-            {
-                {EnemyController.MonsterTypes.Goblin, new MonsterParams()},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
-                {EnemyController.MonsterTypes.Slime, new MonsterParams()},
-                {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
-        )},
-        {DifficultyEnum.Normal, new GameDifficulty(
-            LP:new LevelParams(), 
-            new ShopElementParamDictionary()
-            {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-            }, 
-            new PlayerParamDictionary()
-            {
-                {Controller.ClassType.Fighter, new PlayerParams()},
-                {Controller.ClassType.Wizard, new PlayerParams()},
-                {Controller.ClassType.Rogue, new PlayerParams()},
-            },
-            new MonsterParamDictionary()
-            {
-                {EnemyController.MonsterTypes.Goblin, new MonsterParams()},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
-                {EnemyController.MonsterTypes.Slime, new MonsterParams()},
-                {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
-        )},
-        {DifficultyEnum.Hard, new GameDifficulty(
-            LP:new LevelParams(), 
-            new ShopElementParamDictionary()
-            {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-            },  
-            new PlayerParamDictionary()
-            {
-                {Controller.ClassType.Fighter, new PlayerParams()},
-                {Controller.ClassType.Wizard, new PlayerParams()},
-                {Controller.ClassType.Rogue, new PlayerParams()},
-            },
-            new MonsterParamDictionary()
-            {
-                {EnemyController.MonsterTypes.Goblin, new MonsterParams()},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
-                {EnemyController.MonsterTypes.Slime, new MonsterParams()},
-                {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
-        )},
-        {DifficultyEnum.Impossible, new GameDifficulty(
-            LP:new LevelParams(), 
-            new ShopElementParamDictionary()
-            {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
-                )},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
-            }, 
-            new PlayerParamDictionary()
-            {
-                {Controller.ClassType.Fighter, new PlayerParams()},
-                {Controller.ClassType.Wizard, new PlayerParams()},
-                {Controller.ClassType.Rogue, new PlayerParams()},
-            },
-            new MonsterParamDictionary()
-            {
-                {EnemyController.MonsterTypes.Goblin, new MonsterParams()},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
-                {EnemyController.MonsterTypes.Slime, new MonsterParams()},
-                {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
-        )},
-    };
+    const DifficultyEnum DefaultDifficulty = DifficultyEnum.Normal;
 
-    private GameDifficultyHandler(DifficultyEnum defaultDifficulty)
+    private GameDifficultyHandler()
     {
-        SetCurrentDifficulty(defaultDifficulty);
+        SetCurrentDifficulty(DefaultDifficulty);
     }
 
-    private DifficultyEnum _CurrentDifficulty;
+    private GameDifficulty _CurrentDifficulty = null;
 
     private static GameDifficultyHandler _Instance = null;
 
@@ -170,7 +23,7 @@ public partial class GameDifficultyHandler
     {
         if (_Instance == null)
         {
-            _Instance = new GameDifficultyHandler(DifficultyEnum.Normal);
+            _Instance = new GameDifficultyHandler();
         }
 
         return _Instance;
@@ -179,11 +32,25 @@ public partial class GameDifficultyHandler
     public GameDifficulty CurrentDifficulty()
     {
 
-        return GameDifficulties[_CurrentDifficulty];
+        return _CurrentDifficulty;
     }
 
     public void SetCurrentDifficulty(DifficultyEnum val)
     {
-        _CurrentDifficulty = val;
+        switch (val)
+        {
+            case DifficultyEnum.BC_Mode:
+                _CurrentDifficulty = new DifficultyClasses.BCMode();
+                break;
+            case DifficultyEnum.Normal:
+                _CurrentDifficulty = new DifficultyClasses.Normal();
+                break;
+            case DifficultyEnum.Hard:
+                _CurrentDifficulty = new DifficultyClasses.Hard();
+                break;
+            case DifficultyEnum.Impossible:
+                _CurrentDifficulty = new DifficultyClasses.Impossible();
+                break;
+        }
     }
 }

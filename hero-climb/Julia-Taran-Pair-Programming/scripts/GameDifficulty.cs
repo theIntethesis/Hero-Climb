@@ -4,7 +4,7 @@ public class PlayerParamDictionary : Dictionary<Controller.ClassType, PlayerPara
 public class ShopElementParamDictionary : Dictionary<ShopElementFactory.ShopElementEnum, ShopElementParams> {}
 public class MonsterParamDictionary : Dictionary<EnemyController.MonsterTypes, MonsterParams> {} 
 
-public class GameDifficulty
+public abstract class GameDifficulty
 {
     
 
