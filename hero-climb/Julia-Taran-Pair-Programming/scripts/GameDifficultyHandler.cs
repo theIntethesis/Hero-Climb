@@ -19,10 +19,22 @@ public partial class GameDifficultyHandler : GodotObject
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams()},
+                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
+                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
+                    new int[]{15, 15, 15}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
+                    new int[]{10, 10, 10}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
             }, 
             new PlayerParamDictionary()
             {
@@ -42,10 +54,22 @@ public partial class GameDifficultyHandler : GodotObject
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams()},
+                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
+                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
+                    new int[]{15, 15, 15}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
+                    new int[]{10, 10, 10}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
             }, 
             new PlayerParamDictionary()
             {
@@ -65,11 +89,23 @@ public partial class GameDifficultyHandler : GodotObject
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams()},
-            }, 
+                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
+                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
+                    new int[]{15, 15, 15}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
+                    new int[]{10, 10, 10}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
+            },  
             new PlayerParamDictionary()
             {
                 {Controller.ClassType.Fighter, new PlayerParams()},
@@ -88,10 +124,22 @@ public partial class GameDifficultyHandler : GodotObject
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
-                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams()},
-                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams()},
+                {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
+                {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
+                    new int[]{15, 15, 15}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
+                    new int[]{10, 10, 10}, 
+                    new int[]{5, 5, 5}
+                )},
+                {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
+                    new int[]{5, 5, 5}, 
+                    new int[]{10, 5, 15}
+                )},
             }, 
             new PlayerParamDictionary()
             {
