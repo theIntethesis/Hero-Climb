@@ -21,8 +21,8 @@ public partial class MaxHealthIncrease : ShopElement
 
 	public static void Reset(int selector)
 	{
-		Price = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.MaxHealthIncrease].BaseCost[selector];
-		Increase = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.MaxHealthIncrease].CostIncrease[selector];
+		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.MaxHealthIncrease).BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.MaxHealthIncrease).CostIncrease[selector];
 	}
 
 	public MaxHealthIncrease() : base(Price, Increase)

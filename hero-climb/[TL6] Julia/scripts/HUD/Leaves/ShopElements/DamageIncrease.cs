@@ -24,8 +24,8 @@ public partial class DamageIncrease : ShopElement
 
 	public static void Reset(int selector)
 	{
-		Price = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.DamageIncrease].BaseCost[selector];
-		Increase = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.DamageIncrease].CostIncrease[selector];
+		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.DamageIncrease).BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.DamageIncrease).CostIncrease[selector];
 
 	}
 

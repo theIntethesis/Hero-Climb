@@ -28,8 +28,8 @@ public partial class SpeedIncrease : ShopElement
     {
         if (selector < ShopElementFactory.NumResetOptions)
         {
-		    Price = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.SpeedIncrease].BaseCost[selector];
-		    Increase = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.SpeedIncrease].CostIncrease[selector];
+		    Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).BaseCost[selector];
+		    Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).CostIncrease[selector];
             SpdIncrease = ClassSpdIncrease[selector];
         }
     }
