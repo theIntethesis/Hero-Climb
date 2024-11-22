@@ -39,7 +39,7 @@ public partial class GameDifficultyHandler : GodotObject
             }
         )},
         {DifficultyEnum.Easy, new GameDifficulty(
-            LP:new LevelParams(50), 
+            LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
@@ -62,7 +62,7 @@ public partial class GameDifficultyHandler : GodotObject
             }
         )},
         {DifficultyEnum.Difficult, new GameDifficulty(
-            LP:new LevelParams(50), 
+            LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
@@ -85,7 +85,7 @@ public partial class GameDifficultyHandler : GodotObject
             }
         )},
         {DifficultyEnum.Impossible, new GameDifficulty(
-            LP:new LevelParams(50), 
+            LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams()},
