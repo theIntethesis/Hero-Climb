@@ -2,9 +2,6 @@ using Godot;
 
 public partial class FullHeal : ShopElement
 {
-	static readonly int[] ClassBasePrice = {15, 15, 15};
-	static readonly int[] ClassPriceIncrease = {5, 5, 5};
-
 	static int Price;
 	static int Increase;
 

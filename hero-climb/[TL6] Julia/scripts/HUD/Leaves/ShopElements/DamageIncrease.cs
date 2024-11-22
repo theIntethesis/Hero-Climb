@@ -2,9 +2,6 @@ using Godot;
 
 public partial class DamageIncrease : ShopElement
 {
-	static readonly int[] ClassBasePrice = {5, 5, 5};
-	static readonly int[] ClassPriceIncrease = {10, 5, 15};
-
 	static int Price;
 	static int Increase;
 
