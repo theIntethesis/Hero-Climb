@@ -22,8 +22,9 @@ public partial class FullHeal : ShopElement
 
 	public static void Reset(int selector)
 	{
-		Price = ClassBasePrice[(int)selector - 1];
-		Increase = ClassPriceIncrease[(int)selector - 1];
+		Price = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.FullHeal].BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.FullHeal].CostIncrease[selector];
+
 	}
 
 	public FullHeal() : base(Price, Increase)

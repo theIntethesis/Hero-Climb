@@ -3,7 +3,7 @@ using Godot;
 
 public class GameDifficultyDictionary : Dictionary<GameDifficultyHandler.DifficultyEnum, GameDifficulty> {}
 
-public partial class GameDifficultyHandler : GodotObject
+public partial class GameDifficultyHandler
 {
     public enum DifficultyEnum
     {

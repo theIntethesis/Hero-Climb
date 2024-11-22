@@ -2,9 +2,6 @@ using Godot;
 
 public partial class MaxHealthIncrease : ShopElement
 {
-	static readonly int[] ClassBasePrice = {10, 10, 10};
-	static readonly int[] ClassPriceIncrease = {5, 5, 5};
-
 	static int Price;
 	static int Increase;
 
@@ -24,8 +21,8 @@ public partial class MaxHealthIncrease : ShopElement
 
 	public static void Reset(int selector)
 	{
-		Price = ClassBasePrice[selector - 1];
-		Increase = ClassPriceIncrease[selector - 1];
+		Price = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.MaxHealthIncrease].BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().CurrentDifficulty().shopElementParams[ShopElementFactory.ShopElementEnum.MaxHealthIncrease].CostIncrease[selector];
 	}
 
 	public MaxHealthIncrease() : base(Price, Increase)
