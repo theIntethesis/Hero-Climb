@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 
@@ -11,7 +12,15 @@ public partial class GameDifficultyHandler : GodotObject
         Impossible
     }
 
-    private GameDifficulty CurrentDifficulty;
+    static Dictionary<DifficultyEnum, GameDifficulty> GameDifficulties = new Dictionary<DifficultyEnum, GameDifficulty>
+    {
+        {DifficultyEnum.BC_Mode, new GameDifficulty(new LevelParams(50))},
+        {DifficultyEnum.Easy, new GameDifficulty()},
+        {DifficultyEnum.Difficult, new GameDifficulty()},
+        {DifficultyEnum.Impossible, new GameDifficulty()},
+    };
+
+    private DifficultyEnum CurrentDifficulty;
 
     private static GameDifficultyHandler _Instance = new GameDifficultyHandler();
 
@@ -22,10 +31,11 @@ public partial class GameDifficultyHandler : GodotObject
 
     public GameDifficulty GetCurrentDifficulty()
     {
-        return CurrentDifficulty;
+        return GameDifficulties[CurrentDifficulty];
     }
 
     public void SetCurrentDifficulty(DifficultyEnum val)
     {
+        CurrentDifficulty = val;
     }
 }
