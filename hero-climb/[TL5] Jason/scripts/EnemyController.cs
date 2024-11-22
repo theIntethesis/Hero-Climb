@@ -11,6 +11,15 @@ public partial class EnemyController : Node2D
 	public PackedScene GoblinScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/goblin.tscn");
 	public PackedScene ArrowScene = GD.Load<PackedScene>("res://[TL5] Jason/scenes/arrow.tscn");
 
+
+	public enum MonsterTypes
+	{
+		Zombie,
+		Skeleton,
+		Slime, 
+		Goblin
+	}
+
 	private void SpawnEnemies(int health = 100, int damage = 25)
 	{
 

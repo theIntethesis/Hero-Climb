@@ -13,6 +13,14 @@ public partial class ShopElementFactory : GodotObject
 		SpeedIncrease.Reset(selector);
 	}
 
+	public enum ShopElementEnum
+	{
+		MaxHealthIncrease,
+		FullHeal,
+		DamageIncrease,
+		SpeedIncrease
+	}
+
 	public static ShopElement[] GenerateElements()
 	{
 		ShopElement[] elements = new ShopElement[4];
