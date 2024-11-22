@@ -1,4 +1,4 @@
-namespace DifficultyClasses
+namespace GameDifficultyStates
 {
     public class BCMode : GameDifficulty
     {

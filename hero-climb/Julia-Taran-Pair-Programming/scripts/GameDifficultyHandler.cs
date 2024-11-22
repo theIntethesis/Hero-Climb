@@ -2,7 +2,7 @@ public partial class GameDifficultyHandler : GameDifficultyInterface
 {
     private GameDifficultyHandler()
     {
-        SetCurrentDifficulty(new DifficultyClasses.Normal());
+        SetCurrentDifficulty(new GameDifficultyStates.Normal());
     }
 
     private GameDifficulty _CurrentDifficulty = null;

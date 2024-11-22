@@ -4,6 +4,8 @@ public interface GameDifficultyInterface
 {
     public LevelParams LevelParams();
     public PlayerParams PlayerParams(Controller.ClassType classType);
+    public ShopElementParams ShopElementParams(ShopElementFactory.ShopElementEnum shopElementEnum);
+    public MonsterParams MonsterParams(EnemyController.MonsterTypes monsterType);
 }
 
 
