@@ -1,5 +1,7 @@
+
 namespace GameDifficultyStates
 {
+    
     public class BCMode : GameDifficulty
     {
         public BCMode() : base 

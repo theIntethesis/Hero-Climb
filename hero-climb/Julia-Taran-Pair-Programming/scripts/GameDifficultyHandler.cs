@@ -1,12 +1,25 @@
+using GameDifficultyStates;
+using Godot;
+
 public partial class GameDifficultyHandler : GameDifficultyInterface
 {
+    public static readonly string[] GameDifficultyNames = {"BC Mode", "Normal", "Hard", "Impossible"};
+
+    public enum GameDifficultyEnum
+    {
+        BCMode,
+        Normal,
+        Hard,
+        Impossible
+    }
+
     private GameDifficulty _CurrentDifficulty = null;
 
     private static GameDifficultyHandler _Instance = null;
 
     private GameDifficultyHandler()
     {
-        SetCurrentDifficulty(new GameDifficultyStates.BCMode());
+        SetCurrentDifficulty(new GameDifficultyStates.Normal());
     }
 
     public static GameDifficultyHandler Instance() 
@@ -28,6 +41,28 @@ public partial class GameDifficultyHandler : GameDifficultyInterface
     public void SetCurrentDifficulty(GameDifficulty difficulty)
     {
         _CurrentDifficulty = difficulty;
+    }
+
+    public void SetCurrentDifficulty(GameDifficultyEnum difficultyEnum)
+    {
+        switch (difficultyEnum)
+        {
+            case GameDifficultyEnum.BCMode:
+                SetCurrentDifficulty(new GameDifficultyStates.BCMode());
+                break;
+            case GameDifficultyEnum.Normal:
+                SetCurrentDifficulty(new GameDifficultyStates.Normal());
+                break;
+            case GameDifficultyEnum.Hard:
+                SetCurrentDifficulty(new GameDifficultyStates.Hard());
+                break;
+            case GameDifficultyEnum.Impossible:
+                SetCurrentDifficulty(new GameDifficultyStates.Impossible());
+                break;
+            default:
+                GD.PrintErr("Unknown Game Difficulty");
+                throw new System.Exception("Unknown Game Difficulty");
+        }
     }
 
     public LevelParams LevelParams()

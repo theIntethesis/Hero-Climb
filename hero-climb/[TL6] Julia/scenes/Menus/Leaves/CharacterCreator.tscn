@@ -80,6 +80,10 @@ size_flags_horizontal = 3
 toggle_mode = true
 text = "Rogue"
 
+[node name="DifficultyDropdown" type="OptionButton" parent="VFlowContainer"]
+layout_mode = 2
+allow_reselect = true
+
 [node name="BackButton" type="Button" parent="VFlowContainer"]
 layout_mode = 2
 text = "Back"

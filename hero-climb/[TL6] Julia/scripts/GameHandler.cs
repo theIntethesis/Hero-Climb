@@ -6,7 +6,7 @@ public partial class GameHandler : Node
 	
 	static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
 	
-	private Node ActiveGame;
+	private Node ActiveScene;
 
 	private static GameHandler _Instance = null;
 
@@ -20,28 +20,28 @@ public partial class GameHandler : Node
 		StopGame();
 		GetTree().Paused = false;
 
-		ActiveGame = InitialGameScene.Instantiate();
+		ActiveScene = InitialGameScene.Instantiate();
 
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
 
-		ActiveGame.AddChild(Player);
-		ActiveGame.MoveChild(Player, 2);
+		ActiveScene.AddChild(Player);
+		ActiveScene.MoveChild(Player, 2);
 		
 		ShopElementFactory.Reset((int)classType);
 		PlayerGlobal.Money = 0;
 		PlayerGlobal.GetSetScore(-1);
 		
-		GetTree().Root.AddChild(ActiveGame);
+		GetTree().Root.AddChild(ActiveScene);
 
 		Input.EmulateMouseFromTouch = false;
 	}
 
 	public void StopGame()
 	{
-		if (ActiveGame != null)
+		if (ActiveScene != null)
 		{
-			ActiveGame.QueueFree();
-			ActiveGame = null;
+			ActiveScene.QueueFree();
+			ActiveScene = null;
 			Input.EmulateMouseFromTouch = true;
 			PlayerGlobal.SetPlayer(null);
 		}
@@ -57,9 +57,9 @@ public partial class GameHandler : Node
 
 	public void LoadMainMenu()
 	{
-		MenuElement mainMenu = MenuFactory.MainMenu();
+		ActiveScene = MenuFactory.MainMenu();
 		
-		if (mainMenu is Node node)
+		if (ActiveScene is Node node)
 		{
 			GetTree().Root.CallDeferred("add_child", node);
 		}   

@@ -284,17 +284,17 @@ public partial class Controller : CharacterBody2D
 	protected virtual void SetupClassScript()
 	{
 		if (Class != 0)
+		{
 			SoundController.SetHero(Class);
+			MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
+			Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
+			Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
+		}
 		else
 		{
 			GD.PrintErr("Type Not Set");
 			throw new TypeUnloadedException();
 		}
-
-		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
-		Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
-		Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
-
 	}
 	public override void _Ready()
 	{
