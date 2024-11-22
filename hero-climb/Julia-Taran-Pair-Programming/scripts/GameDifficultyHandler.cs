@@ -8,8 +8,8 @@ public partial class GameDifficultyHandler
     public enum DifficultyEnum
     {
         BC_Mode,
-        Easy,
-        Difficult,
+        Normal,
+        Hard,
         Impossible
     }
 
@@ -50,7 +50,7 @@ public partial class GameDifficultyHandler
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
             }
         )},
-        {DifficultyEnum.Easy, new GameDifficulty(
+        {DifficultyEnum.Normal, new GameDifficulty(
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
@@ -85,7 +85,7 @@ public partial class GameDifficultyHandler
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
             }
         )},
-        {DifficultyEnum.Difficult, new GameDifficulty(
+        {DifficultyEnum.Hard, new GameDifficulty(
             LP:new LevelParams(), 
             new ShopElementParamDictionary()
             {
@@ -157,17 +157,28 @@ public partial class GameDifficultyHandler
         )},
     };
 
+    private GameDifficultyHandler(DifficultyEnum defaultDifficulty)
+    {
+        SetCurrentDifficulty(defaultDifficulty);
+    }
+
     private DifficultyEnum _CurrentDifficulty;
 
-    private static GameDifficultyHandler _Instance = new GameDifficultyHandler();
+    private static GameDifficultyHandler _Instance = null;
 
     public static GameDifficultyHandler Instance() 
     {
+        if (_Instance == null)
+        {
+            _Instance = new GameDifficultyHandler(DifficultyEnum.Normal);
+        }
+
         return _Instance;
     }
 
     public GameDifficulty CurrentDifficulty()
     {
+
         return GameDifficulties[_CurrentDifficulty];
     }
 
