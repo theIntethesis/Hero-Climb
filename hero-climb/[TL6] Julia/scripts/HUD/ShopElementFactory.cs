@@ -3,10 +3,9 @@ using Godot;
 
 public partial class ShopElementFactory : GodotObject
 {
-	public const int NumResetOptions = 3;
-
-	public static void Reset(int selector)
+	public static void Reset(Controller.ClassType selector)
 	{
+
 		MaxHealthIncrease.Reset(selector);
 		FullHeal.Reset(selector);
 		DamageIncrease.Reset(selector);

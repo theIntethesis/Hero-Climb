@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class SpeedIncrease : ShopElement
@@ -5,7 +6,11 @@ public partial class SpeedIncrease : ShopElement
     static int Price;
     static int Increase;
 
-    static int[] ClassSpdIncrease = {15, 20, 5};
+    static Dictionary<Controller.ClassType, int> ClassSpdIncrease = new Dictionary<Controller.ClassType, int>(){
+        {Controller.ClassType.Fighter, 15}, 
+        {Controller.ClassType.Wizard, 20}, 
+        {Controller.ClassType.Rogue, 5}
+    };
 
     static int SpdIncrease;
 
@@ -21,14 +26,11 @@ public partial class SpeedIncrease : ShopElement
         return Output;
     }
 
-    public static void Reset(int selector)
+    public static void Reset(Controller.ClassType selector)
     {
-        if (selector < ShopElementFactory.NumResetOptions)
-        {
-		    Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).BaseCost[selector];
-		    Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).CostIncrease[selector];
-            SpdIncrease = ClassSpdIncrease[selector];
-        }
+        Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).BaseCost[selector];
+        Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).CostIncrease[selector];
+        SpdIncrease = ClassSpdIncrease[selector];
     }
 
     public SpeedIncrease() : base(Price, Increase)

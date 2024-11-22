@@ -22,18 +22,28 @@ public partial class GameHandler : Node
 
 		GameDifficultyHandler.Instance().SetCurrentDifficulty(difficultyEnum);
 
+		GD.Print("Set Difficulty");
+
 		ActiveScene = InitialGameScene.Instantiate();
 
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
+		ShopElementFactory.Reset(classType);
+
+		GD.Print("Made Character");
+		
+		GetTree().Root.AddChild(ActiveScene);
+
+		GD.Print("Added ActiveScene");
 
 		ActiveScene.AddChild(Player);
 		ActiveScene.MoveChild(Player, 2);
+
+		GD.Print("Added Character");
+
 		
-		ShopElementFactory.Reset((int)classType);
 		PlayerGlobal.Money = 0;
 		PlayerGlobal.GetSetScore(-1);
 		
-		GetTree().Root.AddChild(ActiveScene);
 
 		Input.EmulateMouseFromTouch = false;
 	}

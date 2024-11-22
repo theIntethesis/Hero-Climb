@@ -19,7 +19,7 @@ public partial class MaxHealthIncrease : ShopElement
 		return Output;
 	}
 
-	public static void Reset(int selector)
+	public static void Reset(Controller.ClassType selector)
 	{
 		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.MaxHealthIncrease).BaseCost[selector];
 		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.MaxHealthIncrease).CostIncrease[selector];

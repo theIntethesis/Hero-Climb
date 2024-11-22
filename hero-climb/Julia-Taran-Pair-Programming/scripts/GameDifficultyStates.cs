@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 
 namespace GameDifficultyStates
 {
@@ -10,20 +11,56 @@ namespace GameDifficultyStates
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{0, 0, 0}, 
-                    new int[]{0, 0, 0}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{0, 0, 0}, 
-                    new int[]{0, 0, 0}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{0, 0, 0}, 
-                    new int[]{0, 0, 0}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{0, 0, 0}, 
-                    new int[]{0, 0, 0}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
             }, 
             new PlayerParamDictionary()
@@ -50,20 +87,56 @@ namespace GameDifficultyStates
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
             }, 
             new PlayerParamDictionary()
@@ -90,21 +163,57 @@ namespace GameDifficultyStates
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
-                )},
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
+                )}, 
             }, 
             new PlayerParamDictionary()
             {
@@ -130,20 +239,56 @@ namespace GameDifficultyStates
             new ShopElementParamDictionary()
             {
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
-                    new int[]{15, 15, 15}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
-                    new int[]{10, 10, 10}, 
-                    new int[]{5, 5, 5}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
                 {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
-                    new int[]{5, 5, 5}, 
-                    new int[]{10, 5, 15}
+                    new Dictionary<Controller.ClassType, int>()
+                    {
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    },
+                    new Dictionary<Controller.ClassType, int>(){
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard, 0},
+                        {Controller.ClassType.Rogue, 0}
+                    }
                 )},
             }, 
             new PlayerParamDictionary()

@@ -18,7 +18,7 @@ public partial class FullHeal : ShopElement
 		return Output;
 	}
 
-	public static void Reset(int selector)
+	public static void Reset(Controller.ClassType selector)
 	{
 		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.FullHeal).BaseCost[selector];
 		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.FullHeal).CostIncrease[selector];
