@@ -290,6 +290,10 @@ public partial class Controller : CharacterBody2D
 			GD.PrintErr("Type Not Set");
 			throw new TypeUnloadedException();
 		}
+
+		MaxHealth = GameDifficultyHandler.Instance().CurrentDifficulty().playerParams[Class].BaseMaxHealth;
+		Damage =  GameDifficultyHandler.Instance().CurrentDifficulty().playerParams[Class].DamageModifier;
+
 	}
 	public override void _Ready()
 	{
