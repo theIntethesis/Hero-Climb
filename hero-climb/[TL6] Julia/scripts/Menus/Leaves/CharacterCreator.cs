@@ -31,19 +31,9 @@ public partial class CharacterCreator : MenuLeaf
 
 		GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
 		{
-			try 
-			{
-				GameDifficultyHandler.Instance().SetCurrentDifficulty((GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected);
-				MostRecentClass = CurrentType;
-				MostRecentDifficulty = (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected;
-			
-
-				GameHandler.Instance().StartGame(CurrentType);
-			}
-			catch
-			{
-
-			}
+			MostRecentClass = CurrentType;
+			MostRecentDifficulty = (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected;
+			GameHandler.Instance().StartGame(CurrentType, (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected);
 
 		};
 

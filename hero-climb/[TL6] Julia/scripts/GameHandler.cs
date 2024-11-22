@@ -15,10 +15,12 @@ public partial class GameHandler : Node
 		return _Instance;
 	}
 
-	public void StartGame(Controller.ClassType classType)
+	public void StartGame(Controller.ClassType classType, GameDifficultyHandler.GameDifficultyEnum difficultyEnum)
 	{
 		StopGame();
 		GetTree().Paused = false;
+
+		GameDifficultyHandler.Instance().SetCurrentDifficulty(difficultyEnum);
 
 		ActiveScene = InitialGameScene.Instantiate();
 

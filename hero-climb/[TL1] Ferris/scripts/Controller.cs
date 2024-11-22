@@ -286,9 +286,9 @@ public partial class Controller : CharacterBody2D
 		if (Class != 0)
 		{
 			SoundController.SetHero(Class);
-			MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
-			Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
-			Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
+			// MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
+			// Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
+			// Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
 		}
 		else
 		{
