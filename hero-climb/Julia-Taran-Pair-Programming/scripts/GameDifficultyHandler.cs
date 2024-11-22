@@ -1,11 +1,8 @@
-public partial class GameDifficultyHandler
+public partial class GameDifficultyHandler : GameDifficultyInterface
 {
-
-    const DifficultyClasses.ClassNames DefaultDifficulty = DifficultyClasses.ClassNames.Normal;
-
     private GameDifficultyHandler()
     {
-        SetCurrentDifficulty(DefaultDifficulty);
+        SetCurrentDifficulty(new DifficultyClasses.Normal());
     }
 
     private GameDifficulty _CurrentDifficulty = null;
@@ -28,22 +25,28 @@ public partial class GameDifficultyHandler
         return _CurrentDifficulty;
     }
 
-    public void SetCurrentDifficulty(DifficultyClasses.ClassNames val)
+    public void SetCurrentDifficulty(GameDifficulty difficulty)
     {
-        switch (val)
-        {
-            case DifficultyClasses.ClassNames.BC_Mode:
-                _CurrentDifficulty = new DifficultyClasses.BCMode();
-                break;
-            case DifficultyClasses.ClassNames.Normal:
-                _CurrentDifficulty = new DifficultyClasses.Normal();
-                break;
-            case DifficultyClasses.ClassNames.Hard:
-                _CurrentDifficulty = new DifficultyClasses.Hard();
-                break;
-            case DifficultyClasses.ClassNames.Impossible:
-                _CurrentDifficulty = new DifficultyClasses.Impossible();
-                break;
-        }
+        _CurrentDifficulty = difficulty;
+    }
+
+    public LevelParams LevelParams()
+    {
+        return _CurrentDifficulty.LevelParams();
+    }
+
+    public PlayerParams PlayerParams(Controller.ClassType classType)
+    {
+        return _CurrentDifficulty.PlayerParams(classType);
+    }
+
+    public ShopElementParams ShopElementParams(ShopElementFactory.ShopElementEnum shopElementEnum)
+    {
+        return _CurrentDifficulty.ShopElementParams(shopElementEnum);
+    }
+
+    public MonsterParams MonsterParams(EnemyController.MonsterTypes monsterType)
+    {
+        return _CurrentDifficulty.MonsterParams(monsterType);
     }
 }

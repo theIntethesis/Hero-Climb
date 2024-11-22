@@ -1,14 +1,5 @@
 namespace DifficultyClasses
 {
-    public enum ClassNames
-    {
-        BC_Mode,
-        Normal,
-        Hard,
-        Impossible
-    }
-
-
     public class BCMode : GameDifficulty
     {
         public BCMode() : base 
