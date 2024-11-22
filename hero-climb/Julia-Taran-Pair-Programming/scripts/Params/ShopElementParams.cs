@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using Godot;
 
 public partial class ShopElementParams
@@ -10,5 +11,21 @@ public partial class ShopElementParams
 	{
 		BaseCost = baseCost;
 		CostIncrease = costIncrease;
+		Validate();
+	}
+
+    void Validate()
+    {
+        foreach (Controller.ClassType key in Enum.GetValues<Controller.ClassType>())
+        {
+            if (BaseCost.ContainsKey(key) == false)
+            {
+                throw new Exception("ShopElementParams is incorrectly setup - BaseCost");
+            }
+			if (CostIncrease.ContainsKey(key) == false)
+            {
+                throw new Exception("ShopElementParams is incorrectly setup - CostIncrease");
+            }
+        }
 	}
 }

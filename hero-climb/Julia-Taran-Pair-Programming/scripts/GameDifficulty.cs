@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Godot;
 
 public interface GameDifficultyInterface
 {
@@ -20,17 +22,47 @@ public abstract class GameDifficulty : GameDifficultyInterface
     private readonly ShopElementParamDictionary _ShopElementParams;
     private readonly MonsterParamDictionary _MonsterParams;
 
+    void Validate()
+    {
+        foreach (Controller.ClassType key in Enum.GetValues<Controller.ClassType>())
+        {
+            if (_PlayerParams.ContainsKey(key) == false)
+            {
+                throw new Exception("Difficulty is incorrectly setup - playerParams");
+            }
+        }
+
+        foreach (ShopElementFactory.ShopElementEnum key in Enum.GetValues<ShopElementFactory.ShopElementEnum>())
+        {
+            if (_ShopElementParams.ContainsKey(key) == false)
+            {
+                throw new Exception("Difficulty is incorrectly setup - shopElementParams");
+            }
+        }
+
+        foreach (EnemyController.MonsterTypes key in Enum.GetValues<EnemyController.MonsterTypes>())
+        {
+            if (_MonsterParams.ContainsKey(key) == false)
+            {
+                throw new Exception("Difficulty is incorrectly setup - monsterParams");
+            }
+        }
+    }
+    
+
     public GameDifficulty(
         LevelParams levelParams, 
         ShopElementParamDictionary shopElementParams,
         PlayerParamDictionary playerParams,
-        MonsterParamDictionary monsterParamss
+        MonsterParamDictionary monsterParams
     )
     {
         _LevelParams = levelParams;
         _ShopElementParams = shopElementParams;
         _PlayerParams = playerParams;
-        _MonsterParams = monsterParamss;
+        _MonsterParams = monsterParams;
+
+        Validate();
     }
 
     public LevelParams LevelParams()
