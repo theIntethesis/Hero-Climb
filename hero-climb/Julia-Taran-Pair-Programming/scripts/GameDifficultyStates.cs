@@ -75,7 +75,8 @@ namespace GameDifficultyStates
                 {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
                 {EnemyController.MonsterTypes.Slime, new MonsterParams()},
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
+            },
+            0.5f
         ) {}
     }
 
@@ -151,7 +152,8 @@ namespace GameDifficultyStates
                 {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
                 {EnemyController.MonsterTypes.Slime, new MonsterParams()},
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
+            },
+            1.0f
         ) {}
     }
 
@@ -227,7 +229,8 @@ namespace GameDifficultyStates
                 {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
                 {EnemyController.MonsterTypes.Slime, new MonsterParams()},
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
+            },
+            1.5f
         ) {}
     }
 
@@ -303,7 +306,8 @@ namespace GameDifficultyStates
                 {EnemyController.MonsterTypes.Skeleton, new MonsterParams()},
                 {EnemyController.MonsterTypes.Slime, new MonsterParams()},
                 {EnemyController.MonsterTypes.Zombie, new MonsterParams()},
-            }
+            },
+            2f
         ) {}
     }
 }

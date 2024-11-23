@@ -11,7 +11,12 @@ public partial class PlayerGlobal : Node
 	private static int Score = 0;
 	public static int Money
 	{
-		set { int newM = _Money - value; _Money = value; GetSetScore(newM); Player.EmitSignal(Controller.SignalName.KaChing); }
+		set { 
+			int delta =  value - _Money; 
+			_Money = value; 
+			GetSetScore(delta); 
+			Player.EmitSignal(Controller.SignalName.KaChing); 
+		}
 		get { return _Money; }
 	}
 	public static bool InShopArea = false;
@@ -35,7 +40,8 @@ public partial class PlayerGlobal : Node
 			Score = 0;
 			amount = 0;
 		}
-		GD.Print($"Score: {Score += amount}");
+		// GD.Print($"Score: {Score += amount}");
+		Score += amount;
 		return Score;
 	}
 	public static int AffectPlayerHealth(int amount = 0)
@@ -65,7 +71,7 @@ public partial class PlayerGlobal : Node
 	public static int GetSetMoney(int amount = 0)
 	{
 		CheckPlayerSet();
-		Player.EmitSignal(Controller.SignalName.KaChing);
+		// Player.EmitSignal(Controller.SignalName.KaChing);
 		return Money += amount;
 	}
 	public static int AffectBaseDamage(int amount = 0)

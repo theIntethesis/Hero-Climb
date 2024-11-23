@@ -1,4 +1,3 @@
-using GameDifficultyStates;
 using Godot;
 
 public partial class GameDifficultyHandler : GameDifficultyInterface
@@ -83,5 +82,10 @@ public partial class GameDifficultyHandler : GameDifficultyInterface
     public MonsterParams MonsterParams(EnemyController.MonsterTypes monsterType)
     {
         return _CurrentDifficulty.MonsterParams(monsterType);
+    }
+
+    public float ScoreMultiplier()
+    {
+        return _CurrentDifficulty.ScoreMultiplier();
     }
 }

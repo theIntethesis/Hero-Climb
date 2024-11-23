@@ -8,6 +8,8 @@ public interface GameDifficultyInterface
     public PlayerParams PlayerParams(Controller.ClassType classType);
     public ShopElementParams ShopElementParams(ShopElementFactory.ShopElementEnum shopElementEnum);
     public MonsterParams MonsterParams(EnemyController.MonsterTypes monsterType);
+
+    public float ScoreMultiplier();
 }
 
 
@@ -21,6 +23,8 @@ public abstract class GameDifficulty : GameDifficultyInterface
     private readonly PlayerParamDictionary _PlayerParams;
     private readonly ShopElementParamDictionary _ShopElementParams;
     private readonly MonsterParamDictionary _MonsterParams;
+
+    private readonly float _ScoreMultiplier;
 
     void Validate()
     {
@@ -54,13 +58,15 @@ public abstract class GameDifficulty : GameDifficultyInterface
         LevelParams levelParams, 
         ShopElementParamDictionary shopElementParams,
         PlayerParamDictionary playerParams,
-        MonsterParamDictionary monsterParams
+        MonsterParamDictionary monsterParams,
+        float scoreMultiplier
     )
     {
         _LevelParams = levelParams;
         _ShopElementParams = shopElementParams;
         _PlayerParams = playerParams;
         _MonsterParams = monsterParams;
+        _ScoreMultiplier = scoreMultiplier;
 
         Validate();
     }
@@ -83,5 +89,10 @@ public abstract class GameDifficulty : GameDifficultyInterface
     public MonsterParams MonsterParams(EnemyController.MonsterTypes monsterType)
     {
         return _MonsterParams[monsterType];
+    }
+
+    public float ScoreMultiplier()
+    {
+        return _ScoreMultiplier;
     }
 }

@@ -181,6 +181,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		if (IsDead){
 			EmitSignal(SignalName.OnDeath);
+			
 			QueueFree();
 		} else if (IsIdle) {
 			sprites.Play("stand");
