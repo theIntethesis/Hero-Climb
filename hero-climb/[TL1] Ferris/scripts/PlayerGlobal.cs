@@ -79,6 +79,7 @@ public partial class PlayerGlobal : Node
 		return (int)(Player.Speed += amount);
 	}
 	public static void SetPlayer(Controller p) {  Player = p; }
+	public static Controller GetPlayer() {  return Player; }
 	public static void SetCharacterType(Controller.ClassType cType)
 	{
 		Player.SetClass(cType);

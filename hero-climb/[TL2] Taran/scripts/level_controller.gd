@@ -6,6 +6,7 @@ var enemy_damage = 25
 var current_level = 1
 var levels_climbed = 0
 var enemy_array = PackedVector2Array()
+
 func _ready() -> void:
 	var i = 0
 	while(i<5):
@@ -34,8 +35,7 @@ func add_collectable(point : Vector2):
 	%PickupCreator.InstantiateCollectable(point, 'r')
 
 func add_enemy(point : Vector2):
-	if randi_range(0,2) == 0:
-		enemy_array.append_array(PackedVector2Array([point]))
+	enemy_array.append_array(PackedVector2Array([point]))
 
 func floor_climbed(area : Area2D):
 	print("Current floor: "+str(current_level))

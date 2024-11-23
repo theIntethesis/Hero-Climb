@@ -30,6 +30,11 @@ public partial class EnemyController : Node2D
 		int enemyType;
 		foreach (var spawnPoint in spawns)
 		{
+			// Taran Pair Programming
+			uint RandomInt = GD.Randi()%100;
+			int SpawnChance = GameDifficultyHandler.Instance().LevelParams().EnemyChance;
+			if( RandomInt >= SpawnChance ){continue;}
+
 			enemyType = rand.Next(4);
 			switch (enemyType)
 			{
