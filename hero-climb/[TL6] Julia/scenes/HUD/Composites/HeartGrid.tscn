@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://cr461cewy2yln"]
 
-[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Composites/PlayerCameraStack.cs" id="1_acj0m"]
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Composites/HeartGrid.cs" id="1_dixrc"]
 
 [node name="Control" type="Control"]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_acj0m")
+script = ExtResource("1_dixrc")
 
 [node name="HeartGrid" type="GridContainer" parent="."]
 layout_mode = 0
+columns = 5

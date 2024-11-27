@@ -7,6 +7,13 @@ using Godot;
 
 public partial class Rogue : Controller
 {
+	public Rogue() 
+	{ 
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(ClassType.Rogue).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(ClassType.Rogue).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(ClassType.Rogue).BaseSpeed;
+	}
+	
 	protected override void SetupClassScript()
 	{
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));

@@ -11,6 +11,13 @@ public partial class Wizard : Controller
 	private bool fireballsummon = false;
 	private Timer FireballSummon = new();
 
+	public Wizard() 
+	{ 
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseSpeed;
+	}
+
 	protected override void SetupClassScript()
 	{
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));

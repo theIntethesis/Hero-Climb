@@ -9,7 +9,12 @@ public partial class Fighter : Controller
 {
 	private float BashSpeed = 400;
 	Timer bashTimer = new();
-	public Fighter() { }
+	public Fighter() 
+	{ 
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseSpeed;
+	}
 	protected override void SetupClassScript()
 	{
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterSprite.tscn").Instantiate() as AnimatedSprite2D;
