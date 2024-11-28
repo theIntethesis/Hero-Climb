@@ -13,9 +13,9 @@ You loose health if you are hit by an enemy, and you can gain health by collecti
 ## Coins
 | Coin | Value |
 | --- | --- |
-| ![[Manual_Images/CopperCoin.png]] | 1 |
-| ![[Manual_Images/SilverCoin.png]] | 5 |
-| ![[Manual_Images/GoldCoin.png]] | 10 |
+| ![](Manual_Images/CopperCoin.png) | 1 |
+| ![](Manual_Images/SilverCoin.png) | 5 |
+| ![](Manual_Images/GoldCoin.png) | 10 |
 
 Coins can be spent at the shop
 
