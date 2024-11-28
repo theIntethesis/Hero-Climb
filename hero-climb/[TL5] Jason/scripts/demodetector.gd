@@ -4,7 +4,7 @@ signal inactivity_detected
 signal activity_detected
 
 var inactivity_timer: float = 0.0
-const INACTIVITY_THRESHOLD: float = 5.0  # Seconds before demo mode
+const INACTIVITY_THRESHOLD: float = 500.0  # Seconds before demo mode
 var demo_mode_active: bool = false
 
 # List of actions to monitor - add your specific action names here

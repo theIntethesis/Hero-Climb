@@ -43,7 +43,10 @@ public partial class HeartGrid : MenuCompositeBase
 			Push(HUDFactory.Heart());
 		}
 
-		CustomMinimumSize = new Vector2(Hearts.Columns * 16, MathF.Ceiling((float)Hearts.GetChildCount() / (float)Hearts.Columns) * 16);
+		CustomMinimumSize = new Vector2(
+			Hearts.Columns * Heart.HEART_SIZE * ((Control)GetContainer()).Scale.X, 
+			MathF.Ceiling((float)Hearts.GetChildCount() / (float)Hearts.Columns) * Heart.HEART_SIZE * ((Control)GetContainer()).Scale.Y
+		);
 
 	}
 

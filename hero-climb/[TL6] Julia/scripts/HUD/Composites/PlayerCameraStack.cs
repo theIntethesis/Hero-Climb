@@ -8,12 +8,15 @@ public partial class PlayerCameraStack : MenuStack
     public PlayerCameraStack(PlayerCamera parent) : base()
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
+        GD.Print("Here");
+
         ParentCam = parent;
     }
 
     public override void _Ready()
     {
         HUD = HUDFactory.CharacterHUD(PlayerGlobal.GetSetPlayerMaxHealth(), PlayerGlobal.Money);
+       
         Push(HUD);
     }
 

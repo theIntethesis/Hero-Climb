@@ -89,7 +89,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p3p3w")
 }],
-"loop": true,
+"loop": false,
 "name": &"empty",
 "speed": 5.0
 }, {
@@ -100,7 +100,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_x4r57")
 }],
-"loop": true,
+"loop": false,
 "name": &"empty-quarter",
 "speed": 5.0
 }, {
@@ -108,7 +108,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gmpi8")
 }],
-"loop": true,
+"loop": false,
 "name": &"full",
 "speed": 5.0
 }, {
@@ -119,7 +119,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rroeu")
 }],
-"loop": true,
+"loop": false,
 "name": &"full-three",
 "speed": 5.0
 }, {
@@ -130,7 +130,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_obs4y")
 }],
-"loop": true,
+"loop": false,
 "name": &"half-quarter",
 "speed": 5.0
 }, {
@@ -141,7 +141,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bsf3o")
 }],
-"loop": true,
+"loop": false,
 "name": &"half-three",
 "speed": 5.0
 }, {
@@ -158,7 +158,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uem5o")
 }],
-"loop": true,
+"loop": false,
 "name": &"quarter-empty",
 "speed": 5.0
 }, {
@@ -169,7 +169,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bgyyt")
 }],
-"loop": true,
+"loop": false,
 "name": &"quarter-half",
 "speed": 5.0
 }, {
@@ -180,7 +180,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_m0ksf")
 }],
-"loop": true,
+"loop": false,
 "name": &"three-full",
 "speed": 5.0
 }, {
@@ -191,21 +191,21 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c3ikc")
 }],
-"loop": true,
+"loop": false,
 "name": &"three-half",
 "speed": 5.0
 }]
 
 [node name="Control" type="Control"]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_right = 32.0
+offset_bottom = 32.0
 script = ExtResource("1_fbykv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pnu4r")
-animation = &"empty"
+animation = &"three-half"
 autoplay = "empty"
 centered = false
