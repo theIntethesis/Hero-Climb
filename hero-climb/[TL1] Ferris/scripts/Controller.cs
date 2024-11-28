@@ -48,7 +48,7 @@ public partial class Controller : CharacterBody2D
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
-	protected PlayerSoundController SoundController;
+	protected PlayerSoundController SoundController = null;
 	protected Timer iFrames = new();
 	#region Get / Set Methods
 	public int getHealth() { return Health; }
@@ -283,6 +283,7 @@ public partial class Controller : CharacterBody2D
 	}
 	protected virtual void SetupClassScript()
 	{
+		GD.Print(Class);
 		if (Class != 0)
 		{
 			SoundController.SetHero(Class);

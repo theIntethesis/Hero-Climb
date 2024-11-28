@@ -64,8 +64,8 @@ public partial class PlayerGlobal : Node
 		if (amount > 0)
 		{
 			Player.EmitSignal(Controller.SignalName.PlayerMaxHealthChange, amount);
+			Player.affectHealth(amount);
 		}
-		Player.affectHealth(amount);
 		return Player.MaxHealth;
 	}
 	public static int GetSetMoney(int amount = 0)
