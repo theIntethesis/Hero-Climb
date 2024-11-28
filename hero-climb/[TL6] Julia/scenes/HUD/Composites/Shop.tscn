@@ -4,11 +4,14 @@
 
 [node name="ShopContainer" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_pnpkh")
 
 [node name="Shop" type="PanelContainer" parent="."]
@@ -18,10 +21,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -145.5
-offset_top = -85.5
-offset_right = 145.5
-offset_bottom = 85.5
+offset_left = -150.0
+offset_top = -82.5
+offset_right = 150.0
+offset_bottom = 82.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -29,18 +32,11 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="Shop/BoundingBox"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.4
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = -45.0
-offset_right = 126.0
-offset_bottom = 45.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 275.0
+offset_bottom = 115.0
 columns = 4
 
 [node name="Close" type="Button" parent="Shop/BoundingBox"]

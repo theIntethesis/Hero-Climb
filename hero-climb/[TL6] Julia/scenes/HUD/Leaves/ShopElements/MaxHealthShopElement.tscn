@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdsx1cgl0852s"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/MaxHealthIncrease.cs" id="1_8kpp2"]
-[ext_resource type="Texture2D" uid="uid://lnosw1tm4x2" path="res://[TL6] Julia/assets/heart 15x15.png" id="1_78r7j"]
+[ext_resource type="Texture2D" uid="uid://blvjs7ctj5ax2" path="res://[TL6] Julia/assets/Aseprite_Source/EmptylHeart.png" id="1_78r7j"]
 
 [node name="ShopElement" type="Control"]
 custom_minimum_size = Vector2(60, 90)

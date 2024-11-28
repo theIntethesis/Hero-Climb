@@ -13,14 +13,16 @@ You loose health if you are hit by an enemy, and you can gain health by collecti
 ## Coins
 | Coin | Value |
 | --- | --- |
-| Copper | 1 |
-| Silver | 5 |
-| Gold | 10 |
+| ![[Manual_Images/CopperCoin.png]] | 1 |
+| ![[Manual_Images/SilverCoin.png]] | 5 |
+| ![[Manual_Images/GoldCoin.png]] | 10 |
 
 Coins can be spent at the shop
 
 ## Shop
 Tap or Press F while hovering over the shop to open the menu. From there, you can purchase a max health increase, a full healing, a damage increase, and a speed increase. Each time you buy one the price increases.
+
+
 
 ## Main level
 The tower is procedurally generated based off of many different pieces.
