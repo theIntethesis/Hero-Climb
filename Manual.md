@@ -5,7 +5,7 @@ v1.0.0
 | Name | | Description | Special Ability
 | --- | --- | --- | --- |
 | Fighter | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Fighter.gif"> | Strong Melee, Slow Movement, High Health | Dash that can break wooden crates
-| Rogue |  | Quick Movement, Average Health | Climbs Pipes |
+| Rogue | <img style="image-rendering: pixelated; width: 256px" src="Manual_Images/Rogue.gif"> | Quick Movement, Average Health | Climbs Pipes |
 | Wizard | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Wizard.gif"> | Lower than average health, Average movement| Ranged Fireball Attack
 
 
