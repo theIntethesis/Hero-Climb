@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://0bdwm75lg5b8"]
+[gd_scene load_steps=13 format=3 uid="uid://0bdwm75lg5b8"]
 
-[ext_resource type="Texture2D" uid="uid://bn1wlu8iufplv" path="res://[TL6] Julia/assets/button_unpressed.png" id="1_7hwgo"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/MobileControls.cs" id="1_a77xc"]
-[ext_resource type="Texture2D" uid="uid://ce67uortob6be" path="res://[TL6] Julia/assets/button_pressed.png" id="2_f1xns"]
-[ext_resource type="Texture2D" uid="uid://c4dudwchsgw4o" path="res://[TL6] Julia/assets/attack_unpressed.png" id="3_g3bmh"]
-[ext_resource type="Texture2D" uid="uid://bdue1j7r83l84" path="res://[TL6] Julia/assets/menu_unpressed.png" id="3_ipc0l"]
-[ext_resource type="Texture2D" uid="uid://n2mv6hp8en3v" path="res://[TL6] Julia/assets/menu_pressed.png" id="4_1t18e"]
-[ext_resource type="Texture2D" uid="uid://da5sjme50gc2n" path="res://[TL6] Julia/assets/attack_pressed.png" id="4_i8hj5"]
+[ext_resource type="Texture2D" uid="uid://do8fj4vyk3eyh" path="res://[TL6] Julia/assets/Aseprite_Source/arrow_unpressed.png" id="2_0uxyr"]
+[ext_resource type="Texture2D" uid="uid://w5a0n2v30rr0" path="res://[TL6] Julia/assets/Aseprite_Source/arrow_pressed.png" id="3_b538e"]
+[ext_resource type="Texture2D" uid="uid://cwwstahuv5ygd" path="res://[TL6] Julia/assets/Aseprite_Source/jump_unpressed.png" id="4_dx3uf"]
+[ext_resource type="Texture2D" uid="uid://b8fut6o4igab7" path="res://[TL6] Julia/assets/Aseprite_Source/jump_pressed.png" id="5_xxu1x"]
+[ext_resource type="Texture2D" uid="uid://6mhsjte5jo3s" path="res://[TL6] Julia/assets/Aseprite_Source/ability_unpressed.png" id="6_pwamg"]
+[ext_resource type="Texture2D" uid="uid://dj7rcyf5ijk42" path="res://[TL6] Julia/assets/Aseprite_Source/ability_pressed.png" id="7_f565l"]
+[ext_resource type="Texture2D" uid="uid://dsen42cx8wo2r" path="res://[TL6] Julia/assets/Aseprite_Source/attack_unpressed.png" id="8_iebsh"]
+[ext_resource type="Texture2D" uid="uid://b8nw42qd1edkt" path="res://[TL6] Julia/assets/Aseprite_Source/attack_pressed.png" id="9_npco3"]
+[ext_resource type="Texture2D" uid="uid://dyelsxx26qc06" path="res://[TL6] Julia/assets/Aseprite_Source/menu_unpressed.png" id="10_tu53r"]
+[ext_resource type="Texture2D" uid="uid://04i336mcskb0" path="res://[TL6] Julia/assets/Aseprite_Source/menu_pressed.png" id="11_umgbb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_62s1i"]
 size = Vector2(650, 500)
@@ -61,29 +65,33 @@ grow_vertical = 2
 
 [node name="up" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-128, -384)
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_0uxyr")
+texture_pressed = ExtResource("3_b538e")
 action = "move_up"
 
 [node name="right" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(384, -128)
 rotation = 1.5708
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_0uxyr")
+texture_pressed = ExtResource("3_b538e")
 action = "move_right"
 
 [node name="down" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(128, 384)
 rotation = 3.14159
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_0uxyr")
+texture_pressed = ExtResource("3_b538e")
 action = "move_down"
 
 [node name="left" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-384, 128)
 rotation = 4.71239
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("2_0uxyr")
+texture_pressed = ExtResource("3_b538e")
 action = "move_left"
 
 [node name="Bottom Left Corner" type="Control" parent="."]
@@ -115,20 +123,23 @@ grow_vertical = 2
 
 [node name="up" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
 position = Vector2(-384, -128)
-texture_normal = ExtResource("1_7hwgo")
-texture_pressed = ExtResource("2_f1xns")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("4_dx3uf")
+texture_pressed = ExtResource("5_xxu1x")
 action = "jump"
 
 [node name="ability" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
 position = Vector2(-128, -384)
-texture_normal = ExtResource("3_g3bmh")
-texture_pressed = ExtResource("4_i8hj5")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("6_pwamg")
+texture_pressed = ExtResource("7_f565l")
 action = "ability"
 
 [node name="attack" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
 position = Vector2(128, -128)
-texture_normal = ExtResource("3_g3bmh")
-texture_pressed = ExtResource("4_i8hj5")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("8_iebsh")
+texture_pressed = ExtResource("9_npco3")
 action = "attack"
 
 [node name="Top Right Corner" type="Control" parent="."]
@@ -160,6 +171,7 @@ scale = Vector2(0.3, 0.3)
 
 [node name="open_menu" type="TouchScreenButton" parent="Top Right Corner/Bounding Box/2DOrigin"]
 position = Vector2(-128, -128)
-texture_normal = ExtResource("3_ipc0l")
-texture_pressed = ExtResource("4_1t18e")
+scale = Vector2(8, 8)
+texture_normal = ExtResource("10_tu53r")
+texture_pressed = ExtResource("11_umgbb")
 action = "open_menu"

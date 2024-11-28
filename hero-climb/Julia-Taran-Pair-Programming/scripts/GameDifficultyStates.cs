@@ -13,53 +13,53 @@ namespace GameDifficultyStates
                 {ShopElementFactory.ShopElementEnum.DamageIncrease, new ShopElementParams(
                     new Dictionary<Controller.ClassType, int>()
                     {
-                        {Controller.ClassType.Fighter, 5},
-                        {Controller.ClassType.Wizard,  5},
-                        {Controller.ClassType.Rogue,   5}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     },
                     new Dictionary<Controller.ClassType, int>(){
-                        {Controller.ClassType.Fighter, 5},
-                        {Controller.ClassType.Wizard,  5},
-                        {Controller.ClassType.Rogue,   5}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     }
                 )},
                 {ShopElementFactory.ShopElementEnum.FullHeal, new ShopElementParams(
                     new Dictionary<Controller.ClassType, int>()
                     {
-                        {Controller.ClassType.Fighter, 5},
-                        {Controller.ClassType.Wizard,  5},
-                        {Controller.ClassType.Rogue,   5}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     },
                     new Dictionary<Controller.ClassType, int>(){
-                        {Controller.ClassType.Fighter, 10},
-                        {Controller.ClassType.Wizard,  10},
-                        {Controller.ClassType.Rogue,   10}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     }
                 )},
                 {ShopElementFactory.ShopElementEnum.MaxHealthIncrease, new ShopElementParams(
                     new Dictionary<Controller.ClassType, int>()
                     {
-                        {Controller.ClassType.Fighter, 15},
-                        {Controller.ClassType.Wizard,  15},
-                        {Controller.ClassType.Rogue,   15}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     },
                     new Dictionary<Controller.ClassType, int>(){
-                        {Controller.ClassType.Fighter, 10},
-                        {Controller.ClassType.Wizard,  10},
-                        {Controller.ClassType.Rogue,   10}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     }
                 )},
                 {ShopElementFactory.ShopElementEnum.SpeedIncrease, new ShopElementParams(
                     new Dictionary<Controller.ClassType, int>()
                     {
-                        {Controller.ClassType.Fighter, 5},
-                        {Controller.ClassType.Wizard,  5},
-                        {Controller.ClassType.Rogue,   5}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     },
                     new Dictionary<Controller.ClassType, int>(){
-                        {Controller.ClassType.Fighter, 10},
-                        {Controller.ClassType.Wizard,  10},
-                        {Controller.ClassType.Rogue,   10}
+                        {Controller.ClassType.Fighter, 0},
+                        {Controller.ClassType.Wizard,  0},
+                        {Controller.ClassType.Rogue,   0}
                     }
                 )},
             }, 
