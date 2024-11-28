@@ -1,12 +1,5 @@
 v1.0.0
 
-<style>
-    img {
-        image-rendering: pixelated; 
-        height: 64px;
-    }
-</style>
-
 # Gameplay
 
 ## Objective
@@ -17,14 +10,14 @@ You start off with 5 hearts, equivalent to 100 hp. Each Quarter heart represents
 
 You loose health if you are hit by an enemy, and you can gain health by collecting hearts scattered thoughout the tower or by purchasing an upgrade from the shop.
 
-<img src="Manual_Images/Heart_Pickup.gif">
+<img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Heart_Pickup.gif">
 
 ## Coins
 | Coin | Name | Value |
 | --- | --- |--- |
-| ![](Manual_Images/CopperCoin.gif) | Copper |  1 |
-| ![](Manual_Images/SilverCoin.gif) | Silver |  5 |
-| ![](Manual_Images/GoldCoin.gif)   | Gold |  10 |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/CopperCoin.gif"> | Copper |  1 |
+|<img style="image-rendering: pixelated; width: 64px" src="Manual_Images/SilverCoin.gif"> | Silver |  5 |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/GoldCoin.gif">   | Gold |  10 |
 
 Coins can be spent at the shop
 
@@ -33,10 +26,10 @@ Tap or Press F while hovering over the shop to open the menu. From there, you ca
 
 |  | Description | 
 | --- | --- |
-| ![](Manual_Images/dmg_increase.png) | Increase Damage |
-| ![](Manual_Images/speed_increase.png) | Increase Movement Speed |
-| ![](Manual_Images/FullHeart.png)   | Completely Heal Self |
-| ![](Manual_Images/EmptyHeart.png)   | Increase Max Health |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/dmg_increase.png"> | Increase Damage |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/speed_increase.png"> | Increase Movement Speed |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/FullHeart.png">   | Completely Heal Self |
+| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/EmptyHeart.png">   | Increase Max Health |
 
 The price for each buff increases each time you buy it. The prices scale with both the chosen class (see below) and the difficulty level.
 
@@ -47,9 +40,9 @@ The tower is procedurally generated based off of many different pieces.
 
 | Name | | Description | Special Ability
 | --- | --- | --- | --- |
-| Fighter | <img src="Manual_Images/Fighter.gif"> | Strong Melee, Slow Movement, High Health | Dash that can break wooden crates
+| Fighter | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Fighter.gif"> | Strong Melee, Slow Movement, High Health | Dash that can break wooden crates
 | Rogue |  | Quick Movement, Average Health | Climbs Pipes |
-| Wizard | <img src="Manual_Images/Wizard.gif"> | Lower than average health, Average movement| Ranged Fireball Attack
+| Wizard | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Wizard.gif"> | Lower than average health, Average movement| Ranged Fireball Attack
 
 
 # Enemies
@@ -57,10 +50,10 @@ The tower is procedurally generated based off of many different pieces.
 
 | Name | | Description | 
 | --- | --- | --- | 
-| Goblin | <img src="Manual_Images/Goblin.gif"> | Moves Quick, Lunge Attack|
-| Skeleton | <img src="Manual_Images/Skeleton.gif"> | Ranged Attack |
-| Slime | <img src="Manual_Images/Slime.gif"> | Slow Movement, Splits on Death|
-| Zombie | <img src="Manual_Images/Zombie.gif"> | Average Melee|
+| Goblin | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Goblin.gif"> | Moves Quick, Lunge Attack|
+| Skeleton | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Skeleton.gif"> | Ranged Attack |
+| Slime | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Slime.gif"> | Slow Movement, Splits on Death|
+| Zombie | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Zombie.gif"> | Average Melee|
 
 
 # Controls
