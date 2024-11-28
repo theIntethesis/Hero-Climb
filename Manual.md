@@ -16,8 +16,8 @@ v1.0.0
 | Jump | Space | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/jump_unpressed.png"> |
 | Movement | WASD | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/arrow_unpressed.png"> |
 | Interact (open a shop) | F | Tap anywhere near the center
-| Attack | Left Click | <img style="image-rendering: pixelated; width: 64px" src="/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/assets/Aseprite_Source/attack_unpressed.png"> |
-| Ability | Right Click | <img style="image-rendering: pixelated; width: 64px" src="/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/assets/Aseprite_Source/ability_unpressed.png"> |
+| Attack | Left Click | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/attack_unpressed.png"> |
+| Ability | Right Click | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/ability_unpressed.png"> |
 
 
 # Gameplay
@@ -46,8 +46,8 @@ Tap or Press F while hovering over the shop to open the menu. From there, you ca
 
 |  | Description | 
 | --- | --- |
-| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/dmg_increase.png"> | Increase Damage |
-| <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/speed_increase.png"> | Increase Movement Speed |
+| <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/dmg_increase.png"> | Increase Damage |
+| <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/speed_increase.png"> | Increase Movement Speed |
 | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/FullHeart.png">   | Completely Heal Self |
 | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/EmptyHeart.png">   | Increase Max Health |
 
