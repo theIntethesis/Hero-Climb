@@ -1,9 +1,29 @@
 v1.0.0
 
+# Charactor Creator
+
+| Name | | Description | Special Ability
+| --- | --- | --- | --- |
+| Fighter | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Fighter.gif"> | Strong Melee, Slow Movement, High Health | Dash that can break wooden crates
+| Rogue |  | Quick Movement, Average Health | Climbs Pipes |
+| Wizard | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Wizard.gif"> | Lower than average health, Average movement| Ranged Fireball Attack
+
+
+# Controls
+
+| Action | Keyboard |  Mobile |
+| --- | --- | --- |
+| Jump | Space | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/jump_unpressed.png"> |
+| Movement | WASD | <img style="image-rendering: pixelated; width: 64px" src="hero-climb/[TL6] Julia/assets/Aseprite_Source/arrow_unpressed.png"> |
+| Interact (open a shop) | F | Tap anywhere near the center
+| Attack | Left Click | <img style="image-rendering: pixelated; width: 64px" src="/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/assets/Aseprite_Source/attack_unpressed.png"> |
+| Ability | Right Click | <img style="image-rendering: pixelated; width: 64px" src="/home/julia/projects/Hero-Climb/hero-climb/[TL6] Julia/assets/Aseprite_Source/ability_unpressed.png"> |
+
+
 # Gameplay
 
 ## Objective
-Climb as far as you can without dtng
+Climb as far as you can without dying
 
 ## Health
 You start off with 5 hearts, equivalent to 100 hp. Each Quarter heart represents 5 hp.
@@ -33,19 +53,7 @@ Tap or Press F while hovering over the shop to open the menu. From there, you ca
 
 The price for each buff increases each time you buy it. The prices scale with both the chosen class (see below) and the difficulty level.
 
-## Main level
-The tower is procedurally generated based off of many different pieces.
-
-# Charactor Creator
-
-| Name | | Description | Special Ability
-| --- | --- | --- | --- |
-| Fighter | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Fighter.gif"> | Strong Melee, Slow Movement, High Health | Dash that can break wooden crates
-| Rogue |  | Quick Movement, Average Health | Climbs Pipes |
-| Wizard | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Wizard.gif"> | Lower than average health, Average movement| Ranged Fireball Attack
-
-
-# Enemies
+## Enemies
 
 
 | Name | | Description | 
@@ -55,18 +63,6 @@ The tower is procedurally generated based off of many different pieces.
 | Slime | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Slime.gif"> | Slow Movement, Splits on Death|
 | Zombie | <img style="image-rendering: pixelated; width: 64px" src="Manual_Images/Zombie.gif"> | Average Melee|
 
-
-# Controls
-- W to climb (for the rogue)
-- A to move left
-- S to move down (through platforms)
-- D to move right
-- SPACE to jump
-- left click to attack
-- right click to use the special ability 
-- F to interact
-
-On screen controls display instead on mobile, and (in the future) can be manually displayed in settings
 
 # Credits
 - Julia Abdel-Monem (UI/UX)
