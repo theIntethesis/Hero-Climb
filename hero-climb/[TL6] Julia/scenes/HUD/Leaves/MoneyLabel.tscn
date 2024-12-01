@@ -36,7 +36,8 @@ texture = ExtResource("1_a5a54")
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 theme = ExtResource("3_5bj51")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.781407, 0.781407, 0.781407, 1)
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rlvxc")
 text = "TEMP"
 vertical_alignment = 1

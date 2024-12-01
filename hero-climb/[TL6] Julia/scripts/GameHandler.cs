@@ -8,6 +8,8 @@ public partial class GameHandler : Node
 	
 	private Node ActiveScene;
 
+	private Node SoundController;
+
 	private static GameHandler _Instance = null;
 
 	public static GameHandler Instance()
@@ -29,9 +31,13 @@ public partial class GameHandler : Node
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
 		ShopElementFactory.Reset(classType);
 
+		SoundController = ResourceLoader.Load<PackedScene>("res://[TL3] Gavin/scenes/game_music_controller.tscn").Instantiate();
+
 		GD.Print("Made Character");
 		
 		GetTree().Root.AddChild(ActiveScene);
+
+		GetTree().Root.AddChild(SoundController);
 
 		GD.Print("Added ActiveScene");
 
@@ -56,6 +62,11 @@ public partial class GameHandler : Node
 			ActiveScene = null;
 			Input.EmulateMouseFromTouch = true;
 			PlayerGlobal.SetPlayer(null);
+		}
+
+		if (SoundController != null)
+		{
+			SoundController.QueueFree();
 		}
 	}
 
