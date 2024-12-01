@@ -1,37 +1,36 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class SpeedIncrease : ShopElement
 {
-    static readonly int[] ClassBasePrice = {5, 5, 5};
-    static readonly int[] ClassPriceIncrease = {10, 5, 15};
-
     static int Price;
     static int Increase;
 
-    static int[] ClassSpdIncrease = {15, 20, 5};
+    static Dictionary<Controller.ClassType, int> ClassSpdIncrease = new Dictionary<Controller.ClassType, int>(){
+        {Controller.ClassType.Fighter, 15}, 
+        {Controller.ClassType.Wizard, 20}, 
+        {Controller.ClassType.Rogue, 5}
+    };
 
     static int SpdIncrease;
+
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.AffectBaseMovement(SpdIncrease);
+    }
 
     public override int Buy(int Money)
     {
         int Output = base.Buy(Money);
 
-        if (Output < Money)
-        {
-            PlayerGlobal.AffectBaseMovement(SpdIncrease);
-        }
-
         return Output;
     }
 
-    public static void Reset(int selector)
+    public static void Reset(Controller.ClassType selector)
     {
-        if (selector < ShopElementFactory.NumResetOptions)
-        {
-            Price = ClassBasePrice[selector];
-            Increase = ClassPriceIncrease[selector];
-            SpdIncrease = ClassSpdIncrease[selector];
-        }
+        Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).BaseCost[selector];
+        Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.SpeedIncrease).CostIncrease[selector];
+        SpdIncrease = ClassSpdIncrease[selector];
     }
 
     public SpeedIncrease() : base(Price, Increase)

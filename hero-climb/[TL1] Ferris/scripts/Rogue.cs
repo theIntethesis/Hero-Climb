@@ -7,15 +7,19 @@ using Godot;
 
 public partial class Rogue : Controller
 {
+	public Rogue(): base(ClassType.Rogue)
+	{ 
+	}
+	
 	protected override void SetupClassScript()
 	{
+		base.SetupClassScript();
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Rogue.cs"));
-		Class = ClassType.Rogue;
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/RogueSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
 		sprites.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(_on_sprites_animation_finished));
-		base.SetupClassScript();
+		
 	}
 	protected override Vector2 getSpriteOffset(string clause)
 	{

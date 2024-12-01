@@ -13,9 +13,11 @@ public partial class CharacterHUD : MenuComposite
 
     public CharacterHUD(int maxhealth, int intitialMoney) : base()
     {
+
         InitialMaxHealth = maxhealth;
         InitialMoney = intitialMoney;
         _IsPoppable = false;
+        
     }
 
     public CharacterInfo characterInfo;
@@ -26,11 +28,12 @@ public partial class CharacterHUD : MenuComposite
         characterInfo = HUDFactory.CharacterInfo();
         AddChild(characterInfo);
 
-        if (OS.GetName() == "Android")
+        if (OS.GetName() == "Android" || OS.IsDebugBuild())
         {
             AddChild(HUDFactory.MobileControls());
         }
-        
+
+
 
         Name = "CharacterHUD";
 

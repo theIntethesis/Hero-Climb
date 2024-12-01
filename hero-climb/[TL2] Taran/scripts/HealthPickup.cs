@@ -17,7 +17,7 @@ public partial class HealthPickup : Pickup
 	
 	public override void PickupEffect(){
 		PlayerGlobal.AffectPlayerHealth(pickup_value);
-		
+		PlayerGlobal.GetSetScore(pickup_value);
 		QueueFree();
 	}
 }

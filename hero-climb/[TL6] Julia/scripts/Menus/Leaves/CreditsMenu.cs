@@ -9,9 +9,14 @@ public partial class CreditsMenu : MenuLeaf
 
     public override void _Ready()
     {
-        GetNode<Button>("GridContainer/Control/Button").Pressed += () =>
+        GetNode<Button>("GridContainer/Control/GridContainer/Button").Pressed += () =>
         {
             Parent().Pop();
+        };
+
+        GetNode<Button>("GridContainer/Control/GridContainer/Licenses").Pressed += () =>
+        {
+            Parent().Push(MenuFactory.LicenseMenu());
         };
 
         base._Ready();

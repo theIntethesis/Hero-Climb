@@ -38,12 +38,15 @@ public partial class HeartGrid : MenuCompositeBase
 	{
 		MaxHealth += increase;
 
-		for (int i = 0; i < increase / 20; i++)
+		for (int i = increase; i > 0; i -= Heart.MAX_HEART_HEALTH)
 		{
 			Push(HUDFactory.Heart());
 		}
 
-		CustomMinimumSize = new Vector2(Hearts.Columns * 16, MathF.Ceiling((float)Hearts.GetChildCount() / (float)5) * 16);
+		CustomMinimumSize = new Vector2(
+			Hearts.Columns * Heart.HEART_SIZE * ((Control)GetContainer()).Scale.X, 
+			MathF.Ceiling((float)Hearts.GetChildCount() / (float)Hearts.Columns) * Heart.HEART_SIZE * ((Control)GetContainer()).Scale.Y
+		);
 
 	}
 
@@ -94,9 +97,6 @@ public partial class HeartGrid : MenuCompositeBase
 		}
 	}
 
-	int ConstructorParamMaxHealth;
-
-
 	public HeartGrid(): base()
 	{
 		HeadIdx = 0;
@@ -105,13 +105,7 @@ public partial class HeartGrid : MenuCompositeBase
 
     public override void _Ready()
     {
-		Hearts = new GridContainer()
-		{
-			Columns = 5
-		};
-		AddChild(Hearts);
-		IncreaseMaxHealth(ConstructorParamMaxHealth);
-
+		Hearts = GetNode<GridContainer>("HeartGrid");
 		base._Ready();
     }
 

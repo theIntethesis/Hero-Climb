@@ -1,0 +1,142 @@
+[gd_scene load_steps=2 format=3 uid="uid://0kr41vnsgn1d"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/LicenseMenu.cs" id="1_i1t8h"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i1t8h")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer2" type="GridContainer" parent="GridContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GodotLicense" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "This game uses Godot Engine v4.3.0.stable.mono, available under the following license:
+
+Copyright (c) 2014-present Godot Engine contributors.
+Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the \"Software\"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="GUTLicense" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "This game uses Godot Unit Test v9.3.0, available under the following license:
+
+Copyright (c) 2018 Tom \"Butch\" Wesley
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the \"Software\"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="GDMUTLicense" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "This game uses GDMUT, available under the following license:
+
+Copyright (c) 2023 Spencer (spycemyster) Chan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the \"Software\"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="GridContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.5
+offset_top = -20.0
+offset_right = 22.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Button" type="Button" parent="GridContainer/Control/GridContainer"]
+layout_mode = 2
+text = "Back"

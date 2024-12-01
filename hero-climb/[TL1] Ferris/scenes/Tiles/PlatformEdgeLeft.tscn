@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmxu784hcbhqw"]
 
-[ext_resource type="Texture2D" uid="uid://bq27v3sr6myki" path="res://[TL1] Ferris/assets/Tiles/PlatformLeftEdge.png" id="1_kbpwr"]
+[ext_resource type="Texture2D" uid="uid://ck8bybjjkjunb" path="res://[TL1] Ferris/assets/Tiles/PlatformLeftEdge.png" id="1_kbpwr"]
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/FallThroughPlatform.cs" id="1_mwd1a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdix7"]

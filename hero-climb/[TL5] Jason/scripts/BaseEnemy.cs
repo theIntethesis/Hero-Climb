@@ -34,7 +34,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		// GD.Print("BaseEnemy ready.");
 		Health = MaxHealth;
 
-		player = (CharacterBody2D)GetParent().GetParent().GetNode("Player");
+		player = (CharacterBody2D) PlayerGlobal.GetPlayer();
 		// Get the sprite node
 		sprites = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprites.Play("play");
@@ -181,6 +181,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	{
 		if (IsDead){
 			EmitSignal(SignalName.OnDeath);
+			
 			QueueFree();
 		} else if (IsIdle) {
 			sprites.Play("stand");

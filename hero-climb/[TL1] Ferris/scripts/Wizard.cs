@@ -11,8 +11,13 @@ public partial class Wizard : Controller
 	private bool fireballsummon = false;
 	private Timer FireballSummon = new();
 
+	public Wizard(): base(Controller.ClassType.Wizard)
+	{ 
+	}
+
 	protected override void SetupClassScript()
 	{
+		base.SetupClassScript();
 		SetScript(GD.Load<Script>("res://[TL1] Ferris/scripts/Wizard.cs"));
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/WizardSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
@@ -23,7 +28,7 @@ public partial class Wizard : Controller
 		FireballSummon.WaitTime = .5;
 		AddChild(FireballSummon);
 		FireballSummon.Connect(Timer.SignalName.Timeout, Callable.From(SummonFireball));
-        base.SetupClassScript();
+       
     }
 	protected override Vector2 Ability()
 	{

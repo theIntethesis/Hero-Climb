@@ -1,4 +1,6 @@
 using System;
+using System.Text.RegularExpressions;
+using GameDifficultyStates;
 using Godot;
 
 public partial class CharacterCreator : MenuLeaf
@@ -12,9 +14,12 @@ public partial class CharacterCreator : MenuLeaf
 	private Button WizardButton;
 	private Button RogueButton;
 
+	private OptionButton DifficultyDropdown;
+
 	public Controller.ClassType CurrentType;
 
-	static public Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
+	static Controller.ClassType MostRecentClass = Controller.ClassType.Fighter;
+	static GameDifficultyHandler.GameDifficultyEnum MostRecentDifficulty = GameDifficultyHandler.GameDifficultyEnum.Normal;
 
 
 	public override void _Ready() 
@@ -27,13 +32,12 @@ public partial class CharacterCreator : MenuLeaf
 		GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
 		{
 			MostRecentClass = CurrentType;
-			if (Parent() is Node parent) 
-			{
-				parent.QueueFree();
-			}
+			MostRecentDifficulty = (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected;
+			GameHandler.Instance().StartGame(CurrentType, (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected);
 
-			GameHandler.Instance().StartGame(CurrentType);
 		};
+
+		DifficultyDropdown = GetNode<OptionButton>("VFlowContainer/DifficultyDropdown");
 
 		Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
 		Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
@@ -45,6 +49,11 @@ public partial class CharacterCreator : MenuLeaf
 		Rogue.Visible = false;
 		Fighter.Visible = false;
 		Wizard.Visible = false;
+
+		foreach (int val in Enum.GetValues<GameDifficultyHandler.GameDifficultyEnum>())
+		{
+			DifficultyDropdown.AddItem(GameDifficultyHandler.GameDifficultyNames[val], val);
+		}
 
 		switch (MostRecentClass) 
 		{
@@ -61,6 +70,8 @@ public partial class CharacterCreator : MenuLeaf
 				OnRougeButtonPressed();
 				break;
 		}
+
+		DifficultyDropdown.Selected = (int)MostRecentDifficulty;
 
 		FighterButton.Pressed += OnFighterButtonPressed;
 		RogueButton.Pressed += OnRougeButtonPressed;

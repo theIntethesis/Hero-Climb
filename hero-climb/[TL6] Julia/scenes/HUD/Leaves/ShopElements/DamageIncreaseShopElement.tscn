@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://2vi1xf5ppita"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/DamageIncrease.cs" id="1_las2b"]
-[ext_resource type="Texture2D" uid="uid://cpkpkab1uq67u" path="res://[TL6] Julia/assets/dmg_increase.png" id="1_lqkrc"]
+[ext_resource type="Texture2D" uid="uid://c76x8ahc0odbl" path="res://[TL6] Julia/assets/dmg_increase.png" id="1_lqkrc"]
 
 [node name="ShopElement" type="Control"]
 custom_minimum_size = Vector2(60, 90)
@@ -19,6 +19,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 8.0
 grow_horizontal = 2
+tooltip_text = "Increase Damage Dealt to Enemies"
 icon = ExtResource("1_lqkrc")
 icon_alignment = 1
 expand_icon = true

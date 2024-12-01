@@ -6,7 +6,7 @@ public partial class GameHandler : Node
 	
 	static readonly PackedScene InitialGameScene = ResourceLoader.Load<PackedScene>(InitialGameScenePath);
 	
-	private Node ActiveGame;
+	private Node ActiveScene;
 
 	private static GameHandler _Instance = null;
 
@@ -15,33 +15,45 @@ public partial class GameHandler : Node
 		return _Instance;
 	}
 
-	public void StartGame(Controller.ClassType classType)
+	public void StartGame(Controller.ClassType classType, GameDifficultyHandler.GameDifficultyEnum difficultyEnum)
 	{
 		StopGame();
 		GetTree().Paused = false;
 
-		ActiveGame = InitialGameScene.Instantiate();
+		GameDifficultyHandler.Instance().SetCurrentDifficulty(difficultyEnum);
+
+		GD.Print("Set Difficulty");
+
+		ActiveScene = InitialGameScene.Instantiate();
 
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
+		ShopElementFactory.Reset(classType);
 
-		ActiveGame.AddChild(Player);
-		ActiveGame.MoveChild(Player, 2);
+		GD.Print("Made Character");
 		
-		ShopElementFactory.Reset((int)classType);
+		GetTree().Root.AddChild(ActiveScene);
+
+		GD.Print("Added ActiveScene");
+
+		ActiveScene.AddChild(Player);
+		ActiveScene.MoveChild(Player, 2);
+
+		GD.Print("Added Character");
+
+		
 		PlayerGlobal.Money = 0;
 		PlayerGlobal.GetSetScore(-1);
 		
-		GetTree().Root.AddChild(ActiveGame);
 
 		Input.EmulateMouseFromTouch = false;
 	}
 
 	public void StopGame()
 	{
-		if (ActiveGame != null)
+		if (ActiveScene != null)
 		{
-			ActiveGame.QueueFree();
-			ActiveGame = null;
+			ActiveScene.QueueFree();
+			ActiveScene = null;
 			Input.EmulateMouseFromTouch = true;
 			PlayerGlobal.SetPlayer(null);
 		}
@@ -57,9 +69,9 @@ public partial class GameHandler : Node
 
 	public void LoadMainMenu()
 	{
-		MenuElement mainMenu = MenuFactory.MainMenu();
+		ActiveScene = MenuFactory.MainMenu();
 		
-		if (mainMenu is Node node)
+		if (ActiveScene is Node node)
 		{
 			GetTree().Root.CallDeferred("add_child", node);
 		}   

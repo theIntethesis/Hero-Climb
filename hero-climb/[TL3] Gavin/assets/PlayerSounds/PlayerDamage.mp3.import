@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7pwlmtpbtxx"
+path="res://.godot/imported/PlayerDamage.mp3-a6679a2cd725f4228515cef96223f88a.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/PlayerSounds/PlayerDamage.mp3"
+dest_files=["res://.godot/imported/PlayerDamage.mp3-a6679a2cd725f4228515cef96223f88a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

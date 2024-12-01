@@ -2,30 +2,28 @@ using Godot;
 
 public partial class DamageIncrease : ShopElement
 {
-	static readonly int[] ClassBasePrice = {5, 5, 5};
-	static readonly int[] ClassPriceIncrease = {10, 5, 15};
-
 	static int Price;
 	static int Increase;
 
 	static int DmgIncrease = 50;
 
-	public override int Buy(int Money)
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.AffectBaseDamage(DmgIncrease);
+    }
+
+    public override int Buy(int Money)
 	{
 		int Output = base.Buy(Money);
-
-		if (Output < Money)
-		{
-			PlayerGlobal.AffectBaseDamage(DmgIncrease);
-		}
 
 		return Output;
 	}
 
-	public static void Reset(int selector)
+	public static void Reset(Controller.ClassType selector)
 	{
-		Price = ClassBasePrice[(int)selector - 1];
-		Increase = ClassPriceIncrease[(int)selector - 1];
+		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.DamageIncrease).BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.DamageIncrease).CostIncrease[selector];
+
 	}
 
 	public DamageIncrease() : base(Price, Increase)

@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Controller : CharacterBody2D
+public abstract partial class Controller : CharacterBody2D
 {
 	[Export]
 	public float Speed = 100.0f;
@@ -16,7 +16,9 @@ public partial class Controller : CharacterBody2D
 	public float ClimbSpeed = 100f;
 	public enum ClassType
 	{
-		Fighter = 1, Rogue = 2, Wizard = 3
+		Fighter = 1, 
+		Rogue = 2, 
+		Wizard = 3
 	}
 	[Export]
 	public ClassType Class = 0;
@@ -41,26 +43,53 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void PlayerMaxHealthChangeEventHandler(int change);
 
-	public int MaxHealth = 100;
-	protected int Health = 100;
+	public int MaxHealth;
+	protected int Health;
 	protected bool attackCooldown = false;
 
 	protected bool IsMovementLocked = false;
 
 	protected AnimatedSprite2D sprites;
-	protected PlayerSoundController SoundController;
+	protected PlayerSoundController SoundController = null;
 	protected Timer iFrames = new();
+
+	public Controller(ClassType classType)
+	{
+		Class = classType;
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
+		Health = MaxHealth;
+
+		iFrames.OneShot = true;
+		iFrames.WaitTime = 1.5;
+		AddChild(iFrames);
+		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
+	}
+	
 	#region Get / Set Methods
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
 		if (Health + amount > MaxHealth)
+		{
 			amount = MaxHealth - Health;
+		}
 
 		EmitSignal(SignalName.PlayerHealthChange, amount);
 		Health += amount;
-		if (Health <= 0) OnPlayerDeath();
-		else if (amount < 0) startIFrames();
+		
+		GD.Print(Health);
+
+		if (Health <= 0) 
+		{
+			OnPlayerDeath();
+		}
+		else if (amount < 0) 
+		{
+			startIFrames();
+		}
+		
 		return Health;
 	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
@@ -242,6 +271,7 @@ public partial class Controller : CharacterBody2D
 		}
 		if(Health <= 0)
 		{
+			GD.Print(Health);
 			EmitSignal(SignalName.PlayerDeath);
 		}
 		OnAnimationEnd();
@@ -274,17 +304,13 @@ public partial class Controller : CharacterBody2D
 	{
 
 	}
-	public Controller()
-	{
-		iFrames.OneShot = true;
-		iFrames.WaitTime = 1.5;
-		AddChild(iFrames);
-		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
-	}
 	protected virtual void SetupClassScript()
 	{
+		GD.Print(Class);
 		if (Class != 0)
+		{
 			SoundController.SetHero(Class);
+		}
 		else
 		{
 			GD.PrintErr("Type Not Set");

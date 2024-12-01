@@ -51,6 +51,7 @@ public partial class Slime : BaseEnemy
 		enemy2.Scale = new Vector2(enemy2.Scale.X/2,enemy2.Scale.Y/2);
 		enemy2.SplitsRemaining = SplitsRemaining - 1;
 		enemy2.SetMaxHealth(MaxHealth / 2);
+		enemy2.Damage = Damage*3/5;
 		AddSibling(enemy2);
 		enemy2.SetupEnemy();
 		//GD.Print("Split 1");
@@ -60,6 +61,7 @@ public partial class Slime : BaseEnemy
 		enemy3.SetMaxHealth(MaxHealth / 2);
 		enemy3.Scale = new Vector2(enemy3.Scale.X / 2, enemy3.Scale.Y / 2);
 		enemy3.SplitsRemaining = SplitsRemaining - 1;
+		enemy3.Damage = Damage*3/5;
 		AddSibling(enemy3);
 		enemy3.SetupEnemy();
 

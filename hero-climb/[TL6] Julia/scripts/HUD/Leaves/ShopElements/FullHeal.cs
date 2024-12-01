@@ -2,28 +2,26 @@ using Godot;
 
 public partial class FullHeal : ShopElement
 {
-	static readonly int[] ClassBasePrice = {15, 15, 15};
-	static readonly int[] ClassPriceIncrease = {5, 5, 5};
-
 	static int Price;
 	static int Increase;
+
+    public override void AffectPlayer()
+    {
+        PlayerGlobal.HealToFull();
+    }
+
 
 	public override int Buy(int Money)
 	{
 		int Output = base.Buy(Money);
 
-		if (Output < Money)
-		{
-			PlayerGlobal.HealToFull();
-		}
-
 		return Output;
 	}
 
-	public static void Reset(int selector)
+	public static void Reset(Controller.ClassType selector)
 	{
-		Price = ClassBasePrice[(int)selector - 1];
-		Increase = ClassPriceIncrease[(int)selector - 1];
+		Price = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.FullHeal).BaseCost[selector];
+		Increase = GameDifficultyHandler.Instance().ShopElementParams(ShopElementFactory.ShopElementEnum.FullHeal).CostIncrease[selector];
 	}
 
 	public FullHeal() : base(Price, Increase)

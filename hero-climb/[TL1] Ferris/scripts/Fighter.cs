@@ -9,9 +9,12 @@ public partial class Fighter : Controller
 {
 	private float BashSpeed = 400;
 	Timer bashTimer = new();
-	public Fighter() { }
+	public Fighter(): base(Controller.ClassType.Fighter)
+	{ 
+	}
 	protected override void SetupClassScript()
 	{
+		base.SetupClassScript();
 		sprites = GD.Load<PackedScene>("res://[TL1] Ferris/scenes/FighterSprite.tscn").Instantiate() as AnimatedSprite2D;
 		AddChild(sprites);
 		sprites.Position = new Vector2(0, 0);
@@ -20,7 +23,7 @@ public partial class Fighter : Controller
 		bashTimer.OneShot = true;
 		bashTimer.Connect(Timer.SignalName.Timeout, Callable.From(removeShieldBash));
 		AddChild(bashTimer);
-        base.SetupClassScript();
+        
     }
 	protected override Vector2 getSpriteOffset(string clause)
 	{

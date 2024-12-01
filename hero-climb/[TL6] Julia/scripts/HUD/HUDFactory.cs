@@ -9,7 +9,8 @@ public partial class HUDFactory : GodotObject
         MoneyLabel,
         Heart,
         GameShop,
-        MobileControls
+        MobileControls,
+        HeartGrid
     }
 
     static Dictionary<ElementName, PackedScene> MenuScenes = new Dictionary<ElementName, PackedScene>
@@ -17,7 +18,8 @@ public partial class HUDFactory : GodotObject
         {ElementName.MoneyLabel, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MoneyLabel.tscn")},
         {ElementName.Heart, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/Heart.tscn")},
         {ElementName.GameShop, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/Shop.tscn")},
-        {ElementName.MobileControls, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MobileControls.tscn")}
+        {ElementName.MobileControls, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MobileControls.tscn")},
+        {ElementName.HeartGrid, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/HeartGrid.tscn")}
     };
 
     public static MoneyLabel MoneyLabel()
@@ -29,7 +31,7 @@ public partial class HUDFactory : GodotObject
 
     public static HeartGrid HeartGrid()
     {
-        HeartGrid grid = new HeartGrid();
+        HeartGrid grid = (HeartGrid)MenuScenes[ElementName.HeartGrid].Instantiate();
         grid.Name = "HeartGrid";
 
         return grid;

@@ -5,6 +5,8 @@ public abstract partial class ShopElement : MenuLeaf
     protected int CurrentPrice;
     protected readonly int CurrentIncrease;
     
+    public abstract void AffectPlayer();
+
     public virtual int Buy(int Money)
     {
         if (Money >= CurrentPrice)
@@ -13,6 +15,8 @@ public abstract partial class ShopElement : MenuLeaf
             
             CurrentPrice += CurrentIncrease;
             GetNode<Label>("Label").Text = CurrentPrice.ToString();
+
+            AffectPlayer();
 
             return OutMoney;
         }

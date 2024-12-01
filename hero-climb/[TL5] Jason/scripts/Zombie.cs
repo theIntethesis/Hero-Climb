@@ -8,7 +8,7 @@ public partial class Zombie : BaseEnemy
 		base.Damage = 25;
 		base.Health = 100;
 		base.Speed = 25;
-		GD.Print("Zombie setup complete.");
+		// GD.Print("Zombie setup complete.");
 
 	}
 
@@ -21,12 +21,12 @@ public partial class Zombie : BaseEnemy
 	public override void EnemyAttack()
 	{
 		base.EnemyAttack();
-		GD.Print("Zombie attacks!");
+		// GD.Print("Zombie attacks!");
 	}
 
 	public override void _Ready()
 	{
-		GD.Print("Zombie ready.");
+		// GD.Print("Zombie ready.");
 		base._Ready();
 	}
 }

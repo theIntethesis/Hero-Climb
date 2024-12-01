@@ -29,12 +29,13 @@ public partial class Pickup : Area2D
 				AddChild(collectable);
 				break;
 			default:
-				uint random_int = GD.Randi()%10;
-				if(random_int > 3){
+				uint RandomInt = GD.Randi()%100;
+				int SpawnChance = GameDifficultyHandler.Instance().LevelParams().PickupChance;
+				if(RandomInt < SpawnChance-10){
 					collectable = (CoinPickup) CoinScene.Instantiate();
 					AddChild(collectable);
 					collectable.GlobalPosition = point;
-				}else if(random_int == 3){
+				}else if(RandomInt < SpawnChance){
 					collectable = (HealthPickup) HealScene.Instantiate();
 					AddChild(collectable);
 					collectable.GlobalPosition = point;
