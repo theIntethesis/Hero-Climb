@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Controller : CharacterBody2D
+public abstract partial class Controller : CharacterBody2D
 {
 	[Export]
 	public float Speed = 100.0f;
@@ -16,7 +16,9 @@ public partial class Controller : CharacterBody2D
 	public float ClimbSpeed = 100f;
 	public enum ClassType
 	{
-		Fighter = 1, Rogue = 2, Wizard = 3
+		Fighter = 1, 
+		Rogue = 2, 
+		Wizard = 3
 	}
 	[Export]
 	public ClassType Class = 0;
@@ -58,6 +60,11 @@ public partial class Controller : CharacterBody2D
 		Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
 		Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
 		Health = MaxHealth;
+
+		iFrames.OneShot = true;
+		iFrames.WaitTime = 1.5;
+		AddChild(iFrames);
+		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
 	}
 	
 	#region Get / Set Methods
@@ -296,13 +303,6 @@ public partial class Controller : CharacterBody2D
 	protected virtual void OnAnimationEnd()
 	{
 
-	}
-	public Controller()
-	{
-		iFrames.OneShot = true;
-		iFrames.WaitTime = 1.5;
-		AddChild(iFrames);
-		iFrames.Connect(Timer.SignalName.Timeout, Callable.From(stopIFrames));
 	}
 	protected virtual void SetupClassScript()
 	{
