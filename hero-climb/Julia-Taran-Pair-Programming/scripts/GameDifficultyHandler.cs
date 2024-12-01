@@ -31,11 +31,6 @@ public partial class GameDifficultyHandler : GameDifficultyInterface
         return _Instance;
     }
 
-    public GameDifficulty CurrentDifficulty()
-    {
-
-        return _CurrentDifficulty;
-    }
 
     public void SetCurrentDifficulty(GameDifficulty difficulty)
     {

@@ -54,7 +54,7 @@ public abstract class GameDifficulty : GameDifficultyInterface
     }
     
 
-    public GameDifficulty(
+    protected GameDifficulty(
         LevelParams levelParams, 
         ShopElementParamDictionary shopElementParams,
         PlayerParamDictionary playerParams,
