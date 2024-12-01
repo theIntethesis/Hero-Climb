@@ -1,0 +1,43 @@
+Test Attributes
+ > Test Health
+   > Makes sure the player dies when health >= 0
+   > Asserts: 1
+
+Test Collision
+ > Test Lava and Player
+   > Makes sure the player dies when it touches the rising lava.
+   > Asserts: 1
+ > Test Player and Zombie
+   > Makes sure the player and enemy both detect each other when they collide.
+   > Asserts: 2
+ > Test Fireball and Zombie
+   > Makes sure the enemy detects the subclass of Attack "Fireball" and picks up the instance's Damage field.
+   > Asserts: 2
+ > Test Attack and Zombie
+   > Makes sure the enemy detects the players Attack and picks up the instance's Damage field.
+   > Asserts: 2
+ > Test Fighter and Box
+   > Makes sure the Fighter's shield bash actually breaks the boxes.
+   > Asserts: 1
+ > Test Fireball and Box
+   > Because it was an issue earlier, makes sure the Fireball / Attack DOESN'T break the boxes.
+   > Asserts: 1
+
+Test Movement
+ > Test Jump
+   > Makes sure that when the user presses jump, the player actually jumps.
+   > Add a test to ensure that the player only jumps when grounded
+   > Asserts: Will be 2
+ > Test Free Falling
+   > Makes sure that the maximum downward velocity is the force of gravity.
+   > Asserts: 1
+
+
+Tests to add
+ > Make sure pipe detects collision
+   > Asserts: 1
+ > Make sure rogue can climb pipes
+   > Asserts: 1
+ > Make sure other classes can't climb pipes
+   > Asserts: 2
+ > 
