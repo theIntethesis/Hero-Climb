@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://dp6omjfw6gx1l"]
 
-[ext_resource type="Texture2D" uid="uid://moceg7lr2tt4" path="res://[TL1] Ferris/assets/Orc-In-Process.png" id="2_gtg5p"]
-[ext_resource type="Texture2D" uid="uid://b7n7eni63e4m2" path="res://[TL1] Ferris/assets/Orc Fighter/Fighter_Death.png" id="2_t52di"]
+[ext_resource type="Texture2D" uid="uid://v7bp6yggjb2o" path="res://[TL1] Ferris/assets/Orc-In-Process.png" id="2_gtg5p"]
+[ext_resource type="Texture2D" uid="uid://b3c64goxlgy8a" path="res://[TL1] Ferris/assets/Orc Fighter/Fighter_Death.png" id="2_t52di"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b2y4v"]
 atlas = ExtResource("2_gtg5p")

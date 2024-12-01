@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://b02t6gf5ac7hv"]
 
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/BreakableBox.cs" id="1_2xbaa"]
-[ext_resource type="Texture2D" uid="uid://b2b274wawrxvw" path="res://[TL1] Ferris/assets/Wood/box/1.png" id="1_581ex"]
-[ext_resource type="Texture2D" uid="uid://c3n5jcxfstu27" path="res://[TL1] Ferris/assets/Wood/box/2.png" id="2_h10tp"]
-[ext_resource type="Texture2D" uid="uid://dk1fs0yf6mg2n" path="res://[TL1] Ferris/assets/Wood/box/3.png" id="3_nla15"]
-[ext_resource type="Texture2D" uid="uid://dflvci377rfgc" path="res://[TL1] Ferris/assets/Wood/box/4.png" id="4_oxyqu"]
-[ext_resource type="Texture2D" uid="uid://bmwegkai33qji" path="res://[TL1] Ferris/assets/Wood/box/5.png" id="5_1kdns"]
+[ext_resource type="Texture2D" uid="uid://c1nqp1o2te7qi" path="res://[TL1] Ferris/assets/Wood/box/1.png" id="1_581ex"]
+[ext_resource type="Texture2D" uid="uid://xvfx3o37doni" path="res://[TL1] Ferris/assets/Wood/box/2.png" id="2_h10tp"]
+[ext_resource type="Texture2D" uid="uid://c0ls6ycfj5nj3" path="res://[TL1] Ferris/assets/Wood/box/3.png" id="3_nla15"]
+[ext_resource type="Texture2D" uid="uid://ks3cijlopjy7" path="res://[TL1] Ferris/assets/Wood/box/4.png" id="4_oxyqu"]
+[ext_resource type="Texture2D" uid="uid://ymc70eqyyv36" path="res://[TL1] Ferris/assets/Wood/box/5.png" id="5_1kdns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_34nvw"]
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://32vntqqjtk14"
+path="res://.godot/imported/WizardAttack.mp3-313af31ecc7c6ffd09748ba4181c068e.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/PlayerSounds/WizardAttack.mp3"
+dest_files=["res://.godot/imported/WizardAttack.mp3-313af31ecc7c6ffd09748ba4181c068e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://0kr41vnsgn1d"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CreditsMenu.cs" id="1_0v26l"]
-[ext_resource type="Texture2D" uid="uid://bxr0lavqcye1l" path="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png" id="1_v8jbm"]
+[ext_resource type="Texture2D" uid="uid://dmioqqosv8tqt" path="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png" id="1_v8jbm"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

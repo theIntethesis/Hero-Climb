@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bcauxitiymkle"
+path="res://.godot/imported/Dark Souls ' You Died ' Sound Effect.mp3-70d7f9552ebbc8f60f7c23a8398fc162.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/GameMusic/Dark Souls ' You Died ' Sound Effect.mp3"
+dest_files=["res://.godot/imported/Dark Souls ' You Died ' Sound Effect.mp3-70d7f9552ebbc8f60f7c23a8398fc162.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

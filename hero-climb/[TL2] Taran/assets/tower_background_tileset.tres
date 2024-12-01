@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b6a61awdl3lo6"]
 
-[ext_resource type="Texture2D" uid="uid://kvqsks8yyahl" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="1_0cntq"]
+[ext_resource type="Texture2D" uid="uid://d207k8hl136m6" path="res://[TL2] Taran/assets/Dungeon Tile Set.png" id="1_0cntq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1tlh7"]
 texture = ExtResource("1_0cntq")

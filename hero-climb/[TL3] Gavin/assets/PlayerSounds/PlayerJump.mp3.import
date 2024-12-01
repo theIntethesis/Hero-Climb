@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhixph4yjvtty"
+path="res://.godot/imported/PlayerJump.mp3-ac7cb77a0dd2a7810701631769d8c2f0.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/PlayerSounds/PlayerJump.mp3"
+dest_files=["res://.godot/imported/PlayerJump.mp3-ac7cb77a0dd2a7810701631769d8c2f0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

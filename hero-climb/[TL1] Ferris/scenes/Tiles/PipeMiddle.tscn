@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdxyk11gje0e7"]
 
-[ext_resource type="Texture2D" uid="uid://cmnpdmpq5j5gm" path="res://[TL1] Ferris/assets/Tiles/PipeMiddle.png" id="1_hqjov"]
+[ext_resource type="Texture2D" uid="uid://dabsfyaa8h6iv" path="res://[TL1] Ferris/assets/Tiles/PipeMiddle.png" id="1_hqjov"]
 [ext_resource type="Script" path="res://[TL1] Ferris/scripts/Pipe.cs" id="1_kym42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbc26"]

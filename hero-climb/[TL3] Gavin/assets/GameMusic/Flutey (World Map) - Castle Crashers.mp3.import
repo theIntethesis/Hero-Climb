@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhj3bypabflvf"
+path="res://.godot/imported/Flutey (World Map) - Castle Crashers.mp3-0e6a37b18392d5b677dce3b88a25b944.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/GameMusic/Flutey (World Map) - Castle Crashers.mp3"
+dest_files=["res://.godot/imported/Flutey (World Map) - Castle Crashers.mp3-0e6a37b18392d5b677dce3b88a25b944.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bexxatvelxnv1"
+path="res://.godot/imported/HudClick.mp3-a2bd0420a513b833bde927a1bc9121f1.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/HUDSounds/HudClick.mp3"
+dest_files=["res://.godot/imported/HudClick.mp3-a2bd0420a513b833bde927a1bc9121f1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

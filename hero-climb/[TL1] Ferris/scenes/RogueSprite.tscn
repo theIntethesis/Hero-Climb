@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://7muxnjdf3dsv"]
 
-[ext_resource type="Texture2D" uid="uid://c1j2uedg36fau" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
+[ext_resource type="Texture2D" uid="uid://bjhet7j1hbawi" path="res://[TL1] Ferris/assets/large character template.png" id="1_0wk0x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e24la"]
 atlas = ExtResource("1_0wk0x")

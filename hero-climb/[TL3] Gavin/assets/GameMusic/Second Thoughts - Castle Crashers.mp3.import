@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdyfxwg5ksrh6"
+path="res://.godot/imported/Second Thoughts - Castle Crashers.mp3-de49f3ba072c6c09f416586344519b5b.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/GameMusic/Second Thoughts - Castle Crashers.mp3"
+dest_files=["res://.godot/imported/Second Thoughts - Castle Crashers.mp3-de49f3ba072c6c09f416586344519b5b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
