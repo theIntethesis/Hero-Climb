@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://0kr41vnsgn1d"]
+[gd_scene load_steps=4 format=3 uid="uid://0kr41vnsgn1d"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CreditsMenu.cs" id="1_0v26l"]
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_5ug6t"]
 [ext_resource type="Texture2D" uid="uid://dmioqqosv8tqt" path="res://[TL6] Julia/assets/TTK_by_DaedricDovah.png" id="1_v8jbm"]
 
 [node name="Control" type="Control"]
@@ -11,6 +12,7 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5ug6t")
 script = ExtResource("1_0v26l")
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -30,9 +32,25 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
+[node name="Control" type="Control" parent="GridContainer/ScrollContainer/GridContainer2"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GridContainer/ScrollContainer/GridContainer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.5
+offset_top = -17.0
+offset_right = 47.5
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 text = "Credits"
 horizontal_alignment = 1
 
@@ -91,27 +109,29 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Julia Abdel-Monem"
 
-[node name="Label5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
-layout_mode = 2
-horizontal_alignment = 1
-
 [node name="Control2" type="Control" parent="GridContainer/ScrollContainer/GridContainer2"]
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(300, 304)
 layout_mode = 2
 
-[node name="Control2" type="Control" parent="GridContainer/ScrollContainer/GridContainer2/Control2"]
+[node name="Control2" type="PanelContainer" parent="GridContainer/ScrollContainer/GridContainer2/Control2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 154.0
+offset_bottom = 154.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="GridContainer/ScrollContainer/GridContainer2/Control2/Control2"]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_v8jbm")
+centered = false
+offset = Vector2(6.667, 6.667)
 
 [node name="Label6" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2

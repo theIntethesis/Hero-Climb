@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c86yo5shf340q"]
+[gd_scene load_steps=5 format=3 uid="uid://c86yo5shf340q"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/MoneyLabel.cs" id="1_6bmth"]
 [ext_resource type="Texture2D" uid="uid://djdteq01ny7rd" path="res://[TL6] Julia/assets/mariocoin.png" id="1_a5a54"]
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlvxc"]
 
 [node name="MoneyLabel" type="GridContainer"]
 offset_right = 63.0
 offset_bottom = 23.0
+theme = ExtResource("3_5bj51")
 columns = 2
 script = ExtResource("1_6bmth")
+_IsBackground = null
+_IsPoppable = null
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(16, 16)
@@ -29,5 +35,8 @@ texture = ExtResource("1_a5a54")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme = ExtResource("3_5bj51")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rlvxc")
 text = "TEMP"
 vertical_alignment = 1

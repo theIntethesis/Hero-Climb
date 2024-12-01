@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://0kr41vnsgn1d"]
+[gd_scene load_steps=3 format=3 uid="uid://0kr41vnsgn1d"]
 
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_eao7a"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/LicenseMenu.cs" id="1_i1t8h"]
 
 [node name="Control" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_eao7a")
 script = ExtResource("1_i1t8h")
 
 [node name="GridContainer" type="GridContainer" parent="."]
@@ -56,10 +58,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "
 horizontal_alignment = 1
 
-[node name="Label5" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
-layout_mode = 2
-horizontal_alignment = 1
-
 [node name="GUTLicense" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -84,10 +82,6 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 "
-horizontal_alignment = 1
-
-[node name="Label6" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]
-layout_mode = 2
 horizontal_alignment = 1
 
 [node name="GDMUTLicense" type="Label" parent="GridContainer/ScrollContainer/GridContainer2"]

@@ -1,0 +1,96 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://esntjulg5jim"]
+
+[ext_resource type="FontFile" uid="uid://cw7tymns51sj4" path="res://[TL6] Julia/assets/Minecraft.otf" id="1_570oe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e250"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 9.0
+content_margin_bottom = 9.0
+bg_color = Color(0.391185, 0.391185, 0.391185, 1)
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oai4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 9.0
+content_margin_bottom = 9.0
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sw3ci"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 7.0
+content_margin_bottom = 7.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xq25"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0lxpa"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcgmv"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_width_top = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwl6h"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+border_color = Color(1, 1, 1, 1)
+
+[resource]
+default_font = ExtResource("1_570oe")
+default_font_size = 18
+Button/colors/font_color = Color(0.0407361, 0.040736, 0.0407359, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/font_sizes/font_size = 18
+Button/styles/hover = SubResource("StyleBoxFlat_5e250")
+Button/styles/normal = SubResource("StyleBoxFlat_3oai4")
+Button/styles/pressed = SubResource("StyleBoxFlat_sw3ci")
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/styles/normal = SubResource("StyleBoxFlat_3xq25")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_0lxpa")
+TabContainer/colors/font_selected_color = Color(0.95, 0.95, 0.95, 1)
+TabContainer/colors/font_unselected_color = Color(1, 1, 1, 1)
+TabContainer/styles/panel = SubResource("StyleBoxFlat_3xq25")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_bcgmv")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_bcgmv")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_gwl6h")

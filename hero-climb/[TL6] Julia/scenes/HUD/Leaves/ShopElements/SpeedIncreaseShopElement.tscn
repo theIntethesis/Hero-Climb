@@ -1,5 +1,5 @@
 [gd_scene load_steps=3 format=3 uid="uid://fmn2flcvqhy5"]
-
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/SpeedIncrease.cs" id="1_1a8s7"]
 [ext_resource type="Texture2D" uid="uid://b4j04u68eq2sf" path="res://[TL6] Julia/assets/speed_increase.png" id="1_e3d4v"]
 

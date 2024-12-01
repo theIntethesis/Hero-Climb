@@ -39,9 +39,9 @@ public partial class CharacterCreator : MenuLeaf
 
 		DifficultyDropdown = GetNode<OptionButton>("VFlowContainer/DifficultyDropdown");
 
-		Wizard = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Wizard");
-		Fighter = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Fighter");
-		Rogue = GetNode<AnimatedSprite2D>("VFlowContainer/Control/Control/Rogue");
+		Wizard = GetNode<AnimatedSprite2D>("SubViewport/Wizard");
+		Fighter = GetNode<AnimatedSprite2D>("SubViewport/Fighter");
+		Rogue = GetNode<AnimatedSprite2D>("SubViewport/Rogue");
 		WizardButton = GetNode<Button>("VFlowContainer/GridContainer/WizardButton");
 		FighterButton = GetNode<Button>("VFlowContainer/GridContainer/FighterButton");
 		RogueButton = GetNode<Button>("VFlowContainer/GridContainer/RogueButton");

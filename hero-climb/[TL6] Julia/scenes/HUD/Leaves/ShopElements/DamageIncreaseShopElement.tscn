@@ -1,5 +1,5 @@
 [gd_scene load_steps=3 format=3 uid="uid://2vi1xf5ppita"]
-
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/DamageIncrease.cs" id="1_las2b"]
 [ext_resource type="Texture2D" uid="uid://c76x8ahc0odbl" path="res://[TL6] Julia/assets/dmg_increase.png" id="1_lqkrc"]
 

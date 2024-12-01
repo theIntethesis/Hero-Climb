@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8l7kxydqmc6r"]
+[gd_scene load_steps=7 format=3 uid="uid://b8l7kxydqmc6r"]
 
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_0ig7g"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuStack.cs" id="1_os2xj"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/PauseMenu.cs" id="2_3oum4"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/BaseClasses/MenuLeaf.cs" id="2_fs6n8"]
@@ -17,7 +18,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0ig7g")
 script = ExtResource("1_os2xj")
+_IsBackground = null
+_IsPoppable = null
 metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
@@ -29,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_fs6n8")
 _IsBackground = true
+_IsPoppable = false
 InitialParent = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
@@ -51,6 +56,8 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_3oum4")
+_IsBackground = null
+_IsPoppable = null
 InitialParent = NodePath("..")
 
 [node name="GridContainer" type="GridContainer" parent="MainPause"]

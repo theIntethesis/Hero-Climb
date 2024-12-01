@@ -1,5 +1,5 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfcdbdgy0vle1"]
-
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Composites/GameShop.cs" id="1_pnpkh"]
 
 [node name="ShopContainer" type="Control"]
