@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd6gj7x85tjuh"]
 
-[ext_resource type="Texture2D" uid="uid://4si0fb4271np" path="res://[TL6] Julia/assets/Aseprite_Source/FullHeart.png" id="1_64gdw"]
+[ext_resource type="Texture2D" uid="uid://b87skwsbvj34e" path="res://[TL6] Julia/assets/Aseprite_Source/FullHeart.png" id="1_64gdw"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/FullHeal.cs" id="1_b1n32"]
 
 [node name="ShopElement" type="Control"]

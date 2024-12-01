@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://x1puboycxv1v"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/Heart.cs" id="1_fbykv"]
-[ext_resource type="Texture2D" uid="uid://d3oa4346bmcjt" path="res://[TL6] Julia/assets/Aseprite_Source/Heart-Sheet.png" id="2_oorkq"]
+[ext_resource type="Texture2D" uid="uid://d3j8tdwtf30bd" path="res://[TL6] Julia/assets/Aseprite_Source/Heart-Sheet.png" id="2_oorkq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p3p3w"]
 atlas = ExtResource("2_oorkq")
