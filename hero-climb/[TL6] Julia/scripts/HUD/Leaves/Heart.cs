@@ -50,13 +50,13 @@ public partial class Heart : MenuElement
             
             if (previous < current)
             {
-                GD.Print(StateToString(previous) + '-' + StateToString((HeartState)((int)previous + 1)));
+                //GD.Print(StateToString(previous) + '-' + StateToString((HeartState)((int)previous + 1)));
                 AnimationQueue.Enqueue(StateToString(previous) + '-' + StateToString((HeartState)((int)previous + 1)));
                 previous = (HeartState)((int)previous + 1);
             }
             else 
             {
-                GD.Print(StateToString(previous) + '-' + StateToString((HeartState)((int)previous - 1)));
+                // GD.Print(StateToString(previous) + '-' + StateToString((HeartState)((int)previous - 1)));
                 AnimationQueue.Enqueue(StateToString(previous) + '-' + StateToString((HeartState)((int)previous - 1)));
                 previous = (HeartState)((int)previous - 1);
             }     

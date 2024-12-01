@@ -65,16 +65,44 @@ namespace GameDifficultyStates
             }, 
             new PlayerParamDictionary()
             {
-                {Controller.ClassType.Fighter, new PlayerParams(500, 200, 150)},
-                {Controller.ClassType.Wizard,  new PlayerParams(400, 100, 150)},
-                {Controller.ClassType.Rogue,   new PlayerParams(400, 100, 200)},
+                {Controller.ClassType.Fighter, new PlayerParams(
+                    baseMaxHealth: 500, 
+                    baseDamage: 200, 
+                    baseSpeed: 150
+                )},
+                {Controller.ClassType.Wizard,  new PlayerParams(
+                    baseMaxHealth: 400, 
+                    baseDamage: 100, 
+                    baseSpeed: 150
+                )},
+                {Controller.ClassType.Rogue,   new PlayerParams(
+                    baseMaxHealth: 400, 
+                    baseDamage: 100, 
+                    baseSpeed: 200
+                )},
             },
             new MonsterParamDictionary()
             {
-                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(100, 15, 50)},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(75, 15, 30)},
-                {EnemyController.MonsterTypes.Slime,    new MonsterParams(100, 15, 30)},
-                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(100, 15, 15)},
+                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(
+                    baseMaxHealth: 100, 
+                    baseDamage:  15, 
+                    baseSpeed: 50
+                )},
+                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(
+                    baseMaxHealth: 75,  
+                    baseDamage: 15, 
+                    baseSpeed: 30
+                )},
+                {EnemyController.MonsterTypes.Slime,    new MonsterParams(
+                    baseMaxHealth: 100, 
+                    baseDamage:  15, 
+                    baseSpeed: 30
+                )},
+                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(
+                    baseMaxHealth: 100, 
+                    baseDamage:  15, 
+                    baseSpeed: 15
+                )},
             },
             0.5f
         ) {}
@@ -141,16 +169,44 @@ namespace GameDifficultyStates
             }, 
             new PlayerParamDictionary()
             {
-                {Controller.ClassType.Fighter, new PlayerParams(125, 75, 80)},
-                {Controller.ClassType.Wizard,  new PlayerParams(80, 60, 95)},
-                {Controller.ClassType.Rogue,   new PlayerParams(100, 50, 110)},
+                {Controller.ClassType.Fighter, new PlayerParams(
+                    baseMaxHealth: 125, 
+                    baseDamage: 75, 
+                    baseSpeed: 80
+                )},
+                {Controller.ClassType.Wizard,  new PlayerParams(
+                    baseMaxHealth: 80, 
+                    baseDamage: 60, 
+                    baseSpeed: 95
+                )},
+                {Controller.ClassType.Rogue,   new PlayerParams(
+                    baseMaxHealth: 100, 
+                    baseDamage: 50, 
+                    baseSpeed: 110
+                )},
             },
             new MonsterParamDictionary()
             {
-                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(100, 25, 75)},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(100, 15, 50)},
-                {EnemyController.MonsterTypes.Slime,    new MonsterParams(150, 20, 20)},
-                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(125, 25, 25)},
+                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(
+                    baseMaxHealth: 100, 
+                    baseDamage:  25, 
+                    baseSpeed: 75
+                )},
+                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(
+                    baseMaxHealth: 100,  
+                    baseDamage: 15, 
+                    baseSpeed: 50
+                )},
+                {EnemyController.MonsterTypes.Slime,    new MonsterParams(
+                    baseMaxHealth: 150, 
+                    baseDamage:  20, 
+                    baseSpeed: 20
+                )},
+                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(
+                    baseMaxHealth: 125, 
+                    baseDamage:  25, 
+                    baseSpeed: 25
+                )},      
             },
             1.0f
         ) {}
@@ -218,16 +274,44 @@ namespace GameDifficultyStates
             }, 
             new PlayerParamDictionary()
             {
-                {Controller.ClassType.Fighter, new PlayerParams(125, 60, 80)},
-                {Controller.ClassType.Wizard,  new PlayerParams(80, 50, 90)},
-                {Controller.ClassType.Rogue,   new PlayerParams(100, 40, 110)},
+                {Controller.ClassType.Fighter, new PlayerParams(
+                    baseMaxHealth: 125, 
+                    baseDamage: 60, 
+                    baseSpeed: 80
+                )},
+                {Controller.ClassType.Wizard,  new PlayerParams(
+                    baseMaxHealth: 80, 
+                    baseDamage: 50, 
+                    baseSpeed: 90
+                )},
+                {Controller.ClassType.Rogue,   new PlayerParams(
+                    baseMaxHealth: 100, 
+                    baseDamage: 40, 
+                    baseSpeed: 110
+                )},
             },
             new MonsterParamDictionary()
             {
-                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(120, 25, 75)},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(100, 25, 50)},
-                {EnemyController.MonsterTypes.Slime,    new MonsterParams(180, 25, 20)},
-                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(150, 35, 25)},
+                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(
+                    baseMaxHealth: 120, 
+                    baseDamage:  25, 
+                    baseSpeed: 75
+                )},
+                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(
+                    baseMaxHealth: 100,  
+                    baseDamage: 25, 
+                    baseSpeed: 50
+                )},
+                {EnemyController.MonsterTypes.Slime,    new MonsterParams(
+                    baseMaxHealth: 180, 
+                    baseDamage:  25, 
+                    baseSpeed: 20
+                )},
+                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(
+                    baseMaxHealth: 150, 
+                    baseDamage:  35, 
+                    baseSpeed: 25
+                )},
             },
             1.5f
         ) {}
@@ -295,16 +379,44 @@ namespace GameDifficultyStates
             }, 
             new PlayerParamDictionary()
             {
-                {Controller.ClassType.Fighter, new PlayerParams(100, 60, 70)},
-                {Controller.ClassType.Wizard,  new PlayerParams(60, 40, 80)},
-                {Controller.ClassType.Rogue,   new PlayerParams(80, 40, 100)},
+                {Controller.ClassType.Fighter, new PlayerParams(
+                    baseMaxHealth: 100, 
+                    baseDamage: 60, 
+                    baseSpeed: 87
+                )},
+                {Controller.ClassType.Wizard,  new PlayerParams(
+                    baseMaxHealth: 60, 
+                    baseDamage: 40, 
+                    baseSpeed: 80
+                )},
+                {Controller.ClassType.Rogue,   new PlayerParams(
+                    baseMaxHealth: 80, 
+                    baseDamage: 40, 
+                    baseSpeed: 100
+                )},
             },
             new MonsterParamDictionary()
             {
-                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(120, 25, 75)},
-                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(100, 40, 50)},
-                {EnemyController.MonsterTypes.Slime,    new MonsterParams(200, 25, 30)},
-                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(200, 50, 40)},
+                {EnemyController.MonsterTypes.Goblin,   new MonsterParams(
+                    baseMaxHealth: 120, 
+                    baseDamage:  25, 
+                    baseSpeed: 75
+                )},
+                {EnemyController.MonsterTypes.Skeleton, new MonsterParams(
+                    baseMaxHealth: 100,  
+                    baseDamage: 40, 
+                    baseSpeed: 50
+                )},
+                {EnemyController.MonsterTypes.Slime,    new MonsterParams(
+                    baseMaxHealth: 200, 
+                    baseDamage:  25, 
+                    baseSpeed: 30
+                )},
+                {EnemyController.MonsterTypes.Zombie,   new MonsterParams(
+                    baseMaxHealth: 200, 
+                    baseDamage:  50, 
+                    baseSpeed: 40
+                )},
             },
             2.0f
         ) {}

@@ -11,12 +11,8 @@ public partial class Wizard : Controller
 	private bool fireballsummon = false;
 	private Timer FireballSummon = new();
 
-	public Wizard() 
+	public Wizard(): base(Controller.ClassType.Wizard)
 	{ 
-		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseMaxHealth;
-		Damage = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseDamage;
-		Speed = GameDifficultyHandler.Instance().PlayerParams(ClassType.Wizard).BaseSpeed;
-		Class = ClassType.Wizard;
 	}
 
 	protected override void SetupClassScript()

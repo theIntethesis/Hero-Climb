@@ -9,12 +9,8 @@ public partial class Fighter : Controller
 {
 	private float BashSpeed = 400;
 	Timer bashTimer = new();
-	public Fighter() 
+	public Fighter(): base(Controller.ClassType.Fighter)
 	{ 
-		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseMaxHealth;
-		Damage = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseDamage;
-		Speed = GameDifficultyHandler.Instance().PlayerParams(ClassType.Fighter).BaseSpeed;
-		Class = ClassType.Fighter;
 	}
 	protected override void SetupClassScript()
 	{

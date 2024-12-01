@@ -41,8 +41,8 @@ public partial class Controller : CharacterBody2D
 	[Signal]
 	public delegate void PlayerMaxHealthChangeEventHandler(int change);
 
-	public int MaxHealth = 100;
-	protected int Health = 100;
+	public int MaxHealth;
+	protected int Health;
 	protected bool attackCooldown = false;
 
 	protected bool IsMovementLocked = false;
@@ -50,17 +50,39 @@ public partial class Controller : CharacterBody2D
 	protected AnimatedSprite2D sprites;
 	protected PlayerSoundController SoundController = null;
 	protected Timer iFrames = new();
+
+	public Controller(ClassType classType)
+	{
+		Class = classType;
+		MaxHealth = GameDifficultyHandler.Instance().PlayerParams(Class).BaseMaxHealth;
+		Damage = GameDifficultyHandler.Instance().PlayerParams(Class).BaseDamage;
+		Speed = GameDifficultyHandler.Instance().PlayerParams(Class).BaseSpeed;
+		Health = MaxHealth;
+	}
+	
 	#region Get / Set Methods
 	public int getHealth() { return Health; }
 	public int affectHealth(int amount)
 	{
 		if (Health + amount > MaxHealth)
+		{
 			amount = MaxHealth - Health;
+		}
 
 		EmitSignal(SignalName.PlayerHealthChange, amount);
 		Health += amount;
-		if (Health <= 0) OnPlayerDeath();
-		else if (amount < 0) startIFrames();
+		
+		GD.Print(Health);
+
+		if (Health <= 0) 
+		{
+			OnPlayerDeath();
+		}
+		else if (amount < 0) 
+		{
+			startIFrames();
+		}
+		
 		return Health;
 	}
 	public void SetClass(Controller.ClassType type) { Class = type; }
@@ -242,6 +264,7 @@ public partial class Controller : CharacterBody2D
 		}
 		if(Health <= 0)
 		{
+			GD.Print(Health);
 			EmitSignal(SignalName.PlayerDeath);
 		}
 		OnAnimationEnd();
