@@ -82,6 +82,7 @@ public partial class PlayerCamera : Camera2D
 		}
 	}
 
+	/*
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
@@ -89,7 +90,8 @@ public partial class PlayerCamera : Camera2D
 			if (eventKey.Pressed && eventKey.Keycode == Key.Q)
 				Stack.HUD.OpenShop();
     }
-
+	*/
+	
     public void ShakeCamera()
 	{
 		if (!Shaking)

@@ -38,7 +38,7 @@ public partial class GameShop : MenuCompositeBase
     {
         if (PlayerGlobal.InShopArea == false)
         {
-            // QueueFree();
+            QueueFree();
         }
     }
 }
