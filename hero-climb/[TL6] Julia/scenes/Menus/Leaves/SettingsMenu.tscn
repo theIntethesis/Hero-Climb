@@ -73,7 +73,7 @@ text = "Enemy Sound Effects"
 horizontal_alignment = 2
 
 [node name="EnemySFXSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 rounded = true
 
@@ -98,11 +98,6 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 rounded = true
-
-[node name="Accessibility" type="Control" parent="TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

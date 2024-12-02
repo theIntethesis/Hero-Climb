@@ -11,6 +11,10 @@ public partial class CharacterHUD : MenuComposite
     [Export]
     int InitialMoney;
 
+    [Export]
+    int PauseMenuVolumeDrop = 16;
+
+
     public CharacterHUD(int maxhealth, int intitialMoney) : base()
     {
 
@@ -56,13 +60,16 @@ public partial class CharacterHUD : MenuComposite
     {
         GetTree().Paused = false;
         Input.EmulateMouseFromTouch = false;
-
+        int temp = GameHandler.Instance().GameSoundController.GetVolume();
+        GameHandler.Instance().GameSoundController.SetVolume(temp * PauseMenuVolumeDrop);
     }
 
     public override void OnHide()
     {
         GetTree().Paused = true;
         Input.EmulateMouseFromTouch = true;
+        int temp = GameHandler.Instance().GameSoundController.GetVolume();
+        GameHandler.Instance().GameSoundController.SetVolume(temp / PauseMenuVolumeDrop);
     }
 
     public override void OnPop()

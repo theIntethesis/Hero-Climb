@@ -79,6 +79,8 @@ public partial class GameHandler : Node
 
 		GameSoundController = ResourceLoader.Load<PackedScene>("res://[TL3] Gavin/scenes/game_music_controller.tscn").Instantiate() as SoundController;
 		AddChild(GameSoundController);
+		
+		ProcessMode = ProcessModeEnum.Always;
 	}
 
 	public void ClickSound()
