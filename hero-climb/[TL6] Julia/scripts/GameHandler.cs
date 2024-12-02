@@ -39,7 +39,7 @@ public partial class GameHandler : Node
 		
 		GetTree().Root.AddChild(ActiveScene);
 
-		GetTree().Root.AddChild(GameSoundController);
+		AddChild(GameSoundController);
 
 		GD.Print("Added ActiveScene");
 
