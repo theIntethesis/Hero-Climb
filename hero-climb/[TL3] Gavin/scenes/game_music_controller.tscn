@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bcauxitiymkle" path="res://[TL3] Gavin/assets/GameMusic/Dark Souls ' You Died ' Sound Effect.mp3" id="7_piwfj"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_sgyf5"]
+shuffle = true
 fade_time = 0.5
 stream_count = 4
 stream_0 = ExtResource("3_ykkbm")
@@ -22,6 +23,7 @@ script = ExtResource("1_stus1")
 [node name="Main" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ghmjd")
 autoplay = true
+parameters/looping = false
 
 [node name="Game" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_sgyf5")

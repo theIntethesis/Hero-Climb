@@ -8,8 +8,7 @@ public partial class GameHandler : Node
 	
 	private Node ActiveScene;
 
-	private Node GameSoundController;
-
+	private SoundController GameSoundController;
 	private SoundController MenuSoundController;
 
 	private static GameHandler _Instance = null;
@@ -33,14 +32,12 @@ public partial class GameHandler : Node
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
 		ShopElementFactory.Reset(classType);
 
-		GameSoundController = ResourceLoader.Load<PackedScene>("res://[TL3] Gavin/scenes/game_music_controller.tscn").Instantiate();
-
+		
 		GD.Print("Made Character");
 		
 		GetTree().Root.AddChild(ActiveScene);
 
-		AddChild(GameSoundController);
-
+	
 		GD.Print("Added ActiveScene");
 
 		ActiveScene.AddChild(Player);
@@ -54,6 +51,8 @@ public partial class GameHandler : Node
 		
 
 		Input.EmulateMouseFromTouch = false;
+
+		GameSoundController.Play("Game");
 	}
 
 	public void StopGame()
@@ -65,12 +64,9 @@ public partial class GameHandler : Node
 			Input.EmulateMouseFromTouch = true;
 			PlayerGlobal.SetPlayer(null);
 		}
-
-		if (GameSoundController != null)
-		{
-			GameSoundController.QueueFree();
-		}
 	}
+
+
 
 	private GameHandler() { }
 
@@ -80,11 +76,19 @@ public partial class GameHandler : Node
 
 		MenuSoundController = ResourceLoader.Load<PackedScene>("res://[TL3] Gavin/scenes/hud_sound_controller.tscn").Instantiate() as SoundController;
 		AddChild(MenuSoundController);
+
+		GameSoundController = ResourceLoader.Load<PackedScene>("res://[TL3] Gavin/scenes/game_music_controller.tscn").Instantiate() as SoundController;
+		AddChild(GameSoundController);
 	}
 
 	public void ClickSound()
 	{
 		MenuSoundController.Play("Click");
+	}
+
+	public void SwitchToDeathMusic()
+	{
+		GameSoundController.Play("Death");
 	}
 
 	public void LoadMainMenu()
@@ -96,5 +100,6 @@ public partial class GameHandler : Node
 			GetTree().Root.CallDeferred("add_child", node);
 		}   
 		
+		GameSoundController.Play("Main");
 	}
 }

@@ -26,5 +26,7 @@ public partial class DeathScreen : MenuLeaf
         int FinalScore = (int)(PlayerGlobal.GetSetScore() * GameDifficultyHandler.Instance().ScoreMultiplier());
 
         GetNode<Label>("GridContainer/Score").Text = $"Score: {FinalScore}";
+
+        GameHandler.Instance().SwitchToDeathMusic();
     }
 }
