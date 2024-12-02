@@ -13,20 +13,26 @@ script = ExtResource("1_eboj7")
 
 [node name="WizardAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ln73a")
+bus = &"Player"
 
 [node name="FighterAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1nj3d")
+bus = &"Player"
 
 [node name="RogueAttack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_n37xr")
+bus = &"Player"
 
 [node name="Jump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_x8owk")
+bus = &"Player"
 
 [node name="Walking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_3k8w5")
 pitch_scale = 0.81
 max_polyphony = 4
+bus = &"Player"
 
 [node name="Damaged" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_k1784")
+bus = &"Player"

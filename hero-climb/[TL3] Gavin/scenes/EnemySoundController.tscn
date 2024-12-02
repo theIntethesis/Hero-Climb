@@ -8,12 +8,16 @@ script = ExtResource("1_cgt6s")
 
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ohfc4")
+bus = &"Enemy"
 
 [node name="Attack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ohfc4")
+bus = &"Enemy"
 
 [node name="Damaged" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ohfc4")
+bus = &"Enemy"
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ohfc4")
+bus = &"Enemy"

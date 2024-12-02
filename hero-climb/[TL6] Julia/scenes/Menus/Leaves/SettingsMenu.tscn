@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d220mtjktx1ci"]
+[gd_scene load_steps=4 format=3 uid="uid://d220mtjktx1ci"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/SettingsMenu.cs" id="1_jfmx4"]
 [ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_pwoxs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cy353"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -25,9 +27,77 @@ offset_bottom = 40.0
 tab_alignment = 1
 current_tab = 0
 
-[node name="Controls" type="Control" parent="TabContainer"]
+[node name="Audio" type="Control" parent="TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Audio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -287.5
+offset_right = 287.5
+offset_bottom = 84.0
+grow_horizontal = 2
+columns = 2
+
+[node name="Label5" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Master Volume"
+horizontal_alignment = 2
+
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+rounded = true
+
+[node name="Label" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Game Music"
+horizontal_alignment = 2
+
+[node name="GameMusicSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+rounded = true
+
+[node name="Label2" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Enemy Sound Effects"
+horizontal_alignment = 2
+
+[node name="EnemySFXSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+rounded = true
+
+[node name="Label3" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Player Sound Effects"
+horizontal_alignment = 2
+
+[node name="PlayerSFXSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+rounded = true
+
+[node name="Label4" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Interface Sound Effects"
+horizontal_alignment = 2
+
+[node name="InterfaceSFXSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+rounded = true
 
 [node name="Accessibility" type="Control" parent="TabContainer"]
 visible = false

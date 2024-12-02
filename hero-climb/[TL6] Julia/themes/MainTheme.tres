@@ -1,8 +1,11 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://esntjulg5jim"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://esntjulg5jim"]
 
 [ext_resource type="FontFile" uid="uid://cw7tymns51sj4" path="res://[TL6] Julia/assets/Minecraft.otf" id="1_570oe"]
 [ext_resource type="Texture2D" uid="uid://pjptvs6bwx2l" path="res://[TL6] Julia/assets/Aseprite_Source/slider_button.png" id="1_yusc4"]
 [ext_resource type="Texture2D" uid="uid://7r4yk8f6noj0" path="res://[TL6] Julia/assets/Aseprite_Source/slider_button_highlighted.png" id="2_cwbs4"]
+[ext_resource type="Texture2D" uid="uid://dvq8pu08a8ghr" path="res://[TL6] Julia/assets/Aseprite_Source/ArrowDown.png" id="3_hmpdg"]
+[ext_resource type="Texture2D" uid="uid://dwdjrl85ybb8q" path="res://[TL6] Julia/assets/Aseprite_Source/radio_chk.png" id="4_mb11y"]
+[ext_resource type="Texture2D" uid="uid://dy5t4m3gnfh38" path="res://[TL6] Julia/assets/Aseprite_Source/radio_unc.png" id="5_r0il6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e250"]
 content_margin_left = 5.0
@@ -48,20 +51,22 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brwm4"]
-bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
 border_color = Color(0.505882, 0.505882, 0.505882, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00rnr"]
-bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
 border_color = Color(0.392157, 0.392157, 0.392157, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nkyk"]
 content_margin_top = 4.0
-content_margin_right = 0.0
 content_margin_bottom = 4.0
-bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_width_left = 7
+border_width_right = 7
+border_color = Color(0.8, 0.8, 0.8, 0)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xq25"]
@@ -129,6 +134,9 @@ content_margin_top = 0.0
 content_margin_right = 4.0
 content_margin_bottom = 0.0
 bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+border_width_top = 7
+border_width_bottom = 7
+border_color = Color(0.8, 0.8, 0.8, 0)
 corner_detail = 1
 
 [resource]
@@ -140,6 +148,8 @@ Button/font_sizes/font_size = 18
 Button/styles/hover = SubResource("StyleBoxFlat_5e250")
 Button/styles/normal = SubResource("StyleBoxFlat_3oai4")
 Button/styles/pressed = SubResource("StyleBoxFlat_sw3ci")
+CheckBox/icons/radio_checked = ExtResource("4_mb11y")
+CheckBox/icons/radio_unchecked = ExtResource("5_r0il6")
 HScrollBar/styles/grabber = SubResource("StyleBoxFlat_3oai4")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_5e250")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_sw3ci")
@@ -153,7 +163,15 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_00rnr")
 HSlider/styles/slider = SubResource("StyleBoxFlat_1nkyk")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/styles/normal = SubResource("StyleBoxFlat_3xq25")
+OptionButton/constants/arrow_margin = 8
+OptionButton/constants/h_separation = 4
+OptionButton/constants/modulate_arrow = -1
+OptionButton/icons/arrow = ExtResource("3_hmpdg")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0lxpa")
+PopupMenu/icons/radio_checked = ExtResource("4_mb11y")
+PopupMenu/icons/radio_unchecked = ExtResource("5_r0il6")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_0lxpa")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_0lxpa")
 TabContainer/colors/font_selected_color = Color(0.95, 0.95, 0.95, 1)
 TabContainer/colors/font_unselected_color = Color(1, 1, 1, 1)
 TabContainer/styles/panel = SubResource("StyleBoxFlat_3xq25")

@@ -95,8 +95,6 @@ public partial class CharacterCreator : MenuLeaf
 		Fighter.Visible = true;
 		Wizard.Visible = false;
 		Rogue.Visible = false;
-		WizardButton.SetPressed(false);
-		RogueButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Fighter;
 		GameHandler.Instance().ClickSound();
 	}
@@ -105,8 +103,6 @@ public partial class CharacterCreator : MenuLeaf
 		Wizard.Visible = true;
 		Fighter.Visible = false;
 		Rogue.Visible = false;
-		FighterButton.SetPressed(false);
-		RogueButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Wizard;
 		GameHandler.Instance().ClickSound();
 	}
@@ -116,8 +112,6 @@ public partial class CharacterCreator : MenuLeaf
 
 		Wizard.Visible = false;
 		Fighter.Visible = false;
-		FighterButton.SetPressed(false);
-		WizardButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Rogue;
 		GameHandler.Instance().ClickSound();
 	}

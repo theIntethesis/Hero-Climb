@@ -8,8 +8,8 @@ public partial class GameHandler : Node
 	
 	private Node ActiveScene;
 
-	private SoundController GameSoundController;
-	private SoundController MenuSoundController;
+	public SoundController GameSoundController;
+	public SoundController MenuSoundController;
 
 	private static GameHandler _Instance = null;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cf1mwj455rvja"]
+[gd_scene load_steps=11 format=4 uid="uid://cf1mwj455rvja"]
 
 [ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_gfpf0"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/CharacterCreator.cs" id="1_ixjar"]
@@ -14,6 +14,8 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ffrqq"]
 resource_local_to_scene = true
 texture = SubResource("ViewportTexture_2yatx")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vlisg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -57,21 +59,25 @@ columns = 3
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_group = SubResource("ButtonGroup_vlisg")
 text = "Fighter"
 
 [node name="WizardButton" type="Button" parent="VFlowContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_group = SubResource("ButtonGroup_vlisg")
 text = "Wizard"
 
 [node name="RogueButton" type="Button" parent="VFlowContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
+button_group = SubResource("ButtonGroup_vlisg")
 text = "Rogue"
 
 [node name="DifficultyDropdown" type="OptionButton" parent="VFlowContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 allow_reselect = true
 
