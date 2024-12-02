@@ -88,6 +88,17 @@ public partial class GameHandler : Node
 		MenuSoundController.Play("Click");
 	}
 
+	public void CoinSound()
+	{
+		MenuSoundController.Play("Coin");
+	}
+
+	public void HealSound()
+	{
+		MenuSoundController.Play("Heal");
+	}
+
+
 	public void DeathSound()
 	{
 		GameSoundController.Play("Death");

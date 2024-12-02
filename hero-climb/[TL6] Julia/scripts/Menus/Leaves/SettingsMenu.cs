@@ -7,6 +7,7 @@ public partial class SettingsMenu : MenuLeaf
     HSlider PlayerSFXSlider;
     HSlider InterfaceSFXSlider;
     HSlider MasterSlider;
+    HSlider GameSFXSlider;
 
     public SettingsMenu() : base()
     {
@@ -26,12 +27,14 @@ public partial class SettingsMenu : MenuLeaf
         EnemySFXSlider = GetNode<HSlider>("TabContainer/Audio/GridContainer/EnemySFXSlider");
         PlayerSFXSlider = GetNode<HSlider>("TabContainer/Audio/GridContainer/PlayerSFXSlider");
         InterfaceSFXSlider = GetNode<HSlider>("TabContainer/Audio/GridContainer/InterfaceSFXSlider");  
+        GameSFXSlider = GetNode<HSlider>("TabContainer/Audio/GridContainer/GameSFXSlider");
 
         MasterSlider.Value = (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(0)) * 100.0;
         GameMusicSlider.Value =    (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(1)) * 100.0;
         PlayerSFXSlider.Value =    (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(2)) * 100.0;
         EnemySFXSlider.Value =     (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(3)) * 100.0;
         InterfaceSFXSlider.Value = (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(4)) * 100.0;
+        GameSFXSlider.Value = (float)Mathf.DbToLinear(AudioServer.GetBusVolumeDb(5)) * 100.0;
 
         MasterSlider.DragEnded += (bool changed) => {
             AudioServer.SetBusVolumeDb(0, (float)Mathf.LinearToDb((double)MasterSlider.Value / 100.0));
@@ -53,6 +56,9 @@ public partial class SettingsMenu : MenuLeaf
             AudioServer.SetBusVolumeDb(4, (float)Mathf.LinearToDb((double)InterfaceSFXSlider.Value / 100.0));
         };
 
+        GameSFXSlider.DragEnded += (bool changed) => {
+            AudioServer.SetBusVolumeDb(5, (float)Mathf.LinearToDb((double)GameSFXSlider.Value / 100.0));
+        };
         base._Ready();
     }
 }

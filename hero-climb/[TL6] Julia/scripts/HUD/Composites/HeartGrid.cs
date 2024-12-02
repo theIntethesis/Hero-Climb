@@ -29,6 +29,7 @@ public partial class HeartGrid : MenuCompositeBase
 			else if (change > 0)
 			{
 				Increment(Math.Abs(change));
+				GameHandler.Instance().HealSound();
 			}
 		}
 		

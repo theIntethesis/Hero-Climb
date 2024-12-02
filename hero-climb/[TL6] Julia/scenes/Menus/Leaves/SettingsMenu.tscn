@@ -66,6 +66,17 @@ custom_minimum_size = Vector2(300, 40)
 layout_mode = 2
 rounded = true
 
+[node name="Label6" type="Label" parent="TabContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
+text = "Game SFX"
+horizontal_alignment = 2
+
+[node name="GameSFXSlider" type="HSlider" parent="TabContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+rounded = true
+
 [node name="Label2" type="Label" parent="TabContainer/Audio/GridContainer"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cy353")
