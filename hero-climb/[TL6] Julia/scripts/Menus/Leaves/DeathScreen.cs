@@ -27,6 +27,6 @@ public partial class DeathScreen : MenuLeaf
 
         GetNode<Label>("GridContainer/Score").Text = $"Score: {FinalScore}";
 
-        GameHandler.Instance().SwitchToDeathMusic();
+        GameHandler.Instance().DeathSound();
     }
 }

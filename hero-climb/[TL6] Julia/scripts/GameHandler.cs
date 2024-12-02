@@ -86,7 +86,7 @@ public partial class GameHandler : Node
 		MenuSoundController.Play("Click");
 	}
 
-	public void SwitchToDeathMusic()
+	public void DeathSound()
 	{
 		GameSoundController.Play("Death");
 	}
