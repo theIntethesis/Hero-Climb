@@ -14,6 +14,7 @@ public partial class GameShop : MenuCompositeBase
         GetNode<Button>("Shop/BoundingBox/Close").Pressed += () => 
         {
             QueueFree();
+            GameHandler.Instance().ClickSound();
         };
 
         elements = ShopElementFactory.GenerateElements(); 

@@ -12,11 +12,13 @@ public partial class CreditsMenu : MenuLeaf
         GetNode<Button>("GridContainer/Control/GridContainer/Button").Pressed += () =>
         {
             Parent().Pop();
+            GameHandler.Instance().ClickSound();
         };
 
         GetNode<Button>("GridContainer/Control/GridContainer/Licenses").Pressed += () =>
         {
             Parent().Push(MenuFactory.LicenseMenu());
+            GameHandler.Instance().ClickSound();
         };
 
         base._Ready();

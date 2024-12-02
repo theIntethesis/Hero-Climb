@@ -12,6 +12,7 @@ public partial class LicenseMenu : MenuLeaf
         GetNode<Button>("GridContainer/Control/GridContainer/Button").Pressed += () =>
         {
             Parent().Pop();
+            GameHandler.Instance().ClickSound();
         };
 
         base._Ready();

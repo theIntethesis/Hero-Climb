@@ -9,6 +9,7 @@ public partial class QuitConfirm : MenuLeaf
         GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
             GetTree().Quit();
+            GameHandler.Instance().ClickSound();
         };
         
         base._Ready();
@@ -17,6 +18,7 @@ public partial class QuitConfirm : MenuLeaf
     public void OnBack()
     {
         GD.Print(Parent());
+        GameHandler.Instance().ClickSound();
         Parent().Pop();
     }
 }

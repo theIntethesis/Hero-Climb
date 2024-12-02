@@ -12,6 +12,7 @@ public partial class SettingsMenu : MenuLeaf
         GetNode<Button>("Control/Button").Pressed += () => 
         {
             Parent().Pop();
+            GameHandler.Instance().ClickSound();
         };
 
         base._Ready();

@@ -20,8 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0ig7g")
 script = ExtResource("1_os2xj")
-_IsBackground = null
-_IsPoppable = null
 metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
@@ -56,8 +54,6 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_3oum4")
-_IsBackground = null
-_IsPoppable = null
 InitialParent = NodePath("..")
 
 [node name="GridContainer" type="GridContainer" parent="MainPause"]

@@ -27,6 +27,7 @@ public partial class CharacterCreator : MenuLeaf
 		GetNode<Button>("VFlowContainer/BackButton").Pressed += () => 
 		{
 			Parent().Pop();
+			GameHandler.Instance().ClickSound();
 		};
 
 		GetNode<Button>("VFlowContainer/StartButton").Pressed += () => 
@@ -34,7 +35,7 @@ public partial class CharacterCreator : MenuLeaf
 			MostRecentClass = CurrentType;
 			MostRecentDifficulty = (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected;
 			GameHandler.Instance().StartGame(CurrentType, (GameDifficultyHandler.GameDifficultyEnum)DifficultyDropdown.Selected);
-
+			GameHandler.Instance().ClickSound();
 		};
 
 		DifficultyDropdown = GetNode<OptionButton>("VFlowContainer/DifficultyDropdown");
@@ -54,6 +55,14 @@ public partial class CharacterCreator : MenuLeaf
 		{
 			DifficultyDropdown.AddItem(GameDifficultyHandler.GameDifficultyNames[val], val);
 		}
+
+		DifficultyDropdown.Pressed += () => {
+			GameHandler.Instance().ClickSound();
+		};
+
+		DifficultyDropdown.ItemSelected += (long _index) => {
+			GameHandler.Instance().ClickSound();
+		};
 
 		switch (MostRecentClass) 
 		{
@@ -89,6 +98,7 @@ public partial class CharacterCreator : MenuLeaf
 		WizardButton.SetPressed(false);
 		RogueButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Fighter;
+		GameHandler.Instance().ClickSound();
 	}
 	public void OnWizardButtonPressed()
 	{
@@ -98,6 +108,7 @@ public partial class CharacterCreator : MenuLeaf
 		FighterButton.SetPressed(false);
 		RogueButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Wizard;
+		GameHandler.Instance().ClickSound();
 	}
 	public void OnRougeButtonPressed()
 	{
@@ -108,6 +119,7 @@ public partial class CharacterCreator : MenuLeaf
 		FighterButton.SetPressed(false);
 		WizardButton.SetPressed(false);
 		CurrentType = Controller.ClassType.Rogue;
+		GameHandler.Instance().ClickSound();
 	}
 
 	public CharacterCreator() : base()

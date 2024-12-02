@@ -17,6 +17,7 @@ public abstract partial class ShopElement : MenuLeaf
             GetNode<Label>("Label").Text = CurrentPrice.ToString();
 
             AffectPlayer();
+            GameHandler.Instance().ClickSound();
 
             return OutMoney;
         }

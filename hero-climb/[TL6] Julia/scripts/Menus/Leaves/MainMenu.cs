@@ -13,18 +13,22 @@ public partial class MainMenu: MenuLeaf
         GetNode<Button>("GridContainer/Start").Pressed += () => 
         {
             Parent().Push(MenuFactory.CharacterCreator());
+            GameHandler.Instance().ClickSound();
         };
         GetNode<Button>("GridContainer/Settings").Pressed += () => 
         {
             Parent().Push(MenuFactory.SettingsMenu());
+            GameHandler.Instance().ClickSound();
         };
         GetNode<Button>("GridContainer/Credits").Pressed += () => 
         {
             Parent().Push(MenuFactory.CreditsMenu());
+            GameHandler.Instance().ClickSound();
         };
         GetNode<Button>("GridContainer/Quit").Pressed += () => 
         {
             Parent().Pop();
+            GameHandler.Instance().ClickSound();
         };
 
         base._Ready();
