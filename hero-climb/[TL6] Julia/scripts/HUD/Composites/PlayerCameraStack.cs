@@ -8,7 +8,7 @@ public partial class PlayerCameraStack : MenuStack
     public PlayerCameraStack(PlayerCamera parent) : base()
     {
         SetAnchorsPreset(LayoutPreset.FullRect);
-        GD.Print("Here");
+        // GD.Print("Here");
 
         ParentCam = parent;
     }

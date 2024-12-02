@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://8hj8rgiqvtwt"]
+
+[ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ScoreLabel.cs" id="1_4v2uv"]
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_e73vm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86uuc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fc475"]
+
+[node name="Control" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+script = ExtResource("1_4v2uv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_e73vm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_86uuc")
+text = "Score:"
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_e73vm")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_fc475")

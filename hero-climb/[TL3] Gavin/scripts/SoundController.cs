@@ -50,7 +50,7 @@ public partial class SoundController : Node2D
 		List<String> sounds = new List<String>();
 		foreach (AudioStreamPlayer sound in GetChildren()) {
 			sounds.Add(sound.Name);
-			GD.Print(sound.Name);
+			// GD.Print(sound.Name);
 		}
 		return sounds;
 	}
@@ -99,7 +99,7 @@ public partial class SoundController : Node2D
 	// Set the decibel volume of each sound child
 	private void SetChildrenVolume(int vol) {
 		float db = VolumeToDb(vol);
-		GD.Print("Setting DB to " + db);
+		// GD.Print("Setting DB to " + db);
 		foreach (AudioStreamPlayer sound in GetChildren()) {
 			sound.VolumeDb = db;
 		}

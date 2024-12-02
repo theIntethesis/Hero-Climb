@@ -22,10 +22,10 @@ public partial class GameShop : MenuCompositeBase
         foreach (ShopElement element in elements)
         {
             Push(element);
-            GD.Print(element);
+            // GD.Print(element);
         }
 
-        GD.Print("shop added");
+        // GD.Print("shop added");
 
     }
 

@@ -17,7 +17,7 @@ public partial class QuitConfirm : MenuLeaf
 
     public void OnBack()
     {
-        GD.Print(Parent());
+        // GD.Print(Parent());
         GameHandler.Instance().ClickSound();
         Parent().Pop();
     }

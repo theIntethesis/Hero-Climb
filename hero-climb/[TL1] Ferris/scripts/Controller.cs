@@ -79,7 +79,7 @@ public abstract partial class Controller : CharacterBody2D
 		EmitSignal(SignalName.PlayerHealthChange, amount);
 		Health += amount;
 		
-		GD.Print(Health);
+		// GD.Print(Health);
 
 		if (Health <= 0) 
 		{
@@ -271,7 +271,7 @@ public abstract partial class Controller : CharacterBody2D
 		}
 		if(Health <= 0)
 		{
-			GD.Print(Health);
+			// GD.Print(Health);
 			EmitSignal(SignalName.PlayerDeath);
 		}
 		OnAnimationEnd();
@@ -306,7 +306,7 @@ public abstract partial class Controller : CharacterBody2D
 	}
 	protected virtual void SetupClassScript()
 	{
-		GD.Print(Class);
+		// GD.Print(Class);
 		if (Class != 0)
 		{
 			SoundController.SetHero(Class);

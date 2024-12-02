@@ -23,7 +23,7 @@ public partial class DeathScreen : MenuLeaf
             GameHandler.Instance().ClickSound();
         };
 
-        int FinalScore = (int)(PlayerGlobal.GetSetScore() * GameDifficultyHandler.Instance().ScoreMultiplier());
+        int FinalScore = PlayerGlobal.GetSetScore();
 
         GetNode<Label>("GridContainer/Score").Text = $"Score: {FinalScore}";
 

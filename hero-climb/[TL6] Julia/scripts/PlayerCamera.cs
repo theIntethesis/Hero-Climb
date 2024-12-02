@@ -91,7 +91,7 @@ public partial class PlayerCamera : Camera2D
 				Stack.HUD.OpenShop();
     }
 	*/
-	
+
     public void ShakeCamera()
 	{
 		if (!Shaking)
@@ -100,6 +100,6 @@ public partial class PlayerCamera : Camera2D
 			ShakeFrame = 0;
 		}
 
-		Input.VibrateHandheld(500);
+		Input.VibrateHandheld(500, 1.0f);
 	}
 }   

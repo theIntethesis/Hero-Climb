@@ -14,7 +14,7 @@ public partial class PauseMenu : MenuLeaf
 
     public override void _Ready()
     {
-        GD.Print("lowering volume");
+        // GD.Print("lowering volume");
 
         int temp = GameHandler.Instance().GameSoundController.GetVolume();
         GameHandler.Instance().GameSoundController.SetVolume(temp / PauseMenuVolumeDrop);
@@ -56,7 +56,7 @@ public partial class PauseMenu : MenuLeaf
         base._ExitTree();
         int temp = GameHandler.Instance().GameSoundController.GetVolume();
         GameHandler.Instance().GameSoundController.SetVolume(temp * PauseMenuVolumeDrop);
-        GD.Print("raising volume");
+        // GD.Print("raising volume");
     }
     
 }

@@ -10,7 +10,8 @@ public partial class HUDFactory : GodotObject
         Heart,
         GameShop,
         MobileControls,
-        HeartGrid
+        HeartGrid,
+        ScoreLabel
     }
 
     static Dictionary<ElementName, PackedScene> MenuScenes = new Dictionary<ElementName, PackedScene>
@@ -19,7 +20,8 @@ public partial class HUDFactory : GodotObject
         {ElementName.Heart, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/Heart.tscn")},
         {ElementName.GameShop, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/Shop.tscn")},
         {ElementName.MobileControls, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/MobileControls.tscn")},
-        {ElementName.HeartGrid, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/HeartGrid.tscn")}
+        {ElementName.HeartGrid, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Composites/HeartGrid.tscn")},
+        {ElementName.ScoreLabel, ResourceLoader.Load<PackedScene>("res://[TL6] Julia/scenes/HUD/Leaves/ScoreLabel.tscn")},
     };
 
     public static MoneyLabel MoneyLabel()
@@ -69,7 +71,7 @@ public partial class HUDFactory : GodotObject
     public static CharacterInfo CharacterInfo()
     {
         CharacterInfo info = new CharacterInfo();
-        info.Scale = new Vector2(3.0f, 3.0f);
+        info.Scale = new Vector2(2.0f, 2.0f);
         info.Name = "CharacterInfo";
         return info;
     }
@@ -80,4 +82,9 @@ public partial class HUDFactory : GodotObject
     }
 
     private HUDFactory() { }
+
+    public static ScoreLabel ScoreLabel()
+    {
+        return (ScoreLabel)MenuScenes[ElementName.ScoreLabel].Instantiate();
+    }
 }

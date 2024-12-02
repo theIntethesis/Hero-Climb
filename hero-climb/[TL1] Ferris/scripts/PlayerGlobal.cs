@@ -41,7 +41,7 @@ public partial class PlayerGlobal : Node
 			amount = 0;
 		}
 		// GD.Print($"Score: {Score += amount}");
-		Score += amount;
+		Score += (int)Mathf.Ceil(amount * GameDifficultyHandler.Instance().ScoreMultiplier());
 		return Score;
 	}
 	public static int AffectPlayerHealth(int amount = 0)

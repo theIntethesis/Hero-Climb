@@ -25,7 +25,7 @@ public partial class GameHandler : Node
 
 		GameDifficultyHandler.Instance().SetCurrentDifficulty(difficultyEnum);
 
-		GD.Print("Set Difficulty");
+		// GD.Print("Set Difficulty");
 
 		ActiveScene = InitialGameScene.Instantiate();
 
@@ -33,17 +33,17 @@ public partial class GameHandler : Node
 		ShopElementFactory.Reset(classType);
 
 		
-		GD.Print("Made Character");
+		// GD.Print("Made Character");
 		
 		GetTree().Root.AddChild(ActiveScene);
 
 	
-		GD.Print("Added ActiveScene");
+		// GD.Print("Added ActiveScene");
 
 		ActiveScene.AddChild(Player);
 		ActiveScene.MoveChild(Player, 2);
 
-		GD.Print("Added Character");
+		// GD.Print("Added Character");
 
 		
 		PlayerGlobal.Money = 0;

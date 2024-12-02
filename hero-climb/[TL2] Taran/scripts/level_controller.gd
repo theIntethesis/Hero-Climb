@@ -27,7 +27,7 @@ func add_new_level():
 		enemy_damage += 25
 	
 	%EnemyController.spawns = enemy_array
-	print(%EnemyController.spawns.size())
+	# print(%EnemyController.spawns.size())
 	%EnemyController.SpawnEnemies(enemy_health, enemy_damage)
 	enemy_array.clear()
 
