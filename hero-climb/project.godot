@@ -25,7 +25,6 @@ PGlobal="*res://[TL1] Ferris/scripts/PlayerGlobal.cs"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

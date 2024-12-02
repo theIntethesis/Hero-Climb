@@ -64,7 +64,6 @@ public abstract partial class BaseEnemy : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 
-
 		if (Math.Floor(GlobalPosition.X) == Math.Floor(player.GlobalPosition.X)){
 			Velocity = new Vector2(0,0);
 			IsIdle = true;
@@ -90,7 +89,7 @@ public abstract partial class BaseEnemy : CharacterBody2D
 		// Apply gravity
 		if (!IsOnFloor())
 		{
-			velocity.Y += Gravity * (float)delta;
+			velocity += GetGravity() * (float)delta;
 		}
 
 		// Move the enemy back and forth

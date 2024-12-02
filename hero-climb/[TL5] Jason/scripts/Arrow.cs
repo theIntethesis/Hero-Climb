@@ -7,6 +7,7 @@ public partial class Arrow : CharacterBody2D
 	public Vector2 direction = new Vector2(1,0);
 	public int Speed = 200;
 	public int Damage = 25;
+	private int _deleteAfterFrames = 500;
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -28,4 +29,12 @@ public partial class Arrow : CharacterBody2D
 			QueueFree();
 		}
 	}
+    public override void _Process(double delta)
+    {
+		if (_deleteAfterFrames <= 0)
+		{
+			QueueFree();
+		}
+		else _deleteAfterFrames--;
+    }
 }

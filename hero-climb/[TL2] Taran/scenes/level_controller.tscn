@@ -26,11 +26,9 @@ tile_set = ExtResource("2_oppe0")
 [node name="PickupCreator" parent="." instance=ExtResource("9_uluci")]
 unique_name_in_owner = true
 position = Vector2(0, 75)
-pickup_value = null
 
 [node name="EnemyController" parent="." instance=ExtResource("7_wlqnk")]
 unique_name_in_owner = true
-spawns = null
 
 [node name="RisingLava" parent="." instance=ExtResource("5_ga4ha")]
 unique_name_in_owner = true

@@ -42,7 +42,7 @@ public partial class Skeleton : BaseEnemy
 
 		Arrow arrow = (Arrow)ArrowScene.Instantiate();
 		arrow.direction.X = base.direction.X;
-		arrow.GlobalPosition = this.GlobalPosition;
+		arrow.GlobalPosition = this.GlobalPosition + (direction.X > 0 ? new Vector2(25, 0) : new Vector2(-25, 0));
 		arrow.Damage = Damage;
 
 		AddSibling(arrow);
