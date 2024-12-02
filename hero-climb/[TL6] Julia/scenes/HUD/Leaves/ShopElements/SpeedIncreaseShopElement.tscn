@@ -1,37 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://fmn2flcvqhy5"]
-[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+[gd_scene load_steps=4 format=3 uid="uid://fmn2flcvqhy5"]
+
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/SpeedIncrease.cs" id="1_1a8s7"]
 [ext_resource type="Texture2D" uid="uid://b4j04u68eq2sf" path="res://[TL6] Julia/assets/speed_increase.png" id="1_e3d4v"]
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_ncjds"]
 
-[node name="ShopElement" type="Control"]
-custom_minimum_size = Vector2(60, 90)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 60.0
-offset_bottom = 60.0
+[node name="ShopElement" type="VBoxContainer"]
+offset_right = 80.0
+offset_bottom = 98.0
 tooltip_text = "Increase Player Speed"
+theme = ExtResource("1_ncjds")
 script = ExtResource("1_1a8s7")
+_IsPoppable = false
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
 tooltip_text = "Increase Movement Speed"
 icon = ExtResource("1_e3d4v")
 icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
 text = "PRICE"
 horizontal_alignment = 1

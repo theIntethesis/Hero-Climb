@@ -98,6 +98,11 @@ public partial class GameHandler : Node
 		MenuSoundController.Play("Heal");
 	}
 
+	public void ShopBuySound()
+	{
+		MenuSoundController.Play("ShopBuy");
+	}
+
 
 	public void DeathSound()
 	{

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bfcdbdgy0vle1"]
-[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+[gd_scene load_steps=3 format=3 uid="uid://bfcdbdgy0vle1"]
+
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_ljqjp"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Composites/GameShop.cs" id="1_pnpkh"]
 
 [node name="ShopContainer" type="Control"]
@@ -12,7 +13,9 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
+theme = ExtResource("1_ljqjp")
 script = ExtResource("1_pnpkh")
+_IsPoppable = false
 
 [node name="Shop" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -28,33 +31,20 @@ offset_bottom = 82.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoundingBox" type="Control" parent="Shop"]
+[node name="BoundingBox" type="MarginContainer" parent="Shop"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="Shop/BoundingBox"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 275.0
-offset_bottom = 115.0
+[node name="HFlowContainer" type="VBoxContainer" parent="Shop/BoundingBox"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Shop/BoundingBox/HFlowContainer"]
+layout_mode = 2
 columns = 4
 
-[node name="Close" type="Button" parent="Shop/BoundingBox"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.95
-anchor_right = 0.5
-anchor_bottom = 0.95
-offset_left = -30.0
-offset_top = -31.0
-offset_right = 30.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="CenterContainer" type="CenterContainer" parent="Shop/BoundingBox/HFlowContainer"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Shop/BoundingBox/HFlowContainer/CenterContainer"]
+layout_mode = 2
 text = "Close
 "
-
-[node name="Control" type="Control" parent="Shop/BoundingBox"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0

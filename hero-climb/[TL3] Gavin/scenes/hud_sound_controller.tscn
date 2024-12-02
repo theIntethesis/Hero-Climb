@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgeimeqij6amt"]
+[gd_scene load_steps=6 format=3 uid="uid://dgeimeqij6amt"]
 
 [ext_resource type="Script" path="res://[TL3] Gavin/scripts/HUDSoundController.cs" id="1_dn0sm"]
 [ext_resource type="AudioStream" uid="uid://hwthhux8eatr" path="res://[TL3] Gavin/assets/HUDSounds/Coin.mp3" id="2_fexoj"]
 [ext_resource type="AudioStream" uid="uid://bexxatvelxnv1" path="res://[TL3] Gavin/assets/HUDSounds/HudClick.mp3" id="2_oddhd"]
 [ext_resource type="AudioStream" uid="uid://bograbxnfrtyp" path="res://[TL3] Gavin/assets/HUDSounds/Heal.mp3" id="4_0gbqy"]
+[ext_resource type="AudioStream" uid="uid://ct0wf2dl10s32" path="res://[TL3] Gavin/assets/HUDSounds/ShopBuy.mp3" id="5_mylfx"]
 
 [node name="HUDSoundController" type="Node2D"]
 script = ExtResource("1_dn0sm")
@@ -20,3 +21,6 @@ bus = &"Interface"
 [node name="Heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0gbqy")
 bus = &"GameSFX"
+
+[node name="ShopBuy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mylfx")

@@ -11,9 +11,9 @@ public partial class FullHeal : ShopElement
     }
 
 
-	public override int Buy(int Money)
+	public override int Buy(int Money, bool playsound = true)
 	{
-		int Output = base.Buy(Money);
+		int Output = base.Buy(Money, false);
 
 		return Output;
 	}

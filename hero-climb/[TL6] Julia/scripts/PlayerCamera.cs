@@ -42,6 +42,8 @@ public partial class PlayerCamera : Camera2D
 
 		Stack = HUDFactory.PlayerCameraStack(this);
 		Interface.AddChild(Stack);
+		
+
 
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.OnPlayerHealthChange));
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerHealthChange, Callable.From<int>(Stack.HUD.OnPlayerHealthChange));
@@ -50,8 +52,7 @@ public partial class PlayerCamera : Camera2D
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.ShutUpAndTakeMyMoney, Callable.From(Stack.HUD.OpenShop));
         PlayerGlobal.ConnectPlayerSignal(Controller.SignalName.PlayerMaxHealthChange, Callable.From<int>(Stack.HUD.OnPlayerMaxHealthChange));
 	
-		// PlayerGlobal.GetSetMoney(1000);
-		// Stack.HUD.OpenShop();
+
 	}	
 
 	public override void _Process(double delta)
@@ -81,7 +82,15 @@ public partial class PlayerCamera : Camera2D
 		}
 	}
 
-	public void ShakeCamera()
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+		if (@event is InputEventKey eventKey)
+			if (eventKey.Pressed && eventKey.Keycode == Key.Q)
+				Stack.HUD.OpenShop();
+    }
+
+    public void ShakeCamera()
 	{
 		if (!Shaking)
 		{

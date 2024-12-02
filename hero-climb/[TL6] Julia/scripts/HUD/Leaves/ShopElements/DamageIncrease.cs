@@ -12,7 +12,7 @@ public partial class DamageIncrease : ShopElement
         PlayerGlobal.AffectBaseDamage(DmgIncrease);
     }
 
-    public override int Buy(int Money)
+    public override int Buy(int Money, bool playsound = true)
 	{
 		int Output = base.Buy(Money);
 

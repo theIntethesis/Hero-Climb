@@ -19,7 +19,7 @@ public partial class SpeedIncrease : ShopElement
         PlayerGlobal.AffectBaseMovement(SpdIncrease);
     }
 
-    public override int Buy(int Money)
+    public override int Buy(int Money, bool playsound = true)
     {
         int Output = base.Buy(Money);
 

@@ -7,7 +7,7 @@ public abstract partial class ShopElement : MenuLeaf
     
     public abstract void AffectPlayer();
 
-    public virtual int Buy(int Money)
+    public virtual int Buy(int Money, bool playsound = true)
     {
         if (Money >= CurrentPrice)
         {
@@ -17,7 +17,8 @@ public abstract partial class ShopElement : MenuLeaf
             GetNode<Label>("Label").Text = CurrentPrice.ToString();
 
             AffectPlayer();
-            GameHandler.Instance().ClickSound();
+            if (playsound) GameHandler.Instance().ShopBuySound();
+
 
             return OutMoney;
         }

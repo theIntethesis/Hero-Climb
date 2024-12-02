@@ -1,37 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://2vi1xf5ppita"]
-[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+[gd_scene load_steps=4 format=3 uid="uid://2vi1xf5ppita"]
+
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_gphta"]
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/DamageIncrease.cs" id="1_las2b"]
 [ext_resource type="Texture2D" uid="uid://c76x8ahc0odbl" path="res://[TL6] Julia/assets/dmg_increase.png" id="1_lqkrc"]
 
-[node name="ShopElement" type="Control"]
-custom_minimum_size = Vector2(60, 90)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 60.0
-offset_bottom = 60.0
+[node name="ShopElement" type="VBoxContainer"]
+offset_right = 80.0
+offset_bottom = 90.0
 tooltip_text = "Increase Damage"
+theme = ExtResource("1_gphta")
 script = ExtResource("1_las2b")
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
 tooltip_text = "Increase Damage Dealt to Enemies"
 icon = ExtResource("1_lqkrc")
 icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
 text = "PRICE"
 horizontal_alignment = 1

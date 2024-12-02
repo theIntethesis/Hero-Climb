@@ -12,9 +12,9 @@ public partial class MaxHealthIncrease : ShopElement
         PlayerGlobal.GetSetPlayerMaxHealth(HealthIncrease);
     }
 
-	public override int Buy(int Money)
+	public override int Buy(int Money, bool playsound = true)
 	{
-		int Output = base.Buy(Money);
+		int Output = base.Buy(Money, false);
 
 		return Output;
 	}

@@ -1,37 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdsx1cgl0852s"]
-[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+[gd_scene load_steps=4 format=3 uid="uid://bdsx1cgl0852s"]
+
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/ShopElements/MaxHealthIncrease.cs" id="1_8kpp2"]
+[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_lbyju"]
 [ext_resource type="Texture2D" uid="uid://cv68ganawra2s" path="res://[TL6] Julia/assets/Aseprite_Source/EmptyHeart.png" id="2_umrwi"]
 
-[node name="ShopElement" type="Control"]
-custom_minimum_size = Vector2(60, 90)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 60.0
-offset_bottom = 60.0
+[node name="ShopElement" type="VBoxContainer"]
+offset_right = 80.0
+offset_bottom = 98.0
 tooltip_text = "Increase Max Health"
+theme = ExtResource("1_lbyju")
 script = ExtResource("1_8kpp2")
+_IsPoppable = false
 
 [node name="Button" type="Button" parent="."]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 8.0
-grow_horizontal = 2
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
 tooltip_text = "Increase Max Health"
 icon = ExtResource("2_umrwi")
 icon_alignment = 1
 expand_icon = true
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
-grow_vertical = 0
+layout_mode = 2
 text = "PRICE"
 horizontal_alignment = 1

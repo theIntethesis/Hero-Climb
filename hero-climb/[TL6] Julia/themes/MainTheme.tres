@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://esntjulg5jim"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://esntjulg5jim"]
 
 [ext_resource type="FontFile" uid="uid://cw7tymns51sj4" path="res://[TL6] Julia/assets/Minecraft.otf" id="1_570oe"]
 [ext_resource type="Texture2D" uid="uid://pjptvs6bwx2l" path="res://[TL6] Julia/assets/Aseprite_Source/slider_button.png" id="1_yusc4"]
@@ -118,6 +118,8 @@ content_margin_bottom = 4.0
 bg_color = Color(0.505882, 0.505882, 0.505882, 1)
 border_color = Color(1, 1, 1, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ww6o"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4316"]
 content_margin_left = 8.0
 content_margin_top = 0.0
@@ -178,6 +180,7 @@ TabContainer/styles/panel = SubResource("StyleBoxFlat_3xq25")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_bcgmv")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_ku0ov")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_gwl6h")
+TooltipLabel/styles/normal = SubResource("StyleBoxEmpty_6ww6o")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_3oai4")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_5e250")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_sw3ci")

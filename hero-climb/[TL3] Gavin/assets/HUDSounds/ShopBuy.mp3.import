@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ct0wf2dl10s32"
+path="res://.godot/imported/ShopBuy.mp3-4f0f9b6ad38cbe6878d4c170c0fff572.mp3str"
+
+[deps]
+
+source_file="res://[TL3] Gavin/assets/HUDSounds/ShopBuy.mp3"
+dest_files=["res://.godot/imported/ShopBuy.mp3-4f0f9b6ad38cbe6878d4c170c0fff572.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
