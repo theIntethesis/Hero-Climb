@@ -24,8 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_52csc")
 script = ExtResource("1_soyv3")
-_IsBackground = null
-_IsPoppable = null
 
 [node name="Control2" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
@@ -35,8 +33,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_w122x")
-_IsBackground = null
-_IsPoppable = null
 InitialParent = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="Control2"]
@@ -57,7 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_okjo3")
-_IsBackground = null
 _IsPoppable = false
 InitialParent = NodePath("..")
 

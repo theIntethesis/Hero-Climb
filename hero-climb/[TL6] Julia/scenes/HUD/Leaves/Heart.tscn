@@ -202,12 +202,10 @@ anchors_preset = 0
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_fbykv")
-_IsBackground = null
-_IsPoppable = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pnu4r")
-animation = &"three-half"
+animation = &"half-quarter"
 autoplay = "empty"
 centered = false
 offset = Vector2(-3, -3)

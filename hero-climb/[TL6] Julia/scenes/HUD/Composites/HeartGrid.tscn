@@ -9,8 +9,6 @@ anchors_preset = 0
 offset_right = 32.0
 offset_bottom = 32.0
 script = ExtResource("1_dixrc")
-_IsBackground = null
-_IsPoppable = null
 
 [node name="HeartGrid" type="GridContainer" parent="."]
 layout_mode = 0

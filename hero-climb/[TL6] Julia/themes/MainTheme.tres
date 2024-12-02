@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://esntjulg5jim"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://esntjulg5jim"]
 
 [ext_resource type="FontFile" uid="uid://cw7tymns51sj4" path="res://[TL6] Julia/assets/Minecraft.otf" id="1_570oe"]
+[ext_resource type="Texture2D" uid="uid://pjptvs6bwx2l" path="res://[TL6] Julia/assets/Aseprite_Source/slider_button.png" id="1_yusc4"]
+[ext_resource type="Texture2D" uid="uid://7r4yk8f6noj0" path="res://[TL6] Julia/assets/Aseprite_Source/slider_button_highlighted.png" id="2_cwbs4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e250"]
 content_margin_left = 5.0
@@ -35,6 +37,33 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k73y"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+content_margin_bottom = 0.0
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_brwm4"]
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_color = Color(0.505882, 0.505882, 0.505882, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00rnr"]
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+border_color = Color(0.392157, 0.392157, 0.392157, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1nkyk"]
+content_margin_top = 4.0
+content_margin_right = 0.0
+content_margin_bottom = 4.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+corner_detail = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xq25"]
 content_margin_left = 8.0
 content_margin_top = 8.0
@@ -64,7 +93,15 @@ content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
-bg_color = Color(0.505882, 0.505882, 0.505882, 1)
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku0ov"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
 border_width_top = 4
 border_color = Color(1, 1, 1, 1)
 
@@ -73,8 +110,26 @@ content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
-bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+bg_color = Color(0.505882, 0.505882, 0.505882, 1)
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4316"]
+content_margin_left = 8.0
+content_margin_top = 0.0
+content_margin_right = 8.0
+content_margin_bottom = 0.0
+bg_color = Color(0.392157, 0.392157, 0.392157, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiirx"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.27451, 0.27451, 0.27451, 1)
+corner_detail = 1
 
 [resource]
 default_font = ExtResource("1_570oe")
@@ -85,6 +140,17 @@ Button/font_sizes/font_size = 18
 Button/styles/hover = SubResource("StyleBoxFlat_5e250")
 Button/styles/normal = SubResource("StyleBoxFlat_3oai4")
 Button/styles/pressed = SubResource("StyleBoxFlat_sw3ci")
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_3oai4")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_5e250")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_sw3ci")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_0k73y")
+HSlider/icons/grabber = ExtResource("1_yusc4")
+HSlider/icons/grabber_disabled = ExtResource("2_cwbs4")
+HSlider/icons/grabber_highlight = ExtResource("1_yusc4")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_brwm4")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_00rnr")
+HSlider/styles/slider = SubResource("StyleBoxFlat_1nkyk")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/styles/normal = SubResource("StyleBoxFlat_3xq25")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0lxpa")
@@ -92,5 +158,15 @@ TabContainer/colors/font_selected_color = Color(0.95, 0.95, 0.95, 1)
 TabContainer/colors/font_unselected_color = Color(1, 1, 1, 1)
 TabContainer/styles/panel = SubResource("StyleBoxFlat_3xq25")
 TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_bcgmv")
-TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_bcgmv")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_ku0ov")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_gwl6h")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_3oai4")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_5e250")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_sw3ci")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_p4316")
+VSlider/icons/grabber = ExtResource("1_yusc4")
+VSlider/icons/grabber_disabled = ExtResource("2_cwbs4")
+VSlider/icons/grabber_highlight = ExtResource("1_yusc4")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_brwm4")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_00rnr")
+VSlider/styles/slider = SubResource("StyleBoxFlat_kiirx")

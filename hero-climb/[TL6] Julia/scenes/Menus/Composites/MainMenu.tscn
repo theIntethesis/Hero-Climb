@@ -16,8 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vi38q")
-_IsBackground = null
-_IsPoppable = null
 
 [node name="MenuLeaf" type="Control" parent="." node_paths=PackedStringArray("InitialParent")]
 layout_mode = 1
@@ -29,7 +27,6 @@ grow_vertical = 2
 theme = ExtResource("2_a6o8a")
 script = ExtResource("1_ufg12")
 _IsBackground = true
-_IsPoppable = null
 InitialParent = NodePath("..")
 
 [node name="ColorRect" type="ColorRect" parent="MenuLeaf"]
@@ -59,7 +56,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_a6o8a")
 script = ExtResource("1_0hfcr")
-_IsBackground = null
 _IsPoppable = false
 InitialParent = NodePath("..")
 
