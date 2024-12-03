@@ -37,8 +37,8 @@ func add_collectable(point : Vector2):
 func add_enemy(point : Vector2):
 	enemy_array.append_array(PackedVector2Array([point]))
 
-func floor_climbed(area : Area2D):
-	print("Current floor: "+str(current_level))
+func floor_climbed(_area : Area2D):
+	# print("Current floor: "+str(current_level))
 	call_deferred("add_new_level")
 	PlayerGlobal.GetSetScore(100 * levels_climbed)
 	levels_climbed += 1

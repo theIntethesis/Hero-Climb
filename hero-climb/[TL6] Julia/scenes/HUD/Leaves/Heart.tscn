@@ -197,13 +197,15 @@ animations = [{
 }]
 
 [node name="Control" type="Control"]
+custom_minimum_size = Vector2(15.6, 15.6)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_right = 10.4
+offset_bottom = 10.4
 script = ExtResource("1_fbykv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_pnu4r")
 animation = &"half-quarter"
 autoplay = "empty"

@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d220mtjktx1ci"]
+[gd_scene load_steps=5 format=3 uid="uid://d220mtjktx1ci"]
 
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/Menus/Leaves/SettingsMenu.cs" id="1_jfmx4"]
 [ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="1_pwoxs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cy353"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rp8a0"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -109,6 +111,44 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 rounded = true
+
+[node name="Demo Mode" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/Demo Mode"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Label" type="Label" parent="TabContainer/Demo Mode/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rp8a0")
+text = "Enable Inactivity Detection"
+
+[node name="CheckBox" type="CheckBox" parent="TabContainer/Demo Mode/GridContainer"]
+layout_mode = 2
+flat = true
+
+[node name="Label2" type="Label" parent="TabContainer/Demo Mode/GridContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rp8a0")
+text = "Enable Demo Mode (Hotkey F5)"
+
+[node name="CheckBox2" type="CheckBox" parent="TabContainer/Demo Mode/GridContainer"]
+layout_mode = 2
+flat = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1

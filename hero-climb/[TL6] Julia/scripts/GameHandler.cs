@@ -11,6 +11,15 @@ public partial class GameHandler : Node
 	public SoundController GameSoundController;
 	public SoundController MenuSoundController;
 
+	public bool UseInactivity = false;
+	
+	bool _DemoModeActive = false;
+	public bool DemoModeActive
+	{
+		get { return _DemoModeActive; }
+		set {  GD.Print("DemoModeActive = " + value); _DemoModeActive = value; }
+	}
+
 	private static GameHandler _Instance = null;
 
 	public static GameHandler Instance()
@@ -32,22 +41,16 @@ public partial class GameHandler : Node
 		Controller Player = PlayerGlobal.MakeCharacter(classType);
 		ShopElementFactory.Reset(classType);
 
-		
-		// GD.Print("Made Character");
-		
-		GetTree().Root.AddChild(ActiveScene);
-
-	
-		// GD.Print("Added ActiveScene");
-
 		ActiveScene.AddChild(Player);
 		ActiveScene.MoveChild(Player, 2);
 
-		// GD.Print("Added Character");
+		GetTree().Root.AddChild(ActiveScene);
 
 		
 		PlayerGlobal.Money = 0;
 		PlayerGlobal.GetSetScore(-1);
+
+		GD.Print("Inactivity is " + UseInactivity);
 		
 
 		Input.EmulateMouseFromTouch = false;

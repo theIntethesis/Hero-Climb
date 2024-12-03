@@ -14,7 +14,6 @@ public partial class CharacterInfo : MenuCompositeBase
         Push(HUDFactory.HeartGrid());
         Push(HUDFactory.MoneyLabel());
         Push(HUDFactory.ScoreLabel());
-        
     }
 
     public override Node GetContainer()

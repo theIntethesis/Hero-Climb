@@ -7,14 +7,14 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rlvxc"]
 
 [node name="MoneyLabel" type="GridContainer"]
-offset_right = 63.0
-offset_bottom = 23.0
+offset_right = 71.0
+offset_bottom = 14.0
 theme = ExtResource("3_5bj51")
 columns = 2
 script = ExtResource("1_6bmth")
 
 [node name="Control" type="Control" parent="."]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(14, 14)
 layout_mode = 2
 
 [node name="Control" type="Control" parent="Control"]
@@ -28,14 +28,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/Control"]
-scale = Vector2(0.01, 0.01)
+scale = Vector2(0.009, 0.009)
 texture = ExtResource("1_a5a54")
 
-[node name="Label" type="Label" parent="."]
+[node name="Amount" type="Label" parent="."]
 layout_mode = 2
 theme = ExtResource("3_5bj51")
 theme_override_colors/font_color = Color(0.781407, 0.781407, 0.781407, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rlvxc")
 text = "TEMP"
-vertical_alignment = 1

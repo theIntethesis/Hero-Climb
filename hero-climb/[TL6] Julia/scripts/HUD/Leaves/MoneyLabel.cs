@@ -16,6 +16,6 @@ public partial class MoneyLabel : MenuLeaf
         }
 
         displayedValue = money;
-        GetNode<Label>("Label").Text = money.ToString();
+        GetNode<Label>("Amount").Text = money.ToString();
     }
 }

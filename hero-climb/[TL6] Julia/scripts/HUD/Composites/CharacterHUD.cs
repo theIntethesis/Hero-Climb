@@ -23,26 +23,26 @@ public partial class CharacterHUD : MenuComposite
     public CharacterInfo characterInfo;
 
 
+
     public override void _Ready()
     {
         characterInfo = HUDFactory.CharacterInfo();
-        AddChild(characterInfo);
+        Push(characterInfo);
 
         if (OS.GetName() == "Android" || OS.IsDebugBuild())
         {
-            AddChild(HUDFactory.MobileControls());
+            Push(HUDFactory.MobileControls());
         }
 
 
 
         Name = "CharacterHUD";
 
-        const float margin = 0.02f;
-
-        SetAnchor(Side.Left, margin, true, false);
-        SetAnchor(Side.Right, 1.0f - margin, true, false);
-        SetAnchor(Side.Top, margin, true, false);
-        SetAnchor(Side.Bottom, 1.0f - margin, true, false);
+  
+        SetAnchorAndOffset(Side.Left, 0.0f, 25.0f);
+        SetAnchorAndOffset(Side.Right, 1.0f, -25.0f);
+        SetAnchorAndOffset(Side.Top, 0.0f, 25.0f);
+        SetAnchorAndOffset(Side.Bottom, 1.0f, -25.0f);
 
         characterInfo.Child<HeartGrid>("HeartGrid").IncreaseMaxHealth(InitialMaxHealth);
         characterInfo.Child<HeartGrid>("HeartGrid").Increment(InitialMaxHealth);

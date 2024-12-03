@@ -10,3 +10,5 @@
 
 /build/Pkg/*
 !/build/Pkg/.gitkeep
+
+.vscode/*

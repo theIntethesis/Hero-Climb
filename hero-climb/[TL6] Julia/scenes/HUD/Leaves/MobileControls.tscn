@@ -1,5 +1,5 @@
 [gd_scene load_steps=13 format=3 uid="uid://0bdwm75lg5b8"]
-[ext_resource type="Theme" uid="uid://esntjulg5jim" path="res://[TL6] Julia/themes/MainTheme.tres" id="3_5bj51"]
+
 [ext_resource type="Script" path="res://[TL6] Julia/scripts/HUD/Leaves/MobileControls.cs" id="1_a77xc"]
 [ext_resource type="Texture2D" uid="uid://b3rryhllnt6n2" path="res://[TL6] Julia/assets/Aseprite_Source/arrow_unpressed.png" id="2_0uxyr"]
 [ext_resource type="Texture2D" uid="uid://b8ucva8ns38xh" path="res://[TL6] Julia/assets/Aseprite_Source/arrow_pressed.png" id="3_b538e"]
@@ -30,7 +30,37 @@ shape = SubResource("RectangleShape2D_62s1i")
 shape_centered = false
 action = "interact"
 
-[node name="Bottom Right Corner" type="Control" parent="."]
+[node name="Control4" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="Control" parent="Control4"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control3" type="Control" parent="Control4/Box"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+scale = Vector2(2.25, 2.25)
+
+[node name="open_menu" type="TouchScreenButton" parent="Control4/Box/Control3"]
+position = Vector2(-32, 0)
+texture_normal = ExtResource("10_tu53r")
+texture_pressed = ExtResource("11_umgbb")
+shape_centered = false
+action = "open_menu"
+
+[node name="Control" type="Control" parent="Control4/Box"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -39,21 +69,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.3, 0.3)
+scale = Vector2(2.25, 2.25)
 
-[node name="Bounding Box" type="Control" parent="Bottom Right Corner"]
+[node name="Rotation" type="Control" parent="Control4/Box/Control"]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -800.0
-offset_top = -800.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 0
+offset_left = -44.0
+offset_top = -47.0
+offset_right = -44.0
+offset_bottom = -47.0
+rotation = 0.785398
 
-[node name="2DOrigin" type="Control" parent="Bottom Right Corner/Bounding Box"]
+[node name="DPadGrid" type="GridContainer" parent="Control4/Box/Control/Rotation"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = 34.0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -62,56 +103,61 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.785398
 
-[node name="up" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
-position = Vector2(-128, -384)
-scale = Vector2(8, 8)
+[node name="up" type="TouchScreenButton" parent="Control4/Box/Control/Rotation/DPadGrid/Control/Control"]
+position = Vector2(-16, -16)
 texture_normal = ExtResource("2_0uxyr")
 texture_pressed = ExtResource("3_b538e")
 action = "move_up"
 
-[node name="right" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
-position = Vector2(384, -128)
-rotation = 1.5708
-scale = Vector2(8, 8)
+[node name="Control2" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+
+[node name="up" type="TouchScreenButton" parent="Control4/Box/Control/Rotation/DPadGrid/Control2/Control"]
+position = Vector2(-16, -16)
 texture_normal = ExtResource("2_0uxyr")
 texture_pressed = ExtResource("3_b538e")
 action = "move_right"
 
-[node name="down" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
-position = Vector2(128, 384)
-rotation = 3.14159
-scale = Vector2(8, 8)
-texture_normal = ExtResource("2_0uxyr")
-texture_pressed = ExtResource("3_b538e")
-action = "move_down"
+[node name="Control3" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 
-[node name="left" type="TouchScreenButton" parent="Bottom Right Corner/Bounding Box/2DOrigin"]
-position = Vector2(-384, 128)
-rotation = 4.71239
-scale = Vector2(8, 8)
+[node name="Control" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -2.35619
+
+[node name="left" type="TouchScreenButton" parent="Control4/Box/Control/Rotation/DPadGrid/Control3/Control"]
+position = Vector2(-16, -16)
 texture_normal = ExtResource("2_0uxyr")
 texture_pressed = ExtResource("3_b538e")
 action = "move_left"
 
-[node name="Bottom Left Corner" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-grow_vertical = 0
-scale = Vector2(0.3, 0.3)
+[node name="Control4" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 
-[node name="Bounding Box" type="Control" parent="Bottom Left Corner"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -800.0
-offset_right = 800.0
-grow_vertical = 0
-
-[node name="2DOrigin" type="Control" parent="Bottom Left Corner/Bounding Box"]
+[node name="Control" type="Control" parent="Control4/Box/Control/Rotation/DPadGrid/Control4"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -120,45 +166,70 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 2.35619
 
-[node name="up" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
-position = Vector2(-384, -128)
-scale = Vector2(8, 8)
+[node name="down" type="TouchScreenButton" parent="Control4/Box/Control/Rotation/DPadGrid/Control4/Control"]
+position = Vector2(-16, -16)
+texture_normal = ExtResource("2_0uxyr")
+texture_pressed = ExtResource("3_b538e")
+action = "move_down"
+
+[node name="Control2" type="Control" parent="Control4/Box"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+scale = Vector2(2.25, 2.25)
+
+[node name="Rotation" type="Control" parent="Control4/Box/Control2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 45.0
+offset_top = -47.0
+offset_right = 45.0
+offset_bottom = -47.0
+grow_horizontal = 0
+rotation = 0.785398
+
+[node name="DPadGrid" type="GridContainer" parent="Control4/Box/Control2/Rotation"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = 34.0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+
+[node name="jump" type="TouchScreenButton" parent="Control4/Box/Control2/Rotation/DPadGrid/Control/Control"]
+position = Vector2(-16, -16)
 texture_normal = ExtResource("4_dx3uf")
 texture_pressed = ExtResource("5_xxu1x")
 action = "jump"
 
-[node name="ability" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
-position = Vector2(-128, -384)
-scale = Vector2(8, 8)
-texture_normal = ExtResource("6_pwamg")
-texture_pressed = ExtResource("7_f565l")
-action = "ability"
+[node name="Control2" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 
-[node name="attack" type="TouchScreenButton" parent="Bottom Left Corner/Bounding Box/2DOrigin"]
-position = Vector2(128, -128)
-scale = Vector2(8, 8)
-texture_normal = ExtResource("8_iebsh")
-texture_pressed = ExtResource("9_npco3")
-action = "attack"
-
-[node name="Top Right Corner" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-
-[node name="Bounding Box" type="Control" parent="Top Right Corner"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -80.0
-offset_bottom = 80.0
-grow_horizontal = 0
-
-[node name="2DOrigin" type="Control" parent="Top Right Corner/Bounding Box"]
+[node name="Control" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid/Control2"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -167,11 +238,46 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+rotation = 0.785398
 
-[node name="open_menu" type="TouchScreenButton" parent="Top Right Corner/Bounding Box/2DOrigin"]
-position = Vector2(-128, -128)
-scale = Vector2(8, 8)
-texture_normal = ExtResource("10_tu53r")
-texture_pressed = ExtResource("11_umgbb")
-action = "open_menu"
+[node name="up" type="TouchScreenButton" parent="Control4/Box/Control2/Rotation/DPadGrid/Control2/Control"]
+position = Vector2(-16, -16)
+texture_normal = ExtResource("8_iebsh")
+texture_pressed = ExtResource("9_npco3")
+action = "attack"
+
+[node name="Control3" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid/Control3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.785398
+
+[node name="left" type="TouchScreenButton" parent="Control4/Box/Control2/Rotation/DPadGrid/Control3/Control"]
+position = Vector2(-16, -16)
+texture_normal = ExtResource("6_pwamg")
+texture_pressed = ExtResource("7_f565l")
+action = "ability"
+
+[node name="Control4" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Control4/Box/Control2/Rotation/DPadGrid/Control4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.35619

@@ -7,8 +7,6 @@ using System.Text.RegularExpressions;
 public partial class Heart : MenuElement
 {
     public const int MAX_HEART_HEALTH = 20;
-    public const int HEART_SIZE_W = 28;
-    public const int HEART_SIZE_H = 32;
 
     enum HeartState 
     {
@@ -102,7 +100,6 @@ public partial class Heart : MenuElement
         Health = 0;
         CurrentState = HeartState.EMPTY;
         AnimationQueue = new Queue<string>();
-        CustomMinimumSize = new Vector2(HEART_SIZE_W, HEART_SIZE_H);
     }
 
     public override void _Ready()

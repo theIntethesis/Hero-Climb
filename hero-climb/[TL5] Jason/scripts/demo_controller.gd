@@ -18,7 +18,7 @@ class DemoInput:
 @export var loop_demo := true  # Whether to loop the sequence when it ends
 
 # State
-var is_demo_mode := false
+
 var current_frame := 0
  # reset frames
 var r_start = 0
@@ -134,12 +134,14 @@ func _ready() -> void:
 func _unhandled_input(event):
 	if event is InputEventKey and event.is_pressed() and event.keycode == demo_key:
 		toggle_demo_mode()
+
 func _input(event):
 	if event is InputEventMouseButton:
-		is_demo_mode = false
+		print("disabling demo mode due to mouse input")
+		GameHandler.Instance().DemoModeActive = false
 
 func _physics_process(_delta):
-	if is_demo_mode:
+	if GameHandler.Instance().DemoModeActive:
 		play_demo()
 		current_frame += 1
 		
@@ -166,8 +168,9 @@ func play_demo():
 				Input.action_release(input.action)
 
 func toggle_demo_mode():
-	is_demo_mode = !is_demo_mode
-	if is_demo_mode:
+	print("toggling demo mode")
+	GameHandler.Instance().DemoModeActive = !GameHandler.Instance().DemoModeActive
+	if GameHandler.Instance().DemoModeActive:
 		current_frame = 0
 	else:
 		# Release all potentially held inputs
@@ -176,7 +179,7 @@ func toggle_demo_mode():
 func set_level(level_id: int):
 	current_level = level_id
 	current_frame = 0
-	if is_demo_mode:
+	if GameHandler.Instance().DemoModeActive:
 		release_all_inputs()
 
 func release_all_inputs():
@@ -193,4 +196,9 @@ func get_sequence_length() -> int:
 	return sequence[-1].frame + 1
 
 func _on_demo_detector_inactivity_detected() -> void:
-	is_demo_mode = true
+	print("inactivity_detected, enabling demo mode")
+	GameHandler.Instance().DemoModeActive = true
+
+func _on_demo_detector_activity_detected() -> void:
+	# is_demo_mode = false
+	pass 

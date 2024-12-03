@@ -43,12 +43,7 @@ public partial class HeartGrid : MenuCompositeBase
 		{
 			Push(HUDFactory.Heart());
 		}
-
-		CustomMinimumSize = new Vector2(
-			Hearts.Columns * Heart.HEART_SIZE_W * ((Control)GetContainer()).Scale.X, 
-			MathF.Ceiling((float)Hearts.GetChildCount() / (float)Hearts.Columns) * Heart.HEART_SIZE_H * ((Control)GetContainer()).Scale.Y
-		);
-
+			
 	}
 
 	public void Increment(int health)
@@ -78,6 +73,7 @@ public partial class HeartGrid : MenuCompositeBase
 				HeadIdx++;
 			}
 		}
+
 	}
 
 	public void Decrement(int value)
@@ -108,6 +104,7 @@ public partial class HeartGrid : MenuCompositeBase
     {
 		Hearts = GetNode<GridContainer>("HeartGrid");
 		base._Ready();
+	
     }
 
 
