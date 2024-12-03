@@ -1,16 +1,9 @@
 # Hero Climb
- - 2d platformer
- - 3 playable classes
-   - Fighter
-   - Rogue
-   - Wizard
- - Goal: Ascend a tower, using class abilities to ascend faster
- - Lava rises behind you
- - Enemies patrol
-  - Skeleton
-  - Slime
-  - Goblin
- - Collect coins and purchase upgrades!
+The dastardly Necromancer amasses treasure in their lair, free to take for any brave enough to venture within. When you enter, lava begins to bubble up around the base of the tower, quickly rising. Race as high as you can in this arcade-style platformer!
+
+Earn more points for killing enemies, collecting loot, and climbing the tower's floors. Higher difficulty levels makes for higher risk, but higher reward.
+
+The Rogue can climb pipes, the Fighter can break through wooden boxes, and the Wizard can shoot fireballs from range.
 
 # Minimum Requirements
 - Windows 10, Linux, or Android
