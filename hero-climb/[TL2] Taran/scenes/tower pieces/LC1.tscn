@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://b6a61awdl3lo6" path="res://[TL2] Taran/assets/tower_background_tileset.tres" id="3_rt65g"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAOAPT/AQANAAEAAAANAPT/AQARAAQAAAAMAPT/AQAJAAEAAAALAPT/AQAMAAMAAAAKAPT/AQARAAAAAAAJAPT/AQARAAIAAAAIAPT/AQAPAAIAAAAHAPT/AQAPAAAAAAAGAPT/AQAPAAIAAAAFAPT/AQAHAAEAAAAEAPT/AQAMAAEAAAADAPT/AQAMAAMAAAACAPT/AQARAAQAAAABAPT/AQAIAAEAAAAAAPT/AQAMAAEAAAD///T/AQARAAQAAAD+//T/AQAIAAEAAAD9//T/AQAPAAAAAAD8//T/AQARAAIAAAD7//T/AQAPAAQAAAD6//T/AQAHAAEAAAD5//T/AQARAAAAAAD4//T/AQAPAAIAAAD3//T/AQARAAQAAAD2//T/AQAMAAMAAAD1//T/AQAPAAIAAAD0//T/AQAPAAQAAAAOAPr/AQAQAAEAAAAOAPn/AQAQAAMAAAAOAPj/AQANAAIAAAAOAPf/AQAQAAEAAAAOAPb/AQALAAIAAAAOAPX/AQALAAIAAAAOAPv/AQAEAAMAAADx////AQANAAEAAADx//r/AQAEAAMAAADx//n/AQALAAIAAADx//j/AQANAAIAAADx//T/AQALAAEAAADw////AQARAAAAAADv////AQAJAAEAAADu////AQALAAMAAADu//7/AQAQAAEAAADu//3/AQAEAAEAAADz//j/AAAAAAAAAgDy//j/AAAAAAAAAQDw//r/AAAAAAAABADw//X/AAAAAAAABQDw//b/AAAAAAAABQDw//f/AAAAAAAABQDw//j/AAAAAAAABQDw//n/AAAAAAAABQDw//T/AAAAAAAABgA=")
+tile_map_data = PackedByteArray("AAAOAPT/AQANAAEAAAANAPT/AQARAAQAAAAMAPT/AQAJAAEAAAALAPT/AQAMAAMAAAAKAPT/AQARAAAAAAAJAPT/AQARAAIAAAAIAPT/AQAPAAIAAAAHAPT/AQAPAAAAAAAGAPT/AQAPAAIAAAAFAPT/AQAHAAEAAAAEAPT/AQAMAAEAAAADAPT/AQAMAAMAAAACAPT/AQARAAQAAAABAPT/AQAIAAEAAAAAAPT/AQAMAAEAAAD///T/AQARAAQAAAD+//T/AQAIAAEAAAD9//T/AQAPAAAAAAD8//T/AQARAAIAAAD7//T/AQAPAAQAAAD6//T/AQAHAAEAAAD5//T/AQARAAAAAAD4//T/AAAAAAAAAgD3//T/AAAAAAAAAwD2//T/AAAAAAAAAwD1//T/AAAAAAAAAwD0//T/AAAAAAAAAQAOAPr/AQAQAAEAAAAOAPn/AQAQAAMAAAAOAPj/AQANAAIAAAAOAPf/AQAQAAEAAAAOAPb/AQALAAIAAAAOAPX/AQALAAIAAAAOAPv/AQAEAAMAAADx////AQANAAEAAADx//r/AQAEAAMAAADx//n/AQALAAIAAADx//j/AQANAAIAAADx//T/AQADAAIAAADw////AQARAAAAAADv////AQAJAAEAAADu////AQALAAMAAADz//j/AAAAAAAAAwDy//j/AAAAAAAAAQDw//r/AAAAAAAABQDw//X/AAAAAAAABQDw//b/AAAAAAAABQDw//f/AAAAAAAABQDw//j/AAAAAAAABQDw//n/AAAAAAAABQDw//T/AAAAAAAABgDw//7/AAAAAAAABADw//v/AAAAAAAABQDw//z/AAAAAAAABQDw//3/AAAAAAAABQD0//j/AAAAAAAAAwD1//j/AAAAAAAAAwD2//j/AAAAAAAAAwD3//j/AAAAAAAAAwD4//j/AAAAAAAAAwD5//j/AAAAAAAAAgDz//T/AQAFAAIAAADy//T/AQAPAAQAAAA=")
 tile_set = ExtResource("1_fg4gk")
 
 [node name="Center" parent="." instance=ExtResource("2_q4260")]
@@ -18,13 +18,19 @@ tile_set = ExtResource("3_rt65g")
 [node name="CollectableLocations" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="CollectableLocations"]
-position = Vector2(-281, -66)
+position = Vector2(-281, -33)
 
 [node name="Marker2D2" type="Marker2D" parent="CollectableLocations"]
-position = Vector2(-252, -29)
+position = Vector2(-248, -34)
 
 [node name="Marker2D3" type="Marker2D" parent="CollectableLocations"]
 position = Vector2(-208, -145)
+
+[node name="Marker2D5" type="Marker2D" parent="CollectableLocations"]
+position = Vector2(-248, -166)
+
+[node name="Marker2D4" type="Marker2D" parent="CollectableLocations"]
+position = Vector2(-156, -144)
 
 [node name="EnemyLocations" type="Node2D" parent="."]
 
@@ -35,17 +41,25 @@ position = Vector2(-120, -24)
 position = Vector2(92, -30)
 gizmo_extents = 0.0
 
-[connection signal="body_entered" from="Pipe" to="Pipe" method="OnBodyEntered"]
-[connection signal="body_exited" from="Pipe" to="Pipe" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45188" to="@Area2D@45188" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45188" to="@Area2D@45188" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45189" to="@Area2D@45189" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45189" to="@Area2D@45189" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45190" to="@Area2D@45190" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45190" to="@Area2D@45190" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45191" to="@Area2D@45191" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45191" to="@Area2D@45191" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45192" to="@Area2D@45192" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45192" to="@Area2D@45192" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@45193" to="@Area2D@45193" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@45193" to="@Area2D@45193" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57663" to="@Area2D@57663" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57663" to="@Area2D@57663" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57664" to="@Area2D@57664" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57664" to="@Area2D@57664" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57665" to="@Area2D@57665" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57665" to="@Area2D@57665" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57666" to="@Area2D@57666" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57666" to="@Area2D@57666" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57667" to="@Area2D@57667" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57667" to="@Area2D@57667" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@57668" to="@Area2D@57668" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@57668" to="@Area2D@57668" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@59269" to="@Area2D@59269" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@59269" to="@Area2D@59269" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@59270" to="@Area2D@59270" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@59270" to="@Area2D@59270" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@59271" to="@Area2D@59271" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@59271" to="@Area2D@59271" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@59272" to="@Area2D@59272" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@59272" to="@Area2D@59272" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@59273" to="@Area2D@59273" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@59273" to="@Area2D@59273" method="OnBodyExited"]
