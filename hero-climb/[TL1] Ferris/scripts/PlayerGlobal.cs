@@ -14,7 +14,7 @@ public partial class PlayerGlobal : Node
 		set { 
 			int delta =  value - _Money; 
 			_Money = value; 
-			GetSetScore(delta); 
+			if(delta > 0) GetSetScore(delta); 
 			Player.EmitSignal(Controller.SignalName.KaChing); 
 		}
 		get { return _Money; }
