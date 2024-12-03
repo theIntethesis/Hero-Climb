@@ -3,9 +3,9 @@ extends Node2D
 
 # Matrix representing how many of each piece type exist.
 # Must be manually updated.
-const PIECE_COUNTS = {"LY":2, "LC":3, "LN":2,
-					  "CY":2, "CC":3, "CN":2,
-					  "RY":2, "RC":3, "RN":2,}
+const PIECE_COUNTS = {"LY":3, "LC":3, "LN":3,
+					  "CY":5, "CC":5, "CN":5,
+					  "RY":3, "RC":4, "RN":3,}
 
 const PIECE_FOLDER = "res://[TL2] Taran/scenes/tower pieces/"
 # Naming convention for level pieces: PIECE_FOLDER/[][][]
