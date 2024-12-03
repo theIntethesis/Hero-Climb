@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://b6a61awdl3lo6" path="res://[TL2] Taran/assets/tower_background_tileset.tres" id="3_ec60u"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAOAPT/AQANAAEAAAANAPT/AQARAAQAAAAMAPT/AQAJAAEAAAALAPT/AQAMAAMAAAAKAPT/AQARAAAAAAAJAPT/AQARAAIAAAAIAPT/AQAPAAIAAAAHAPT/AQAPAAAAAAAGAPT/AQAPAAIAAAAFAPT/AQAHAAEAAAAEAPT/AQAMAAEAAAADAPT/AQAMAAMAAAACAPT/AQARAAQAAAABAPT/AQAIAAEAAAAAAPT/AQAMAAEAAAD///T/AAAAAAAAAgD+//T/AAAAAAAAAwD9//T/AAAAAAAAAwD8//T/AAAAAAAAAwD7//T/AAAAAAAAAQD6//T/AQAHAAEAAAD5//T/AQARAAAAAAD4//T/AQAPAAIAAAD3//T/AQARAAQAAAD2//T/AQAMAAMAAAD1//T/AQAPAAIAAAD0//T/AQAPAAQAAADz//T/AQARAAIAAADy//T/AQADAAIAAAAOAPr/AQAQAAEAAAAOAPn/AQAQAAMAAAAOAPj/AQANAAIAAAAOAPf/AQAQAAEAAAAOAPb/AQALAAIAAAAOAPX/AQALAAIAAAAOAPv/AQAQAAEAAAAOAP//AQAEAAMAAAAOAP7/AQAQAAMAAAAOAP3/AQAQAAEAAAAOAPz/AQANAAIAAAD9//r/AAAAAAAAAQAAAPr/AAAAAAAAAgD+//r/AAAAAAAAAwD///r/AAAAAAAAAwACAP//AAAAAAAABAACAPb/AAAAAAAABQACAPf/AAAAAAAABQACAPj/AAAAAAAABQACAPn/AAAAAAAABQACAPr/AAAAAAAABQACAPv/AAAAAAAABQACAPz/AAAAAAAABQACAP3/AAAAAAAABQACAP7/AAAAAAAABQACAPX/AAAAAAAABgA=")
+tile_map_data = PackedByteArray("AAAOAPT/AQANAAEAAAANAPT/AQARAAQAAAAMAPT/AQAJAAEAAAALAPT/AQAMAAMAAAAKAPT/AQARAAAAAAAJAPT/AQARAAIAAAAIAPT/AQAPAAIAAAAHAPT/AQAPAAAAAAAGAPT/AQAPAAIAAAAFAPT/AQAHAAEAAAAEAPT/AQAMAAEAAAADAPT/AQAMAAMAAAACAPT/AQARAAQAAAABAPT/AQAIAAEAAAAAAPT/AQAMAAEAAAD///T/AAAAAAAAAgD+//T/AAAAAAAAAwD9//T/AAAAAAAAAwD8//T/AAAAAAAAAwD7//T/AAAAAAAAAQD6//T/AQAHAAEAAAD5//T/AQARAAAAAAD4//T/AQAPAAIAAAD3//T/AQARAAQAAAD2//T/AQAMAAMAAAD1//T/AQAPAAIAAAD0//T/AQAPAAQAAADz//T/AQARAAIAAADy//T/AQADAAIAAAAOAPr/AQAQAAEAAAAOAPn/AQAQAAMAAAAOAPj/AQANAAIAAAAOAPf/AQAQAAEAAAAOAPb/AQALAAIAAAAOAPX/AQALAAIAAAAOAPv/AQAQAAEAAAAOAP//AQAEAAMAAAAOAP7/AQAQAAMAAAAOAP3/AQAQAAEAAAAOAPz/AQANAAIAAAACAP//AAAAAAAABAACAPb/AAAAAAAABQACAPf/AAAAAAAABQACAPj/AAAAAAAABQACAPn/AAAAAAAABQACAPr/AAAAAAAABQACAPv/AAAAAAAABQACAPz/AAAAAAAABQACAP3/AAAAAAAABQACAP7/AAAAAAAABQACAPX/AAAAAAAABgD8//n/AAAAAAAAAQD9//n/AAAAAAAAAwD+//n/AAAAAAAAAwD///n/AAAAAAAAAgA=")
 tile_set = ExtResource("1_ixms6")
 
 [node name="Center" parent="." instance=ExtResource("2_bp14i")]
@@ -18,10 +18,10 @@ tile_set = ExtResource("3_ec60u")
 [node name="CollectableLocations" type="Node2D" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="CollectableLocations"]
-position = Vector2(-1, -115)
+position = Vector2(-20, -130)
 
 [node name="Marker2D2" type="Marker2D" parent="CollectableLocations"]
-position = Vector2(-30, -114)
+position = Vector2(-47, -129)
 
 [node name="EnemyLocations" type="Node2D" parent="."]
 
@@ -30,23 +30,23 @@ position = Vector2(-116, -30)
 
 [connection signal="body_entered" from="Pipe" to="Pipe" method="OnBodyEntered"]
 [connection signal="body_exited" from="Pipe" to="Pipe" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42511" to="@Area2D@42511" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42511" to="@Area2D@42511" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42512" to="@Area2D@42512" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42512" to="@Area2D@42512" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42513" to="@Area2D@42513" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42513" to="@Area2D@42513" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42514" to="@Area2D@42514" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42514" to="@Area2D@42514" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42515" to="@Area2D@42515" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42515" to="@Area2D@42515" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42516" to="@Area2D@42516" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42516" to="@Area2D@42516" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42517" to="@Area2D@42517" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42517" to="@Area2D@42517" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42518" to="@Area2D@42518" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42518" to="@Area2D@42518" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42519" to="@Area2D@42519" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42519" to="@Area2D@42519" method="OnBodyExited"]
-[connection signal="body_entered" from="@Area2D@42520" to="@Area2D@42520" method="OnBodyEntered"]
-[connection signal="body_exited" from="@Area2D@42520" to="@Area2D@42520" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42850" to="@Area2D@42850" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42850" to="@Area2D@42850" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42851" to="@Area2D@42851" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42851" to="@Area2D@42851" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42852" to="@Area2D@42852" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42852" to="@Area2D@42852" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42853" to="@Area2D@42853" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42853" to="@Area2D@42853" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42854" to="@Area2D@42854" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42854" to="@Area2D@42854" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42855" to="@Area2D@42855" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42855" to="@Area2D@42855" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42856" to="@Area2D@42856" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42856" to="@Area2D@42856" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42857" to="@Area2D@42857" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42857" to="@Area2D@42857" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42858" to="@Area2D@42858" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42858" to="@Area2D@42858" method="OnBodyExited"]
+[connection signal="body_entered" from="@Area2D@42859" to="@Area2D@42859" method="OnBodyEntered"]
+[connection signal="body_exited" from="@Area2D@42859" to="@Area2D@42859" method="OnBodyExited"]
