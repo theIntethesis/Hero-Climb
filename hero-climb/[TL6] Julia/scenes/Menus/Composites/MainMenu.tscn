@@ -103,7 +103,7 @@ text = "Settings"
 
 [node name="Credits" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2
-text = "Credits"
+text = "About"
 
 [node name="Quit" type="Button" parent="MainMenu/GridContainer"]
 layout_mode = 2

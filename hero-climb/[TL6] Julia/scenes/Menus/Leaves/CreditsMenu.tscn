@@ -110,25 +110,21 @@ layout_mode = 2
 text = "Julia Abdel-Monem"
 
 [node name="Control2" type="Control" parent="GridContainer/ScrollContainer/GridContainer2"]
-custom_minimum_size = Vector2(300, 304)
+custom_minimum_size = Vector2(300, 202.667)
 layout_mode = 2
 
 [node name="Control2" type="PanelContainer" parent="GridContainer/ScrollContainer/GridContainer2/Control2"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 154.0
-offset_bottom = 154.0
+offset_left = -101.333
+offset_right = 101.333
+offset_bottom = 202.667
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="GridContainer/ScrollContainer/GridContainer2/Control2/Control2"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_v8jbm")
 centered = false
 offset = Vector2(6.667, 6.667)
@@ -150,7 +146,7 @@ offset_right = 225.5
 offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hero Climb v1.0.0
+text = "Hero Climb
 Copyright (c) 2024. All Rights Reserved."
 horizontal_alignment = 1
 
