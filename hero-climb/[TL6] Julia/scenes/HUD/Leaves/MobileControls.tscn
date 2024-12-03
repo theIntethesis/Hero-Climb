@@ -40,6 +40,7 @@ grow_vertical = 2
 
 [node name="Box" type="Control" parent="Control4"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -51,7 +52,7 @@ anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
-scale = Vector2(2.25, 2.25)
+scale = Vector2(3.5, 3.5)
 
 [node name="open_menu" type="TouchScreenButton" parent="Control4/Box/Control3"]
 position = Vector2(-32, 0)
@@ -69,7 +70,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(2.25, 2.25)
+scale = Vector2(3.5, 3.5)
 
 [node name="Rotation" type="Control" parent="Control4/Box/Control"]
 layout_mode = 1
@@ -180,7 +181,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
-scale = Vector2(2.25, 2.25)
+scale = Vector2(3.5, 3.5)
 
 [node name="Rotation" type="Control" parent="Control4/Box/Control2"]
 layout_mode = 1
