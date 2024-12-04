@@ -55,14 +55,12 @@ public partial class CharacterHUD : MenuComposite
     public override void OnShow()
     {
         GetTree().Paused = false;
-        Input.EmulateMouseFromTouch = false;
 
     }
 
     public override void OnHide()
     {
         GetTree().Paused = true;
-        Input.EmulateMouseFromTouch = true;
     }
 
     public override void OnPop()
@@ -75,7 +73,7 @@ public partial class CharacterHUD : MenuComposite
     {
         if (Child("GameShop") == null)
         {          
-            MenuElement gameShop = HUDFactory.GameShop();
+            GameShop gameShop = HUDFactory.GameShop();
 
             Push(gameShop);
         }

@@ -22,11 +22,7 @@ public partial class GameShop : MenuCompositeBase
         foreach (ShopElement element in elements)
         {
             Push(element);
-            // GD.Print(element);
-        }
-
-        // GD.Print("shop added");
-
+        }       
     }
 
     public override Node GetContainer()
@@ -38,8 +34,18 @@ public partial class GameShop : MenuCompositeBase
     {
         if (PlayerGlobal.InShopArea == false)
         {
-            QueueFree();
+            // QueueFree();
         }
+    }
+
+    public override void OnPop()
+    {
+        base.OnPop();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
     }
 }
 

@@ -53,8 +53,6 @@ public partial class GameHandler : Node
 		GD.Print("Inactivity is " + UseInactivity);
 		
 
-		Input.EmulateMouseFromTouch = false;
-
 		GameSoundController.Play("Game");
 	}
 
@@ -64,7 +62,6 @@ public partial class GameHandler : Node
 		{
 			ActiveScene.QueueFree();
 			ActiveScene = null;
-			Input.EmulateMouseFromTouch = true;
 			PlayerGlobal.SetPlayer(null);
 		}
 	}
