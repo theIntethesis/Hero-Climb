@@ -3,7 +3,7 @@ using Godot;
 
 public partial class CreditsMenu : MenuLeaf
 {
-    const string GAME_VERSION = "v1.1.0";
+    const string GAME_VERSION = "v1.1.1";
 
     public CreditsMenu() : base()
     {
